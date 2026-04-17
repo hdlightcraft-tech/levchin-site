@@ -364,7 +364,7 @@ h2 {
 .contact-card {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: auto;
   min-width: 0;
   margin: 36px 0 0;
@@ -380,6 +380,8 @@ h2 {
 }
 
 .contact-card strong {
+  display: block;
+  text-align: left;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -610,11 +612,89 @@ h2 {
 }
 
 .language-select-label {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 8px;
   justify-content: flex-start;
   text-align: left;
+}
+
+.language-custom {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.language-custom-label {
+  color: var(--text);
+}
+
+.language-custom-button {
+  min-width: 128px;
+  border: 0;
+  border-bottom: 1px solid rgba(239, 230, 221, 0.44);
+  border-radius: 0;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  outline: 0;
+  padding: 0 18px 2px 0;
+  text-align: left;
+}
+
+.language-custom-button::after {
+  content: "⌄";
+  margin-left: 5px;
+  color: rgba(239, 230, 221, 0.8);
+}
+
+.language-custom-list {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  z-index: 80;
+  display: none;
+  min-width: 168px;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid rgba(255, 243, 227, 0.14);
+  background: rgba(5, 5, 5, 0.96);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  list-style: none;
+}
+
+.language-custom.is-open .language-custom-list {
+  display: block;
+}
+
+.language-custom-option {
+  width: 100%;
+  border: 0;
+  color: rgba(239, 230, 221, 0.72);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  padding: 9px 10px;
+  text-align: left;
+}
+
+.language-custom-option:hover,
+.language-custom-option:focus-visible,
+.language-custom-option.is-active {
+  color: #fff8ef;
+  background: rgba(255, 243, 227, 0.07);
+  outline: 0;
+}
+
+.footer-meta .language-custom {
+  align-self: flex-end;
 }
 
 .language-select {
@@ -687,6 +767,12 @@ h2 {
   font-size: 0.78rem;
   font-weight: 500;
   white-space: nowrap;
+}
+
+.legal-page .language-custom {
+  position: absolute;
+  right: var(--edge-space);
+  bottom: 34px;
 }
 
 .legal-page .language-select {
@@ -1372,6 +1458,18 @@ h2 {
     align-self: auto;
     max-width: 100%;
     font-size: 0.72rem;
+  }
+
+  .legal-page .language-custom {
+    right: var(--edge-space);
+    bottom: 26px;
+    font-size: 0.72rem;
+  }
+
+  .language-custom-list {
+    right: 0;
+    left: auto;
+    min-width: 160px;
   }
 
   .coming-soon-toast {
