@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #050505;
   --panel: rgba(10, 9, 9, 0.68);
   --text: #efe6dd;
@@ -629,6 +629,17 @@ h2 {
   box-shadow: none;
 }
 
+.language-select option {
+  color: var(--text);
+  background: #050505;
+}
+
+.language-select option:checked,
+.language-select option:hover {
+  color: #fff8ef;
+  background: #1a1715;
+}
+
 .legal-page {
   position: relative;
   min-height: 100vh;
@@ -676,6 +687,7 @@ h2 {
 .legal-page .language-select {
   max-width: none;
   color: var(--text);
+  background-color: transparent;
   border: 0;
   background: transparent;
   outline: 0;
