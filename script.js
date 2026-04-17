@@ -106,7 +106,7 @@ if (languageSelect) {
     languageCustom.appendChild(labelText);
   }
 
-  customButton.innerHTML = `<span>${languageSelect.options[languageSelect.selectedIndex]?.textContent || "Français"}</span>`;
+  customButton.innerHTML = `<span>${languageSelect.options[languageSelect.selectedIndex]?.textContent || "Français"}</span><i aria-hidden="true"></i>`;
   languageCustom.appendChild(customButton);
 
   Array.from(languageSelect.options).forEach((option) => {
