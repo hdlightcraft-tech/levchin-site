@@ -613,9 +613,12 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .language-select {
+  width: 128px;
   max-width: 62vw;
   color: var(--text);
   border: 0;
@@ -627,6 +630,8 @@ h2 {
   outline: 0;
   padding: 0 18px 2px 0;
   box-shadow: none;
+  text-align: left;
+  text-align-last: left;
 }
 
 .language-select option {
@@ -685,7 +690,8 @@ h2 {
 }
 
 .legal-page .language-select {
-  max-width: none;
+  width: 128px;
+  max-width: 62vw;
   color: var(--text);
   background-color: transparent;
   border: 0;
@@ -693,7 +699,8 @@ h2 {
   outline: 0;
   box-shadow: none;
   padding: 0;
-  text-align: right;
+  text-align: left;
+  text-align-last: left;
 }
 
 .legal-page .language-select:focus,
