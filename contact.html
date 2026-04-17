@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - LEVCHIN</title>
+    <meta name="description" content="Contacter la maison LEVCHIN pour toute demande, collaboration ou renseignement." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="legal-page contact-page">
+      <header class="legal-header">
+        <a href="index.html" aria-label="Retour à l’accueil">
+          <img class="legal-logo" src="assets/logo.svg" alt="LEVCHIN" />
+        </a>
+      </header>
+
+      <article class="legal-content contact-page-content">
+        <div class="legal-topline">
+          <p class="section-kicker" data-fr="CONTACT" data-en="CONTACT" data-es="CONTACTO" data-it="CONTATTO" data-ja="お問い合わせ" data-zh="联系" data-de="KONTAKT" data-ko="문의" data-pt="CONTACTO">CONTACT</p>
+          <label class="language-select-label" for="language-select">
+            <span data-fr="Langue :" data-en="Language:" data-es="Idioma:" data-it="Lingua:" data-ja="言語:" data-zh="语言:" data-de="Sprache:" data-ko="언어:" data-pt="Idioma:">Langue :</span>
+            <select id="language-select" class="language-select" data-language-select>
+              <option value="fr">Français</option>
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="it">Italiano</option>
+              <option value="ja">日本語</option>
+              <option value="zh">中文</option>
+              <option value="de">Deutsch</option>
+              <option value="ko">한국어</option>
+              <option value="pt">Português</option>
+            </select>
+          </label>
+        </div>
+
+        <h1 class="contact-title" data-fr="Entrer en relation" data-en="Get in touch" data-es="Entrar en contacto" data-it="Entrare in contatto" data-ja="お問い合わせ" data-zh="建立联系" data-de="In Kontakt treten" data-ko="연락하기" data-pt="Entrar em contacto">Entrer en relation</h1>
+
+        <p class="contact-intro" data-fr="Pour toute demande, renseignement ou collaboration, la maison vous répond." data-en="For any request, information or collaboration, the house will respond." data-es="Para cualquier solicitud, información o colaboración, la casa le responderá." data-it="Per qualsiasi richiesta, informazione o collaborazione, la maison vi risponderà." data-ja="ご依頼、ご質問、コラボレーションについて、メゾンよりご返信いたします。" data-zh="关于任何咨询、信息或合作需求，品牌都会给予回复。" data-de="Für jede Anfrage, Information oder Zusammenarbeit antwortet Ihnen die Maison." data-ko="문의, 정보 요청 또는 협업에 대해 메종이 답변드립니다." data-pt="Para qualquer pedido, informação ou colaboração, a casa responderá.">Pour toute demande, renseignement ou collaboration, la maison vous répond.</p>
+
+        <div class="contact-form" role="form" data-contact-form data-contact-email="contact@levchin.fr">
+          <div class="form-grid">
+            <label class="field-group">
+              <span data-fr="Nom" data-en="Name" data-es="Nombre" data-it="Nome" data-ja="お名前" data-zh="姓名" data-de="Name" data-ko="이름" data-pt="Nome">Nom</span>
+              <input name="nom" type="text" autocomplete="name" data-required-field data-fr-placeholder="Votre nom" data-en-placeholder="Your name" data-es-placeholder="Su nombre" data-it-placeholder="Il tuo nome" data-ja-placeholder="お名前" data-zh-placeholder="您的姓名" data-de-placeholder="Ihr Name" data-ko-placeholder="이름" data-pt-placeholder="O seu nome" placeholder="Votre nom" />
+            </label>
+
+            <label class="field-group">
+              <span data-fr="Email" data-en="Email" data-es="Email" data-it="Email" data-ja="メール" data-zh="邮箱" data-de="E-Mail" data-ko="이메일" data-pt="Email">Email</span>
+              <input name="email" type="email" autocomplete="email" data-required-field data-fr-placeholder="Votre adresse email" data-en-placeholder="Your email address" data-es-placeholder="Su dirección email" data-it-placeholder="Il tuo indirizzo email" data-ja-placeholder="メールアドレス" data-zh-placeholder="您的电子邮箱" data-de-placeholder="Ihre E-Mail-Adresse" data-ko-placeholder="이메일 주소" data-pt-placeholder="O seu endereço de email" placeholder="Votre adresse email" />
+            </label>
+          </div>
+
+          <fieldset class="request-options">
+            <legend data-fr="Type de demande" data-en="Request type" data-es="Tipo de solicitud" data-it="Tipo di richiesta" data-ja="お問い合わせ種別" data-zh="请求类型" data-de="Art der Anfrage" data-ko="문의 유형" data-pt="Tipo de pedido">Type de demande</legend>
+
+            <label>
+              <input type="radio" name="type" value="Collaboration" checked />
+              <span data-fr="Collaboration" data-en="Collaboration" data-es="Colaboración" data-it="Collaborazione" data-ja="コラボレーション" data-zh="合作" data-de="Zusammenarbeit" data-ko="협업" data-pt="Colaboração">Collaboration</span>
+            </label>
+
+            <label>
+              <input type="radio" name="type" value="Design" />
+              <span data-fr="Design" data-en="Design" data-es="Diseño" data-it="Design" data-ja="デザイン" data-zh="设计" data-de="Design" data-ko="디자인" data-pt="Design">Design</span>
+            </label>
+
+            <label>
+              <input type="radio" name="type" value="Mode" />
+              <span data-fr="Mode" data-en="Fashion" data-es="Moda" data-it="Moda" data-ja="ファッション" data-zh="时装" data-de="Mode" data-ko="패션" data-pt="Moda">Mode</span>
+            </label>
+
+            <label>
+              <input type="radio" name="type" value="Presse" />
+              <span data-fr="Presse" data-en="Press" data-es="Prensa" data-it="Stampa" data-ja="プレス" data-zh="媒体" data-de="Presse" data-ko="프레스" data-pt="Imprensa">Presse</span>
+            </label>
+
+            <label>
+              <input type="radio" name="type" value="Autre" />
+              <span data-fr="Autre" data-en="Other" data-es="Otro" data-it="Altro" data-ja="その他" data-zh="其他" data-de="Andere" data-ko="기타" data-pt="Outro">Autre</span>
+            </label>
+          </fieldset>
+
+          <label class="field-group">
+            <span data-fr="Message" data-en="Message" data-es="Mensaje" data-it="Messaggio" data-ja="メッセージ" data-zh="留言" data-de="Nachricht" data-ko="메시지" data-pt="Mensagem">Message</span>
+            <textarea name="message" rows="7" data-required-field data-fr-placeholder="Écrivez votre message" data-en-placeholder="Write your message" data-es-placeholder="Escriba su mensaje" data-it-placeholder="Scrivi il tuo messaggio" data-ja-placeholder="メッセージをご入力ください" data-zh-placeholder="请写下您的留言" data-de-placeholder="Schreiben Sie Ihre Nachricht" data-ko-placeholder="메시지를 작성하세요" data-pt-placeholder="Escreva a sua mensagem" placeholder="Écrivez votre message"></textarea>
+          </label>
+
+          <p class="form-error" data-contact-error data-fr="Veuillez compléter les champs essentiels avant l’envoi." data-en="Please complete the essential fields before sending." data-es="Complete los campos esenciales antes de enviar." data-it="Completa i campi essenziali prima dell’invio." data-ja="送信前に必要な項目をご入力ください。" data-zh="发送前请填写必要字段。" data-de="Bitte füllen Sie vor dem Senden die wesentlichen Felder aus." data-ko="전송 전에 필수 항목을 입력해 주세요." data-pt="Preencha os campos essenciais antes de enviar.">Veuillez compléter les champs essentiels avant l’envoi.</p>
+
+          <button class="form-submit" type="button" data-contact-submit>
+            <span data-fr="Envoyer la demande" data-en="Send request" data-es="Enviar solicitud" data-it="Inviare la richiesta" data-ja="送信する" data-zh="发送请求" data-de="Anfrage senden" data-ko="문의 보내기" data-pt="Enviar pedido">Envoyer la demande</span>
+          </button>
+        </div>
+
+        <p class="form-note" data-fr="Après validation, votre application email s’ouvrira avec votre demande prête à envoyer." data-en="After submission, your email application will open with your request ready to send." data-es="Después de validar, su aplicación de email se abrirá con su solicitud lista para enviar." data-it="Dopo la conferma, la tua applicazione email si aprirà con la richiesta pronta da inviare." data-ja="送信後、メールアプリが開き、送信準備済みの内容が表示されます。" data-zh="提交后，您的邮件应用会打开，并显示准备发送的请求。" data-de="Nach dem Absenden öffnet sich Ihre E-Mail-App mit Ihrer vorbereiteten Anfrage." data-ko="제출 후 이메일 앱이 열리고 보낼 요청 내용이 준비됩니다." data-pt="Após validar, a sua aplicação de email abrirá com o pedido pronto para enviar.">Après validation, votre application email s’ouvrira avec votre demande prête à envoyer.</p>
+
+        <a class="legal-back-link" href="index.html" data-fr="Retour à l’accueil" data-en="Back to home" data-es="Volver al inicio" data-it="Torna alla home" data-ja="ホームへ戻る" data-zh="返回首页" data-de="Zur Startseite" data-ko="홈으로 돌아가기" data-pt="Voltar ao início">Retour à l’accueil</a>
+      </article>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

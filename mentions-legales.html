@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentions légales - LEVCHIN</title>
+    <meta name="description" content="Mentions légales du site LEVCHIN." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="legal-page">
+      <header class="legal-header">
+        <a href="index.html" aria-label="Retour à l’accueil">
+          <img class="legal-logo" src="assets/logo.svg" alt="LEVCHIN" />
+        </a>
+      </header>
+      <article class="legal-content" data-legal-page="legal">
+        <div class="legal-topline">
+          <p class="section-kicker">LEVCHIN</p>
+          <label class="language-select-label" for="language-select">
+            <span data-legal-ui="language">Langue :</span>
+            <select id="language-select" class="language-select" data-language-select>
+              <option value="fr">Français</option><option value="en">English</option><option value="es">Español</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="zh">中文</option><option value="de">Deutsch</option><option value="ko">한국어</option><option value="pt">Português</option>
+            </select>
+          </label>
+        </div>
+        <h1 data-legal-title>Mentions légales</h1>
+        <div class="legal-text" data-legal-body></div>
+        <a class="legal-back-link" href="index.html" data-legal-back>Retour à l’accueil</a>
+      </article>
+    </main>
+    <script src="legal-translations.js"></script>
+  </body>
+</html>
