@@ -42,6 +42,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 const languageSelect = document.querySelector("[data-language-select]");
 const savedLanguage = localStorage.getItem("levchin-language");
 let currentLanguage = savedLanguage || document.documentElement.lang || "fr";
+let languageCustomButton;
+let languageCustomOptions = [];
+let languageCustomLabel;
 
 function setLanguage(language) {
   currentLanguage = language;
@@ -65,9 +68,84 @@ function setLanguage(language) {
   if (languageSelect) {
     languageSelect.value = language;
   }
+
+  if (languageCustomButton && languageSelect) {
+    const selectedOption = languageSelect.querySelector(`option[value="${language}"]`);
+    languageCustomButton.firstElementChild.textContent = selectedOption?.textContent || language;
+
+    languageCustomOptions.forEach((option) => {
+      const isActive = option.dataset.languageValue === language;
+      option.classList.toggle("is-active", isActive);
+      option.setAttribute("aria-selected", String(isActive));
+    });
+  }
+
+  if (languageCustomLabel?.dataset[language]) {
+    languageCustomLabel.textContent = languageCustomLabel.dataset[language];
+  }
 }
 
 if (languageSelect) {
+  const nativeLabel = languageSelect.closest(".language-select-label");
+  const languageCustom = document.createElement("div");
+  const labelText = nativeLabel?.querySelector("span")?.cloneNode(true);
+  const customButton = document.createElement("button");
+  const customList = document.createElement("ul");
+
+  languageCustom.className = "language-custom";
+  customButton.className = "language-custom-button";
+  customButton.type = "button";
+  customButton.setAttribute("aria-haspopup", "listbox");
+  customButton.setAttribute("aria-expanded", "false");
+  customList.className = "language-custom-list";
+  customList.setAttribute("role", "listbox");
+
+  if (labelText) {
+    labelText.className = "language-custom-label";
+    languageCustomLabel = labelText;
+    languageCustom.appendChild(labelText);
+  }
+
+  customButton.innerHTML = `<span>${languageSelect.options[languageSelect.selectedIndex]?.textContent || "Français"}</span>`;
+  languageCustom.appendChild(customButton);
+
+  Array.from(languageSelect.options).forEach((option) => {
+    const listItem = document.createElement("li");
+    const optionButton = document.createElement("button");
+
+    optionButton.className = "language-custom-option";
+    optionButton.type = "button";
+    optionButton.dataset.languageValue = option.value;
+    optionButton.textContent = option.textContent;
+    optionButton.setAttribute("role", "option");
+
+    optionButton.addEventListener("click", () => {
+      setLanguage(option.value);
+      languageCustom.classList.remove("is-open");
+      customButton.setAttribute("aria-expanded", "false");
+    });
+
+    listItem.appendChild(optionButton);
+    customList.appendChild(listItem);
+    languageCustomOptions.push(optionButton);
+  });
+
+  languageCustom.appendChild(customList);
+  nativeLabel?.insertAdjacentElement("afterend", languageCustom);
+  languageCustomButton = customButton;
+
+  customButton.addEventListener("click", () => {
+    const isOpen = languageCustom.classList.toggle("is-open");
+    customButton.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!languageCustom.contains(event.target)) {
+      languageCustom.classList.remove("is-open");
+      customButton.setAttribute("aria-expanded", "false");
+    }
+  });
+
   languageSelect.addEventListener("change", (event) => {
     setLanguage(event.target.value);
   });
