@@ -924,7 +924,7 @@ h2 {
 }
 
 .story-intro h1 {
-  max-width: 15ch;
+  max-width: 18ch;
   margin: 0 0 26px;
   color: #f4ebe1;
   font-size: clamp(2.65rem, 6.2vw, 6.25rem);
