@@ -10,10 +10,6 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.18 }
 );
 
-function completeLoader() {
-  document.body.classList.add("is-loaded");
-}
-
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
@@ -22,11 +18,7 @@ window.addEventListener("load", () => {
   if (!window.location.hash) {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
-
-  window.setTimeout(completeLoader, 420);
 });
-
-window.setTimeout(completeLoader, 1800);
 
 document.querySelectorAll(".reveal").forEach((element, index) => {
   element.style.transitionDelay = `${index * 120}ms`;
@@ -129,7 +121,6 @@ if (languageSelect) {
 
     optionButton.addEventListener("click", () => {
       setLanguage(option.value);
-      languageSelect.dispatchEvent(new Event("change", { bubbles: true }));
       languageCustom.classList.remove("is-open");
       customButton.setAttribute("aria-expanded", "false");
     });
