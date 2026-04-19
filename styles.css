@@ -636,7 +636,8 @@ h2 {
 }
 
 .language-custom-button {
-  min-width: 92px;
+  width: max-content;
+  min-width: 0;
   border: 0;
   border-bottom: 1px solid rgba(239, 230, 221, 0.44);
   border-radius: 0;
@@ -645,7 +646,7 @@ h2 {
   cursor: pointer;
   font: inherit;
   outline: 0;
-  padding: 0 18px 2px 0;
+  padding: 0 0 2px;
   text-align: left;
 }
 
