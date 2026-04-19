@@ -1119,8 +1119,7 @@ h2 {
 .story-back-link {
   display: flex;
   width: fit-content;
-  margin-left: calc((100% - min(100%, 1020px)) / 2);
-  margin-top: 18px;
+  margin: 18px 0 0;
 }
 
 .contact-page-content {
