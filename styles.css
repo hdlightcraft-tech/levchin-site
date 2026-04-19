@@ -1120,7 +1120,7 @@ h2 {
   display: flex;
   width: fit-content;
   margin-left: calc((100% - min(100%, 820px)) / 2);
-  margin-top: 132px;
+  margin-top: 188px;
 }
 
 .contact-page-content {
