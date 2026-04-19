@@ -26,7 +26,10 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 243, 227, 0.018), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(145, 92, 48, 0.035), transparent 32%),
+    var(--bg);
   font-family: var(--font-main);
 }
 
@@ -35,11 +38,53 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 14%, rgba(255, 228, 197, 0.035), transparent 34%);
+  z-index: 1;
+  background: radial-gradient(circle at 50% 14%, rgba(255, 228, 197, 0.03), transparent 34%);
   mix-blend-mode: screen;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    repeating-radial-gradient(circle at 17% 32%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 4px);
+  background-size: 220px 220px;
+  mix-blend-mode: soft-light;
+}
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: #050505;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transition: opacity 900ms ease, visibility 900ms ease;
+}
+
+.site-loader img {
+  width: min(220px, 48vw);
+  height: auto;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: loaderReveal 1300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+body.is-loaded .site-loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .page-frame {
+  position: relative;
+  z-index: 2;
   width: min(100%, 1600px);
   margin: 0 auto;
 }
@@ -110,9 +155,9 @@ body::before {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 112vh;
+  min-height: 114vh;
   overflow: hidden;
-  padding: 160px var(--edge-space) 150px;
+  padding: 170px var(--edge-space) 172px;
   background:
     url("assets/background.jpg") center top / cover no-repeat,
     #050505;
@@ -132,9 +177,14 @@ body::before {
     linear-gradient(
       180deg,
       rgba(5, 5, 5, 0) 0%,
-      rgba(5, 5, 5, 0.12) 48%,
-      rgba(5, 5, 5, 0.58) 78%,
+      rgba(5, 5, 5, 0.1) 42%,
+      rgba(5, 5, 5, 0.62) 78%,
       #050505 100%
+    ),
+    radial-gradient(
+      circle at 44% 38%,
+      rgba(255, 243, 227, 0.035),
+      transparent 28%
     );
 }
 
@@ -229,7 +279,7 @@ h1 span {
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  margin-top: 48px;
+  margin-top: 58px;
   color: var(--text);
   text-decoration: none;
   letter-spacing: 0.12em;
@@ -242,7 +292,7 @@ h1 span {
   width: 1px;
   height: 62px;
   background: linear-gradient(180deg, rgba(255, 243, 227, 0.06), rgba(255, 243, 227, 0.8));
-  transition: height 260ms ease, background 260ms ease;
+  transition: height 420ms cubic-bezier(0.16, 1, 0.3, 1), background 420ms ease;
 }
 
 .discover-text {
@@ -258,12 +308,12 @@ h1 span {
   align-items: center;
   height: 1em;
   line-height: 1;
-  transition: transform 240ms ease, opacity 240ms ease, color 240ms ease;
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 240ms ease, color 240ms ease;
 }
 
 .discover-link:hover .discover-line,
 .discover-link:focus-visible .discover-line {
-  height: 82px;
+  height: 88px;
   background: linear-gradient(180deg, rgba(255, 243, 227, 0.16), rgba(255, 243, 227, 1));
 }
 
@@ -281,8 +331,10 @@ h1 span {
 .info-section,
 .contact-newsletter-section {
   position: relative;
-  padding: 92px var(--edge-space) 124px;
-  background: #050505;
+  padding: clamp(112px, 10vw, 168px) var(--edge-space);
+  background:
+    linear-gradient(180deg, rgba(255, 243, 227, 0.012), transparent 42%),
+    #050505;
 }
 
 .info-section::before,
@@ -305,7 +357,7 @@ h1 span {
 }
 
 .section-card {
-  padding: clamp(18px, 3vw, 28px) 0;
+  padding: clamp(24px, 3vw, 36px) 0;
   border: 0;
   background: transparent;
   backdrop-filter: none;
@@ -327,7 +379,7 @@ h2 {
 
 .section-copy {
   max-width: 620px;
-  margin: 28px 0 0;
+  margin: 34px 0 0;
   color: var(--muted);
   font-size: 1.06rem;
   font-weight: 400;
@@ -338,6 +390,7 @@ h2 {
   display: grid;
   grid-template-columns: minmax(280px, 440px) minmax(280px, 440px);
   justify-content: space-between;
+  align-items: start;
   gap: clamp(140px, 18vw, 300px);
   width: min(calc(100% - (var(--edge-space) * 2)), 1360px);
   margin-left: auto;
@@ -368,7 +421,7 @@ h2 {
   width: auto;
   min-width: 0;
   margin: 36px 0 0;
-  padding: 15px 20px;
+  padding: 16px 22px;
   border: 1px solid rgba(255, 243, 227, 0.22);
   background:
     linear-gradient(90deg, rgba(255, 243, 227, 0.08), rgba(255, 243, 227, 0.02)),
@@ -376,7 +429,7 @@ h2 {
   box-shadow: var(--shadow);
   color: var(--text);
   text-decoration: none;
-  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease, box-shadow 320ms ease, background 320ms ease;
 }
 
 .contact-card strong {
@@ -406,7 +459,7 @@ h2 {
   margin-top: 34px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgba(255, 243, 227, 0.34);
-  transition: border-color 180ms ease, box-shadow 180ms ease;
+  transition: border-color 240ms ease, box-shadow 260ms ease;
 }
 
 .newsletter-form:focus-within {
@@ -482,23 +535,28 @@ h2 {
 .contact-card:hover,
 .contact-card:focus-visible {
   transform: translateY(-4px);
-  border-color: rgba(255, 243, 227, 0.28);
+  border-color: rgba(255, 243, 227, 0.42);
+  background:
+    linear-gradient(90deg, rgba(255, 243, 227, 0.12), rgba(255, 243, 227, 0.035)),
+    rgba(12, 10, 9, 0.3);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.46);
 }
 
 .site-footer {
   color: var(--text);
-  background: #050505;
-  border-top: 1px solid rgba(255, 243, 227, 0.08);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 243, 227, 0.03), transparent 34%),
+    #050505;
+  border-top: 1px solid rgba(255, 243, 227, 0.11);
 }
 
 .footer-socials {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 22px;
-  min-height: 104px;
-  border-bottom: 1px solid rgba(255, 243, 227, 0.08);
+  gap: 26px;
+  min-height: 126px;
+  border-bottom: 1px solid rgba(255, 243, 227, 0.1);
 }
 
 .footer-socials a {
@@ -540,12 +598,12 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 110px;
-  border-bottom: 1px solid rgba(255, 243, 227, 0.08);
+  min-height: 138px;
+  border-bottom: 1px solid rgba(255, 243, 227, 0.1);
 }
 
 .footer-logo {
-  width: min(260px, 48vw);
+  width: min(288px, 52vw);
   height: auto;
   filter: none;
 }
@@ -566,7 +624,7 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   gap: 32px;
-  padding: 22px var(--edge-space) 34px;
+  padding: 28px var(--edge-space) 42px;
   font-size: 0.78rem;
   font-weight: 500;
 }
@@ -766,10 +824,12 @@ h2 {
 
 .legal-page {
   position: relative;
+  z-index: 2;
   min-height: 100vh;
   padding: 42px var(--edge-space) 128px;
   background:
-    radial-gradient(circle at 50% 0%, rgba(255, 243, 227, 0.06), transparent 34%),
+    radial-gradient(circle at 50% 0%, rgba(255, 243, 227, 0.052), transparent 34%),
+    linear-gradient(180deg, rgba(255, 243, 227, 0.015), transparent 48%),
     #050505;
 }
 
@@ -781,7 +841,7 @@ h2 {
 }
 
 .legal-logo {
-  width: min(260px, 48vw);
+  width: min(276px, 50vw);
   height: auto;
 }
 
@@ -857,7 +917,7 @@ h2 {
   text-transform: uppercase;
   font-size: 0.78rem;
   font-weight: 700;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 220ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .learn-more-link:hover,
@@ -877,6 +937,44 @@ h2 {
 .legal-text strong {
   color: var(--text);
   font-weight: 600;
+}
+
+.story-content {
+  width: min(100%, 1040px);
+}
+
+.story-manifest {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 760px);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  margin: 10px 0 42px;
+  padding: 34px 0 40px;
+  border-top: 1px solid rgba(255, 243, 227, 0.12);
+  border-bottom: 1px solid rgba(255, 243, 227, 0.08);
+}
+
+.story-manifest span {
+  color: rgba(239, 230, 221, 0.5);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.story-manifest p {
+  margin: 0;
+  color: #f4ebe1;
+  font-size: clamp(1.35rem, 2.6vw, 2.65rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 88px);
+  max-width: none;
 }
 
 .contact-page-content {
@@ -1138,6 +1236,8 @@ h2 {
 
 .error-page {
   display: flex;
+  position: relative;
+  z-index: 2;
   min-height: 100vh;
   flex-direction: column;
   padding: 42px var(--edge-space) 84px;
@@ -1185,6 +1285,20 @@ h2 {
   transform: translateY(0);
 }
 
+@keyframes loaderReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(8px);
+  }
+  45%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 @keyframes beamShift {
   0%,
   100% {
@@ -1192,6 +1306,17 @@ h2 {
   }
   50% {
     transform: translateY(-10px) scaleY(1.02) scaleX(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
   }
 }
 
@@ -1314,7 +1439,7 @@ h2 {
 
   .info-section,
   .contact-newsletter-section {
-    padding: 82px var(--edge-space);
+    padding: 96px var(--edge-space);
   }
 
   .section-card {
@@ -1457,11 +1582,11 @@ h2 {
   }
 
   .footer-socials {
-    min-height: 86px;
+    min-height: 96px;
   }
 
   .footer-logo-wrap {
-    min-height: 96px;
+    min-height: 108px;
   }
 
   .footer-logo {
@@ -1470,7 +1595,7 @@ h2 {
 
   .footer-bottom {
     gap: 28px;
-    padding: 24px var(--edge-space) 34px;
+    padding: 28px var(--edge-space) 38px;
   }
 
   .footer-links {
@@ -1520,6 +1645,18 @@ h2 {
   .beam {
     filter: blur(10px);
   }
+
+  .story-manifest {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 34px;
+    padding: 28px 0 32px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 
 @media (max-width: 420px) {
@@ -1561,6 +1698,10 @@ h2 {
   .newsletter-panel h2 {
     font-size: clamp(1.28rem, 6.6vw, 1.92rem);
     white-space: nowrap;
+  }
+
+  .site-loader img {
+    width: min(180px, 56vw);
   }
 
   .legal-page {
