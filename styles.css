@@ -1119,7 +1119,7 @@ h2 {
 .story-back-link {
   display: flex;
   width: fit-content;
-  margin: 18px 0 0;
+  margin: clamp(96px, 10vw, 150px) 0 0;
 }
 
 .contact-page-content {
