@@ -927,7 +927,7 @@ h2 {
   max-width: 15ch;
   margin: 0 0 26px;
   color: #f4ebe1;
-  font-size: clamp(3.05rem, 7.4vw, 7.8rem);
+  font-size: clamp(2.65rem, 6.2vw, 6.25rem);
   font-weight: 300;
   line-height: 0.94;
   letter-spacing: -0.035em;
@@ -1055,10 +1055,10 @@ h2 {
 
 .story-chapter h2,
 .story-closing h2 {
-  max-width: 13ch;
+  max-width: 15ch;
   margin: 0 0 24px;
   color: #f4ebe1;
-  font-size: clamp(1.75rem, 3vw, 3.15rem);
+  font-size: clamp(1.34rem, 2.25vw, 2.35rem);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: 0.03em;
@@ -1084,13 +1084,14 @@ h2 {
   padding: clamp(34px, 6vw, 72px) 0;
   border-top: 1px solid rgba(255, 243, 227, 0.12);
   border-bottom: 1px solid rgba(255, 243, 227, 0.08);
+  text-align: center;
 }
 
 .story-statement p {
-  max-width: 760px;
-  margin: 0;
+  max-width: 780px;
+  margin: 0 auto;
   color: #f4ebe1;
-  font-size: clamp(1.55rem, 3.8vw, 4.2rem);
+  font-size: clamp(1.35rem, 3vw, 3.2rem);
   font-weight: 300;
   line-height: 1.12;
   letter-spacing: -0.025em;
@@ -1099,8 +1100,8 @@ h2 {
 .story-closing {
   width: min(100%, 820px);
   margin: 0 auto;
-  padding: clamp(42px, 7vw, 90px) 0 0;
-  border-top: 0;
+  padding: 0;
+  border-top: 0 !important;
 }
 
 .story-closing h2 {
@@ -1783,7 +1784,7 @@ h2 {
 
   .story-intro h1 {
     max-width: 100%;
-    font-size: clamp(2.35rem, 14vw, 4.2rem);
+    font-size: clamp(2.05rem, 11vw, 3.45rem);
     line-height: 0.98;
   }
 
@@ -1833,7 +1834,7 @@ h2 {
   .story-chapter h2,
   .story-closing h2 {
     max-width: 100%;
-    font-size: clamp(1.42rem, 8vw, 2.35rem);
+    font-size: clamp(1.2rem, 6.6vw, 1.9rem);
   }
 
   .story-chapter p:not(.story-index),
@@ -1848,12 +1849,13 @@ h2 {
   }
 
   .story-statement p {
-    font-size: clamp(1.65rem, 10vw, 2.9rem);
+    font-size: clamp(1.28rem, 8vw, 2.25rem);
     line-height: 1.08;
   }
 
   .story-closing {
-    padding-top: 42px;
+    padding-top: 0;
+    border-top: 0 !important;
   }
 
   .story-back-link {
