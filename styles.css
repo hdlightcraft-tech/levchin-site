@@ -47,7 +47,7 @@ body::before {
   place-items: center;
   background: #050505;
   pointer-events: none;
-  animation: loaderExit 2600ms ease forwards;
+  animation: loaderExit 2000ms ease forwards;
 }
 
 .show-home-loader .site-loader {
@@ -59,7 +59,7 @@ body::before {
   height: auto;
   opacity: 0;
   transform: translateY(10px);
-  animation: loaderLogo 1800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: loaderLogo 1450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .page-frame {
