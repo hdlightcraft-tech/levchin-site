@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LEVCHIN</title>
     <meta name="description" content="Page de lancement LEVCHIN, maison française en construction." />
+    <script>
+      try {
+        if (!sessionStorage.getItem("levchin-loader-seen")) {
+          document.documentElement.classList.add("show-home-loader");
+          sessionStorage.setItem("levchin-loader-seen", "1");
+        }
+      } catch (error) {
+        document.documentElement.classList.add("show-home-loader");
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="assets/background.jpg" as="image" />

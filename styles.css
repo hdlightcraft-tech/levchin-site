@@ -43,11 +43,15 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: grid;
+  display: none;
   place-items: center;
   background: #050505;
   pointer-events: none;
-  animation: loaderExit 3200ms ease forwards;
+  animation: loaderExit 2600ms ease forwards;
+}
+
+.show-home-loader .site-loader {
+  display: grid;
 }
 
 .site-loader img {
@@ -55,7 +59,7 @@ body::before {
   height: auto;
   opacity: 0;
   transform: translateY(10px);
-  animation: loaderLogo 2200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: loaderLogo 1800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .page-frame {
