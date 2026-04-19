@@ -903,10 +903,9 @@ h2 {
 }
 
 .story-page {
+  overflow-x: hidden;
   padding-bottom: 150px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 243, 227, 0.06), transparent 34%),
-    #050505;
+  background: #050505;
 }
 
 .story-header {
@@ -924,13 +923,19 @@ h2 {
 }
 
 .story-intro h1 {
-  max-width: 18ch;
+  max-width: 20ch;
   margin: 0 0 26px;
   color: #f4ebe1;
-  font-size: clamp(2.65rem, 6.2vw, 6.25rem);
-  font-weight: 300;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.1rem, 4.6vw, 4.85rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.story-intro h1 span {
+  display: block;
+  white-space: nowrap;
 }
 
 .story-lead {
@@ -1016,7 +1021,7 @@ h2 {
 
 .story-visual-wide {
   width: min(100%, 1040px);
-  min-height: clamp(340px, 48vw, 560px);
+  min-height: clamp(250px, 32vw, 380px);
   margin: 0 auto clamp(72px, 10vw, 130px);
 }
 
@@ -1110,6 +1115,7 @@ h2 {
 
 .story-back-link {
   margin-left: calc((100% - min(100%, 820px)) / 2);
+  margin-top: 24px;
 }
 
 .contact-page-content {
@@ -1771,7 +1777,7 @@ h2 {
 
   .story-page {
     padding-top: 30px;
-    padding-bottom: 96px;
+    padding-bottom: 82px;
   }
 
   .story-header {
@@ -1784,8 +1790,13 @@ h2 {
 
   .story-intro h1 {
     max-width: 100%;
-    font-size: clamp(2.05rem, 11vw, 3.45rem);
-    line-height: 0.98;
+    font-size: clamp(1.52rem, 8.4vw, 2.55rem);
+    line-height: 1.08;
+    letter-spacing: 0.025em;
+  }
+
+  .story-intro h1 span {
+    white-space: normal;
   }
 
   .story-lead {
@@ -1796,7 +1807,7 @@ h2 {
   .story-visual,
   .story-visual-wide,
   .story-visual-portrait {
-    min-height: clamp(260px, 86vw, 430px);
+    min-height: clamp(220px, 68vw, 340px);
     border-radius: 18px;
   }
 
@@ -1812,6 +1823,7 @@ h2 {
   }
 
   .story-visual-wide {
+    min-height: clamp(210px, 58vw, 320px);
     margin-bottom: 64px;
   }
 
@@ -1860,6 +1872,7 @@ h2 {
 
   .story-back-link {
     margin-left: 0;
+    margin-top: 24px;
   }
 
   .language-custom-list {
