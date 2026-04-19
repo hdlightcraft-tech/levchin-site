@@ -1096,7 +1096,7 @@ h2 {
   max-width: 780px;
   margin: 0 auto;
   color: #f4ebe1;
-  font-size: clamp(1.35rem, 3vw, 3.2rem);
+  font-size: clamp(1.18rem, 2.35vw, 2.55rem);
   font-weight: 300;
   line-height: 1.12;
   letter-spacing: -0.025em;
@@ -1114,8 +1114,8 @@ h2 {
 }
 
 .story-back-link {
-  margin-left: calc((100% - min(100%, 820px)) / 2);
-  margin-top: 24px;
+  margin-left: calc((100% - min(100%, 960px)) / 2);
+  margin-top: 52px;
 }
 
 .contact-page-content {
@@ -1504,6 +1504,11 @@ h2 {
   .footer-meta {
     gap: 8px;
     align-items: flex-start;
+    width: 100%;
+  }
+
+  .footer-meta .language-custom {
+    align-self: flex-start;
   }
 }
 
@@ -1861,7 +1866,7 @@ h2 {
   }
 
   .story-statement p {
-    font-size: clamp(1.28rem, 8vw, 2.25rem);
+    font-size: clamp(1.08rem, 6.4vw, 1.85rem);
     line-height: 1.08;
   }
 
@@ -1872,7 +1877,21 @@ h2 {
 
   .story-back-link {
     margin-left: 0;
-    margin-top: 24px;
+    margin-top: 52px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+  }
+
+  .footer-meta {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-meta .language-custom {
+    align-self: flex-start;
+    margin-left: 0;
   }
 
   .language-custom-list {
