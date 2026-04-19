@@ -406,21 +406,49 @@ h2 {
   margin-top: 34px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgba(255, 243, 227, 0.34);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.newsletter-form:focus-within {
+  border-color: rgba(255, 243, 227, 0.7);
+  box-shadow: 0 10px 30px rgba(255, 243, 227, 0.04);
 }
 
 .newsletter-form input {
+  appearance: none;
   flex: 1;
   min-width: 0;
   border: 0;
   outline: 0;
   color: var(--text);
   background: transparent;
+  caret-color: var(--text);
   font: 400 0.95rem var(--font-main);
   letter-spacing: 0.04em;
+  padding: 6px 0;
 }
 
 .newsletter-form input::placeholder {
   color: rgba(239, 230, 221, 0.52);
+}
+
+.newsletter-form input::selection {
+  color: #fff8ef;
+  background: rgba(255, 243, 227, 0.18);
+}
+
+.newsletter-form input:-webkit-autofill,
+.newsletter-form input:-webkit-autofill:hover,
+.newsletter-form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  box-shadow: 0 0 0 1000px #050505 inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.newsletter-form input:-moz-autofill {
+  color: var(--text);
+  background-color: #050505 !important;
 }
 
 .newsletter-form button {
