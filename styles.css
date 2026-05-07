@@ -144,9 +144,9 @@ body::before {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 112vh;
+  min-height: 100vh;
   overflow: hidden;
-  padding: 160px var(--edge-space) 150px;
+  padding: 136px var(--edge-space) 118px;
   background:
     url("assets/background.jpg") center top / cover no-repeat,
     #050505;
@@ -1913,16 +1913,16 @@ h2 {
   }
 
   .hero {
-    align-items: flex-start;
-    min-height: auto;
-    padding-top: 156px;
-    padding-bottom: 58px;
+    align-items: center;
+    min-height: 100svh;
+    padding-top: 176px;
+    padding-bottom: 86px;
     background-position: center top;
   }
 
   .hero-content {
     width: 100%;
-    max-width: 440px;
+    max-width: 420px;
   }
 
   .eyebrow,
@@ -1934,7 +1934,7 @@ h2 {
 
   h1 {
     max-width: 100%;
-    font-size: clamp(2.18rem, 10.9vw, 3.6rem);
+    font-size: clamp(2.08rem, 10.2vw, 3.35rem);
     line-height: 0.98;
     letter-spacing: 0.015em;
   }
@@ -2414,7 +2414,7 @@ h2 {
     top: 0;
     left: 50%;
     width: 100vw;
-    height: 112vh;
+    height: 100vh;
     transform: translateX(-50%);
     pointer-events: none;
   }
