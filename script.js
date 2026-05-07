@@ -261,10 +261,17 @@ function populatePhoneCodeSelect(select, language = currentLanguage || "fr") {
   select.dataset.searchPlaceholder = previousSearchPlaceholder;
 
   select.innerHTML = "";
+  const collator = new Intl.Collator(language, { sensitivity: "base" });
+  const localizedEntries = phoneCountryEntries
+    .map(({ region, dial }) => ({
+      region,
+      dial,
+      regionName: getLocalizedRegionName(region, language)
+    }))
+    .sort((a, b) => collator.compare(a.regionName, b.regionName));
 
-  phoneCountryEntries.forEach(({ region, dial }) => {
+  localizedEntries.forEach(({ region, dial, regionName }) => {
     const option = document.createElement("option");
-    const regionName = getLocalizedRegionName(region, language);
     option.value = dial;
     option.textContent = `${regionName} (${dial})`;
     option.dataset.searchIndex = `${regionName} ${dial} ${region}`;
