@@ -110,6 +110,7 @@ let currentLanguage = savedLanguage || "fr";
 let languageCustomButton;
 let languageCustomOptions = [];
 let languageCustomLabel;
+const enhancedSelects = [];
 
 function normalizeLanguage(value) {
   if (!value) {
@@ -215,6 +216,92 @@ function maybeOfferLanguageSuggestion() {
   document.body.appendChild(suggestion);
 }
 
+function syncEnhancedSelect(enhancedSelect) {
+  const { select, button, options } = enhancedSelect;
+  const selectedOption = select.options[select.selectedIndex];
+
+  if (button?.firstElementChild) {
+    button.firstElementChild.textContent = selectedOption?.textContent || "";
+  }
+
+  options.forEach((optionButton, index) => {
+    const nativeOption = select.options[index];
+    optionButton.textContent = nativeOption?.textContent || "";
+    optionButton.classList.toggle("is-active", nativeOption?.value === select.value);
+    optionButton.setAttribute("aria-selected", String(nativeOption?.value === select.value));
+  });
+}
+
+function closeEnhancedSelect(enhancedSelect) {
+  enhancedSelect.wrapper.classList.remove("is-open");
+  enhancedSelect.button.setAttribute("aria-expanded", "false");
+}
+
+function enhanceSelect(select) {
+  const host = select.closest(".select-wrap");
+
+  if (!host || host.dataset.selectEnhanced === "true") {
+    return null;
+  }
+
+  const wrapper = document.createElement("div");
+  const button = document.createElement("button");
+  const list = document.createElement("ul");
+  const optionButtons = [];
+
+  host.classList.add("is-enhanced");
+  host.dataset.selectEnhanced = "true";
+  wrapper.className = "form-select-custom";
+  button.className = "form-select-button";
+  button.type = "button";
+  button.setAttribute("aria-haspopup", "listbox");
+  button.setAttribute("aria-expanded", "false");
+  list.className = "form-select-list";
+  list.setAttribute("role", "listbox");
+  button.innerHTML = `<span></span><i aria-hidden="true"></i>`;
+
+  Array.from(select.options).forEach((option) => {
+    const item = document.createElement("li");
+    const optionButton = document.createElement("button");
+
+    optionButton.type = "button";
+    optionButton.className = "form-select-option";
+    optionButton.dataset.value = option.value;
+    optionButton.setAttribute("role", "option");
+
+    optionButton.addEventListener("click", () => {
+      select.value = option.value;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+      closeEnhancedSelect(enhancedSelect);
+    });
+
+    item.appendChild(optionButton);
+    list.appendChild(item);
+    optionButtons.push(optionButton);
+  });
+
+  wrapper.appendChild(button);
+  wrapper.appendChild(list);
+  host.appendChild(wrapper);
+
+  const enhancedSelect = { select, host, wrapper, button, list, options: optionButtons };
+
+  button.addEventListener("click", () => {
+    const isOpen = wrapper.classList.toggle("is-open");
+    button.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!wrapper.contains(event.target)) {
+      closeEnhancedSelect(enhancedSelect);
+    }
+  });
+
+  syncEnhancedSelect(enhancedSelect);
+  enhancedSelects.push(enhancedSelect);
+  return enhancedSelect;
+}
+
 if (languageSelect) {
   const nativeLabel = languageSelect.closest(".language-select-label");
   const languageCustom = document.createElement("div");
@@ -283,6 +370,14 @@ if (languageSelect) {
   setLanguage(currentLanguage);
   maybeOfferLanguageSuggestion();
 }
+
+document.querySelectorAll("select[data-enhance-select]").forEach((select) => {
+  enhanceSelect(select);
+});
+
+document.addEventListener("levchin:languagechange", () => {
+  enhancedSelects.forEach(syncEnhancedSelect);
+});
 
 const comingSoonTrigger = document.querySelector("[data-coming-soon]");
 const comingSoonToast = document.querySelector("[data-coming-soon-toast]");

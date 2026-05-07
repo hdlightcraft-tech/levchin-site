@@ -12,14 +12,15 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="legal-page story-page">
+    <div class="site-shell">
+      <main class="legal-page story-page">
       <header class="legal-header story-header">
         <a href="index.html" aria-label="Retour à l’accueil">
           <img class="legal-logo" src="assets/logo.svg" alt="LEVCHIN" />
         </a>
       </header>
 
-      <article class="story-article">
+        <article class="story-article">
         <section class="story-intro" aria-labelledby="story-title">
           <p class="section-kicker">LA MAISON LEVCHIN</p>
           <h1 id="story-title">
@@ -162,7 +163,64 @@
         </section>
 
         <a class="legal-back-link story-back-link" href="index.html">Retour à l’accueil</a>
-      </article>
-    </main>
+        </article>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-socials" aria-label="RÃ©seaux sociaux">
+          <a href="https://www.instagram.com/maisonlevchin/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5Zm8.75 1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="TikTok" data-coming-soon>
+            <svg class="filled-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16.6 3c.3 2.4 1.8 4.1 4.2 4.4v3.5c-1.5 0-2.9-.5-4.1-1.3v5.6c0 3.8-2.5 5.8-5.9 5.8-3.1 0-5.6-2.2-5.6-5.3 0-3.4 2.7-5.6 6.2-5.3v3.6c-1.5-.3-2.6.5-2.6 1.7 0 1 .8 1.7 1.9 1.7 1.2 0 2-.7 2-2.3V3h3.9Z" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="footer-logo-wrap">
+          <a class="footer-logo-link" href="index.html#hero" aria-label="Retour en haut de page">
+            <img class="footer-logo" src="assets/logo.svg" alt="LEVCHIN" />
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          <nav class="footer-links" aria-label="Liens secondaires">
+            <a href="index.html#newsletter" data-fr="Newsletter" data-en="Newsletter" data-es="Newsletter" data-de="Newsletter" data-it="Newsletter" data-pt="Newsletter" data-ja="ãƒ‹ãƒ¥ãƒ¼ã‚¹ãƒ¬ã‚¿ãƒ¼" data-ko="ë‰´ìŠ¤ë ˆí„°" data-zh="è®¢é˜…èµ„è®¯">Newsletter</a>
+            <a href="index.html#about" data-fr="Ã€ propos" data-en="About" data-es="Sobre nosotros" data-de="Ãœber uns" data-it="Chi siamo" data-pt="Sobre" data-ja="ç§ãŸã¡ã«ã¤ã„ã¦" data-ko="ì†Œê°œ" data-zh="å…³äºŽæˆ‘ä»¬">Ã€ propos</a>
+            <a href="contact.html" data-fr="Contactez-nous" data-en="Contact us" data-es="ContÃ¡ctenos" data-de="Kontaktieren Sie uns" data-it="Contattaci" data-pt="Contacte-nos" data-ja="ãŠå•ã„åˆã‚ã›" data-ko="ë¬¸ì˜í•˜ê¸°" data-zh="è”ç³»æˆ‘ä»¬">Contactez-nous</a>
+            <a href="mentions-legales.html" data-fr="Mentions lÃ©gales" data-en="Legal notice" data-es="Aviso legal" data-de="Impressum" data-it="Note legali" data-pt="Aviso legal" data-ja="æ³•çš„é€šçŸ¥" data-ko="ë²•ì  ê³ ì§€" data-zh="æ³•å¾‹å£°æ˜Ž">Mentions lÃ©gales</a>
+            <a href="politique-confidentialite.html" data-fr="Politique de confidentialitÃ©" data-en="Privacy policy" data-es="PolÃ­tica de privacidad" data-de="DatenschutzerklÃ¤rung" data-it="Informativa sulla privacy" data-pt="PolÃ­tica de privacidade" data-ja="ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼ãƒãƒªã‚·ãƒ¼" data-ko="ê°œì¸ì •ë³´ ì²˜ë¦¬ë°©ì¹¨" data-zh="éšç§æ”¿ç­–">Politique de confidentialitÃ©</a>
+          </nav>
+
+          <div class="footer-meta">
+            <span class="copyright">Â© 2026 LEVCHIN. <span data-fr="Tous droits rÃ©servÃ©s." data-en="All rights reserved." data-es="Todos los derechos reservados." data-de="Alle Rechte vorbehalten." data-it="Tutti i diritti riservati." data-pt="Todos os direitos reservados." data-ja="ç„¡æ–­è»¢è¼‰ã‚’ç¦ã˜ã¾ã™ã€‚" data-ko="ëª¨ë“  ê¶Œë¦¬ ë³´ìœ ." data-zh="ç‰ˆæƒæ‰€æœ‰ã€‚">Tous droits rÃ©servÃ©s.</span></span>
+            <label class="language-select-label" for="language-select">
+              <span data-fr="Langue :" data-en="Language:" data-es="Idioma:" data-de="Sprache:" data-it="Lingua:" data-pt="Idioma:" data-ja="è¨€èªž:" data-ko="ì–¸ì–´:" data-zh="è¯­è¨€:">Langue :</span>
+              <select id="language-select" class="language-select" data-language-select>
+                <option value="fr">FranÃ§ais</option>
+                <option value="en">English</option>
+                <option value="es">EspaÃ±ol</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">PortuguÃªs</option>
+                <option value="ja">æ—¥æœ¬èªž</option>
+                <option value="ko">í•œêµ­ì–´</option>
+                <option value="zh">ä¸­æ–‡</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </footer>
+
+      <div class="coming-soon-toast" role="status" aria-live="polite" data-coming-soon-toast>
+        <span class="coming-soon-message" data-fr="TikTok arrive bientÃ´t." data-en="TikTok is coming soon." data-es="TikTok llegarÃ¡ pronto." data-de="TikTok kommt bald." data-it="TikTok arriverÃ  presto." data-pt="TikTok chega em breve." data-ja="TikTokã¯è¿‘æ—¥å…¬é–‹äºˆå®šã§ã™ã€‚" data-ko="TikTokì€ ê³§ ê³µê°œë©ë‹ˆë‹¤." data-zh="TikTok å³å°†ä¸Šçº¿ã€‚">TikTok arrive bientÃ´t.</span>
+        <span class="coming-soon-close" aria-hidden="true">âœ•</span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
