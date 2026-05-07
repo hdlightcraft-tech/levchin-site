@@ -123,15 +123,27 @@ function normalizeLanguage(value) {
 
 function getPreferredBrowserLanguage() {
   const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+  let hasNonFrenchPreference = false;
 
   for (const candidate of candidates) {
-    const normalized = normalizeLanguage(candidate);
-    if (normalized) {
-      return normalized;
+    if (!candidate) {
+      continue;
     }
+
+    const shortCode = candidate.toLowerCase().split("-")[0];
+
+    if (shortCode === "fr") {
+      return "fr";
+    }
+
+    if (supportedLanguages.includes(shortCode)) {
+      return shortCode;
+    }
+
+    hasNonFrenchPreference = true;
   }
 
-  return null;
+  return hasNonFrenchPreference ? "en" : null;
 }
 
 function setLanguage(language) {
