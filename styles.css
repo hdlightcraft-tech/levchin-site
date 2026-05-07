@@ -1457,7 +1457,7 @@ h2 {
 }
 
 .phone-code-wrap .form-select-list {
-  min-width: 260px;
+  min-width: 320px;
 }
 
 .phone-code-wrap .form-select-button span {
@@ -1521,25 +1521,51 @@ h2 {
   padding: 8px;
   list-style: none;
   border: 1px solid rgba(255, 243, 227, 0.12);
-  background: rgba(5, 5, 5, 0.96);
+  background: rgba(5, 5, 5, 0.98);
   box-shadow: 0 18px 52px rgba(0, 0, 0, 0.34);
   max-height: 320px;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(239, 230, 221, 0.34) rgba(255, 243, 227, 0.04);
 }
 
 .form-select-custom.is-open .form-select-list {
   display: block;
 }
 
+.form-select-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.form-select-list::-webkit-scrollbar-track {
+  background: rgba(255, 243, 227, 0.04);
+  border-left: 1px solid rgba(255, 243, 227, 0.06);
+}
+
+.form-select-list::-webkit-scrollbar-thumb {
+  background: rgba(239, 230, 221, 0.34);
+  border: 2px solid rgba(5, 5, 5, 0.96);
+  border-radius: 999px;
+}
+
+.form-select-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 230, 221, 0.5);
+}
+
+.form-select-list::-webkit-scrollbar-corner {
+  background: rgba(255, 243, 227, 0.04);
+}
+
 .form-select-search-item {
   position: sticky;
   top: 0;
-  z-index: 1;
-  margin: -8px -8px 8px;
-  padding: 8px;
+  z-index: 3;
+  margin: 0;
+  padding: 10px;
   list-style: none;
-  background: rgba(5, 5, 5, 0.98);
+  background: rgba(5, 5, 5, 1);
   border-bottom: 1px solid rgba(255, 243, 227, 0.08);
+  box-shadow: 0 10px 18px rgba(5, 5, 5, 0.92);
 }
 
 .form-select-search {
@@ -1548,13 +1574,14 @@ h2 {
   background: rgba(255, 243, 227, 0.04);
   color: var(--text);
   outline: 0;
-  font: 400 0.92rem var(--font-main);
+  font: 400 0.82rem var(--font-main);
   letter-spacing: 0.01em;
   padding: 10px 12px;
 }
 
 .form-select-search::placeholder {
   color: rgba(239, 230, 221, 0.5);
+  font-size: 0.82rem;
 }
 
 .form-select-search:focus {
