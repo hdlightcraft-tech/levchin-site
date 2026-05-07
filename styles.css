@@ -423,8 +423,8 @@ h2 {
   align-items: center;
   border: 1px solid rgba(255, 243, 227, 0.3);
   color: var(--text);
-  background: rgba(239, 230, 221, 0.14);
-  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.26);
+  background: rgba(239, 230, 221, 0.09);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   transition:
     transform 220ms ease,
@@ -548,7 +548,7 @@ h2 {
 .form-submit:focus-visible {
   transform: translateY(-2px);
   border-color: rgba(255, 243, 227, 0.56);
-  background: rgba(239, 230, 221, 0.22);
+  background: rgba(239, 230, 221, 0.15);
   box-shadow: 0 30px 68px rgba(0, 0, 0, 0.34);
   color: #fff8ef;
 }
