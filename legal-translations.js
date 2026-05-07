@@ -167,4 +167,8 @@ if (languageSelect) {
   languageSelect.addEventListener("change", (event) => renderLegalPage(event.target.value));
 }
 
+document.addEventListener("levchin:languagechange", (event) => {
+  renderLegalPage(event.detail?.language || localStorage.getItem("levchin-language") || "fr");
+});
+
 renderLegalPage(localStorage.getItem("levchin-language") || document.documentElement.lang || "fr");

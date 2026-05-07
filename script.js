@@ -41,10 +41,45 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
 const languageSelect = document.querySelector("[data-language-select]");
 const savedLanguage = localStorage.getItem("levchin-language");
-let currentLanguage = savedLanguage || document.documentElement.lang || "fr";
+const dismissedLanguageSuggestion = localStorage.getItem("levchin-language-suggestion-dismissed");
+const supportedLanguages = ["fr", "en", "es", "de", "it", "pt", "ja", "ko", "zh"];
+const languageDisplayNames = {
+  fr: "Français",
+  en: "English",
+  es: "Español",
+  de: "Deutsch",
+  it: "Italiano",
+  pt: "Português",
+  ja: "日本語",
+  ko: "한국어",
+  zh: "中文"
+};
+let currentLanguage = savedLanguage || "fr";
 let languageCustomButton;
 let languageCustomOptions = [];
 let languageCustomLabel;
+
+function normalizeLanguage(value) {
+  if (!value) {
+    return null;
+  }
+
+  const shortCode = value.toLowerCase().split("-")[0];
+  return supportedLanguages.includes(shortCode) ? shortCode : null;
+}
+
+function getPreferredBrowserLanguage() {
+  const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+
+  for (const candidate of candidates) {
+    const normalized = normalizeLanguage(candidate);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return null;
+}
 
 function setLanguage(language) {
   currentLanguage = language;
@@ -89,6 +124,43 @@ function setLanguage(language) {
       detail: { language }
     })
   );
+}
+
+function dismissLanguageSuggestion() {
+  localStorage.setItem("levchin-language-suggestion-dismissed", "true");
+  document.querySelector("[data-language-suggestion]")?.remove();
+}
+
+function maybeOfferLanguageSuggestion() {
+  const preferredLanguage = getPreferredBrowserLanguage();
+
+  if (savedLanguage || dismissedLanguageSuggestion === "true" || !preferredLanguage || preferredLanguage === "fr") {
+    return;
+  }
+
+  const suggestion = document.createElement("div");
+  const targetLabel = languageDisplayNames[preferredLanguage] || preferredLanguage.toUpperCase();
+
+  suggestion.className = "language-suggestion";
+  suggestion.dataset.languageSuggestion = "";
+  suggestion.innerHTML = `
+    <p class="language-suggestion-copy">Ce site est disponible en <strong>${targetLabel}</strong>. Souhaitez-vous changer de langue ?</p>
+    <div class="language-suggestion-actions">
+      <button type="button" class="language-suggestion-confirm">Passer en ${targetLabel}</button>
+      <button type="button" class="language-suggestion-dismiss">Rester en français</button>
+    </div>
+  `;
+
+  suggestion.querySelector(".language-suggestion-confirm")?.addEventListener("click", () => {
+    setLanguage(preferredLanguage);
+    dismissLanguageSuggestion();
+  });
+
+  suggestion.querySelector(".language-suggestion-dismiss")?.addEventListener("click", () => {
+    dismissLanguageSuggestion();
+  });
+
+  document.body.appendChild(suggestion);
 }
 
 if (languageSelect) {
@@ -157,6 +229,7 @@ if (languageSelect) {
   });
 
   setLanguage(currentLanguage);
+  maybeOfferLanguageSuggestion();
 }
 
 const comingSoonTrigger = document.querySelector("[data-coming-soon]");
