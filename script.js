@@ -39,6 +39,58 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+function stripImageTitles(root = document) {
+  root.querySelectorAll("img, picture").forEach((element) => {
+    element.removeAttribute("title");
+    element.removeAttribute("aria-label");
+
+    if (element instanceof HTMLImageElement) {
+      element.draggable = false;
+    }
+  });
+}
+
+stripImageTitles();
+
+document.addEventListener("dragstart", (event) => {
+  if (event.target.closest("img, picture, .story-visual")) {
+    event.preventDefault();
+  }
+});
+
+document.addEventListener("contextmenu", (event) => {
+  if (event.target.closest("img, picture, .story-visual")) {
+    event.preventDefault();
+  }
+});
+
+document.addEventListener("selectstart", (event) => {
+  if (event.target.closest("img, picture, .story-visual")) {
+    event.preventDefault();
+  }
+});
+
+const imageProtectionObserver = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    mutation.addedNodes.forEach((node) => {
+      if (!(node instanceof HTMLElement)) {
+        return;
+      }
+
+      if (node.matches("img, picture")) {
+        stripImageTitles(node.parentElement || node);
+      } else if (node.querySelector("img, picture")) {
+        stripImageTitles(node);
+      }
+    });
+  });
+});
+
+imageProtectionObserver.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
 const languageSelect = document.querySelector("[data-language-select]");
 const savedLanguage = localStorage.getItem("levchin-language");
 const dismissedLanguageSuggestion = localStorage.getItem("levchin-language-suggestion-dismissed");
