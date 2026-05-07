@@ -1418,6 +1418,21 @@ h2 {
   width: 100%;
 }
 
+.phone-input-wrap {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 16px;
+  align-items: end;
+}
+
+.phone-code-wrap .form-select-button {
+  min-height: 48px;
+}
+
+.phone-code-wrap .form-select-list {
+  min-width: 132px;
+}
+
 .form-select-button {
   width: 100%;
   border: 0;
@@ -1531,7 +1546,10 @@ h2 {
 .form-error {
   display: none;
   grid-column: 1 / -1;
-  margin: -6px 0 0;
+  margin: 6px 0 4px;
+  padding: 12px 14px;
+  border-left: 2px solid rgba(216, 123, 114, 0.9);
+  background: rgba(216, 123, 114, 0.08);
   color: #d87b72;
   font-size: 0.76rem;
   font-weight: 600;
@@ -2179,6 +2197,11 @@ h2 {
 
   .beam {
     filter: blur(10px);
+  }
+
+  .phone-input-wrap {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 12px;
   }
 }
 

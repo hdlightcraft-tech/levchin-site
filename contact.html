@@ -164,7 +164,24 @@
                     Prénom *
                   </span>
                 </label>
-                <input
+                <div class="phone-input-wrap">
+                  <div class="select-wrap phone-code-wrap">
+                    <select id="contact-phone-code" name="phoneCode" data-enhance-select>
+                      <option value="+33">+33 FR</option>
+                      <option value="+32">+32 BE</option>
+                      <option value="+41">+41 CH</option>
+                      <option value="+44">+44 UK</option>
+                      <option value="+1">+1 US</option>
+                      <option value="+34">+34 ES</option>
+                      <option value="+39">+39 IT</option>
+                      <option value="+49">+49 DE</option>
+                      <option value="+351">+351 PT</option>
+                      <option value="+81">+81 JP</option>
+                      <option value="+82">+82 KR</option>
+                      <option value="+86">+86 CN</option>
+                    </select>
+                  </div>
+                  <input
                   id="contact-firstname"
                   name="firstname"
                   type="text"
@@ -182,7 +199,8 @@
                   data-pt-placeholder="O seu nome próprio"
                   placeholder="Votre prénom"
                   aria-describedby="firstname-error"
-                />
+                  />
+                </div>
                 <p
                   id="firstname-error"
                   class="field-error"
@@ -389,17 +407,17 @@
             <p
               class="form-error"
               data-contact-error
-              data-fr="Veuillez corriger les champs obligatoires avant l’envoi."
-              data-en="Please correct the required fields before sending."
-              data-es="Corrija los campos obligatorios antes de enviar."
-              data-it="Correggi i campi obbligatori prima dell’invio."
-              data-ja="送信前に必須項目を修正してください。"
-              data-zh="发送前请更正必填字段。"
-              data-de="Bitte korrigieren Sie die Pflichtfelder vor dem Senden."
-              data-ko="전송 전에 필수 입력 항목을 수정해 주세요."
-              data-pt="Corrija os campos obrigatórios antes de enviar."
+              data-fr="Certains champs obligatoires sont manquants ou incomplets. Vérifiez les champs en rouge avant d’envoyer votre message."
+              data-en="Some required fields are missing or incomplete. Check the fields in red before sending your message."
+              data-es="Algunos campos obligatorios faltan o están incompletos. Revise los campos en rojo antes de enviar su mensaje."
+              data-it="Alcuni campi obbligatori mancano o sono incompleti. Controlla i campi in rosso prima di inviare il tuo messaggio."
+              data-ja="必須項目の一部が未入力、または不完全です。送信前に赤く表示された項目をご確認ください。"
+              data-zh="部分必填字段缺失或不完整。请先检查红色标出的字段，再发送您的留言。"
+              data-de="Einige Pflichtfelder fehlen oder sind unvollständig. Prüfen Sie die rot markierten Felder, bevor Sie Ihre Nachricht senden."
+              data-ko="일부 필수 항목이 비어 있거나 올바르지 않습니다. 메시지를 보내기 전에 빨간색으로 표시된 항목을 확인해 주세요."
+              data-pt="Alguns campos obrigatórios estão em falta ou incompletos. Verifique os campos a vermelho antes de enviar a sua mensagem."
             >
-              Veuillez corriger les champs obligatoires avant l’envoi.
+              Certains champs obligatoires sont manquants ou incomplets. Vérifiez les champs en rouge avant d’envoyer votre message.
             </p>
 
             <button class="form-submit" type="submit" data-contact-submit>

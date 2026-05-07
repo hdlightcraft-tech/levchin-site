@@ -497,15 +497,15 @@ if (contactForm) {
       pt: "A sua mensagem não pode ultrapassar 2000 caracteres."
     },
     form: {
-      fr: "Veuillez corriger les champs obligatoires avant l’envoi.",
-      en: "Please correct the required fields before sending.",
-      es: "Corrija los campos obligatorios antes de enviar.",
-      it: "Correggi i campi obbligatori prima dell’invio.",
-      ja: "送信前に必須項目を修正してください。",
-      zh: "发送前请更正必填字段。",
-      de: "Bitte korrigieren Sie die Pflichtfelder vor dem Senden.",
-      ko: "전송 전에 필수 입력 항목을 수정해 주세요.",
-      pt: "Corrija os campos obrigatórios antes de enviar."
+      fr: "Certains champs obligatoires sont manquants ou incomplets. Vérifiez les champs en rouge avant d’envoyer votre message.",
+      en: "Some required fields are missing or incomplete. Check the fields in red before sending your message.",
+      es: "Algunos campos obligatorios faltan o están incompletos. Revise los campos en rojo antes de enviar su mensaje.",
+      it: "Alcuni campi obbligatori mancano o sono incompleti. Controlla i campi in rosso prima di inviare il tuo messaggio.",
+      ja: "必須項目の一部が未入力、または不完全です。送信前に赤く表示された項目をご確認ください。",
+      zh: "部分必填字段缺失或不完整。请先检查红色标出的字段，再发送您的留言。",
+      de: "Einige Pflichtfelder fehlen oder sind unvollständig. Prüfen Sie die rot markierten Felder, bevor Sie Ihre Nachricht senden.",
+      ko: "일부 필수 항목이 비어 있거나 올바르지 않습니다. 메시지를 보내기 전에 빨간색으로 표시된 항목을 확인해 주세요.",
+      pt: "Alguns campos obrigatórios estão em falta ou incompletos. Verifique os campos a vermelho antes de enviar a sua mensagem."
     }
   };
   const mailLabels = {
@@ -590,6 +590,8 @@ if (contactForm) {
     if (invalidFields.length > 0) {
       contactError?.classList.add("is-visible");
       contactError.textContent = getContactMessage("form");
+      invalidFields[0]?.focus();
+      invalidFields[0]?.scrollIntoView({ behavior: "smooth", block: "center" });
       return false;
     }
 
@@ -622,6 +624,8 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const recipient = contactForm.dataset.contactEmail;
     const labels = getMailLabels();
+    const phoneCode = formData.get("phoneCode") || "";
+    const phoneNumber = formData.get("phone") || "";
     const selectedSubject =
       contactForm.querySelector("#contact-subject option:checked")?.textContent || labels.fallback;
     const subject = `LEVCHIN - ${selectedSubject}`;
@@ -629,7 +633,7 @@ if (contactForm) {
       `${labels.firstName}: ${formData.get("firstname") || ""}`,
       `${labels.lastName}: ${formData.get("lastname") || ""}`,
       `${labels.email}: ${formData.get("email") || ""}`,
-      `${labels.phone}: ${formData.get("phone") || ""}`,
+      `${labels.phone}: ${`${phoneCode} ${phoneNumber}`.trim()}`,
       `${labels.subject}: ${selectedSubject}`,
       "",
       `${labels.message}:`,
