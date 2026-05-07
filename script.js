@@ -106,6 +106,73 @@ const languageDisplayNames = {
   ko: "한국어",
   zh: "中文"
 };
+const phoneSearchPlaceholders = {
+  fr: "Rechercher un pays ou un indicatif",
+  en: "Search a country or dialing code",
+  es: "Buscar un país o prefijo",
+  de: "Land oder Vorwahl suchen",
+  it: "Cerca un paese o prefisso",
+  pt: "Pesquisar país ou indicativo",
+  ja: "国名または国番号を検索",
+  ko: "국가 또는 국가번호 검색",
+  zh: "搜索国家或区号"
+};
+const phoneCountryEntries = [
+  { region: "FR", dial: "+33" }, { region: "BE", dial: "+32" }, { region: "CH", dial: "+41" },
+  { region: "LU", dial: "+352" }, { region: "MC", dial: "+377" }, { region: "AD", dial: "+376" },
+  { region: "ES", dial: "+34" }, { region: "PT", dial: "+351" }, { region: "IT", dial: "+39" },
+  { region: "SM", dial: "+378" }, { region: "VA", dial: "+379" }, { region: "DE", dial: "+49" },
+  { region: "AT", dial: "+43" }, { region: "NL", dial: "+31" }, { region: "GB", dial: "+44" },
+  { region: "IE", dial: "+353" }, { region: "DK", dial: "+45" }, { region: "SE", dial: "+46" },
+  { region: "NO", dial: "+47" }, { region: "FI", dial: "+358" }, { region: "IS", dial: "+354" },
+  { region: "PL", dial: "+48" }, { region: "CZ", dial: "+420" }, { region: "SK", dial: "+421" },
+  { region: "HU", dial: "+36" }, { region: "RO", dial: "+40" }, { region: "BG", dial: "+359" },
+  { region: "GR", dial: "+30" }, { region: "HR", dial: "+385" }, { region: "SI", dial: "+386" },
+  { region: "RS", dial: "+381" }, { region: "BA", dial: "+387" }, { region: "ME", dial: "+382" },
+  { region: "MK", dial: "+389" }, { region: "AL", dial: "+355" }, { region: "XK", dial: "+383" },
+  { region: "EE", dial: "+372" }, { region: "LV", dial: "+371" }, { region: "LT", dial: "+370" },
+  { region: "UA", dial: "+380" }, { region: "MD", dial: "+373" }, { region: "RU", dial: "+7" },
+  { region: "TR", dial: "+90" }, { region: "CY", dial: "+357" }, { region: "MT", dial: "+356" },
+  { region: "US", dial: "+1" }, { region: "CA", dial: "+1" }, { region: "MX", dial: "+52" },
+  { region: "BR", dial: "+55" }, { region: "AR", dial: "+54" }, { region: "CL", dial: "+56" },
+  { region: "CO", dial: "+57" }, { region: "PE", dial: "+51" }, { region: "UY", dial: "+598" },
+  { region: "PY", dial: "+595" }, { region: "BO", dial: "+591" }, { region: "EC", dial: "+593" },
+  { region: "VE", dial: "+58" }, { region: "CR", dial: "+506" }, { region: "PA", dial: "+507" },
+  { region: "DO", dial: "+1-809" }, { region: "CU", dial: "+53" }, { region: "JM", dial: "+1-876" },
+  { region: "GT", dial: "+502" }, { region: "HN", dial: "+504" }, { region: "SV", dial: "+503" },
+  { region: "NI", dial: "+505" }, { region: "PR", dial: "+1-787" }, { region: "BS", dial: "+1-242" },
+  { region: "MA", dial: "+212" }, { region: "DZ", dial: "+213" }, { region: "TN", dial: "+216" },
+  { region: "EG", dial: "+20" }, { region: "LY", dial: "+218" }, { region: "SN", dial: "+221" },
+  { region: "CI", dial: "+225" }, { region: "GH", dial: "+233" }, { region: "NG", dial: "+234" },
+  { region: "CM", dial: "+237" }, { region: "ET", dial: "+251" }, { region: "KE", dial: "+254" },
+  { region: "TZ", dial: "+255" }, { region: "UG", dial: "+256" }, { region: "RW", dial: "+250" },
+  { region: "ZA", dial: "+27" }, { region: "NA", dial: "+264" }, { region: "BW", dial: "+267" },
+  { region: "ZM", dial: "+260" }, { region: "ZW", dial: "+263" }, { region: "MZ", dial: "+258" },
+  { region: "AO", dial: "+244" }, { region: "MG", dial: "+261" }, { region: "MU", dial: "+230" },
+  { region: "RE", dial: "+262" }, { region: "AE", dial: "+971" }, { region: "SA", dial: "+966" },
+  { region: "QA", dial: "+974" }, { region: "KW", dial: "+965" }, { region: "BH", dial: "+973" },
+  { region: "OM", dial: "+968" }, { region: "JO", dial: "+962" }, { region: "LB", dial: "+961" },
+  { region: "IL", dial: "+972" }, { region: "IQ", dial: "+964" }, { region: "IR", dial: "+98" },
+  { region: "IN", dial: "+91" }, { region: "PK", dial: "+92" }, { region: "BD", dial: "+880" },
+  { region: "LK", dial: "+94" }, { region: "NP", dial: "+977" }, { region: "CN", dial: "+86" },
+  { region: "HK", dial: "+852" }, { region: "MO", dial: "+853" }, { region: "TW", dial: "+886" },
+  { region: "JP", dial: "+81" }, { region: "KR", dial: "+82" }, { region: "SG", dial: "+65" },
+  { region: "MY", dial: "+60" }, { region: "TH", dial: "+66" }, { region: "VN", dial: "+84" },
+  { region: "ID", dial: "+62" }, { region: "PH", dial: "+63" }, { region: "KH", dial: "+855" },
+  { region: "LA", dial: "+856" }, { region: "MM", dial: "+95" }, { region: "AU", dial: "+61" },
+  { region: "NZ", dial: "+64" }, { region: "FJ", dial: "+679" }, { region: "PF", dial: "+689" }
+];
+const phoneRegionFallbackNames = {
+  fr: { XK: "Kosovo" },
+  en: { XK: "Kosovo" },
+  es: { XK: "Kosovo" },
+  de: { XK: "Kosovo" },
+  it: { XK: "Kosovo" },
+  pt: { XK: "Kosovo" },
+  ja: { XK: "コソボ" },
+  ko: { XK: "코소보" },
+  zh: { XK: "科索沃" }
+};
 let currentLanguage = savedLanguage || "fr";
 let languageCustomButton;
 let languageCustomOptions = [];
@@ -119,6 +186,93 @@ function normalizeLanguage(value) {
 
   const shortCode = value.toLowerCase().split("-")[0];
   return supportedLanguages.includes(shortCode) ? shortCode : null;
+}
+
+function normalizeSearchValue(value) {
+  return (value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’'`-]/g, " ")
+    .replace(/[^a-z0-9+ ]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function levenshteinDistance(a, b) {
+  const rows = a.length + 1;
+  const cols = b.length + 1;
+  const matrix = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+  for (let i = 0; i < rows; i += 1) matrix[i][0] = i;
+  for (let j = 0; j < cols; j += 1) matrix[0][j] = j;
+
+  for (let i = 1; i < rows; i += 1) {
+    for (let j = 1; j < cols; j += 1) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  return matrix[a.length][b.length];
+}
+
+function fuzzyTokenMatch(queryToken, targetToken) {
+  if (!queryToken || !targetToken) return false;
+  if (targetToken.includes(queryToken) || queryToken.includes(targetToken)) return true;
+  const tolerance = queryToken.length <= 4 ? 1 : 2;
+  return levenshteinDistance(queryToken, targetToken) <= tolerance;
+}
+
+function searchMatches(query, searchIndex) {
+  if (!query) return true;
+  const normalizedQuery = normalizeSearchValue(query);
+  const normalizedTarget = normalizeSearchValue(searchIndex);
+  if (!normalizedQuery) return true;
+  if (normalizedTarget.includes(normalizedQuery)) return true;
+
+  const queryTokens = normalizedQuery.split(" ");
+  const targetTokens = normalizedTarget.split(" ");
+
+  return queryTokens.every((queryToken) =>
+    targetTokens.some((targetToken) => fuzzyTokenMatch(queryToken, targetToken))
+  );
+}
+
+function getLocalizedRegionName(region, language) {
+  const fallback = phoneRegionFallbackNames[language]?.[region] || phoneRegionFallbackNames.fr[region];
+  try {
+    const formatter = new Intl.DisplayNames([language], { type: "region" });
+    return formatter.of(region) || fallback || region;
+  } catch {
+    return fallback || region;
+  }
+}
+
+function populatePhoneCodeSelect(select, language = currentLanguage || "fr") {
+  if (!select) return;
+
+  const previousValue = select.value || "+33";
+  const previousSearchPlaceholder = phoneSearchPlaceholders[language] || phoneSearchPlaceholders.fr;
+  select.dataset.searchPlaceholder = previousSearchPlaceholder;
+
+  select.innerHTML = "";
+
+  phoneCountryEntries.forEach(({ region, dial }) => {
+    const option = document.createElement("option");
+    const regionName = getLocalizedRegionName(region, language);
+    option.value = dial;
+    option.textContent = `${regionName} (${dial})`;
+    option.dataset.searchIndex = `${regionName} ${dial} ${region}`;
+    select.appendChild(option);
+  });
+
+  const hasPrevious = Array.from(select.options).some((option) => option.value === previousValue);
+  select.value = hasPrevious ? previousValue : "+33";
 }
 
 function getPreferredBrowserLanguage() {
@@ -239,11 +393,13 @@ function syncEnhancedSelect(enhancedSelect) {
   options.forEach((optionButton, index) => {
     const nativeOption = select.options[index];
     optionButton.textContent = nativeOption?.textContent || "";
+    optionButton.dataset.searchIndex = nativeOption?.dataset.searchIndex || nativeOption?.textContent || "";
     optionButton.classList.toggle("is-active", nativeOption?.value === select.value);
     optionButton.setAttribute("aria-selected", String(nativeOption?.value === select.value));
   });
 
   if (searchInput) {
+    searchInput.placeholder = select.dataset.searchPlaceholder || phoneSearchPlaceholders.fr;
     searchInput.value = "";
     options.forEach((optionButton) => {
       optionButton.parentElement?.removeAttribute("hidden");
@@ -346,9 +502,9 @@ function enhanceSelect(select) {
 
   if (searchInput) {
     searchInput.addEventListener("input", () => {
-      const query = searchInput.value.trim().toLowerCase();
+      const query = searchInput.value;
       optionButtons.forEach((optionButton) => {
-        const matches = optionButton.textContent.toLowerCase().includes(query);
+        const matches = searchMatches(query, optionButton.dataset.searchIndex || optionButton.textContent);
         optionButton.parentElement?.toggleAttribute("hidden", !matches);
       });
     });
@@ -428,11 +584,19 @@ if (languageSelect) {
   maybeOfferLanguageSuggestion();
 }
 
+const phoneCodeSelect = document.querySelector("#contact-phone-code");
+if (phoneCodeSelect) {
+  populatePhoneCodeSelect(phoneCodeSelect, currentLanguage);
+}
+
 document.querySelectorAll("select[data-enhance-select]").forEach((select) => {
   enhanceSelect(select);
 });
 
 document.addEventListener("levchin:languagechange", () => {
+  if (phoneCodeSelect) {
+    populatePhoneCodeSelect(phoneCodeSelect, currentLanguage);
+  }
   enhancedSelects.forEach(syncEnhancedSelect);
 });
 
