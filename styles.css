@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
   color: var(--text);
   background: var(--bg);
   font-family: var(--font-main);
+  overflow-x: hidden;
 }
 
 img,
@@ -2440,6 +2442,23 @@ h2 {
   .home-page main {
     position: relative;
     z-index: 2;
+  }
+
+  .home-page .site-header {
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    padding-left: clamp(34px, 4vw, 72px);
+    padding-right: clamp(34px, 4vw, 72px);
+  }
+
+  .home-page .brand {
+    min-width: 0;
+  }
+
+  .home-page .site-nav {
+    min-width: 0;
+    gap: clamp(24px, 2.3vw, 44px);
   }
 
   .home-page .hero {
