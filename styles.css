@@ -417,22 +417,29 @@ h2 {
   font-size: 0.96rem;
 }
 
-.contact-card {
+.contact-card,
+.form-submit {
   display: inline-flex;
   align-items: center;
+  border: 1px solid rgba(255, 243, 227, 0.3);
+  color: var(--text);
+  background: rgba(239, 230, 221, 0.14);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.26);
+  text-decoration: none;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease;
+}
+
+.contact-card {
   justify-content: flex-start;
   width: auto;
   min-width: 0;
   margin: 36px 0 0;
   padding: 15px 20px;
-  border: 1px solid rgba(255, 243, 227, 0.22);
-  background:
-    linear-gradient(90deg, rgba(255, 243, 227, 0.08), rgba(255, 243, 227, 0.02)),
-    rgba(12, 10, 9, 0.24);
-  box-shadow: var(--shadow);
-  color: var(--text);
-  text-decoration: none;
-  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
 }
 
 .contact-card strong {
@@ -536,10 +543,14 @@ h2 {
 }
 
 .contact-card:hover,
-.contact-card:focus-visible {
-  transform: translateY(-4px);
-  border-color: rgba(255, 243, 227, 0.28);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.46);
+.contact-card:focus-visible,
+.form-submit:hover,
+.form-submit:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 243, 227, 0.56);
+  background: rgba(239, 230, 221, 0.22);
+  box-shadow: 0 30px 68px rgba(0, 0, 0, 0.34);
+  color: #fff8ef;
 }
 
 .site-footer {
@@ -1535,18 +1546,12 @@ h2 {
   grid-column: 1 / -1;
   justify-self: end;
   align-self: end;
-  display: inline-flex;
-  align-items: center;
   justify-content: space-between;
   gap: 34px;
   min-width: 220px;
-  border: 1px solid rgba(255, 243, 227, 0.34);
-  color: var(--text);
-  background: rgba(239, 230, 221, 0.14);
   cursor: pointer;
   padding: 18px 21px;
   text-align: left;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
 }
 
 .form-submit span {
@@ -1564,14 +1569,6 @@ h2 {
   font-size: 1rem;
   line-height: 1;
   transition: transform 220ms ease, color 220ms ease;
-}
-
-.form-submit:hover,
-.form-submit:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(255, 243, 227, 0.56);
-  background: rgba(239, 230, 221, 0.22);
-  color: #fff8ef;
 }
 
 .form-submit:hover::after,
