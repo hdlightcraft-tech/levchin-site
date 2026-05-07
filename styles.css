@@ -1363,6 +1363,31 @@ h2 {
   background: rgba(255, 243, 227, 0.02);
   resize: vertical;
   line-height: 1.75;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(239, 230, 221, 0.34) rgba(255, 243, 227, 0.04);
+}
+
+.field-group textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.field-group textarea::-webkit-scrollbar-track {
+  background: rgba(255, 243, 227, 0.04);
+  border-left: 1px solid rgba(255, 243, 227, 0.06);
+}
+
+.field-group textarea::-webkit-scrollbar-thumb {
+  background: rgba(239, 230, 221, 0.34);
+  border: 2px solid rgba(5, 5, 5, 0.9);
+  border-radius: 999px;
+}
+
+.field-group textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 230, 221, 0.5);
+}
+
+.field-group textarea::-webkit-scrollbar-corner {
+  background: rgba(255, 243, 227, 0.04);
 }
 
 .field-group input::placeholder,
