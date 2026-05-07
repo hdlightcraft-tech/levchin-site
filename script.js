@@ -133,7 +133,7 @@ const phoneCountryEntries = [
   { region: "EE", dial: "+372" }, { region: "LV", dial: "+371" }, { region: "LT", dial: "+370" },
   { region: "UA", dial: "+380" }, { region: "MD", dial: "+373" }, { region: "RU", dial: "+7" },
   { region: "TR", dial: "+90" }, { region: "CY", dial: "+357" }, { region: "MT", dial: "+356" },
-  { region: "US", dial: "+1" }, { region: "CA", dial: "+1" }, { region: "MX", dial: "+52" },
+  { region: "US_CA", dial: "+1", aliases: "etats unis etatsunis etat unis usa us united states america amerique canada" }, { region: "MX", dial: "+52" },
   { region: "BR", dial: "+55" }, { region: "AR", dial: "+54" }, { region: "CL", dial: "+56" },
   { region: "CO", dial: "+57" }, { region: "PE", dial: "+51" }, { region: "UY", dial: "+598" },
   { region: "PY", dial: "+595" }, { region: "BO", dial: "+591" }, { region: "EC", dial: "+593" },
@@ -163,15 +163,26 @@ const phoneCountryEntries = [
   { region: "NZ", dial: "+64" }, { region: "FJ", dial: "+679" }, { region: "PF", dial: "+689" }
 ];
 const phoneRegionFallbackNames = {
-  fr: { XK: "Kosovo" },
-  en: { XK: "Kosovo" },
-  es: { XK: "Kosovo" },
-  de: { XK: "Kosovo" },
-  it: { XK: "Kosovo" },
-  pt: { XK: "Kosovo" },
+  fr: { XK: "Kosovo", US_CA: "États-Unis / Canada" },
+  en: { XK: "Kosovo", US_CA: "United States / Canada" },
+  es: { XK: "Kosovo", US_CA: "Estados Unidos / Canadá" },
+  de: { XK: "Kosovo", US_CA: "Vereinigte Staaten / Kanada" },
+  it: { XK: "Kosovo", US_CA: "Stati Uniti / Canada" },
+  pt: { XK: "Kosovo", US_CA: "Estados Unidos / Canadá" },
   ja: { XK: "コソボ" },
   ko: { XK: "코소보" },
   zh: { XK: "科索沃" }
+};
+const phoneRegionDisplayNames = {
+  fr: { US_CA: "États-Unis / Canada" },
+  en: { US_CA: "United States / Canada" },
+  es: { US_CA: "Estados Unidos / Canadá" },
+  de: { US_CA: "Vereinigte Staaten / Kanada" },
+  it: { US_CA: "Stati Uniti / Canada" },
+  pt: { US_CA: "Estados Unidos / Canadá" },
+  ja: { US_CA: "アメリカ合衆国 / カナダ" },
+  ko: { US_CA: "미국 / 캐나다" },
+  zh: { US_CA: "美国 / 加拿大" }
 };
 let currentLanguage = savedLanguage || "fr";
 let languageCustomButton;
@@ -244,6 +255,10 @@ function searchMatches(query, searchIndex) {
 }
 
 function getLocalizedRegionName(region, language) {
+  const displayName = phoneRegionDisplayNames[language]?.[region] || phoneRegionDisplayNames.fr?.[region];
+  if (displayName) {
+    return displayName;
+  }
   const fallback = phoneRegionFallbackNames[language]?.[region] || phoneRegionFallbackNames.fr[region];
   try {
     const formatter = new Intl.DisplayNames([language], { type: "region" });
@@ -263,23 +278,28 @@ function populatePhoneCodeSelect(select, language = currentLanguage || "fr") {
   select.innerHTML = "";
   const collator = new Intl.Collator(language, { sensitivity: "base" });
   const localizedEntries = phoneCountryEntries
-    .map(({ region, dial }) => ({
+    .map(({ region, dial, aliases }) => ({
       region,
       dial,
+      aliases,
       regionName: getLocalizedRegionName(region, language)
     }))
     .sort((a, b) => collator.compare(a.regionName, b.regionName));
 
-  localizedEntries.forEach(({ region, dial, regionName }) => {
+  localizedEntries.forEach(({ region, dial, regionName, aliases }) => {
     const option = document.createElement("option");
-    option.value = dial;
+    option.value = `${region}|${dial}`;
+    option.dataset.dial = dial;
     option.textContent = `${regionName} (${dial})`;
-    option.dataset.searchIndex = `${regionName} ${dial} ${region}`;
+    option.dataset.searchIndex = `${regionName} ${dial} ${region} ${aliases || ""}`;
     select.appendChild(option);
   });
 
-  const hasPrevious = Array.from(select.options).some((option) => option.value === previousValue);
-  select.value = hasPrevious ? previousValue : "+33";
+  const matchingOption = Array.from(select.options).find(
+    (option) => option.value === previousValue || option.dataset.dial === previousValue
+  );
+  const fallbackOption = Array.from(select.options).find((option) => option.dataset.dial === "+33");
+  select.value = matchingOption?.value || fallbackOption?.value || select.options[0]?.value || "";
 }
 
 function getPreferredBrowserLanguage() {
@@ -836,7 +856,8 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const recipient = contactForm.dataset.contactEmail;
     const labels = getMailLabels();
-    const phoneCode = formData.get("phoneCode") || "";
+    const selectedPhoneOption = contactForm.querySelector("#contact-phone-code option:checked");
+    const phoneCode = selectedPhoneOption?.dataset.dial || formData.get("phoneCode") || "";
     const phoneNumber = formData.get("phone") || "";
     const selectedSubject =
       contactForm.querySelector("#contact-subject option:checked")?.textContent || labels.fallback;
