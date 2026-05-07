@@ -143,10 +143,10 @@ body::before {
 .hero {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
   overflow: hidden;
-  padding: 108px var(--edge-space) 88px;
+  padding: 132px var(--edge-space) 110px;
   background:
     url("assets/background.jpg") center top / cover no-repeat,
     #050505;
@@ -231,8 +231,8 @@ body::before {
   z-index: 4;
   width: var(--content-width);
   max-width: 760px;
-  margin-left: calc(var(--content-left) - 138px);
-  transform: translateY(0);
+  margin-left: calc(var(--content-left) - 118px);
+  transform: translateY(-18px);
 }
 
 .eyebrow,
