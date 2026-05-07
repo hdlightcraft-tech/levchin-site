@@ -2373,3 +2373,10 @@ h2 {
     font-size: clamp(6.8rem, 32vw, 9.4rem);
   }
 }
+
+@media (min-width: 1700px) {
+  .home-page .page-frame {
+    width: 100%;
+    max-width: none;
+  }
+}
