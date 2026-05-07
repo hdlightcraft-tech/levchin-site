@@ -2375,8 +2375,25 @@ h2 {
 }
 
 @media (min-width: 1700px) {
-  .home-page .page-frame {
-    width: 100%;
-    max-width: none;
+  .home-page .hero {
+    background: #050505;
+  }
+
+  .home-page .hero::after {
+    display: block;
+    inset: 0 auto 0 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    z-index: 0;
+    background:
+      url("assets/background.jpg") center top / cover no-repeat,
+      #050505;
+  }
+
+  .home-page .hero::before {
+    inset: 0 auto 0 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    z-index: 1;
   }
 }
