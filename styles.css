@@ -231,7 +231,8 @@ body::before {
   z-index: 4;
   width: var(--content-width);
   max-width: 760px;
-  margin-left: var(--content-left);
+  margin-left: calc(var(--content-left) - 26px);
+  transform: translateY(-24px);
 }
 
 .eyebrow,
@@ -1839,6 +1840,7 @@ h2 {
 
   .hero-content {
     margin-left: 0;
+    transform: none;
   }
 
   .hero::after {
@@ -1923,6 +1925,7 @@ h2 {
   .hero-content {
     width: 100%;
     max-width: 420px;
+    transform: none;
   }
 
   .eyebrow,
@@ -1961,13 +1964,14 @@ h2 {
   h2,
   .about-title {
     max-width: 100%;
-    font-size: clamp(1.82rem, 8.9vw, 3rem);
+    font-size: clamp(1.42rem, 6.9vw, 2.15rem);
     line-height: 1;
     letter-spacing: 0.005em;
+    white-space: nowrap;
   }
 
   .about-title {
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .contact-panel h2,
@@ -2019,8 +2023,10 @@ h2 {
   }
 
   .contact-title {
-    white-space: normal;
-    font-size: clamp(2.15rem, 11vw, 3.4rem);
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: clamp(1.46rem, 6.8vw, 2.2rem);
+    letter-spacing: 0;
   }
 
   .contact-form {
@@ -2377,6 +2383,15 @@ h2 {
     white-space: nowrap;
   }
 
+  .about-title {
+    font-size: clamp(1.28rem, 6.2vw, 1.72rem);
+    letter-spacing: 0;
+  }
+
+  .contact-title {
+    font-size: clamp(1.26rem, 6.2vw, 1.82rem);
+  }
+
   .legal-page {
     padding-top: 30px;
   }
@@ -2386,7 +2401,11 @@ h2 {
   }
 
   .legal-content h1 {
-    font-size: clamp(2.45rem, 14vw, 4rem);
+    max-width: 100%;
+    font-size: clamp(1.18rem, 5.8vw, 1.72rem);
+    white-space: nowrap;
+    letter-spacing: 0;
+    line-height: 1.02;
   }
 
   .legal-text {
