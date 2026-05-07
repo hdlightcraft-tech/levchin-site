@@ -231,8 +231,8 @@ body::before {
   z-index: 4;
   width: var(--content-width);
   max-width: 760px;
-  margin-left: calc(var(--content-left) - 26px);
-  transform: translateY(-24px);
+  margin-left: calc(var(--content-left) - 88px);
+  transform: translateY(-78px);
 }
 
 .eyebrow,
@@ -985,7 +985,9 @@ h2 {
 .legal-content h1 {
   max-width: none;
   margin-bottom: 34px;
-  font-size: clamp(3rem, 7vw, 6.6rem);
+  font-size: clamp(2.35rem, 4.5vw, 4.4rem);
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .legal-text {
