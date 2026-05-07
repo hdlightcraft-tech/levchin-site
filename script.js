@@ -309,6 +309,10 @@ function enhanceSelect(select) {
     }
   });
 
+  select.addEventListener("change", () => {
+    syncEnhancedSelect(enhancedSelect);
+  });
+
   syncEnhancedSelect(enhancedSelect);
   enhancedSelects.push(enhancedSelect);
   return enhancedSelect;
