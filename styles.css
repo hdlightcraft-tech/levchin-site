@@ -1445,15 +1445,17 @@ h2 {
 
 .phone-input-wrap {
   display: grid;
-  grid-template-columns: 158px minmax(0, 1fr);
+  grid-template-columns: 176px minmax(0, 1fr);
   gap: 16px;
   align-items: end;
 }
 
 .phone-code-wrap .form-select-button {
   min-height: 0;
-  font-size: 0.94rem;
-  padding-bottom: 14px;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  padding-bottom: 12px;
 }
 
 .phone-code-wrap .form-select-list {
@@ -1463,9 +1465,11 @@ h2 {
 }
 
 .phone-code-wrap .form-select-button span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  word-break: break-word;
+  padding-right: 6px;
 }
 
 .form-select-button {
@@ -2308,7 +2312,7 @@ h2 {
   }
 
   .phone-input-wrap {
-    grid-template-columns: 110px minmax(0, 1fr);
+    grid-template-columns: 124px minmax(0, 1fr);
     gap: 12px;
   }
 }
