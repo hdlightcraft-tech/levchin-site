@@ -229,7 +229,7 @@ function maybeOfferLanguageSuggestion() {
 }
 
 function syncEnhancedSelect(enhancedSelect) {
-  const { select, button, options } = enhancedSelect;
+  const { select, button, options, searchInput } = enhancedSelect;
   const selectedOption = select.options[select.selectedIndex];
 
   if (button?.firstElementChild) {
@@ -242,6 +242,13 @@ function syncEnhancedSelect(enhancedSelect) {
     optionButton.classList.toggle("is-active", nativeOption?.value === select.value);
     optionButton.setAttribute("aria-selected", String(nativeOption?.value === select.value));
   });
+
+  if (searchInput) {
+    searchInput.value = "";
+    options.forEach((optionButton) => {
+      optionButton.parentElement?.removeAttribute("hidden");
+    });
+  }
 }
 
 function closeEnhancedSelect(enhancedSelect) {
@@ -260,10 +267,15 @@ function enhanceSelect(select) {
   const button = document.createElement("button");
   const list = document.createElement("ul");
   const optionButtons = [];
+  const enableSearch = select.hasAttribute("data-select-search");
+  let searchInput = null;
 
   host.classList.add("is-enhanced");
   host.dataset.selectEnhanced = "true";
   wrapper.className = "form-select-custom";
+  if (enableSearch) {
+    wrapper.classList.add("form-select-custom-searchable");
+  }
   button.className = "form-select-button";
   button.type = "button";
   button.setAttribute("aria-haspopup", "listbox");
@@ -271,6 +283,19 @@ function enhanceSelect(select) {
   list.className = "form-select-list";
   list.setAttribute("role", "listbox");
   button.innerHTML = `<span></span><i aria-hidden="true"></i>`;
+
+  if (enableSearch) {
+    const searchWrap = document.createElement("li");
+    searchWrap.className = "form-select-search-item";
+    searchInput = document.createElement("input");
+    searchInput.type = "search";
+    searchInput.className = "form-select-search";
+    searchInput.autocomplete = "off";
+    searchInput.spellcheck = false;
+    searchInput.placeholder = select.dataset.searchPlaceholder || "Rechercher un pays ou indicatif";
+    searchWrap.appendChild(searchInput);
+    list.appendChild(searchWrap);
+  }
 
   Array.from(select.options).forEach((option) => {
     const item = document.createElement("li");
@@ -297,10 +322,16 @@ function enhanceSelect(select) {
   host.appendChild(wrapper);
 
   const enhancedSelect = { select, host, wrapper, button, list, options: optionButtons };
+  if (searchInput) {
+    enhancedSelect.searchInput = searchInput;
+  }
 
   button.addEventListener("click", () => {
     const isOpen = wrapper.classList.toggle("is-open");
     button.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen && searchInput) {
+      setTimeout(() => searchInput?.focus(), 0);
+    }
   });
 
   document.addEventListener("click", (event) => {
@@ -312,6 +343,16 @@ function enhanceSelect(select) {
   select.addEventListener("change", () => {
     syncEnhancedSelect(enhancedSelect);
   });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      optionButtons.forEach((optionButton) => {
+        const matches = optionButton.textContent.toLowerCase().includes(query);
+        optionButton.parentElement?.toggleAttribute("hidden", !matches);
+      });
+    });
+  }
 
   syncEnhancedSelect(enhancedSelect);
   enhancedSelects.push(enhancedSelect);
