@@ -135,14 +135,15 @@ body::before {
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 1;
+  transform-origin: center;
   transition: font-weight 220ms ease, transform 220ms ease, opacity 220ms ease;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
   color: #fff;
-  font-weight: 700;
-  transform: translateY(-1px);
+  font-weight: 600;
+  transform: scale(1.035);
 }
 
 .hero {
@@ -711,7 +712,7 @@ h2 {
 .coming-soon-toast.is-visible {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, calc(-100% - 24px));
+  transform: translate(-50%, calc(-100% - 16px));
 }
 
 .coming-soon-message,
@@ -2361,7 +2362,14 @@ h2 {
   .language-custom-list {
     right: 0;
     left: auto;
+    bottom: calc(100% + 8px);
     min-width: 160px;
+    max-width: calc(100vw - (var(--edge-space) * 2));
+  }
+
+  .footer-meta .language-custom .language-custom-list {
+    left: 0;
+    right: auto;
   }
 
   .coming-soon-toast {
@@ -2463,8 +2471,10 @@ h2 {
   }
 
   .legal-content[data-legal-page="privacy"] h1 {
-    font-size: clamp(0.78rem, 3.9vw, 1.08rem) !important;
-    letter-spacing: -0.01em;
+    font-size: clamp(0.92rem, 4.4vw, 1.18rem) !important;
+    white-space: normal;
+    line-height: 1.08;
+    letter-spacing: 0;
   }
 
   .legal-text {

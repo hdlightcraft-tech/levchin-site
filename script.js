@@ -636,19 +636,42 @@ if (comingSoonTrigger && comingSoonToast) {
     comingSoonToast.classList.remove("is-visible");
   };
 
+  const positionComingSoonToast = () => {
+    const triggerBox = comingSoonTrigger.getBoundingClientRect();
+    const toastBox = comingSoonToast.getBoundingClientRect();
+    const viewportPadding = 16;
+    const centerX = triggerBox.left + triggerBox.width / 2 + window.scrollX;
+    const topY = triggerBox.top + window.scrollY - 2;
+    const minLeft = viewportPadding + toastBox.width / 2;
+    const maxLeft = window.scrollX + window.innerWidth - viewportPadding - toastBox.width / 2;
+    const clampedLeft = Math.min(Math.max(centerX, minLeft), maxLeft);
+
+    comingSoonToast.style.left = `${clampedLeft}px`;
+    comingSoonToast.style.top = `${topY}px`;
+  };
+
   comingSoonTrigger.addEventListener("click", (event) => {
     event.preventDefault();
-    const triggerBox = comingSoonTrigger.getBoundingClientRect();
-
-    comingSoonToast.style.left = `${triggerBox.left + triggerBox.width / 2 + window.scrollX}px`;
-    comingSoonToast.style.top = `${triggerBox.top + window.scrollY}px`;
     comingSoonToast.classList.add("is-visible");
+    window.requestAnimationFrame(positionComingSoonToast);
 
     window.clearTimeout(comingSoonTimeout);
     comingSoonTimeout = window.setTimeout(() => {
       hideComingSoonToast();
     }, 2600);
   });
+
+  window.addEventListener("resize", () => {
+    if (comingSoonToast.classList.contains("is-visible")) {
+      positionComingSoonToast();
+    }
+  });
+
+  window.addEventListener("scroll", () => {
+    if (comingSoonToast.classList.contains("is-visible")) {
+      positionComingSoonToast();
+    }
+  }, { passive: true });
 
   comingSoonToast.addEventListener("click", () => {
     hideComingSoonToast();
