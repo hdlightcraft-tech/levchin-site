@@ -3,9 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LEVCHIN</title>
+    <title>LEVCHIN - Maison française de création, design et mode</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <meta name="description" content="Page de lancement LEVCHIN, maison française en construction." />
+    <meta
+      name="description"
+      content="LEVCHIN est une maison française de création dédiée aux vêtements, accessoires et objets de décoration, entre design, mode et matières naturelles."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://levchin.fr/" />
+    <meta property="og:site_name" content="LEVCHIN" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="LEVCHIN - Maison française de création, design et mode" />
+    <meta property="og:description" content="Maison française de création dédiée aux vêtements, accessoires et objets de décoration, entre design, mode et matières naturelles." />
+    <meta property="og:url" content="https://levchin.fr/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LEVCHIN - Maison française de création" />
+    <meta name="twitter:description" content="Design, mode et objets de décoration dans une direction française, sobre et consciente." />
+    <meta name="theme-color" content="#050505" />
     <script>
       try {
         if (!sessionStorage.getItem("levchin-loader-seen")) {
@@ -20,6 +35,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="assets/background.jpg" as="image" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://levchin.fr/#organization",
+            "name": "LEVCHIN",
+            "url": "https://levchin.fr/",
+            "logo": "https://levchin.fr/assets/logo.svg",
+            "sameAs": ["https://www.instagram.com/maisonlevchin/"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://levchin.fr/#website",
+            "url": "https://levchin.fr/",
+            "name": "LEVCHIN",
+            "publisher": {
+              "@id": "https://levchin.fr/#organization"
+            },
+            "inLanguage": "fr-FR"
+          }
+        ]
+      }
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="home-page">
