@@ -401,6 +401,14 @@ h2 {
   overflow-wrap: break-word;
 }
 
+.about-copy-break {
+  display: block;
+}
+
+.about-nowrap {
+  white-space: nowrap;
+}
+
 .about-copy + .about-copy {
   margin-top: 18px;
 }
@@ -2039,6 +2047,10 @@ h2 {
     line-height: 1.62;
     text-wrap: pretty;
     overflow-wrap: break-word;
+  }
+
+  .about-nowrap {
+    white-space: normal;
   }
 
   .dual-section {

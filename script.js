@@ -327,6 +327,46 @@ function getPreferredBrowserLanguage() {
   return hasNonFrenchPreference ? "en" : null;
 }
 
+function renderBalancedAboutCopy(element, language) {
+  const text = element.dataset[language];
+
+  if (!text) {
+    return;
+  }
+
+  if (language !== "fr") {
+    element.textContent = text;
+    return;
+  }
+
+  const breakText = " Sans plastique synthétique polluant";
+  const nowrapText = "plus consciente.";
+  const breakIndex = text.indexOf(breakText);
+  const nowrapIndex = text.lastIndexOf(nowrapText);
+
+  if (breakIndex === -1 || nowrapIndex === -1) {
+    element.textContent = text;
+    return;
+  }
+
+  const beforeBreak = text.slice(0, breakIndex);
+  const afterBreakBeforeNowrap = text.slice(breakIndex + 1, nowrapIndex);
+  const nowrap = text.slice(nowrapIndex);
+  const lineBreak = document.createElement("br");
+  const nowrapSpan = document.createElement("span");
+
+  lineBreak.className = "about-copy-break";
+  nowrapSpan.className = "about-nowrap";
+  nowrapSpan.textContent = nowrap;
+
+  element.replaceChildren(
+    document.createTextNode(beforeBreak),
+    lineBreak,
+    document.createTextNode(` ${afterBreakBeforeNowrap}`),
+    nowrapSpan
+  );
+}
+
 function setLanguage(language) {
   currentLanguage = language;
   document.documentElement.lang = language;
@@ -335,6 +375,11 @@ function setLanguage(language) {
   document
     .querySelectorAll("[data-fr][data-en][data-es][data-it][data-ja][data-zh][data-de][data-ko][data-pt]")
     .forEach((element) => {
+    if (element.hasAttribute("data-balanced-about")) {
+      renderBalancedAboutCopy(element, language);
+      return;
+    }
+
     element.textContent = element.dataset[language];
   });
 
