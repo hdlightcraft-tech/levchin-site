@@ -368,7 +368,7 @@ h2 {
 
 .about-title {
   max-width: none;
-  font-size: clamp(2rem, 3.15vw, 3.6rem);
+  font-size: clamp(1.92rem, 3.02vw, 3.46rem);
   line-height: 1.02;
   white-space: nowrap;
 }
@@ -993,6 +993,7 @@ h2 {
   font-size: clamp(2.35rem, 4.5vw, 4.4rem);
   white-space: nowrap;
   line-height: 1;
+  font-weight: 600;
 }
 
 .legal-text {
@@ -1279,6 +1280,7 @@ h2 {
   font-size: clamp(2.55rem, 4.6vw, 5rem);
   line-height: 0.98;
   letter-spacing: 0.01em;
+  font-weight: 600;
 }
 
 .contact-intro {
@@ -2461,7 +2463,7 @@ h2 {
   }
 
   .legal-content[data-legal-page="privacy"] h1 {
-    font-size: clamp(1.02rem, 5.1vw, 1.48rem);
+    font-size: clamp(0.9rem, 4.4vw, 1.28rem);
   }
 
   .legal-text {
