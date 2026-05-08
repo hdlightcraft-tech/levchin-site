@@ -50,6 +50,11 @@ body::before {
   mix-blend-mode: screen;
 }
 
+.contact-kicker,
+.legal-topline {
+  display: none;
+}
+
 .site-loader {
   position: fixed;
   inset: 0;
@@ -1187,6 +1192,7 @@ h2 {
 
 .story-chapter-text {
   position: relative;
+  min-width: 0;
 }
 
 .story-index {
@@ -1207,6 +1213,7 @@ h2 {
   line-height: 1.02;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .story-chapter p:not(.story-index),
@@ -1959,6 +1966,14 @@ h2 {
     padding: 72px var(--edge-space);
   }
 
+  .contact-panel {
+    margin-bottom: 34px;
+  }
+
+  .newsletter-panel {
+    margin-top: 34px;
+  }
+
   .section-card {
     padding: 0;
   }
@@ -2029,6 +2044,7 @@ h2 {
     white-space: nowrap;
     font-size: clamp(1.46rem, 6.8vw, 2.2rem);
     letter-spacing: 0;
+    font-weight: 600;
   }
 
   .contact-form {
@@ -2057,7 +2073,7 @@ h2 {
   }
 
   .phone-input-wrap {
-    grid-template-columns: 102px minmax(0, 1fr);
+    grid-template-columns: 132px minmax(0, 1fr);
     gap: 10px;
   }
 
@@ -2068,6 +2084,12 @@ h2 {
   .phone-code-wrap .form-select-button {
     font-size: 0.74rem;
     line-height: 1.15;
+  }
+
+  .phone-code-wrap .form-select-button span {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
   }
 
   #contact-phone {
@@ -2194,23 +2216,26 @@ h2 {
   }
 
   .story-intro {
-    margin-bottom: 46px;
+    width: 100%;
+    margin-bottom: 42px;
   }
 
   .story-intro h1 {
     max-width: 100%;
-    font-size: clamp(1.22rem, 6.9vw, 2.05rem);
-    line-height: 1.08;
-    letter-spacing: 0.018em;
+    font-size: clamp(1.08rem, 6vw, 1.7rem);
+    line-height: 1.12;
+    letter-spacing: 0.012em;
   }
 
   .story-intro h1 span {
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .story-lead {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    max-width: 100%;
+    font-size: 0.88rem;
+    line-height: 1.64;
+    overflow-wrap: anywhere;
   }
 
   .story-visual,
@@ -2221,10 +2246,12 @@ h2 {
 
   .story-visual {
     aspect-ratio: 1 / 1;
+    width: 100%;
   }
 
   .story-visual-portrait {
     aspect-ratio: 4 / 5;
+    width: 100%;
   }
 
   .story-visual::before {
@@ -2236,11 +2263,15 @@ h2 {
     left: 18px;
     bottom: 16px;
     font-size: 0.62rem;
+    max-width: calc(100% - 36px);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
   }
 
   .story-visual-wide {
-    aspect-ratio: 12 / 5;
-    margin-bottom: 64px;
+    width: 100%;
+    aspect-ratio: 12 / 7;
+    margin-bottom: 52px;
   }
 
   .story-chapter,
@@ -2249,6 +2280,15 @@ h2 {
     grid-template-columns: 1fr;
     gap: 32px;
     margin-bottom: 74px;
+    width: 100%;
+  }
+
+  .story-chapter-text,
+  .story-closing,
+  .story-statement,
+  .story-article {
+    width: 100%;
+    max-width: 100%;
   }
 
   .story-chapter-reverse .story-visual {
@@ -2262,13 +2302,16 @@ h2 {
   .story-chapter h2,
   .story-closing h2 {
     max-width: 100%;
-    font-size: clamp(1.2rem, 6.6vw, 1.9rem);
+    font-size: clamp(1.02rem, 5.8vw, 1.58rem);
+    line-height: 1.08;
+    white-space: normal;
   }
 
   .story-chapter p:not(.story-index),
   .story-closing p:not(.story-index) {
-    font-size: 0.9rem;
-    line-height: 1.82;
+    font-size: 0.84rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
   }
 
   .story-statement {
@@ -2277,8 +2320,10 @@ h2 {
   }
 
   .story-statement p {
-    font-size: clamp(1.08rem, 6.4vw, 1.85rem);
-    line-height: 1.08;
+    max-width: 100%;
+    font-size: clamp(0.94rem, 5.2vw, 1.38rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
   }
 
   .story-closing {
@@ -2289,6 +2334,10 @@ h2 {
   .story-back-link {
     margin-left: 0;
     margin-top: 18px;
+  }
+
+  .legal-content h1 {
+    font-weight: 600;
   }
 
   .footer-bottom {
@@ -2408,6 +2457,7 @@ h2 {
     white-space: nowrap;
     letter-spacing: 0;
     line-height: 1.02;
+    font-weight: 600;
   }
 
   .legal-text {
@@ -2488,5 +2538,22 @@ h2 {
 
   .home-page .hero::before {
     display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .home-page::before {
+    display: none;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 5, 0) 0%,
+        rgba(5, 5, 5, 0.08) 52%,
+        rgba(5, 5, 5, 0.42) 80%,
+        #050505 100%
+      );
   }
 }
