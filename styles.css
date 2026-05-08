@@ -237,7 +237,7 @@ body::before {
   width: var(--content-width);
   max-width: 760px;
   margin-left: calc(var(--content-left) - 118px);
-  transform: translateY(-18px);
+  transform: translateY(-30px);
 }
 
 .eyebrow,
@@ -2089,7 +2089,7 @@ h2 {
   .phone-code-wrap .form-select-button span {
     white-space: normal;
     word-break: normal;
-    overflow-wrap: break-word;
+    overflow-wrap: normal;
   }
 
   #contact-phone {
@@ -2333,7 +2333,7 @@ h2 {
 
   .story-back-link {
     margin-left: 0;
-    margin-top: 18px;
+    margin-top: 42px;
   }
 
   .legal-content h1 {
@@ -2388,7 +2388,7 @@ h2 {
   }
 
   .phone-input-wrap {
-    grid-template-columns: 102px minmax(0, 1fr);
+    grid-template-columns: 132px minmax(0, 1fr);
     gap: 10px;
   }
 }
@@ -2458,6 +2458,10 @@ h2 {
     letter-spacing: 0;
     line-height: 1.02;
     font-weight: 600;
+  }
+
+  .legal-content[data-legal-page="privacy"] h1 {
+    font-size: clamp(1.02rem, 5.1vw, 1.48rem);
   }
 
   .legal-text {
