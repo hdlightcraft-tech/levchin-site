@@ -2463,7 +2463,8 @@ h2 {
   }
 
   .legal-content[data-legal-page="privacy"] h1 {
-    font-size: clamp(0.9rem, 4.4vw, 1.28rem);
+    font-size: clamp(0.78rem, 3.9vw, 1.08rem) !important;
+    letter-spacing: -0.01em;
   }
 
   .legal-text {
