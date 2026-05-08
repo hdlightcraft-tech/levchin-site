@@ -131,18 +131,22 @@ body::before {
 
 .nav-link {
   position: relative;
+  display: inline-grid;
+  place-items: center;
   color: #fff;
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 1;
   transform-origin: center;
-  transition: font-weight 220ms ease, transform 220ms ease, opacity 220ms ease;
+  white-space: nowrap;
+  transition: transform 220ms ease, opacity 220ms ease, text-shadow 220ms ease;
+  will-change: transform;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
   color: #fff;
-  font-weight: 600;
+  text-shadow: 0 0 0.01px currentColor, 0 0 0.01px currentColor;
   transform: scale(1.035);
 }
 
