@@ -1008,11 +1008,12 @@ h2 {
 
 .legal-content h1 {
   max-width: none;
-  margin-bottom: 34px;
-  font-size: clamp(2.35rem, 4.5vw, 4.4rem);
+  margin-bottom: clamp(30px, 4vw, 44px);
+  font-size: clamp(2.55rem, 4.8vw, 4.75rem);
   white-space: nowrap;
-  line-height: 1;
-  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  font-weight: 300;
 }
 
 .legal-text {
@@ -1070,7 +1071,7 @@ h2 {
 }
 
 .story-header {
-  margin-bottom: clamp(58px, 8vw, 110px);
+  margin-bottom: clamp(66px, 9vw, 128px);
 }
 
 .story-article {
@@ -1079,19 +1080,18 @@ h2 {
 }
 
 .story-intro {
-  width: min(100%, 920px);
-  margin: 0 auto clamp(52px, 7vw, 96px);
+  width: min(100%, 980px);
+  margin: 0 auto clamp(58px, 8vw, 112px);
 }
 
 .story-intro h1 {
-  max-width: 20ch;
-  margin: 0 0 26px;
+  max-width: 100%;
+  margin: 0 0 clamp(28px, 3.6vw, 44px);
   color: #f4ebe1;
-  font-size: clamp(1.95rem, 4.25vw, 4.35rem);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
+  font-size: clamp(2.8rem, 5.4vw, 5.65rem);
+  font-weight: 300;
+  line-height: 0.96;
+  letter-spacing: 0.025em;
 }
 
 .story-intro h1 span {
@@ -1100,12 +1100,12 @@ h2 {
 }
 
 .story-lead {
-  max-width: 780px;
+  max-width: 760px;
   margin: 0;
   color: #efe6dd;
-  font-size: clamp(1.06rem, 1.45vw, 1.34rem);
-  font-weight: 600;
-  line-height: 1.58;
+  font-size: clamp(1.04rem, 1.32vw, 1.22rem);
+  font-weight: 400;
+  line-height: 1.82;
   letter-spacing: 0.01em;
 }
 
@@ -1185,7 +1185,7 @@ h2 {
   width: min(100%, 1040px);
   aspect-ratio: 12 / 5;
   min-height: 0;
-  margin: 0 auto clamp(72px, 10vw, 130px);
+  margin: 0 auto clamp(82px, 11vw, 150px);
 }
 
 .story-visual-portrait {
@@ -1196,10 +1196,10 @@ h2 {
 .story-chapter {
   display: grid;
   grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1.12fr);
-  gap: clamp(46px, 8vw, 118px);
+  gap: clamp(54px, 8.5vw, 128px);
   align-items: center;
-  width: min(100%, 960px);
-  margin: 0 auto clamp(82px, 11vw, 150px);
+  width: min(100%, 1040px);
+  margin: 0 auto clamp(96px, 12vw, 168px);
 }
 
 .story-chapter-primary {
@@ -1216,43 +1216,42 @@ h2 {
 }
 
 .story-index {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   color: rgba(239, 230, 221, 0.48);
   font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 500;
+  letter-spacing: 0.2em;
 }
 
 .story-chapter h2,
 .story-closing h2 {
-  max-width: 15ch;
-  margin: 0 0 24px;
+  max-width: 12.5ch;
+  margin: 0 0 clamp(26px, 3vw, 36px);
   color: #f4ebe1;
-  font-size: clamp(1.34rem, 2.25vw, 2.35rem);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  overflow-wrap: anywhere;
+  font-size: clamp(2.05rem, 3.65vw, 3.85rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  overflow-wrap: break-word;
 }
 
 .story-chapter p:not(.story-index),
 .story-closing p:not(.story-index) {
   margin: 0;
   color: var(--muted);
-  font-size: 0.98rem;
-  font-weight: 500;
-  line-height: 1.82;
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.9;
 }
 
 .story-chapter p + p {
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
 .story-statement {
   width: min(100%, 900px);
-  margin: 0 auto clamp(82px, 11vw, 150px);
-  padding: clamp(34px, 6vw, 72px) 0;
+  margin: 0 auto clamp(96px, 12vw, 168px);
+  padding: clamp(42px, 7vw, 86px) 0;
   border-top: 1px solid rgba(255, 243, 227, 0.12);
   border-bottom: 1px solid rgba(255, 243, 227, 0.08);
   text-align: center;
@@ -1262,10 +1261,10 @@ h2 {
   max-width: 780px;
   margin: 0 auto;
   color: #f4ebe1;
-  font-size: clamp(1.18rem, 2.35vw, 2.55rem);
+  font-size: clamp(1.45rem, 3vw, 3.15rem);
   font-weight: 300;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  line-height: 1.08;
+  letter-spacing: 0.005em;
 }
 
 .story-closing {
@@ -1295,11 +1294,11 @@ h2 {
 
 .contact-title {
   max-width: none;
-  margin: 0 0 20px;
+  margin: 0 0 clamp(24px, 3vw, 34px);
   font-size: clamp(2.55rem, 4.6vw, 5rem);
   line-height: 0.98;
   letter-spacing: 0.01em;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 .contact-intro {
@@ -2063,9 +2062,10 @@ h2 {
   .contact-title {
     max-width: 100%;
     white-space: nowrap;
-    font-size: clamp(1.46rem, 6.8vw, 2.2rem);
-    letter-spacing: 0;
-    font-weight: 600;
+    font-size: clamp(1.86rem, 8.8vw, 2.7rem);
+    line-height: 0.98;
+    letter-spacing: 0.005em;
+    font-weight: 300;
   }
 
   .contact-form {
@@ -2233,19 +2233,21 @@ h2 {
   }
 
   .story-header {
-    margin-bottom: 58px;
+    margin-bottom: 64px;
   }
 
   .story-intro {
     width: 100%;
-    margin-bottom: 42px;
+    margin-bottom: 52px;
   }
 
   .story-intro h1 {
     max-width: 100%;
-    font-size: clamp(1.08rem, 6vw, 1.7rem);
-    line-height: 1.12;
-    letter-spacing: 0.012em;
+    margin-bottom: 26px;
+    font-size: clamp(2rem, 10vw, 3.24rem);
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: 0.01em;
   }
 
   .story-intro h1 span {
@@ -2254,9 +2256,9 @@ h2 {
 
   .story-lead {
     max-width: 100%;
-    font-size: 0.88rem;
-    line-height: 1.64;
-    overflow-wrap: anywhere;
+    font-size: 0.94rem;
+    line-height: 1.78;
+    overflow-wrap: break-word;
   }
 
   .story-visual,
@@ -2292,15 +2294,15 @@ h2 {
   .story-visual-wide {
     width: 100%;
     aspect-ratio: 12 / 7;
-    margin-bottom: 52px;
+    margin-bottom: 68px;
   }
 
   .story-chapter,
   .story-chapter-primary,
   .story-chapter-reverse {
     grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 74px;
+    gap: 38px;
+    margin-bottom: 86px;
     width: 100%;
   }
 
@@ -2323,28 +2325,32 @@ h2 {
   .story-chapter h2,
   .story-closing h2 {
     max-width: 100%;
-    font-size: clamp(1.02rem, 5.8vw, 1.58rem);
-    line-height: 1.08;
+    margin-bottom: 24px;
+    font-size: clamp(1.62rem, 8.1vw, 2.38rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.005em;
     white-space: normal;
+    overflow-wrap: break-word;
   }
 
   .story-chapter p:not(.story-index),
   .story-closing p:not(.story-index) {
-    font-size: 0.84rem;
-    line-height: 1.7;
-    overflow-wrap: anywhere;
+    font-size: 0.9rem;
+    line-height: 1.76;
+    overflow-wrap: break-word;
   }
 
   .story-statement {
-    margin-bottom: 74px;
-    padding: 42px 0;
+    margin-bottom: 86px;
+    padding: 48px 0;
   }
 
   .story-statement p {
     max-width: 100%;
-    font-size: clamp(0.94rem, 5.2vw, 1.38rem);
-    line-height: 1.2;
-    overflow-wrap: anywhere;
+    font-size: clamp(1.3rem, 7vw, 2.05rem);
+    line-height: 1.12;
+    overflow-wrap: break-word;
   }
 
   .story-closing {
@@ -2354,11 +2360,11 @@ h2 {
 
   .story-back-link {
     margin-left: 0;
-    margin-top: 42px;
+    margin-top: 58px;
   }
 
   .legal-content h1 {
-    font-weight: 600;
+    font-weight: 300;
   }
 
   .footer-bottom {
@@ -2468,7 +2474,9 @@ h2 {
   }
 
   .contact-title {
-    font-size: clamp(1.26rem, 6.2vw, 1.82rem);
+    font-size: clamp(1.86rem, 8.8vw, 2.7rem);
+    line-height: 0.98;
+    font-weight: 300;
   }
 
   .legal-page {
@@ -2481,20 +2489,20 @@ h2 {
 
   .legal-content h1 {
     max-width: 100%;
-    font-size: clamp(1.18rem, 5.8vw, 1.72rem);
+    font-size: clamp(1.78rem, 8.4vw, 2.52rem);
     white-space: nowrap;
     letter-spacing: 0;
     line-height: 1.02;
-    font-weight: 600;
+    font-weight: 300;
   }
 
   .legal-content[data-legal-page="privacy"] h1 {
     max-width: 100%;
-    font-size: clamp(1rem, 4.9vw, 1.26rem) !important;
+    font-size: clamp(1.18rem, 5.7vw, 1.58rem) !important;
     white-space: normal;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-break: normal;
     hyphens: auto;
   }
