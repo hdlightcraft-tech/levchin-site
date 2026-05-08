@@ -632,46 +632,27 @@ const comingSoonToast = document.querySelector("[data-coming-soon-toast]");
 let comingSoonTimeout;
 
 if (comingSoonTrigger && comingSoonToast) {
+  if (!comingSoonTrigger.parentElement?.classList.contains("coming-soon-anchor")) {
+    const anchor = document.createElement("span");
+    anchor.className = "coming-soon-anchor";
+    comingSoonTrigger.parentNode.insertBefore(anchor, comingSoonTrigger);
+    anchor.appendChild(comingSoonTrigger);
+    anchor.appendChild(comingSoonToast);
+  }
+
   const hideComingSoonToast = () => {
     comingSoonToast.classList.remove("is-visible");
-  };
-
-  const positionComingSoonToast = () => {
-    const triggerBox = comingSoonTrigger.getBoundingClientRect();
-    const toastBox = comingSoonToast.getBoundingClientRect();
-    const viewportPadding = 16;
-    const centerX = triggerBox.left + triggerBox.width / 2 + window.scrollX;
-    const topY = triggerBox.top + window.scrollY - 2;
-    const minLeft = viewportPadding + toastBox.width / 2;
-    const maxLeft = window.scrollX + window.innerWidth - viewportPadding - toastBox.width / 2;
-    const clampedLeft = Math.min(Math.max(centerX, minLeft), maxLeft);
-
-    comingSoonToast.style.left = `${clampedLeft}px`;
-    comingSoonToast.style.top = `${topY}px`;
   };
 
   comingSoonTrigger.addEventListener("click", (event) => {
     event.preventDefault();
     comingSoonToast.classList.add("is-visible");
-    window.requestAnimationFrame(positionComingSoonToast);
 
     window.clearTimeout(comingSoonTimeout);
     comingSoonTimeout = window.setTimeout(() => {
       hideComingSoonToast();
     }, 2600);
   });
-
-  window.addEventListener("resize", () => {
-    if (comingSoonToast.classList.contains("is-visible")) {
-      positionComingSoonToast();
-    }
-  });
-
-  window.addEventListener("scroll", () => {
-    if (comingSoonToast.classList.contains("is-visible")) {
-      positionComingSoonToast();
-    }
-  }, { passive: true });
 
   comingSoonToast.addEventListener("click", () => {
     hideComingSoonToast();
