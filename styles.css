@@ -1069,6 +1069,27 @@ h2 {
   margin-top: 24px;
 }
 
+.legal-text h2 {
+  max-width: 100%;
+  margin: 48px 0 22px;
+  color: #f4ebe1;
+  font-size: clamp(1.36rem, 2.2vw, 2.15rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+.legal-text .legal-list-item {
+  margin-top: 10px;
+}
+
+.legal-text a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
 .legal-text strong {
   color: var(--text);
   font-weight: 600;
@@ -2604,6 +2625,11 @@ h2 {
 
   .legal-text {
     font-size: 0.92rem;
+  }
+
+  .legal-text h2 {
+    margin: 38px 0 18px;
+    font-size: clamp(1.22rem, 6.2vw, 1.74rem);
   }
 
   .error-page {

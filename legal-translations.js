@@ -160,6 +160,151 @@ const privacyUpdatedLabels = {
   pt: "Última atualização"
 };
 
+const privacyCopy = {
+  fr: [
+    "La présente politique de confidentialité explique comment les données personnelles peuvent être collectées et traitées lors de l’utilisation du site LEVCHIN.",
+    "LEVCHIN est une maison française de création en cours de développement, fondée par Gaspard Levchin et Julian Lafaye.",
+    "À la date de publication de la présente politique, la société LEVCHIN n’est pas encore constituée. Les traitements de données réalisés via le site sont donc effectués par Gaspard Levchin et Julian Lafaye, cofondateurs du projet LEVCHIN, en qualité de responsables conjoints du traitement.",
+    "Le projet est actuellement édité depuis la France.",
+    "Pour toute question relative à la présente politique ou à l’exercice de vos droits, vous pouvez écrire à l’adresse suivante : contact@levchin.fr",
+    "## Données collectées",
+    "Selon votre utilisation du site, LEVCHIN peut collecter les données suivantes :",
+    "– prénom ;",
+    "– nom ;",
+    "– adresse e-mail ;",
+    "– numéro de téléphone ;",
+    "– raison de contact ;",
+    "– contenu du message envoyé via le formulaire de contact ;",
+    "– adresse e-mail renseignée lors de l’inscription à la newsletter ;",
+    "– données techniques nécessaires au fonctionnement, à la sécurité et à l’administration du site.",
+    "LEVCHIN ne cherche pas à collecter de données sensibles. Il est demandé aux utilisateurs de ne pas transmettre, via le formulaire de contact, d’informations inutiles ou excessives au regard de leur demande.",
+    "## Finalités du traitement",
+    "Les données collectées peuvent être utilisées pour :",
+    "– répondre aux demandes envoyées via le formulaire de contact ;",
+    "– gérer les demandes de renseignement, de collaboration, de presse ou de contact professionnel ;",
+    "– gérer les inscriptions à la newsletter ;",
+    "– adresser des informations relatives à l’évolution de LEVCHIN, à ses créations, à ses lancements, à ses ouvertures de précommande ou à ses communications importantes ;",
+    "– assurer le bon fonctionnement, la sécurité et l’administration technique du site ;",
+    "– prévenir les usages abusifs, frauduleux ou contraires au bon fonctionnement du site.",
+    "## Bases légales",
+    "Les traitements réalisés reposent, selon les cas :",
+    "– sur le consentement de la personne concernée, notamment pour l’inscription à la newsletter ;",
+    "– sur l’intérêt légitime des responsables conjoints du traitement, notamment pour répondre aux messages reçus, administrer le site et en assurer la sécurité ;",
+    "– sur l’exécution de mesures précontractuelles lorsque la demande concerne une future commande, collaboration, prestation ou relation professionnelle.",
+    "## Destinataires des données",
+    "Les données personnelles collectées sont destinées aux cofondateurs de LEVCHIN ainsi qu’aux personnes strictement habilitées à traiter les demandes reçues.",
+    "Elles peuvent être transmises à des prestataires techniques intervenant notamment pour :",
+    "– l’hébergement du site ;",
+    "– la gestion des formulaires ;",
+    "– l’envoi de la newsletter ;",
+    "– la maintenance et la sécurité technique.",
+    "Ces prestataires interviennent uniquement dans la limite nécessaire à l’exécution de leur mission.",
+    "Les données personnelles ne sont ni vendues, ni louées, ni cédées à des tiers à des fins commerciales.",
+    "Le site peut être hébergé par des prestataires situés dans l’Union européenne ou offrant un niveau de protection conforme à la réglementation applicable en matière de protection des données personnelles.",
+    "## Durées de conservation",
+    "Les données personnelles sont conservées uniquement pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées et conformément aux obligations légales applicables.",
+    "Les messages envoyés via le formulaire de contact peuvent être conservés jusqu’à 12 mois après le dernier échange, sauf nécessité de conservation plus longue liée à une relation précontractuelle, contractuelle ou à une obligation légale.",
+    "Les données liées à la newsletter sont conservées jusqu’au retrait du consentement ou à la désinscription de la personne concernée.",
+    "Les données techniques nécessaires au fonctionnement et à la sécurité du site sont conservées pendant la durée strictement nécessaire à ces finalités.",
+    "## Newsletter",
+    "L’inscription à la newsletter permet de recevoir des informations relatives à l’évolution de LEVCHIN, à ses créations, à ses lancements, à ses précommandes et à ses communications importantes.",
+    "L’inscription à la newsletter est volontaire et repose sur le consentement de l’utilisateur.",
+    "Une confirmation peut être demandée afin de vérifier l’adresse e-mail avant l’activation définitive de l’inscription.",
+    "Vous pouvez retirer votre consentement à tout moment en vous désinscrivant via le lien présent dans les e-mails envoyés ou en écrivant à : contact@levchin.fr",
+    "## Cookies et données techniques",
+    "Le site peut traiter certaines données techniques strictement nécessaires à son affichage, à son fonctionnement, à sa sécurité et à son administration.",
+    "À ce stade, LEVCHIN n’utilise actuellement pas de cookies publicitaires ni de dispositifs de suivi destinés à vendre, partager ou exploiter commercialement les données de navigation des visiteurs.",
+    "Si des outils de mesure d’audience, de suivi, de personnalisation ou de publicité sont ajoutés ultérieurement, la présente politique sera mise à jour et, lorsque la réglementation l’exige, le consentement des utilisateurs sera demandé.",
+    "## Sécurité",
+    "LEVCHIN met en œuvre des mesures techniques et organisationnelles raisonnables afin de protéger les données personnelles contre la perte, l’accès non autorisé, l’altération, la divulgation ou l’utilisation abusive.",
+    "Aucune transmission de données sur internet ne pouvant être garantie comme totalement sécurisée, les utilisateurs sont invités à ne transmettre que les informations strictement nécessaires à leur demande.",
+    "## Droits des personnes",
+    "Conformément à la réglementation applicable en matière de protection des données personnelles, vous disposez :",
+    "– d’un droit d’accès ;",
+    "– d’un droit de rectification ;",
+    "– d’un droit d’effacement ;",
+    "– d’un droit à la limitation du traitement ;",
+    "– d’un droit d’opposition ;",
+    "– et, lorsque le traitement repose sur votre consentement, du droit de retirer ce consentement à tout moment.",
+    "Vous pouvez exercer vos droits en écrivant à : contact@levchin.fr",
+    "En cas de difficulté non résolue, vous pouvez adresser une réclamation à la Commission Nationale de l’Informatique et des Libertés (CNIL).",
+    "## Modification de la politique",
+    "La présente politique de confidentialité peut être modifiée à tout moment afin de tenir compte de l’évolution du site, des traitements réalisés par LEVCHIN ou des obligations légales applicables.",
+    "La version publiée en ligne est celle applicable au moment de la consultation du site."
+  ],
+  en: [
+    "This privacy policy explains how personal data may be collected and processed when using the LEVCHIN website.",
+    "LEVCHIN is a French house of creation currently under development, founded by Gaspard Levchin and Julian Lafaye.",
+    "As of the publication date of this policy, LEVCHIN has not yet been incorporated. Data processing carried out through the site is therefore performed by Gaspard Levchin and Julian Lafaye, co-founders of the LEVCHIN project, as joint controllers.",
+    "The project is currently published from France.",
+    "For any question about this policy or the exercise of your rights, you may write to: contact@levchin.fr",
+    "## Data collected",
+    "Depending on your use of the site, LEVCHIN may collect the following data:",
+    "– first name;",
+    "– last name;",
+    "– email address;",
+    "– telephone number;",
+    "– reason for contact;",
+    "– content of the message sent through the contact form;",
+    "– email address provided when subscribing to the newsletter;",
+    "– technical data necessary for the operation, security and administration of the site.",
+    "LEVCHIN does not seek to collect sensitive data. Users are asked not to send unnecessary or excessive information through the contact form.",
+    "## Purposes of processing",
+    "The data collected may be used to:",
+    "– respond to requests sent through the contact form;",
+    "– manage information, collaboration, press or professional contact requests;",
+    "– manage newsletter subscriptions;",
+    "– send information about LEVCHIN, its creations, launches, preorder openings or important communications;",
+    "– ensure the proper operation, security and technical administration of the site;",
+    "– prevent abusive, fraudulent or disruptive use of the site.",
+    "## Legal bases",
+    "Processing is based, depending on the case:",
+    "– on the consent of the data subject, especially for newsletter subscription;",
+    "– on the legitimate interest of the joint controllers, especially to respond to messages, administer and secure the site;",
+    "– on pre-contractual measures when a request concerns a future order, collaboration, service or professional relationship.",
+    "## Data recipients",
+    "Personal data is intended for the co-founders of LEVCHIN and persons strictly authorized to process received requests.",
+    "It may be transmitted to technical providers involved in:",
+    "– website hosting;",
+    "– form management;",
+    "– newsletter delivery;",
+    "– technical maintenance and security.",
+    "These providers act only within the limits necessary to perform their mission.",
+    "Personal data is not sold, rented or transferred to third parties for commercial purposes.",
+    "The site may be hosted by providers located in the European Union or offering a level of protection compliant with applicable data protection regulations.",
+    "## Retention periods",
+    "Personal data is kept only for the period necessary for the purposes for which it was collected and in accordance with applicable legal obligations.",
+    "Messages sent through the contact form may be kept for up to 12 months after the last exchange, unless longer retention is required by a pre-contractual, contractual or legal obligation.",
+    "Newsletter data is kept until consent is withdrawn or the person unsubscribes.",
+    "Technical data necessary for the operation and security of the site is kept only for the period strictly necessary for these purposes.",
+    "## Newsletter",
+    "Newsletter subscription allows you to receive information about LEVCHIN, its creations, launches, preorders and important communications.",
+    "Subscription is voluntary and based on the user’s consent.",
+    "Confirmation may be requested to verify the email address before final activation.",
+    "You may withdraw your consent at any time by unsubscribing through the link in emails or by writing to: contact@levchin.fr",
+    "## Cookies and technical data",
+    "The site may process technical data strictly necessary for display, operation, security and administration.",
+    "At this stage, LEVCHIN does not currently use advertising cookies or tracking tools intended to sell, share or commercially exploit visitor browsing data.",
+    "If analytics, tracking, personalization or advertising tools are added later, this policy will be updated and, where required, user consent will be requested.",
+    "## Security",
+    "LEVCHIN implements reasonable technical and organizational measures to protect personal data against loss, unauthorized access, alteration, disclosure or misuse.",
+    "As no internet transmission can be guaranteed as fully secure, users are asked to transmit only the information strictly necessary for their request.",
+    "## Individual rights",
+    "In accordance with applicable data protection regulations, you have:",
+    "– a right of access;",
+    "– a right to rectification;",
+    "– a right to erasure;",
+    "– a right to restriction of processing;",
+    "– a right to object;",
+    "– and, where processing is based on consent, the right to withdraw that consent at any time.",
+    "You may exercise your rights by writing to: contact@levchin.fr",
+    "If a difficulty remains unresolved, you may lodge a complaint with the Commission Nationale de l’Informatique et des Libertés (CNIL).",
+    "## Changes to this policy",
+    "This privacy policy may be modified at any time to reflect changes to the site, processing carried out by LEVCHIN or applicable legal obligations.",
+    "The version published online is the version applicable when consulting the site."
+  ]
+};
+
 function getPrivacyLastModifiedDate() {
   const lastModified = new Date(document.lastModified);
   return Number.isNaN(lastModified.getTime()) ? new Date() : lastModified;
@@ -171,7 +316,7 @@ function formatPrivacyDate(language) {
 
   return new Intl.DateTimeFormat(locale, {
     day: "2-digit",
-    month: "2-digit",
+    month: "long",
     year: "numeric"
   }).format(date);
 }
@@ -180,6 +325,24 @@ function getPrivacyUpdatedText(language) {
   const label = privacyUpdatedLabels[language] || privacyUpdatedLabels.fr;
   const separator = language === "en" ? ":" : " :";
   return `${label}${separator} ${formatPrivacyDate(language)}`;
+}
+
+function renderLegalParagraph(paragraph) {
+  const escaped = escapeHTML(paragraph);
+
+  if (paragraph.startsWith("## ")) {
+    return `<h2>${escapeHTML(paragraph.slice(3))}</h2>`;
+  }
+
+  if (paragraph.startsWith("– ")) {
+    return `<p class="legal-list-item">${escaped}</p>`;
+  }
+
+  if (paragraph.includes("contact@levchin.fr")) {
+    return `<p>${escaped.replaceAll("contact@levchin.fr", '<a href="mailto:contact@levchin.fr">contact@levchin.fr</a>')}</p>`;
+  }
+
+  return `<p>${escaped}</p>`;
 }
 
 function renderLegalPage(language) {
@@ -191,11 +354,11 @@ function renderLegalPage(language) {
   if (languageLabel) languageLabel.textContent = copy.language;
   if (titleElement) titleElement.textContent = pageType === "privacy" ? copy.privacyTitle : copy.legalTitle;
   if (bodyElement) {
-    const paragraphs = pageType === "privacy" ? copy.privacy : copy.legal;
+    const paragraphs = pageType === "privacy" ? (privacyCopy[language] || privacyCopy.en) : copy.legal;
     const renderedParagraphs = pageType === "privacy"
-      ? [getPrivacyUpdatedText(language), ...paragraphs.slice(1)]
+      ? [getPrivacyUpdatedText(language), ...paragraphs]
       : paragraphs;
-    bodyElement.innerHTML = renderedParagraphs.map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`).join("");
+    bodyElement.innerHTML = renderedParagraphs.map(renderLegalParagraph).join("");
   }
   if (backElement) backElement.textContent = copy.back;
   if (languageSelect) languageSelect.value = language;
