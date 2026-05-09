@@ -319,15 +319,35 @@ h1 span {
   align-items: center;
   justify-content: center;
   align-self: center;
+  line-height: 1;
+  transition: transform 240ms ease, opacity 240ms ease, color 240ms ease;
+}
+
+.button-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex: 0 0 auto;
   width: 1.18em;
   height: 0.62em;
   min-width: 1.18em;
   color: currentColor;
-  background: currentColor;
-  -webkit-mask: url("assets/fleche.svg") center / contain no-repeat;
-  mask: url("assets/fleche.svg") center / contain no-repeat;
   line-height: 1;
-  transition: transform 240ms ease, opacity 240ms ease, color 240ms ease;
+  transform-origin: center;
+  transition: transform 240ms ease, color 240ms ease, opacity 240ms ease;
+}
+
+.button-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: currentColor;
+}
+
+.button-arrow-left {
+  transform: rotate(180deg);
 }
 
 .discover-link:hover .discover-line,
@@ -1093,16 +1113,14 @@ h2 {
 .discover-arrow,
 .learn-more-link .discover-text,
 .learn-more-link .discover-arrow,
-.legal-back-link::before,
-.form-submit span,
-.form-submit::after {
+.form-submit span {
   line-height: 1;
 }
 
 .learn-more-link .discover-text,
 .learn-more-link .discover-arrow,
-.legal-back-link::before,
-.form-submit::after {
+.legal-back-link .button-arrow,
+.form-submit .button-arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1862,18 +1880,8 @@ h2 {
   text-transform: uppercase;
 }
 
-.form-submit::after {
-  content: "";
-  color: rgba(239, 230, 221, 0.9);
-  background: currentColor;
-  -webkit-mask: url("assets/fleche.svg") center / contain no-repeat;
-  mask: url("assets/fleche.svg") center / contain no-repeat;
-  font-size: 1rem;
-  transition: transform 220ms ease, color 220ms ease;
-}
-
-.form-submit:hover::after,
-.form-submit:focus-visible::after {
+.form-submit:hover .button-arrow,
+.form-submit:focus-visible .button-arrow {
   color: #fff8ef;
   transform: translateX(5px);
 }
@@ -1893,24 +1901,13 @@ h2 {
   transition: opacity 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.legal-back-link::before {
-  content: "";
-  color: rgba(239, 230, 221, 0.86);
-  background: currentColor;
-  -webkit-mask: url("assets/fleche.svg") center / contain no-repeat;
-  mask: url("assets/fleche.svg") center / contain no-repeat;
-  font-size: 0.96rem;
-  transform: rotate(180deg);
-  transition: transform 240ms ease, color 240ms ease;
-}
-
 .legal-back-link:hover,
 .legal-back-link:focus-visible {
   color: #fff8ef;
 }
 
-.legal-back-link:hover::before,
-.legal-back-link:focus-visible::before {
+.legal-back-link:hover .button-arrow-left,
+.legal-back-link:focus-visible .button-arrow-left {
   color: #fff8ef;
   transform: translateX(-6px) rotate(180deg);
 }

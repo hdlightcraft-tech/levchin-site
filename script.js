@@ -380,6 +380,12 @@ function setLanguage(language) {
       return;
     }
 
+    const buttonText = element.querySelector(":scope > .button-text");
+    if (buttonText) {
+      buttonText.textContent = element.dataset[language];
+      return;
+    }
+
     element.textContent = element.dataset[language];
   });
 

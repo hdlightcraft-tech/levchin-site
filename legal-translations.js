@@ -369,7 +369,14 @@ function renderLegalPage(language) {
       : [getPrivacyUpdatedText(language), ...paragraphs.slice(1)];
     bodyElement.innerHTML = renderedParagraphs.map((paragraph, index) => renderLegalParagraph(paragraph, index)).join("");
   }
-  if (backElement) backElement.textContent = copy.back;
+  if (backElement) {
+    const backText = backElement.querySelector(":scope > .button-text");
+    if (backText) {
+      backText.textContent = copy.back;
+    } else {
+      backElement.textContent = copy.back;
+    }
+  }
   if (languageSelect) languageSelect.value = language;
 }
 
