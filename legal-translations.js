@@ -327,8 +327,12 @@ function getPrivacyUpdatedText(language) {
   return `${label}${separator} ${formatPrivacyDate(language)}`;
 }
 
-function renderLegalParagraph(paragraph) {
+function renderLegalParagraph(paragraph, index = -1) {
   const escaped = escapeHTML(paragraph);
+
+  if (index === 0 && paragraph === getPrivacyUpdatedText(document.documentElement.lang)) {
+    return `<p class="legal-updated">${escaped}</p>`;
+  }
 
   if (paragraph.startsWith("## ")) {
     return `<h2>${escapeHTML(paragraph.slice(3))}</h2>`;
@@ -362,8 +366,8 @@ function renderLegalPage(language) {
     const paragraphs = pageType === "privacy" ? (privacyCopy[language] || privacyCopy.en) : copy.legal;
     const renderedParagraphs = pageType === "privacy"
       ? [getPrivacyUpdatedText(language), ...paragraphs]
-      : paragraphs;
-    bodyElement.innerHTML = renderedParagraphs.map(renderLegalParagraph).join("");
+      : [getPrivacyUpdatedText(language), ...paragraphs.slice(1)];
+    bodyElement.innerHTML = renderedParagraphs.map((paragraph, index) => renderLegalParagraph(paragraph, index)).join("");
   }
   if (backElement) backElement.textContent = copy.back;
   if (languageSelect) languageSelect.value = language;
