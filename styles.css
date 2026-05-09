@@ -285,7 +285,7 @@ h1 span {
 
 .discover-link {
   display: inline-flex;
-  align-items: stretch;
+  align-items: center;
   gap: 16px;
   margin-top: 48px;
   color: var(--text);
@@ -294,6 +294,7 @@ h1 span {
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1;
 }
 
 .discover-line {
@@ -1071,7 +1072,26 @@ h2 {
   text-transform: uppercase;
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1;
   transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.discover-link,
+.learn-more-link,
+.legal-back-link,
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+}
+
+.discover-text,
+.discover-arrow,
+.learn-more-link .discover-text,
+.learn-more-link .discover-arrow,
+.legal-back-link::before,
+.form-submit span,
+.form-submit::after {
+  line-height: 1;
 }
 
 .learn-more-link .discover-text,
