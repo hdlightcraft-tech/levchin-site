@@ -2353,6 +2353,21 @@ h2 {
     font-size: 0.78rem;
   }
 
+  .button-arrow,
+  .learn-more-link .discover-arrow,
+  .legal-back-link .button-arrow,
+  .form-submit .button-arrow {
+    width: 1.68rem;
+    height: 0.3rem;
+    min-width: 1.68rem;
+  }
+
+  .discover-link .button-arrow {
+    width: 1.86rem;
+    height: 0.33rem;
+    min-width: 1.86rem;
+  }
+
   .discover-line {
     height: 48px;
   }
@@ -2862,6 +2877,21 @@ h2 {
 
   .discover-link {
     font-size: 0.72rem;
+  }
+
+  .button-arrow,
+  .learn-more-link .discover-arrow,
+  .legal-back-link .button-arrow,
+  .form-submit .button-arrow {
+    width: 1.56rem;
+    height: 0.28rem;
+    min-width: 1.56rem;
+  }
+
+  .discover-link .button-arrow {
+    width: 1.72rem;
+    height: 0.31rem;
+    min-width: 1.72rem;
   }
 
   .newsletter-form input {
