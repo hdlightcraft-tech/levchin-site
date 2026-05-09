@@ -335,7 +335,12 @@ function renderLegalParagraph(paragraph) {
   }
 
   if (paragraph.startsWith("– ")) {
-    return `<p class="legal-list-item">${escaped}</p>`;
+    const item = paragraph
+      .slice(2)
+      .trim()
+      .replace(/[;；]\s*$/, "");
+    const formattedItem = item.charAt(0).toLocaleUpperCase() + item.slice(1);
+    return `<p class="legal-list-item">${escapeHTML(formattedItem)}</p>`;
   }
 
   if (paragraph.includes("contact@levchin.fr")) {
