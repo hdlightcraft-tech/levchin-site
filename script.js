@@ -384,6 +384,12 @@ function setLanguage(language) {
   });
 
   document
+    .querySelectorAll("[data-story-fr]")
+    .forEach((element) => {
+      element.textContent = element.dataset[`story${language.charAt(0).toUpperCase()}${language.slice(1)}`] || element.dataset.storyEn || element.dataset.storyFr;
+    });
+
+  document
     .querySelectorAll(
       "[data-fr-placeholder][data-en-placeholder][data-es-placeholder][data-it-placeholder][data-ja-placeholder][data-zh-placeholder][data-de-placeholder][data-ko-placeholder][data-pt-placeholder]"
     )
