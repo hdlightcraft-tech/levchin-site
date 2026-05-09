@@ -331,9 +331,9 @@ h1 span {
   justify-content: center;
   align-self: center;
   flex: 0 0 auto;
-  width: 1.86rem;
-  height: 0.93rem;
-  min-width: 1.86rem;
+  width: 2.06rem;
+  height: 0.69rem;
+  min-width: 2.06rem;
   color: currentColor;
   line-height: 1;
   transform-origin: center;
@@ -1134,9 +1134,9 @@ h2 {
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 1.86rem;
-  height: 0.93rem;
-  min-width: 1.86rem;
+  width: 2.06rem;
+  height: 0.69rem;
+  min-width: 2.06rem;
   line-height: 1;
 }
 
