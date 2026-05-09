@@ -147,6 +147,39 @@ const bodyElement = document.querySelector("[data-legal-body]");
 const backElement = document.querySelector("[data-legal-back]");
 const languageLabel = document.querySelector("[data-legal-ui='language']");
 
+const privacyUpdatedLabels = {
+  fr: "Dernière mise à jour",
+  en: "Last updated",
+  es: "Última actualización",
+  it: "Ultimo aggiornamento",
+  ja: "最終更新日",
+  zh: "最后更新",
+  de: "Letzte Aktualisierung",
+  ko: "최종 업데이트",
+  pt: "Última atualização"
+};
+
+function getPrivacyLastModifiedDate() {
+  const lastModified = new Date(document.lastModified);
+  return Number.isNaN(lastModified.getTime()) ? new Date() : lastModified;
+}
+
+function formatPrivacyDate(language) {
+  const date = getPrivacyLastModifiedDate();
+  const locale = language === "en" ? "en-US" : language === "fr" ? "fr-FR" : language;
+
+  return new Intl.DateTimeFormat(locale, {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  }).format(date);
+}
+
+function getPrivacyUpdatedText(language) {
+  const label = privacyUpdatedLabels[language] || privacyUpdatedLabels.fr;
+  return `${label} : ${formatPrivacyDate(language)}`;
+}
+
 function renderLegalPage(language) {
   const copy = legalCopy[language] || legalCopy.fr;
   const pageType = legalContent?.dataset.legalPage === "privacy" ? "privacy" : "legal";
@@ -157,7 +190,10 @@ function renderLegalPage(language) {
   if (titleElement) titleElement.textContent = pageType === "privacy" ? copy.privacyTitle : copy.legalTitle;
   if (bodyElement) {
     const paragraphs = pageType === "privacy" ? copy.privacy : copy.legal;
-    bodyElement.innerHTML = paragraphs.map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`).join("");
+    const renderedParagraphs = pageType === "privacy"
+      ? [getPrivacyUpdatedText(language), ...paragraphs.slice(1)]
+      : paragraphs;
+    bodyElement.innerHTML = renderedParagraphs.map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`).join("");
   }
   if (backElement) backElement.textContent = copy.back;
   if (languageSelect) languageSelect.value = language;
