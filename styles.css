@@ -311,6 +311,8 @@ h1 span {
   align-self: center;
   height: 1em;
   line-height: 1;
+  flex: 0 0 auto;
+  white-space: nowrap;
   transition: transform 240ms ease, opacity 240ms ease, color 240ms ease;
 }
 
@@ -329,9 +331,9 @@ h1 span {
   justify-content: center;
   align-self: center;
   flex: 0 0 auto;
-  width: 1.18em;
-  height: 0.62em;
-  min-width: 1.18em;
+  width: 1.86rem;
+  height: 0.93rem;
+  min-width: 1.86rem;
   color: currentColor;
   line-height: 1;
   transform-origin: center;
@@ -1098,6 +1100,8 @@ h2 {
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
+  flex-wrap: nowrap;
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
@@ -1107,14 +1111,20 @@ h2 {
 .form-submit {
   display: inline-flex;
   align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .discover-text,
 .discover-arrow,
 .learn-more-link .discover-text,
 .learn-more-link .discover-arrow,
+.button-text,
 .form-submit span {
   line-height: 1;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .learn-more-link .discover-text,
@@ -1125,9 +1135,9 @@ h2 {
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 1.18em;
-  height: 0.62em;
-  min-width: 1.18em;
+  width: 1.86rem;
+  height: 0.93rem;
+  min-width: 1.86rem;
   line-height: 1;
 }
 
@@ -1137,7 +1147,7 @@ h2 {
 }
 
 .learn-more-link-arrow .discover-arrow {
-  font-size: 0.96rem;
+  font-size: inherit;
 }
 
 .learn-more-link-arrow:hover .discover-arrow,
@@ -1869,6 +1879,8 @@ h2 {
   cursor: pointer;
   padding: 18px 21px;
   text-align: left;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .form-submit span {
@@ -1898,6 +1910,8 @@ h2 {
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
+  flex-wrap: nowrap;
   transition: opacity 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
