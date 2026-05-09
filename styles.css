@@ -319,8 +319,13 @@ h1 span {
   align-items: center;
   justify-content: center;
   align-self: center;
-  height: 1em;
-  min-width: 1em;
+  width: 1.18em;
+  height: 0.62em;
+  min-width: 1.18em;
+  color: currentColor;
+  background: currentColor;
+  -webkit-mask: url("assets/fleche.svg") center / contain no-repeat;
+  mask: url("assets/fleche.svg") center / contain no-repeat;
   line-height: 1;
   transition: transform 240ms ease, opacity 240ms ease, color 240ms ease;
 }
@@ -1102,8 +1107,9 @@ h2 {
   align-items: center;
   justify-content: center;
   align-self: center;
-  height: 1em;
-  min-width: 1em;
+  width: 1.18em;
+  height: 0.62em;
+  min-width: 1.18em;
   line-height: 1;
 }
 
@@ -1857,8 +1863,11 @@ h2 {
 }
 
 .form-submit::after {
-  content: "→";
+  content: "";
   color: rgba(239, 230, 221, 0.9);
+  background: currentColor;
+  -webkit-mask: url("assets/fleche.svg") center / contain no-repeat;
+  mask: url("assets/fleche.svg") center / contain no-repeat;
   font-size: 1rem;
   transition: transform 220ms ease, color 220ms ease;
 }
@@ -1885,9 +1894,13 @@ h2 {
 }
 
 .legal-back-link::before {
-  content: "←";
+  content: "";
   color: rgba(239, 230, 221, 0.86);
+  background: currentColor;
+  -webkit-mask: url("assets/fleche.svg") center / contain no-repeat;
+  mask: url("assets/fleche.svg") center / contain no-repeat;
   font-size: 0.96rem;
+  transform: rotate(180deg);
   transition: transform 240ms ease, color 240ms ease;
 }
 
@@ -1899,7 +1912,7 @@ h2 {
 .legal-back-link:hover::before,
 .legal-back-link:focus-visible::before {
   color: #fff8ef;
-  transform: translateX(-6px);
+  transform: translateX(-6px) rotate(180deg);
 }
 
 .legal-page:not(.story-page) {
