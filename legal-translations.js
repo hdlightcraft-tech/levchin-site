@@ -1,4 +1,5 @@
-﻿const legalCopy = {
+﻿(() => {
+const legalCopy = {
   fr: {
     language: "Langue :", back: "Retour à l’accueil", legalTitle: "Mentions légales", privacyTitle: "Politique de confidentialité",
     legal: [
@@ -177,7 +178,8 @@ function formatPrivacyDate(language) {
 
 function getPrivacyUpdatedText(language) {
   const label = privacyUpdatedLabels[language] || privacyUpdatedLabels.fr;
-  return `${label} : ${formatPrivacyDate(language)}`;
+  const separator = language === "en" ? ":" : " :";
+  return `${label}${separator} ${formatPrivacyDate(language)}`;
 }
 
 function renderLegalPage(language) {
@@ -208,3 +210,5 @@ document.addEventListener("levchin:languagechange", (event) => {
 });
 
 renderLegalPage(localStorage.getItem("levchin-language") || document.documentElement.lang || "fr");
+
+})();
