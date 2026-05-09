@@ -331,10 +331,10 @@ h1 span {
   justify-content: center;
   align-self: center;
   flex: 0 0 auto;
-  width: 1.85rem;
-  height: 0.62rem;
-  min-width: 1.85rem;
-  color: currentColor;
+  width: 1.92rem;
+  height: 0.34rem;
+  min-width: 1.92rem;
+  color: #fff8ef;
   line-height: 1;
   transform-origin: center;
   transition: transform 240ms ease, color 240ms ease, opacity 240ms ease;
@@ -350,6 +350,12 @@ h1 span {
 
 .button-arrow-left {
   transform: rotate(180deg);
+}
+
+.discover-link .button-arrow {
+  width: 2.16rem;
+  height: 0.38rem;
+  min-width: 2.16rem;
 }
 
 .discover-link:hover .discover-line,
@@ -1134,9 +1140,9 @@ h2 {
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 1.85rem;
-  height: 0.62rem;
-  min-width: 1.85rem;
+  width: 1.92rem;
+  height: 0.34rem;
+  min-width: 1.92rem;
   line-height: 1;
 }
 
