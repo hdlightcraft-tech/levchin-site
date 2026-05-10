@@ -52,6 +52,89 @@ function stripImageTitles(root = document) {
 
 stripImageTitles();
 
+function initStorySnap() {
+  const shell = document.querySelector("body.story-document .site-shell");
+
+  if (!shell) {
+    return;
+  }
+
+  const getTargets = () => [
+    ...document.querySelectorAll(".story-snap"),
+    document.querySelector("body.story-document .site-footer"),
+  ].filter(Boolean);
+
+  let snapTimer = 0;
+  let isSnapping = false;
+
+  const getTargetTop = (target) => {
+    const shellRect = shell.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    return targetRect.top - shellRect.top + shell.scrollTop;
+  };
+
+  const snapToNearestStoryPanel = () => {
+    if (isSnapping) {
+      return;
+    }
+
+    const targets = getTargets();
+
+    if (!targets.length) {
+      return;
+    }
+
+    const currentTop = shell.scrollTop;
+    const viewportHeight = shell.clientHeight;
+    const positions = targets.map((target) => ({
+      target,
+      top: getTargetTop(target),
+      height: target.getBoundingClientRect().height,
+    }));
+
+    const active = positions.find(
+      (item) =>
+        currentTop > item.top + 28 &&
+        currentTop < item.top + item.height - viewportHeight - 28
+    );
+
+    if (active && active.height > viewportHeight + 80) {
+      return;
+    }
+
+    const nearest = positions.reduce((closest, item) =>
+      Math.abs(item.top - currentTop) < Math.abs(closest.top - currentTop)
+        ? item
+        : closest
+    );
+
+    if (Math.abs(nearest.top - currentTop) < 4) {
+      return;
+    }
+
+    isSnapping = true;
+    shell.scrollTo({ top: nearest.top, behavior: "smooth" });
+    window.setTimeout(() => {
+      isSnapping = false;
+    }, 520);
+  };
+
+  shell.addEventListener(
+    "scroll",
+    () => {
+      if (isSnapping) {
+        return;
+      }
+
+      window.clearTimeout(snapTimer);
+      snapTimer = window.setTimeout(snapToNearestStoryPanel, 120);
+    },
+    { passive: true }
+  );
+}
+
+initStorySnap();
+
 document.addEventListener("dragstart", (event) => {
   if (event.target.closest("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
