@@ -53,19 +53,19 @@ function stripImageTitles(root = document) {
 stripImageTitles();
 
 document.addEventListener("dragstart", (event) => {
-  if (event.target.closest("img, picture, .story-visual")) {
+  if (event.target.closest("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
   }
 });
 
 document.addEventListener("contextmenu", (event) => {
-  if (event.target.closest("img, picture, .story-visual")) {
+  if (event.target.closest("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
   }
 });
 
 document.addEventListener("selectstart", (event) => {
-  if (event.target.closest("img, picture, .story-visual")) {
+  if (event.target.closest("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
   }
 });
