@@ -4537,3 +4537,91 @@ body.story-document .story-back-link {
     font-size: clamp(1.52rem, 7.4vw, 2.42rem);
   }
 }
+
+/* Story page: histoire3 shared image centered across two panels */
+body.story-document .story-h3-sequence {
+  position: relative;
+  overflow: hidden;
+}
+
+body.story-document .story-h3-image {
+  top: 100dvh;
+  left: 50%;
+  width: min(62vw, 900px);
+  max-width: calc(100vw - (var(--story-gutter) * 2));
+  transform: translate(-50%, -50%);
+}
+
+body.story-document .story-snap-union,
+body.story-document .story-snap-lines {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+body.story-document .story-snap-union {
+  align-content: start;
+  padding-top: clamp(18vh, 22dvh, 25vh);
+}
+
+body.story-document .story-snap-lines {
+  align-content: end;
+  padding-bottom: clamp(16vh, 20dvh, 23vh);
+}
+
+body.story-document .story-snap-union .story-panel-copy,
+body.story-document .story-snap-lines .story-panel-copy {
+  width: min(100%, 760px);
+  max-width: 760px;
+  justify-self: center;
+  align-self: auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+body.story-document .story-snap-union .story-copy,
+body.story-document .story-snap-lines .story-copy {
+  max-width: min(100%, 760px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+body.story-document .story-snap-union h2,
+body.story-document .story-snap-lines h2 {
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  body.story-document .story-h3-image {
+    width: min(76vw, 620px);
+  }
+
+  body.story-document .story-snap-union {
+    padding-top: clamp(14vh, 18dvh, 22vh);
+  }
+
+  body.story-document .story-snap-lines {
+    padding-bottom: clamp(12vh, 17dvh, 20vh);
+  }
+}
+
+@media (max-width: 560px) {
+  body.story-document .story-h3-image {
+    width: min(90vw, 350px);
+  }
+
+  body.story-document .story-snap-union {
+    padding-top: clamp(11vh, 15dvh, 18vh);
+  }
+
+  body.story-document .story-snap-lines {
+    padding-bottom: clamp(10vh, 14dvh, 17vh);
+  }
+
+  body.story-document .story-snap-union .story-panel-copy,
+  body.story-document .story-snap-lines .story-panel-copy {
+    width: min(100%, 350px);
+  }
+}
