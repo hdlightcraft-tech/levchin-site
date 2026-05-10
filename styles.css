@@ -5072,3 +5072,101 @@ body.story-document .story-back-link {
     margin-top: 54px;
   }
 }
+
+/* Story page: LE SENS DES CHOSES overlay containment */
+body.story-document .story-snap-overlay {
+  display: grid;
+  place-items: center;
+  width: var(--story-grid);
+  max-width: calc(100vw - (var(--edge-space) * 2));
+  margin-inline: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body.story-document .story-snap-overlay .story-media-overlay {
+  grid-area: 1 / 1;
+  width: 100%;
+  max-width: 100%;
+}
+
+body.story-document .story-snap-overlay .story-overlay-copy {
+  grid-area: 1 / 1;
+  justify-self: end;
+  align-self: center;
+  width: min(34%, 390px);
+  margin: 0;
+  padding: clamp(24px, 3vw, 42px) clamp(34px, 4vw, 58px) clamp(24px, 3vw, 42px) 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+body.story-document .story-snap-overlay .story-overlay-copy h2 {
+  max-width: 100%;
+}
+
+body.story-document .story-snap-overlay .story-overlay-copy .story-copy {
+  max-width: 100%;
+}
+
+@media (max-width: 980px) {
+  body.story-document .story-snap-overlay .story-overlay-copy {
+    width: min(50%, 390px);
+    padding-right: clamp(24px, 5vw, 42px);
+  }
+}
+
+@media (max-height: 820px) and (min-width: 981px) {
+  body.story-document .story-snap-overlay .story-overlay-copy {
+    width: min(42%, 370px);
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  body.story-document .story-snap-overlay .story-overlay-copy .story-copy p {
+    line-height: 1.44;
+  }
+}
+
+@media (max-width: 560px) {
+  body.story-document .story-snap-overlay {
+    width: 100%;
+    max-width: calc(100vw - (var(--edge-space) * 2));
+  }
+
+  body.story-document .story-snap-overlay .story-media-overlay {
+    min-height: min(78dvh, 660px);
+    aspect-ratio: auto;
+  }
+
+  body.story-document .story-snap-overlay .story-media-overlay img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  body.story-document .story-snap-overlay .story-overlay-copy {
+    justify-self: end;
+    align-self: center;
+    width: min(76%, 286px);
+    padding: 28px 22px 28px 0;
+  }
+
+  body.story-document .story-snap-overlay .story-overlay-copy h2 {
+    font-size: clamp(1.02rem, 5vw, 1.22rem);
+    line-height: 1.16;
+    letter-spacing: 0.032em;
+  }
+
+  body.story-document .story-snap-overlay .story-overlay-copy .story-copy {
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  body.story-document .story-snap-overlay .story-overlay-copy .story-copy p {
+    font-size: 0.88rem;
+    line-height: 1.46;
+  }
+}
