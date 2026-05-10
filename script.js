@@ -60,18 +60,67 @@ function initStorySnap() {
   }
 
   const getTargets = () => [
+    document.querySelector(".story-page .legal-header"),
     ...document.querySelectorAll(".story-snap"),
     document.querySelector("body.story-document .site-footer"),
   ].filter(Boolean);
 
   let snapTimer = 0;
   let isSnapping = false;
+  let snapFrame = 0;
 
   const getTargetTop = (target) => {
     const shellRect = shell.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
     return targetRect.top - shellRect.top + shell.scrollTop;
   };
+
+  const getTargetSnapTop = (target) => {
+    const targetTop = getTargetTop(target);
+
+    if (target.matches(".site-footer")) {
+      return targetTop + target.getBoundingClientRect().height - shell.clientHeight;
+    }
+
+    return targetTop;
+  };
+
+  const easeInOutCubic = (progress) =>
+    progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+  const smoothSnapTo = (top) => {
+    window.cancelAnimationFrame(snapFrame);
+
+    const start = shell.scrollTop;
+    const distance = top - start;
+    const duration = Math.min(980, Math.max(620, Math.abs(distance) * 0.42));
+    const startedAt = performance.now();
+
+    const animate = (time) => {
+      const progress = Math.min((time - startedAt) / duration, 1);
+      shell.scrollTop = start + distance * easeInOutCubic(progress);
+
+      if (progress < 1) {
+        snapFrame = window.requestAnimationFrame(animate);
+        return;
+      }
+
+      isSnapping = false;
+    };
+
+    snapFrame = window.requestAnimationFrame(animate);
+  };
+
+  if (!window.location.hash) {
+    window.requestAnimationFrame(() => {
+      shell.scrollTop = 0;
+      window.requestAnimationFrame(() => {
+        shell.scrollTop = 0;
+      });
+    });
+  }
 
   const snapToNearestStoryPanel = () => {
     if (isSnapping) {
@@ -88,9 +137,17 @@ function initStorySnap() {
     const viewportHeight = shell.clientHeight;
     const positions = targets.map((target) => ({
       target,
-      top: getTargetTop(target),
+      top: Math.max(
+        0,
+        Math.min(getTargetSnapTop(target), shell.scrollHeight - shell.clientHeight)
+      ),
       height: target.getBoundingClientRect().height,
     }));
+    const lastSection = positions[positions.length - 1];
+
+    if (lastSection && currentTop > lastSection.top + viewportHeight * 0.42) {
+      return;
+    }
 
     const active = positions.find(
       (item) =>
@@ -113,10 +170,7 @@ function initStorySnap() {
     }
 
     isSnapping = true;
-    shell.scrollTo({ top: nearest.top, behavior: "smooth" });
-    window.setTimeout(() => {
-      isSnapping = false;
-    }, 520);
+    smoothSnapTo(nearest.top);
   };
 
   shell.addEventListener(
@@ -127,7 +181,7 @@ function initStorySnap() {
       }
 
       window.clearTimeout(snapTimer);
-      snapTimer = window.setTimeout(snapToNearestStoryPanel, 120);
+      snapTimer = window.setTimeout(snapToNearestStoryPanel, 280);
     },
     { passive: true }
   );
