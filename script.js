@@ -59,11 +59,202 @@ function initStorySnap() {
     return;
   }
 
+  const slideSelectors = [
+    ".story-snap-intro",
+    ".story-snap-origin",
+    ".story-snap-union",
+    ".story-snap-lines",
+    ".story-snap-materials",
+    ".story-snap-overlay",
+    ".story-snap-statement",
+    ".story-snap-final"
+  ];
+  const wheelThreshold = 44;
+  const touchThreshold = 46;
+  const animationDuration = 780;
+  let wheelDelta = 0;
+  let wheelResetTimer = 0;
+  let isAnimating = false;
+  let animationFrame = 0;
+  let touchStartY = 0;
+
+  const easeSlide = (progress) => 1 - Math.pow(1 - progress, 3);
+
+  const getTop = (element) => {
+    const shellRect = shell.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    return elementRect.top - shellRect.top + shell.scrollTop;
+  };
+
+  const getTargets = () => {
+    const slides = slideSelectors
+      .map((selector, index) => {
+        const element = document.querySelector(selector);
+
+        if (!element) {
+          return null;
+        }
+
+        return {
+          element,
+          isFooter: false,
+          step: index + 1,
+          top: index === 0 ? 0 : getTop(element)
+        };
+      })
+      .filter(Boolean);
+    const footer = document.querySelector("body.story-document .site-footer");
+
+    if (footer) {
+      slides.push({
+        element: footer,
+        isFooter: true,
+        step: "footer",
+        top: shell.scrollHeight - shell.clientHeight
+      });
+    }
+
+    return slides;
+  };
+
+  const getCurrentTargetIndex = (targets = getTargets()) => {
+    const currentTop = shell.scrollTop;
+
+    return targets.reduce((closestIndex, target, index) => {
+      const closest = targets[closestIndex];
+      return Math.abs(target.top - currentTop) < Math.abs(closest.top - currentTop)
+        ? index
+        : closestIndex;
+    }, 0);
+  };
+
+  const animateTo = (targetTop) => {
+    window.cancelAnimationFrame(animationFrame);
+
+    const maxTop = shell.scrollHeight - shell.clientHeight;
+    const start = shell.scrollTop;
+    const end = Math.max(0, Math.min(targetTop, maxTop));
+    const distance = end - start;
+    const startedAt = performance.now();
+
+    if (Math.abs(distance) < 2) {
+      isAnimating = false;
+      return;
+    }
+
+    const step = (time) => {
+      const progress = Math.min((time - startedAt) / animationDuration, 1);
+      shell.scrollTop = start + distance * easeSlide(progress);
+
+      if (progress < 1) {
+        animationFrame = window.requestAnimationFrame(step);
+        return;
+      }
+
+      shell.scrollTop = end;
+      isAnimating = false;
+    };
+
+    animationFrame = window.requestAnimationFrame(step);
+  };
+
+  const goToTarget = (direction) => {
+    const targets = getTargets();
+    const currentIndex = getCurrentTargetIndex(targets);
+    const nextIndex = Math.max(0, Math.min(currentIndex + direction, targets.length - 1));
+
+    if (nextIndex === currentIndex) {
+      return;
+    }
+
+    isAnimating = true;
+    animateTo(targets[nextIndex].top);
+  };
+
   if (!window.location.hash) {
     window.requestAnimationFrame(() => {
       shell.scrollTop = 0;
     });
   }
+
+  shell.addEventListener(
+    "wheel",
+    (event) => {
+      event.preventDefault();
+
+      if (isAnimating) {
+        return;
+      }
+
+      wheelDelta += event.deltaY;
+      window.clearTimeout(wheelResetTimer);
+      wheelResetTimer = window.setTimeout(() => {
+        wheelDelta = 0;
+      }, 150);
+
+      if (Math.abs(wheelDelta) < wheelThreshold) {
+        return;
+      }
+
+      const direction = wheelDelta > 0 ? 1 : -1;
+      wheelDelta = 0;
+      goToTarget(direction);
+    },
+    { passive: false }
+  );
+
+  shell.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartY = event.touches[0]?.clientY || 0;
+    },
+    { passive: true }
+  );
+
+  shell.addEventListener(
+    "touchmove",
+    (event) => {
+      if (isAnimating) {
+        event.preventDefault();
+      }
+    },
+    { passive: false }
+  );
+
+  shell.addEventListener(
+    "touchend",
+    (event) => {
+      if (isAnimating) {
+        return;
+      }
+
+      const touchEndY = event.changedTouches[0]?.clientY || touchStartY;
+      const delta = touchStartY - touchEndY;
+
+      if (Math.abs(delta) < touchThreshold) {
+        return;
+      }
+
+      goToTarget(delta > 0 ? 1 : -1);
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (!document.body.classList.contains("story-document") || isAnimating) {
+      return;
+    }
+
+    if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+      event.preventDefault();
+      goToTarget(1);
+    }
+
+    if (["ArrowUp", "PageUp"].includes(event.key)) {
+      event.preventDefault();
+      goToTarget(-1);
+    }
+  });
 }
 
 initStorySnap();
