@@ -77,6 +77,9 @@ function initStorySnap() {
   let isAnimating = false;
   let animationFrame = 0;
   let touchStartY = 0;
+  let touchDeltaY = 0;
+  let activeIndex = 0;
+  let resizeTimer = 0;
 
   const easeSlide = (progress) => 1 - Math.pow(1 - progress, 3);
 
@@ -164,9 +167,11 @@ function initStorySnap() {
     const nextIndex = Math.max(0, Math.min(currentIndex + direction, targets.length - 1));
 
     if (nextIndex === currentIndex) {
+      activeIndex = currentIndex;
       return;
     }
 
+    activeIndex = nextIndex;
     isAnimating = true;
     animateTo(targets[nextIndex].top);
   };
@@ -207,6 +212,7 @@ function initStorySnap() {
     "touchstart",
     (event) => {
       touchStartY = event.touches[0]?.clientY || 0;
+      touchDeltaY = 0;
     },
     { passive: true }
   );
@@ -214,7 +220,10 @@ function initStorySnap() {
   shell.addEventListener(
     "touchmove",
     (event) => {
-      if (isAnimating) {
+      const currentY = event.touches[0]?.clientY || touchStartY;
+      touchDeltaY = touchStartY - currentY;
+
+      if (isAnimating || Math.abs(touchDeltaY) > 8) {
         event.preventDefault();
       }
     },
@@ -229,7 +238,7 @@ function initStorySnap() {
       }
 
       const touchEndY = event.changedTouches[0]?.clientY || touchStartY;
-      const delta = touchStartY - touchEndY;
+      const delta = touchDeltaY || touchStartY - touchEndY;
 
       if (Math.abs(delta) < touchThreshold) {
         return;
@@ -254,6 +263,18 @@ function initStorySnap() {
       event.preventDefault();
       goToTarget(-1);
     }
+  });
+
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      const targets = getTargets();
+      const nextIndex = Math.max(0, Math.min(activeIndex, targets.length - 1));
+
+      if (targets[nextIndex]) {
+        shell.scrollTop = targets[nextIndex].top;
+      }
+    }, 160);
   });
 }
 
