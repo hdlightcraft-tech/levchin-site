@@ -52,6 +52,59 @@ function stripImageTitles(root = document) {
 
 stripImageTitles();
 
+function syncStoryViewportState() {
+  if (!document.body.classList.contains("story-document")) {
+    return;
+  }
+
+  const viewport = window.visualViewport;
+  const width = Math.round(viewport?.width || window.innerWidth);
+  const height = Math.round(viewport?.height || window.innerHeight);
+  const isLandscape = width > height;
+  const isTouchViewport =
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia("(pointer: coarse)").matches ||
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const classes = [
+    "story-vp-tablet-landscape",
+    "story-vp-tablet-portrait",
+    "story-vp-phone-landscape",
+    "story-vp-phone-portrait",
+    "story-vp-compact-landscape"
+  ];
+
+  document.body.classList.remove(...classes);
+  document.body.style.setProperty("--story-vh", `${height}px`);
+
+  if (!isTouchViewport) {
+    return;
+  }
+
+  if (isLandscape && height <= 560) {
+    document.body.classList.add("story-vp-phone-landscape", "story-vp-compact-landscape");
+    return;
+  }
+
+  if (!isLandscape && width < 768) {
+    document.body.classList.add("story-vp-phone-portrait");
+    return;
+  }
+
+  if (isLandscape && width <= 1366) {
+    document.body.classList.add("story-vp-tablet-landscape");
+    return;
+  }
+
+  if (!isLandscape && width <= 1100) {
+    document.body.classList.add("story-vp-tablet-portrait");
+  }
+}
+
+syncStoryViewportState();
+window.addEventListener("resize", syncStoryViewportState);
+window.addEventListener("orientationchange", syncStoryViewportState);
+window.visualViewport?.addEventListener("resize", syncStoryViewportState);
+
 function initStorySnap() {
   const shell = document.querySelector("body.story-document .site-shell");
 
