@@ -60,6 +60,17 @@ function syncStoryViewportState() {
   const viewport = window.visualViewport;
   const width = Math.round(viewport?.width || window.innerWidth);
   const height = Math.round(viewport?.height || window.innerHeight);
+  const storyHeader = document.querySelector("body.story-document .story-header");
+  const shell = document.querySelector("body.story-document .site-shell");
+  const firstSlide = document.querySelector("body.story-document .story-snap-intro");
+  const headerHeight = Math.ceil(storyHeader?.getBoundingClientRect().height || 0);
+  const shellRect = shell?.getBoundingClientRect();
+  const firstSlideRect = firstSlide?.getBoundingClientRect();
+  const firstSlideOffset = Math.ceil(
+    shell && firstSlide && shellRect && firstSlideRect
+      ? firstSlideRect.top - shellRect.top + shell.scrollTop
+      : headerHeight
+  );
   const isLandscape = width > height;
   const isTouchViewport =
     navigator.maxTouchPoints > 0 ||
@@ -75,6 +86,8 @@ function syncStoryViewportState() {
 
   document.body.classList.remove(...classes);
   document.body.style.setProperty("--story-vh", `${height}px`);
+  document.body.style.setProperty("--story-header-height", `${headerHeight}px`);
+  document.body.style.setProperty("--story-first-offset", `${Math.max(0, firstSlideOffset)}px`);
 
   if (!isTouchViewport) {
     return;
