@@ -72,10 +72,6 @@ function syncStoryViewportState() {
       : headerHeight
   );
   const isLandscape = width > height;
-  const isTouchViewport =
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia("(pointer: coarse)").matches ||
-    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const classes = [
     "story-vp-tablet-landscape",
     "story-vp-tablet-portrait",
@@ -88,10 +84,6 @@ function syncStoryViewportState() {
   document.body.style.setProperty("--story-vh", `${height}px`);
   document.body.style.setProperty("--story-header-height", `${headerHeight}px`);
   document.body.style.setProperty("--story-first-offset", `${Math.max(0, firstSlideOffset)}px`);
-
-  if (!isTouchViewport) {
-    return;
-  }
 
   if (isLandscape && height <= 560) {
     document.body.classList.add("story-vp-phone-landscape", "story-vp-compact-landscape");
