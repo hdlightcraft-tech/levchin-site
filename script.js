@@ -163,7 +163,6 @@ function initStoryExperience() {
   const setActiveSlide = (index) => {
     activeSlideIndex = Math.max(0, Math.min(index, slides.length - 1));
     document.body.dataset.storyActive = String(activeSlideIndex + 1);
-    document.body.classList.toggle("story-h3-active", activeSlideIndex === 2 || activeSlideIndex === 3);
     if (progressCurrent) {
       progressCurrent.textContent = formatStep(activeSlideIndex + 1);
     }
@@ -196,6 +195,7 @@ function initStoryExperience() {
 
     window.cancelAnimationFrame(animationFrame);
     activeTargetIndex = boundedIndex;
+    isAnimating = true;
     setActiveSlide(Math.min(target.index, slides.length - 1));
     document.body.classList.toggle("story-at-footer", Boolean(target.isFooter));
 
@@ -211,7 +211,6 @@ function initStoryExperience() {
       return;
     }
 
-    isAnimating = true;
     document.body.classList.add("story-snap-driving");
     const startedAt = performance.now();
 
@@ -225,6 +224,7 @@ function initStoryExperience() {
       }
 
       shell.scrollTop = end;
+      setActiveSlide(Math.min(target.index, slides.length - 1));
       isAnimating = false;
       window.setTimeout(() => {
         document.body.classList.remove("story-snap-driving");
@@ -248,6 +248,10 @@ function initStoryExperience() {
 
   const observer = new IntersectionObserver(
     (entries) => {
+      if (isAnimating) {
+        return;
+      }
+
       const visible = entries
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -273,6 +277,10 @@ function initStoryExperience() {
   if (footer) {
     const footerObserver = new IntersectionObserver(
       (entries) => {
+        if (isAnimating) {
+          return;
+        }
+
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
             document.body.classList.add("story-at-footer");
