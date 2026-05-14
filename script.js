@@ -101,6 +101,303 @@ window.addEventListener("resize", syncStoryViewportState);
 window.addEventListener("orientationchange", syncStoryViewportState);
 window.visualViewport?.addEventListener("resize", syncStoryViewportState);
 
+function initStoryExperience() {
+  if (!document.body.classList.contains("story-document")) {
+    return;
+  }
+
+  const shell = document.querySelector("body.story-document .site-shell");
+  const slides = Array.from(document.querySelectorAll("body.story-document .story-snap"));
+  const footer = document.querySelector("body.story-document .site-footer");
+  const progress = document.querySelector("[data-story-progress]");
+  const progressCurrent = document.querySelector("[data-story-progress-current]");
+  const progressTotal = document.querySelector("[data-story-progress-total]");
+
+  if (!shell || !slides.length) {
+    return;
+  }
+
+  const formatStep = (value) => String(value).padStart(2, "0");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wheelThreshold = 20;
+  const touchThreshold = 42;
+  const animationDuration = prefersReducedMotion ? 1 : 760;
+  let activeSlideIndex = 0;
+  let activeTargetIndex = 0;
+  let wheelDelta = 0;
+  let wheelTimer = 0;
+  let touchStartY = 0;
+  let touchDeltaY = 0;
+  let isAnimating = false;
+  let animationFrame = 0;
+  let resizeTimer = 0;
+
+  if (progressTotal) {
+    progressTotal.textContent = formatStep(slides.length);
+  }
+
+  const getTargets = () => {
+    const shellRect = shell.getBoundingClientRect();
+    const targets = slides.map((element, index) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        element,
+        index,
+        isFooter: false,
+        top: rect.top - shellRect.top + shell.scrollTop
+      };
+    });
+
+    if (footer) {
+      targets.push({
+        element: footer,
+        index: slides.length,
+        isFooter: true,
+        top: Math.max(0, shell.scrollHeight - shell.clientHeight)
+      });
+    }
+
+    return targets;
+  };
+
+  const setActiveSlide = (index) => {
+    activeSlideIndex = Math.max(0, Math.min(index, slides.length - 1));
+    document.body.dataset.storyActive = String(activeSlideIndex + 1);
+    document.body.classList.toggle("story-h3-active", activeSlideIndex === 2 || activeSlideIndex === 3);
+    if (progressCurrent) {
+      progressCurrent.textContent = formatStep(activeSlideIndex + 1);
+    }
+  };
+
+  const getClosestTargetIndex = (targets = getTargets()) => {
+    const currentTop = shell.scrollTop;
+    return targets.reduce((closestIndex, target, index) => {
+      const closest = targets[closestIndex];
+      return Math.abs(target.top - currentTop) < Math.abs(closest.top - currentTop)
+        ? index
+        : closestIndex;
+    }, 0);
+  };
+
+  const ease = (progressValue) => {
+    return progressValue < 0.5
+      ? 4 * progressValue * progressValue * progressValue
+      : 1 - Math.pow(-2 * progressValue + 2, 3) / 2;
+  };
+
+  const scrollToTarget = (targetIndex) => {
+    const targets = getTargets();
+    const boundedIndex = Math.max(0, Math.min(targetIndex, targets.length - 1));
+    const target = targets[boundedIndex];
+
+    if (!target) {
+      return;
+    }
+
+    window.cancelAnimationFrame(animationFrame);
+    activeTargetIndex = boundedIndex;
+    setActiveSlide(Math.min(target.index, slides.length - 1));
+    document.body.classList.toggle("story-at-footer", Boolean(target.isFooter));
+
+    const maxTop = Math.max(0, shell.scrollHeight - shell.clientHeight);
+    const start = shell.scrollTop;
+    const end = Math.max(0, Math.min(target.top, maxTop));
+    const distance = end - start;
+
+    if (Math.abs(distance) < 1) {
+      shell.scrollTop = end;
+      isAnimating = false;
+      document.body.classList.remove("story-snap-driving");
+      return;
+    }
+
+    isAnimating = true;
+    document.body.classList.add("story-snap-driving");
+    const startedAt = performance.now();
+
+    const step = (time) => {
+      const progressValue = Math.min((time - startedAt) / animationDuration, 1);
+      shell.scrollTop = start + distance * ease(progressValue);
+
+      if (progressValue < 1) {
+        animationFrame = window.requestAnimationFrame(step);
+        return;
+      }
+
+      shell.scrollTop = end;
+      isAnimating = false;
+      window.setTimeout(() => {
+        document.body.classList.remove("story-snap-driving");
+      }, 40);
+    };
+
+    animationFrame = window.requestAnimationFrame(step);
+  };
+
+  const moveBy = (direction) => {
+    const targets = getTargets();
+    const currentIndex = isAnimating ? activeTargetIndex : getClosestTargetIndex(targets);
+    const nextIndex = Math.max(0, Math.min(currentIndex + direction, targets.length - 1));
+
+    if (nextIndex === currentIndex) {
+      return;
+    }
+
+    scrollToTarget(nextIndex);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) {
+        return;
+      }
+
+      const index = slides.indexOf(visible.target);
+      if (index >= 0) {
+        setActiveSlide(index);
+        document.body.classList.remove("story-at-footer");
+      }
+    },
+    {
+      root: shell,
+      threshold: [0.42, 0.58, 0.72]
+    }
+  );
+
+  slides.forEach((slide) => observer.observe(slide));
+
+  if (footer) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
+            document.body.classList.add("story-at-footer");
+            setActiveSlide(slides.length - 1);
+          }
+        });
+      },
+      {
+        root: shell,
+        threshold: [0.35]
+      }
+    );
+    footerObserver.observe(footer);
+  }
+
+  shell.addEventListener(
+    "wheel",
+    (event) => {
+      if (event.ctrlKey || event.target.closest("select, option, input, textarea")) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (isAnimating) {
+        return;
+      }
+
+      wheelDelta += event.deltaY;
+      window.clearTimeout(wheelTimer);
+      wheelTimer = window.setTimeout(() => {
+        wheelDelta = 0;
+      }, 140);
+
+      if (Math.abs(wheelDelta) < wheelThreshold) {
+        return;
+      }
+
+      const direction = wheelDelta > 0 ? 1 : -1;
+      wheelDelta = 0;
+      moveBy(direction);
+    },
+    { passive: false }
+  );
+
+  shell.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartY = event.touches[0]?.clientY || 0;
+      touchDeltaY = 0;
+    },
+    { passive: true }
+  );
+
+  shell.addEventListener(
+    "touchmove",
+    (event) => {
+      const currentY = event.touches[0]?.clientY || touchStartY;
+      touchDeltaY = touchStartY - currentY;
+
+      if (Math.abs(touchDeltaY) > 8) {
+        event.preventDefault();
+      }
+    },
+    { passive: false }
+  );
+
+  shell.addEventListener(
+    "touchend",
+    (event) => {
+      if (isAnimating) {
+        return;
+      }
+
+      const touchEndY = event.changedTouches[0]?.clientY || touchStartY;
+      const delta = touchDeltaY || touchStartY - touchEndY;
+
+      if (Math.abs(delta) < touchThreshold) {
+        return;
+      }
+
+      moveBy(delta > 0 ? 1 : -1);
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (!document.body.classList.contains("story-document")) {
+      return;
+    }
+
+    if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+      event.preventDefault();
+      moveBy(1);
+    }
+
+    if (["ArrowUp", "PageUp"].includes(event.key)) {
+      event.preventDefault();
+      moveBy(-1);
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      scrollToTarget(0);
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      scrollToTarget(getTargets().length - 1);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      scrollToTarget(Math.min(activeTargetIndex, getTargets().length - 1));
+    }, 180);
+  });
+
+  setActiveSlide(0);
+  shell.scrollTop = 0;
+}
+
+initStoryExperience();
+
 document.addEventListener("dragstart", (event) => {
   if (event.target.closest("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
