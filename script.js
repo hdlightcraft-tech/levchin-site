@@ -90,7 +90,7 @@ function syncStoryViewportState() {
     return;
   }
 
-  if (!isLandscape && width < 768) {
+  if (!isLandscape && width < 700) {
     document.body.classList.add("story-vp-phone-portrait");
     return;
   }

@@ -1,0 +1,728 @@
+/* LEVCHIN Histoire page: canonical responsive layout */
+html.story-document-root,
+body.story-document {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #050505;
+}
+
+body.story-document {
+  --story-vh: 100dvh;
+  --story-header-height: 0px;
+  --story-first-offset: 0px;
+  --story-ink: #fff8ef;
+  --story-copy-color: rgba(255, 248, 239, 0.72);
+  --story-edge: clamp(28px, 5.2vw, 96px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 1180px);
+  --story-gap: clamp(42px, 6vw, 92px);
+  --story-copy-size: 1rem;
+  --story-copy-leading: 1.42;
+  --story-title-size: clamp(1.28rem, 2vw, 1.72rem);
+  --story-section-title: clamp(1.1rem, 1.45vw, 1.46rem);
+  --story-intro-gap: clamp(30px, 4.2vh, 48px);
+  --story-side-45: min(31vw, 420px, calc((var(--story-vh) - 240px) * 4 / 5));
+  --story-side-916: min(24vw, 340px, calc((var(--story-vh) - 220px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 112px) * 4 / 3));
+  --story-h3-size: min(78vw, 980px, calc(var(--story-vh) * 1.2));
+}
+
+body.story-document .site-shell {
+  height: var(--story-vh);
+  min-height: var(--story-vh);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 248, 239, 0.26) rgba(255, 255, 255, 0.03);
+}
+
+body.story-document .site-shell::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.story-document .site-shell::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+body.story-document .site-shell::-webkit-scrollbar-thumb {
+  background: rgba(255, 248, 239, 0.26);
+  border: 2px solid #050505;
+  border-radius: 999px;
+}
+
+body.story-document .story-page {
+  min-height: var(--story-vh);
+  background: #050505;
+}
+
+body.story-document .story-article {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+body.story-document .story-snap {
+  position: relative;
+  width: var(--story-grid);
+  max-width: calc(100vw - (var(--story-edge) * 2));
+  height: var(--story-vh);
+  min-height: var(--story-vh);
+  max-height: var(--story-vh);
+  margin-inline: auto;
+  padding: clamp(34px, 5vh, 62px) 0;
+  box-sizing: border-box;
+  overflow: clip;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+body.story-document .story-snap-intro {
+  height: calc(var(--story-vh) - var(--story-first-offset, var(--story-header-height)));
+  min-height: calc(var(--story-vh) - var(--story-first-offset, var(--story-header-height)));
+  max-height: calc(var(--story-vh) - var(--story-first-offset, var(--story-header-height)));
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-items: center;
+  gap: var(--story-intro-gap);
+  padding: 0;
+  text-align: center;
+}
+
+body.story-document .story-snap h1,
+body.story-document .story-snap h2 {
+  margin: 0;
+  color: var(--story-ink);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+body.story-document .story-snap h1 {
+  font-size: var(--story-title-size) !important;
+  line-height: 1.12 !important;
+}
+
+body.story-document .story-snap h2 {
+  font-size: var(--story-section-title);
+  line-height: 1.14;
+}
+
+body.story-document .story-copy {
+  display: grid;
+  gap: clamp(10px, 1.45vh, 15px);
+  margin-top: clamp(18px, 2.6vh, 28px);
+}
+
+body.story-document .story-copy p {
+  margin: 0;
+  color: var(--story-copy-color);
+  font-size: var(--story-copy-size);
+  line-height: var(--story-copy-leading);
+}
+
+body.story-document .story-panel-copy,
+body.story-document .story-intro-copy,
+body.story-document .story-statement-copy,
+body.story-document .story-overlay-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+body.story-document .story-intro-copy {
+  order: 2;
+  width: min(100%, 860px);
+}
+
+body.story-document .story-snap-intro .story-copy {
+  width: min(100%, 800px);
+  margin-inline: auto;
+}
+
+body.story-document .story-media {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.035);
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  box-sizing: border-box;
+}
+
+body.story-document .story-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+body.story-document .story-media figcaption {
+  display: none;
+}
+
+body.story-document .story-media-wide {
+  order: 1;
+  aspect-ratio: 2.4 / 1 !important;
+  width: min(var(--story-grid), 1120px) !important;
+}
+
+body.story-document .story-media-portrait {
+  aspect-ratio: 4 / 5 !important;
+}
+
+body.story-document .story-media-tall {
+  aspect-ratio: 9 / 16 !important;
+}
+
+body.story-document .story-media-overlay {
+  aspect-ratio: 4 / 3 !important;
+}
+
+body.story-document .story-media-square,
+body.story-document .story-h3-image {
+  aspect-ratio: 1 / 1 !important;
+}
+
+body.story-document .story-snap-split,
+body.story-document .story-snap-origin,
+body.story-document .story-snap-materials,
+body.story-document .story-snap-final {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  align-items: center;
+  justify-content: center;
+  gap: var(--story-gap);
+  text-align: left;
+}
+
+body.story-document .story-snap-origin .story-media {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  width: var(--story-side-45) !important;
+}
+
+body.story-document .story-snap-origin .story-panel-copy {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+  width: min(42vw, 520px);
+}
+
+body.story-document .story-snap-materials .story-panel-copy,
+body.story-document .story-snap-final .story-panel-copy {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  width: min(40vw, 520px);
+}
+
+body.story-document .story-snap-materials .story-media {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+  width: var(--story-side-916) !important;
+}
+
+body.story-document .story-snap-final .story-media {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+  width: var(--story-side-45) !important;
+}
+
+body.story-document .story-snap-final .story-back-link {
+  margin-top: clamp(34px, 5.2vh, 58px);
+}
+
+body.story-document .story-h3-sequence {
+  position: relative;
+  height: calc(var(--story-vh) * 2);
+  min-height: calc(var(--story-vh) * 2);
+  overflow: hidden;
+}
+
+body.story-document .story-h3-image {
+  position: absolute;
+  top: var(--story-vh);
+  left: 50%;
+  z-index: 0;
+  width: var(--story-h3-size) !important;
+  max-width: calc(100vw - (var(--story-edge) * 2));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+body.story-document .story-snap-union,
+body.story-document .story-snap-lines {
+  display: flex;
+  width: var(--story-grid);
+  justify-content: center;
+  text-align: center;
+}
+
+body.story-document .story-snap-union {
+  align-items: center;
+  padding-top: clamp(26px, 4vh, 54px);
+  padding-bottom: calc((var(--story-h3-size) / 2) + clamp(34px, 5vh, 64px));
+}
+
+body.story-document .story-snap-lines {
+  align-items: center;
+  padding-top: calc((var(--story-h3-size) / 2) + clamp(34px, 5vh, 64px));
+  padding-bottom: clamp(26px, 4vh, 54px);
+}
+
+body.story-document .story-snap-union .story-panel-copy,
+body.story-document .story-snap-lines .story-panel-copy {
+  width: min(100%, 900px);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+body.story-document .story-snap-overlay {
+  display: grid;
+  place-items: center;
+  width: var(--story-overlay-w);
+  max-width: var(--story-overlay-w);
+}
+
+body.story-document .story-snap-overlay .story-media-overlay {
+  grid-area: 1 / 1;
+  width: var(--story-overlay-w) !important;
+}
+
+body.story-document .story-snap-overlay .story-overlay-copy {
+  grid-area: 1 / 1;
+  justify-self: center;
+  align-self: center;
+  width: var(--story-overlay-w);
+  margin: 0 !important;
+  padding: clamp(28px, 4vw, 52px) clamp(46px, 5vw, 74px) clamp(28px, 4vw, 52px) min(58%, 700px);
+  background: transparent !important;
+  text-align: left;
+}
+
+body.story-document .story-snap-statement {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+body.story-document .story-statement-copy {
+  display: block;
+  width: min(100%, 860px);
+}
+
+body.story-document .site-footer {
+  scroll-snap-align: end;
+  scroll-snap-stop: normal;
+}
+
+body.story-document.story-vp-tablet-landscape,
+body.story-document.story-vp-tablet-portrait,
+body.story-document.story-vp-phone-landscape,
+body.story-document.story-vp-phone-portrait {
+  --story-vh: 100dvh;
+}
+
+body.story-document.story-vp-tablet-landscape {
+  --story-edge: clamp(44px, 6vw, 86px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 1120px);
+  --story-gap: clamp(56px, 7vw, 96px);
+  --story-copy-size: clamp(0.84rem, 1.06vw, 0.96rem);
+  --story-copy-leading: 1.3;
+  --story-title-size: clamp(1.28rem, 2.05vw, 1.7rem);
+  --story-section-title: clamp(1.08rem, 1.7vw, 1.42rem);
+  --story-intro-gap: clamp(34px, 4.2vh, 50px);
+  --story-side-45: min(32vw, 430px, calc((var(--story-vh) - 250px) * 4 / 5));
+  --story-side-916: min(25vw, 350px, calc((var(--story-vh) - 230px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 110px) * 4 / 3));
+  --story-h3-size: min(78vw, 1040px, calc(var(--story-vh) * 1.24));
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap {
+  width: var(--story-grid);
+  max-width: var(--story-grid);
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap-intro .story-media-wide {
+  width: min(var(--story-grid), 1080px) !important;
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap-materials .story-panel-copy,
+body.story-document.story-vp-tablet-landscape .story-snap-final .story-panel-copy {
+  width: min(39vw, 500px);
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap-origin .story-panel-copy {
+  width: min(40vw, 510px);
+}
+
+body.story-document.story-vp-tablet-portrait {
+  --story-edge: clamp(42px, 7vw, 74px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 820px);
+  --story-gap: clamp(42px, 5.5vw, 62px);
+  --story-copy-size: clamp(0.84rem, 1.55vw, 0.98rem);
+  --story-copy-leading: 1.32;
+  --story-title-size: clamp(1.24rem, 3vw, 1.62rem);
+  --story-section-title: clamp(1.02rem, 2vw, 1.34rem);
+  --story-intro-gap: clamp(34px, 4.2vh, 54px);
+  --story-side-45: min(36vw, 310px, calc((var(--story-vh) - 260px) * 4 / 5));
+  --story-side-916: min(32vw, 285px, calc((var(--story-vh) - 260px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 190px) * 4 / 3));
+  --story-h3-size: min(84vw, 710px, calc(var(--story-vh) * 1.02));
+}
+
+body.story-document.story-vp-tablet-portrait .story-snap {
+  width: var(--story-grid);
+  max-width: var(--story-grid);
+  padding: clamp(30px, 4vh, 54px) 0;
+}
+
+body.story-document.story-vp-tablet-portrait .story-snap-origin,
+body.story-document.story-vp-tablet-portrait .story-snap-materials,
+body.story-document.story-vp-tablet-portrait .story-snap-final {
+  gap: var(--story-gap);
+}
+
+body.story-document.story-vp-tablet-portrait .story-snap-origin .story-panel-copy,
+body.story-document.story-vp-tablet-portrait .story-snap-materials .story-panel-copy,
+body.story-document.story-vp-tablet-portrait .story-snap-final .story-panel-copy {
+  width: min(42vw, 390px);
+}
+
+body.story-document.story-vp-tablet-portrait .story-snap-final .story-back-link {
+  margin-top: clamp(38px, 5vh, 60px);
+}
+
+body.story-document.story-vp-phone-portrait {
+  --story-edge: clamp(18px, 5vw, 26px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 430px);
+  --story-gap: clamp(14px, 2.4vh, 22px);
+  --story-copy-size: clamp(0.68rem, 3.2vw, 0.84rem);
+  --story-copy-leading: 1.24;
+  --story-title-size: clamp(0.94rem, 5.2vw, 1.28rem);
+  --story-section-title: clamp(0.86rem, 4.35vw, 1.12rem);
+  --story-intro-gap: clamp(18px, 2.8vh, 28px);
+  --story-side-45: min(50vw, 190px);
+  --story-side-916: min(32vw, 128px);
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 150px) * 4 / 3));
+  --story-h3-size: min(92vw, 390px);
+}
+
+body.story-document.story-vp-phone-portrait .story-snap {
+  width: var(--story-grid);
+  max-width: var(--story-grid);
+  padding: clamp(14px, 2.4vh, 24px) 0;
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-origin,
+body.story-document.story-vp-phone-portrait .story-snap-materials,
+body.story-document.story-vp-phone-portrait .story-snap-final {
+  grid-template-columns: 1fr;
+  gap: var(--story-gap);
+  text-align: center;
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-origin .story-media,
+body.story-document.story-vp-phone-portrait .story-snap-materials .story-media,
+body.story-document.story-vp-phone-portrait .story-snap-final .story-media {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-origin .story-panel-copy,
+body.story-document.story-vp-phone-portrait .story-snap-materials .story-panel-copy,
+body.story-document.story-vp-phone-portrait .story-snap-final .story-panel-copy {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  width: min(100%, 350px);
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-overlay .story-overlay-copy {
+  width: var(--story-overlay-w);
+  padding: clamp(16px, 4vw, 26px) clamp(18px, 5vw, 28px) clamp(16px, 4vw, 26px) min(30%, 118px);
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-overlay .story-overlay-copy .story-copy p {
+  font-size: clamp(0.6rem, 2.8vw, 0.76rem);
+  line-height: 1.16;
+}
+
+body.story-document.story-vp-phone-landscape {
+  --story-edge: clamp(28px, 5vw, 48px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 780px);
+  --story-gap: clamp(20px, 4vw, 36px);
+  --story-copy-size: clamp(0.5rem, 1.15vw, 0.66rem);
+  --story-copy-leading: 1.08;
+  --story-title-size: clamp(0.6rem, 1.7vw, 0.86rem);
+  --story-section-title: clamp(0.68rem, 1.55vw, 0.92rem);
+  --story-side-45: min(24vw, calc((var(--story-vh) - 54px) * 4 / 5));
+  --story-side-916: min(17vw, calc((var(--story-vh) - 54px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 54px) * 4 / 3));
+  --story-h3-size: min(58vw, calc(var(--story-vh) * 1.12));
+}
+
+body.story-document.story-vp-phone-landscape .story-snap {
+  width: var(--story-grid);
+  max-width: var(--story-grid);
+  padding: clamp(8px, 2vh, 14px) 0;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-intro {
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  grid-template-rows: auto;
+  text-align: left;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-intro .story-media-wide {
+  grid-column: 1;
+  grid-row: 1;
+  width: min(100%, 300px) !important;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-intro .story-intro-copy {
+  grid-column: 2;
+  grid-row: 1;
+  width: min(100%, 390px);
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-intro h1,
+body.story-document.story-vp-phone-landscape .story-snap-intro .story-copy {
+  text-align: left;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-origin,
+body.story-document.story-vp-phone-landscape .story-snap-materials,
+body.story-document.story-vp-phone-landscape .story-snap-final {
+  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr);
+  gap: var(--story-gap);
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-origin .story-panel-copy,
+body.story-document.story-vp-phone-landscape .story-snap-materials .story-panel-copy,
+body.story-document.story-vp-phone-landscape .story-snap-final .story-panel-copy {
+  width: min(52vw, 420px);
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay .story-overlay-copy {
+  padding: 12px 18px 12px min(44%, 220px);
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay .story-overlay-copy .story-copy {
+  gap: 3px;
+  margin-top: 8px;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay .story-overlay-copy .story-copy p {
+  font-size: clamp(0.42rem, 1vw, 0.55rem);
+  line-height: 1.06;
+}
+
+@media (min-width: 981px) and (max-height: 850px) and (orientation: landscape) {
+  body.story-document {
+    --story-h3-size: min(76vw, calc(var(--story-vh) * 1.18));
+    --story-intro-gap: clamp(20px, 2.6vh, 32px);
+    --story-copy-size: clamp(0.72rem, 0.96vw, 0.84rem);
+    --story-copy-leading: 1.18;
+  }
+
+  body.story-document .story-snap-intro .story-media-wide {
+    width: min(74vw, 900px) !important;
+  }
+
+  body.story-document .story-snap-lines .story-panel-copy {
+    transform: translateY(-14px);
+  }
+}
+
+/* The legacy stylesheet also defines story variables on .story-article.
+   Keep the canonical values on the same scope so tablet breakpoints are real. */
+body.story-document .story-article {
+  --story-edge: clamp(28px, 5.2vw, 96px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 1180px);
+  --story-gap: clamp(42px, 6vw, 92px);
+  --story-copy-size: 1rem;
+  --story-copy-leading: 1.42;
+  --story-title-size: clamp(1.28rem, 2vw, 1.72rem);
+  --story-section-title: clamp(1.1rem, 1.45vw, 1.46rem);
+  --story-intro-gap: clamp(30px, 4.2vh, 48px);
+  --story-side-45: min(31vw, 420px, calc((var(--story-vh) - 240px) * 4 / 5));
+  --story-side-916: min(24vw, 340px, calc((var(--story-vh) - 220px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 112px) * 4 / 3));
+  --story-h3-size: min(78vw, 980px, calc(var(--story-vh) * 1.2));
+}
+
+body.story-document.story-vp-tablet-landscape .story-article {
+  --story-edge: clamp(44px, 6vw, 86px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 1120px);
+  --story-gap: clamp(56px, 7vw, 96px);
+  --story-copy-size: clamp(0.84rem, 1.06vw, 0.96rem);
+  --story-copy-leading: 1.3;
+  --story-title-size: clamp(1.28rem, 2.05vw, 1.7rem);
+  --story-section-title: clamp(1.08rem, 1.7vw, 1.42rem);
+  --story-intro-gap: clamp(34px, 4.2vh, 50px);
+  --story-side-45: min(32vw, 430px, calc((var(--story-vh) - 250px) * 4 / 5));
+  --story-side-916: min(25vw, 350px, calc((var(--story-vh) - 230px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 110px) * 4 / 3));
+  --story-h3-size: min(78vw, 1040px, calc(var(--story-vh) * 1.24));
+}
+
+body.story-document.story-vp-tablet-portrait .story-article {
+  --story-edge: clamp(42px, 7vw, 74px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 820px);
+  --story-gap: clamp(42px, 5.5vw, 62px);
+  --story-copy-size: clamp(0.84rem, 1.55vw, 0.98rem);
+  --story-copy-leading: 1.32;
+  --story-title-size: clamp(1.24rem, 3vw, 1.62rem);
+  --story-section-title: clamp(1.02rem, 2vw, 1.34rem);
+  --story-intro-gap: clamp(34px, 4.2vh, 54px);
+  --story-side-45: min(40vw, 340px, calc((var(--story-vh) - 260px) * 4 / 5));
+  --story-side-916: min(31vw, 285px, calc((var(--story-vh) - 260px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 190px) * 4 / 3));
+  --story-h3-size: min(84vw, 710px, calc(var(--story-vh) * 1.02));
+}
+
+body.story-document.story-vp-phone-portrait .story-article {
+  --story-edge: clamp(18px, 5vw, 26px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 430px);
+  --story-gap: clamp(14px, 2.4vh, 22px);
+  --story-copy-size: clamp(0.68rem, 3.2vw, 0.84rem);
+  --story-copy-leading: 1.24;
+  --story-title-size: clamp(0.94rem, 5.2vw, 1.28rem);
+  --story-section-title: clamp(0.86rem, 4.35vw, 1.12rem);
+  --story-intro-gap: clamp(18px, 2.8vh, 28px);
+  --story-side-45: min(50vw, 190px);
+  --story-side-916: min(32vw, 128px);
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 150px) * 4 / 3));
+  --story-h3-size: min(92vw, 390px);
+}
+
+body.story-document.story-vp-phone-landscape .story-article {
+  --story-edge: clamp(28px, 5vw, 48px);
+  --story-grid: min(calc(100vw - (var(--story-edge) * 2)), 780px);
+  --story-gap: clamp(20px, 4vw, 36px);
+  --story-copy-size: clamp(0.5rem, 1.15vw, 0.66rem);
+  --story-copy-leading: 1.08;
+  --story-title-size: clamp(0.6rem, 1.7vw, 0.86rem);
+  --story-section-title: clamp(0.68rem, 1.55vw, 0.92rem);
+  --story-side-45: min(24vw, calc((var(--story-vh) - 54px) * 4 / 5));
+  --story-side-916: min(17vw, calc((var(--story-vh) - 54px) * 9 / 16));
+  --story-overlay-w: min(var(--story-grid), calc((var(--story-vh) - 54px) * 4 / 3));
+  --story-h3-size: min(58vw, calc(var(--story-vh) * 1.12));
+}
+
+body.story-document .story-snap-intro > * {
+  transform: none !important;
+}
+
+body.story-document .story-snap-union,
+body.story-document.story-vp-tablet-landscape .story-snap-union,
+body.story-document.story-vp-tablet-portrait .story-snap-union,
+body.story-document.story-vp-phone-landscape .story-snap-union,
+body.story-document.story-vp-phone-portrait .story-snap-union {
+  display: flex !important;
+  align-items: center !important;
+  align-content: normal !important;
+  justify-content: center !important;
+  padding-top: clamp(26px, 4vh, 54px) !important;
+  padding-bottom: calc((var(--story-h3-size) / 2) + clamp(34px, 5vh, 64px)) !important;
+}
+
+body.story-document .story-snap-lines,
+body.story-document.story-vp-tablet-landscape .story-snap-lines,
+body.story-document.story-vp-tablet-portrait .story-snap-lines,
+body.story-document.story-vp-phone-landscape .story-snap-lines,
+body.story-document.story-vp-phone-portrait .story-snap-lines {
+  display: flex !important;
+  align-items: center !important;
+  align-content: normal !important;
+  justify-content: center !important;
+  padding-top: calc((var(--story-h3-size) / 2) + clamp(34px, 5vh, 64px)) !important;
+  padding-bottom: clamp(26px, 4vh, 54px) !important;
+}
+
+body.story-document .story-snap-union .story-panel-copy,
+body.story-document .story-snap-lines .story-panel-copy {
+  transform: none !important;
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap-materials .story-panel-copy {
+  width: min(32vw, 380px) !important;
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap-final .story-panel-copy {
+  width: min(34vw, 400px) !important;
+}
+
+body.story-document.story-vp-tablet-landscape .story-snap-final .story-back-link,
+body.story-document.story-vp-tablet-portrait .story-snap-final .story-back-link {
+  margin-top: clamp(86px, 13vh, 150px) !important;
+}
+
+@media (orientation: landscape) and (max-height: 920px) {
+  body.story-document .story-snap-intro {
+    gap: clamp(18px, 3vh, 30px) !important;
+  }
+
+  body.story-document .story-snap-intro .story-media-wide {
+    width: min(var(--story-grid), max(560px, calc((var(--story-vh) - var(--story-first-offset) - 285px) * 2.4)), 1020px) !important;
+  }
+
+  body.story-document.story-vp-tablet-landscape .story-snap-intro .story-media-wide {
+    width: min(var(--story-grid), max(720px, calc((var(--story-vh) - var(--story-first-offset) - 190px) * 2.4)), 1080px) !important;
+  }
+
+  body.story-document .story-snap-intro .story-copy {
+    gap: clamp(6px, 1.1vh, 10px) !important;
+    margin-top: clamp(12px, 1.8vh, 18px) !important;
+  }
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-overlay .story-overlay-copy {
+  padding: clamp(12px, 3.2vw, 18px) clamp(16px, 4.5vw, 24px) clamp(12px, 3.2vw, 18px) min(30%, 104px) !important;
+}
+
+body.story-document.story-vp-phone-portrait .story-snap-overlay .story-overlay-copy .story-copy {
+  gap: clamp(5px, 1vh, 7px) !important;
+  margin-top: clamp(8px, 1.4vh, 12px) !important;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay .story-overlay-copy {
+  align-self: center !important;
+  justify-self: center !important;
+  width: var(--story-overlay-w) !important;
+  padding: 10px 14px 10px min(46%, 190px) !important;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay h2 {
+  font-size: clamp(0.56rem, 1.25vw, 0.76rem) !important;
+  line-height: 1.06 !important;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay .story-overlay-copy .story-copy {
+  gap: 2px !important;
+  margin-top: 6px !important;
+}
+
+body.story-document.story-vp-phone-landscape .story-snap-overlay .story-overlay-copy .story-copy p {
+  font-size: clamp(0.36rem, 0.86vw, 0.48rem) !important;
+  line-height: 1.02 !important;
+}
