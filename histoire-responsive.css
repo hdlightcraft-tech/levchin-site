@@ -18,16 +18,18 @@ body.story-document {
   --story-grid: min(1180px, calc(100vw - (var(--story-edge) * 2)));
   --story-gap: clamp(40px, 5.6vw, 86px);
   --story-copy-w: min(43vw, 540px);
-  --story-copy-size: clamp(0.96rem, 1.22vw, 1.32rem);
-  --story-leading: 1.12;
-  --story-title: clamp(1.5rem, 2.35vw, 2.2rem);
-  --story-heading: clamp(1.32rem, 1.95vw, 1.9rem);
+  --story-copy-size: clamp(0.88rem, 0.95vw, 1rem);
+  --story-leading: 1.42;
+  --story-title: clamp(1.3rem, 2vw, 1.72rem);
+  --story-heading: clamp(1.08rem, 1.45vw, 1.44rem);
   --story-slide-top: calc(var(--story-header-top) + var(--story-header-height) + clamp(38px, 5.4vh, 76px));
   --story-slide-bottom: clamp(28px, 5vh, 64px);
   --story-usable: calc(var(--story-vh) - var(--story-slide-top) - var(--story-slide-bottom));
   --story-wide-w: min(var(--story-grid), 1080px, calc(var(--story-usable) * 1.62));
   --story-portrait-w: min(34vw, 430px, calc(var(--story-usable) * 0.76));
   --story-tall-w: min(25vw, 340px, calc(var(--story-usable) * 0.56));
+  --story-portrait-min-h: min(38vw, 500px, calc(var(--story-usable) * 0.78));
+  --story-tall-min-h: min(48vw, 640px, calc(var(--story-usable) * 0.86));
   --story-h3-square: min(82vw, 1040px, calc(var(--story-usable) * 1.36));
   --story-overlay-w: min(var(--story-grid), 1160px, calc(var(--story-usable) * 1.33));
   --story-fit-height: auto;
@@ -143,8 +145,8 @@ body.story-document .story-snap h2 {
 
 body.story-document .story-copy {
   display: grid;
-  gap: clamp(18px, 2.3vh, 30px);
-  margin-top: clamp(24px, 3vh, 42px);
+  gap: clamp(10px, 1.45vh, 15px);
+  margin-top: clamp(18px, 2.5vh, 28px);
 }
 
 body.story-document .story-copy p {
@@ -261,7 +263,7 @@ body.story-document .story-composition-origin .story-media {
   grid-row: 1;
   justify-self: end;
   width: auto !important;
-  height: min(var(--story-fit-height, var(--story-usable)), var(--story-usable)) !important;
+  height: min(max(var(--story-fit-height, 0px), var(--story-portrait-min-h)), var(--story-usable)) !important;
 }
 
 body.story-document .story-composition-origin .story-panel-copy {
@@ -297,7 +299,7 @@ body.story-document .story-composition-materials .story-media {
   grid-row: 1;
   justify-self: start;
   width: auto !important;
-  height: min(var(--story-fit-height, var(--story-usable)), var(--story-usable)) !important;
+  height: min(max(var(--story-fit-height, 0px), var(--story-tall-min-h)), var(--story-usable)) !important;
 }
 
 body.story-document .story-composition-final .story-media {
@@ -305,7 +307,7 @@ body.story-document .story-composition-final .story-media {
   grid-row: 1;
   justify-self: start;
   width: auto !important;
-  height: min(var(--story-fit-height, var(--story-usable)), var(--story-usable)) !important;
+  height: min(max(var(--story-fit-height, 0px), var(--story-portrait-min-h)), var(--story-usable)) !important;
 }
 
 body.story-document .story-snap-final .story-back-link {
@@ -361,7 +363,7 @@ body.story-document .story-h3-composition-bottom {
 }
 
 body.story-document .story-h3-composition .story-panel-copy {
-  width: min(100%, 720px);
+  width: min(calc(100% - clamp(36px, 8vw, 120px)), 760px);
   align-self: center;
   text-align: center;
 }
@@ -388,10 +390,10 @@ body.story-document .story-snap-overlay .story-overlay-copy {
   grid-area: 1 / 1;
   justify-self: end;
   align-self: center;
-  width: min(37%, 430px);
+  width: min(40%, 480px);
   max-height: min(var(--story-fit-height, calc(var(--story-overlay-w) * 0.75)), calc(var(--story-overlay-w) * 0.75));
-  margin-right: clamp(32px, 5vw, 72px);
-  padding: 0;
+  margin-right: clamp(44px, 6vw, 92px);
+  padding: clamp(24px, 3.4vh, 48px) clamp(28px, 3.4vw, 54px);
   overflow: hidden;
   background: transparent !important;
   text-align: left;
@@ -402,8 +404,8 @@ body.story-document .story-snap-overlay h2 {
 }
 
 body.story-document .story-snap-overlay .story-copy {
-  gap: clamp(18px, 2.4vh, 32px);
-  margin-top: clamp(28px, 3.6vh, 48px);
+  gap: clamp(10px, 1.45vh, 15px);
+  margin-top: clamp(18px, 2.5vh, 28px);
 }
 
 body.story-document .story-snap-statement {
@@ -467,12 +469,14 @@ body.story-document.story-at-footer .story-progress {
     --story-grid: min(1120px, calc(100vw - (var(--story-edge) * 2)));
     --story-gap: clamp(34px, 5vw, 72px);
     --story-copy-w: min(43vw, 500px);
-    --story-copy-size: clamp(0.82rem, 1.08vw, 1.08rem);
-    --story-leading: 1.14;
-    --story-title: clamp(1.14rem, 1.86vw, 1.68rem);
-    --story-heading: clamp(1rem, 1.55vw, 1.42rem);
+    --story-copy-size: clamp(0.78rem, 1.05vw, 0.94rem);
+    --story-leading: 1.28;
+    --story-title: clamp(1.16rem, 1.9vw, 1.62rem);
+    --story-heading: clamp(1rem, 1.55vw, 1.34rem);
     --story-portrait-w: min(32vw, 390px, calc(var(--story-usable) * 0.72));
     --story-tall-w: min(23vw, 300px, calc(var(--story-usable) * 0.52));
+    --story-portrait-min-h: min(35vw, 470px, calc(var(--story-usable) * 0.78));
+    --story-tall-min-h: min(44vw, 590px, calc(var(--story-usable) * 0.86));
     --story-h3-square: min(82vw, 940px, calc(var(--story-usable) * 1.34));
   }
 }
@@ -483,7 +487,7 @@ body.story-document.story-at-footer .story-progress {
     --story-gap: clamp(22px, 4vh, 42px);
     --story-copy-w: min(100%, 600px);
     --story-copy-size: clamp(0.78rem, 1.8vw, 0.94rem);
-    --story-leading: 1.2;
+    --story-leading: 1.32;
     --story-title: clamp(1.02rem, 3vw, 1.48rem);
     --story-heading: clamp(0.94rem, 2.42vw, 1.22rem);
     --story-wide-w: min(var(--story-grid), calc(var(--story-usable) * 1.34));
@@ -537,9 +541,10 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
-    width: min(42%, 300px);
+    width: min(44%, 330px);
     max-height: calc(var(--story-overlay-w) * 0.72);
-    margin-right: clamp(18px, 4vw, 38px);
+    margin-right: clamp(22px, 5vw, 46px);
+    padding: clamp(18px, 2.8vh, 34px) clamp(18px, 3.4vw, 34px);
   }
 }
 
@@ -548,8 +553,8 @@ body.story-document.story-at-footer .story-progress {
     --story-header-top: 20px;
     --story-grid: min(90vw, 430px);
     --story-gap: clamp(14px, 2.4vh, 22px);
-    --story-copy-size: clamp(0.62rem, 2.75vw, 0.78rem);
-    --story-leading: 1.16;
+    --story-copy-size: clamp(0.68rem, 3.15vw, 0.84rem);
+    --story-leading: 1.24;
     --story-title: clamp(0.86rem, 4.8vw, 1.18rem);
     --story-heading: clamp(0.78rem, 4.1vw, 1.02rem);
     --story-slide-bottom: clamp(18px, 3.2vh, 30px);
@@ -574,8 +579,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-copy {
-    gap: clamp(8px, 1.2vh, 12px);
-    margin-top: clamp(12px, 1.8vh, 18px);
+    gap: clamp(6px, 1.05vh, 10px);
+    margin-top: clamp(10px, 1.6vh, 16px);
   }
 
   body.story-document .story-intro-layout {
@@ -587,8 +592,9 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
-    width: min(46%, 190px);
-    margin-right: clamp(14px, 4vw, 22px);
+    width: min(52%, 220px);
+    margin-right: clamp(12px, 4vw, 22px);
+    padding: clamp(12px, 2.6vh, 20px) clamp(12px, 4vw, 20px);
   }
 
   body.story-document .story-snap-overlay h2 {
@@ -596,8 +602,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-copy {
-    gap: 7px;
-    margin-top: 12px;
+    gap: 5px;
+    margin-top: 9px;
   }
 
   body.story-document .story-snap-overlay .story-copy p {
@@ -623,7 +629,7 @@ body.story-document.story-at-footer .story-progress {
     --story-grid: min(92vw, 840px);
     --story-gap: clamp(18px, 3.2vw, 34px);
     --story-copy-w: min(51vw, 420px);
-    --story-copy-size: clamp(0.46rem, 0.92vw, 0.6rem);
+    --story-copy-size: clamp(0.5rem, 1.12vw, 0.66rem);
     --story-leading: 1.08;
     --story-title: clamp(0.62rem, 1.55vw, 0.84rem);
     --story-heading: clamp(0.66rem, 1.42vw, 0.9rem);
@@ -631,6 +637,8 @@ body.story-document.story-at-footer .story-progress {
     --story-wide-w: min(38vw, 300px);
     --story-portrait-w: min(22vw, calc(var(--story-usable) * 0.64));
     --story-tall-w: min(16vw, calc(var(--story-usable) * 0.45));
+    --story-portrait-min-h: min(25vw, calc(var(--story-usable) * 0.72));
+    --story-tall-min-h: min(34vw, calc(var(--story-usable) * 0.8));
     --story-h3-square: min(58vw, 520px, calc(var(--story-usable) * 1.2));
     --story-overlay-w: min(var(--story-grid), calc(var(--story-usable) * 1.25));
   }
@@ -673,8 +681,9 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
-    width: min(38%, 320px);
+    width: min(42%, 320px);
     margin-right: clamp(18px, 4vw, 42px);
+    padding: 10px 14px;
   }
 
   body.story-document .story-snap-overlay .story-copy {
