@@ -101,6 +101,60 @@ window.addEventListener("resize", syncStoryViewportState);
 window.addEventListener("orientationchange", syncStoryViewportState);
 window.visualViewport?.addEventListener("resize", syncStoryViewportState);
 
+function initStoryMeasuredLayouts() {
+  if (!document.body.classList.contains("story-document")) {
+    return;
+  }
+
+  const measuredBlocks = Array.from(
+    document.querySelectorAll(
+      ".story-composition-origin, .story-composition-materials, .story-composition-final, .story-snap-overlay"
+    )
+  );
+
+  if (!measuredBlocks.length) {
+    return;
+  }
+
+  const syncBlock = (block) => {
+    const copy = block.querySelector(".story-panel-copy, .story-overlay-copy");
+
+    if (!copy) {
+      return;
+    }
+
+    const height = Math.ceil(copy.getBoundingClientRect().height);
+    if (height > 0) {
+      block.style.setProperty("--story-fit-height", `${height}px`);
+    }
+  };
+
+  const syncAll = () => {
+    measuredBlocks.forEach(syncBlock);
+  };
+
+  syncAll();
+
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(syncAll);
+    measuredBlocks.forEach((block) => {
+      const copy = block.querySelector(".story-panel-copy, .story-overlay-copy");
+      if (copy) {
+        observer.observe(copy);
+      }
+    });
+  }
+
+  window.addEventListener("resize", syncAll);
+  window.addEventListener("orientationchange", syncAll);
+  window.visualViewport?.addEventListener("resize", syncAll);
+  document.addEventListener("levchin:languagechange", () => {
+    window.requestAnimationFrame(syncAll);
+  });
+}
+
+initStoryMeasuredLayouts();
+
 function initStoryExperience() {
   if (!document.body.classList.contains("story-document")) {
     return;

@@ -18,18 +18,19 @@ body.story-document {
   --story-grid: min(1180px, calc(100vw - (var(--story-edge) * 2)));
   --story-gap: clamp(40px, 5.6vw, 86px);
   --story-copy-w: min(43vw, 540px);
-  --story-copy-size: clamp(0.84rem, 0.9vw, 0.98rem);
-  --story-leading: 1.38;
-  --story-title: clamp(1.28rem, 1.85vw, 1.7rem);
-  --story-heading: clamp(1.08rem, 1.36vw, 1.42rem);
+  --story-copy-size: clamp(0.96rem, 1.22vw, 1.32rem);
+  --story-leading: 1.12;
+  --story-title: clamp(1.5rem, 2.35vw, 2.2rem);
+  --story-heading: clamp(1.32rem, 1.95vw, 1.9rem);
   --story-slide-top: calc(var(--story-header-top) + var(--story-header-height) + clamp(38px, 5.4vh, 76px));
   --story-slide-bottom: clamp(28px, 5vh, 64px);
   --story-usable: calc(var(--story-vh) - var(--story-slide-top) - var(--story-slide-bottom));
   --story-wide-w: min(var(--story-grid), 1080px, calc(var(--story-usable) * 1.62));
   --story-portrait-w: min(34vw, 430px, calc(var(--story-usable) * 0.76));
   --story-tall-w: min(25vw, 340px, calc(var(--story-usable) * 0.56));
-  --story-h3-half-w: min(72vw, 1040px, calc(var(--story-usable) * 1.32));
+  --story-h3-square: min(82vw, 1040px, calc(var(--story-usable) * 1.36));
   --story-overlay-w: min(var(--story-grid), 1160px, calc(var(--story-usable) * 1.33));
+  --story-fit-height: auto;
 }
 
 body.story-document.story-snap-driving .site-shell {
@@ -142,8 +143,8 @@ body.story-document .story-snap h2 {
 
 body.story-document .story-copy {
   display: grid;
-  gap: clamp(9px, 1.25vh, 14px);
-  margin-top: clamp(16px, 2.2vh, 26px);
+  gap: clamp(18px, 2.3vh, 30px);
+  margin-top: clamp(24px, 3vh, 42px);
 }
 
 body.story-document .story-copy p {
@@ -173,6 +174,7 @@ body.story-document .story-media {
   margin: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.035);
+  border: 0;
   box-sizing: border-box;
 }
 
@@ -201,6 +203,10 @@ body.story-document .story-media-square {
   aspect-ratio: 1 / 1 !important;
 }
 
+body.story-document .story-h3-shared-media {
+  aspect-ratio: 1 / 1 !important;
+}
+
 body.story-document .story-media-tall {
   aspect-ratio: 9 / 16 !important;
 }
@@ -214,7 +220,7 @@ body.story-document .story-intro-layout {
   grid-template-rows: auto auto;
   justify-items: center;
   align-content: center;
-  gap: clamp(24px, 3.5vh, 44px);
+  gap: clamp(58px, 8vh, 112px);
   width: min(100%, var(--story-grid));
   max-height: var(--story-usable);
   margin: auto;
@@ -222,11 +228,11 @@ body.story-document .story-intro-layout {
 }
 
 body.story-document .story-intro-copy {
-  width: min(100%, 840px);
+  width: min(100%, 900px);
 }
 
 body.story-document .story-snap-intro .story-copy {
-  width: min(100%, 780px);
+  width: min(100%, 900px);
   margin-inline: auto;
 }
 
@@ -241,6 +247,10 @@ body.story-document .story-composition {
   margin: auto;
 }
 
+body.story-document .story-composition .story-panel-copy {
+  align-self: center;
+}
+
 body.story-document .story-composition .story-media,
 body.story-document .story-composition .story-panel-copy {
   min-width: 0;
@@ -250,7 +260,8 @@ body.story-document .story-composition-origin .story-media {
   grid-column: 1;
   grid-row: 1;
   justify-self: end;
-  width: var(--story-portrait-w) !important;
+  width: auto !important;
+  height: min(var(--story-fit-height, var(--story-usable)), var(--story-usable)) !important;
 }
 
 body.story-document .story-composition-origin .story-panel-copy {
@@ -277,22 +288,55 @@ body.story-document .story-composition-materials .story-panel-copy {
   width: min(var(--story-copy-w), 480px);
 }
 
+body.story-document .story-composition-materials h2 {
+  width: min(100%, 15ch);
+}
+
 body.story-document .story-composition-materials .story-media {
   grid-column: 2;
   grid-row: 1;
   justify-self: start;
-  width: var(--story-tall-w) !important;
+  width: auto !important;
+  height: min(var(--story-fit-height, var(--story-usable)), var(--story-usable)) !important;
 }
 
 body.story-document .story-composition-final .story-media {
   grid-column: 2;
   grid-row: 1;
   justify-self: start;
-  width: var(--story-portrait-w) !important;
+  width: auto !important;
+  height: min(var(--story-fit-height, var(--story-usable)), var(--story-usable)) !important;
 }
 
 body.story-document .story-snap-final .story-back-link {
   margin-top: clamp(30px, 4.8vh, 56px);
+}
+
+body.story-document .story-composition-final h2 {
+  width: min(100%, 11ch);
+}
+
+body.story-document .story-h3-sequence {
+  position: relative;
+  isolation: isolate;
+}
+
+body.story-document .story-h3-shared-media {
+  position: absolute;
+  left: 50%;
+  top: var(--story-vh);
+  z-index: 1;
+  width: var(--story-h3-square) !important;
+  max-width: var(--story-grid);
+  margin: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+body.story-document .story-h3-shared-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 body.story-document .story-h3-composition {
@@ -307,11 +351,13 @@ body.story-document .story-h3-composition {
 }
 
 body.story-document .story-h3-composition-top {
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr);
+  padding-bottom: calc((var(--story-h3-square) / 2) + clamp(24px, 4vh, 52px));
 }
 
 body.story-document .story-h3-composition-bottom {
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  padding-top: calc((var(--story-h3-square) / 2) + clamp(24px, 4vh, 52px));
 }
 
 body.story-document .story-h3-composition .story-panel-copy {
@@ -320,45 +366,12 @@ body.story-document .story-h3-composition .story-panel-copy {
   text-align: center;
 }
 
-body.story-document .story-h3-crop {
-  width: var(--story-h3-half-w) !important;
-  aspect-ratio: 2 / 1 !important;
-  overflow: hidden;
-}
-
-body.story-document .story-h3-crop img {
-  display: block;
-  width: 100%;
-  height: auto !important;
-  aspect-ratio: 1 / 1 !important;
-  object-fit: cover;
-}
-
 body.story-document .story-h3-composition-top .story-panel-copy {
   grid-row: 1;
 }
 
-body.story-document .story-h3-composition-top .story-h3-crop {
-  grid-row: 2;
-  align-self: end;
-}
-
-body.story-document .story-h3-composition-bottom .story-h3-crop {
-  grid-row: 1;
-  align-self: start;
-}
-
 body.story-document .story-h3-composition-bottom .story-panel-copy {
-  grid-row: 2;
-}
-
-body.story-document .story-h3-crop-top img {
-  object-position: center top;
-}
-
-body.story-document .story-h3-crop-bottom img {
-  transform: translateY(-50%);
-  object-position: center bottom;
+  grid-row: 1;
 }
 
 body.story-document .story-snap-overlay {
@@ -376,7 +389,7 @@ body.story-document .story-snap-overlay .story-overlay-copy {
   justify-self: end;
   align-self: center;
   width: min(37%, 430px);
-  max-height: calc(var(--story-overlay-w) * 0.75);
+  max-height: min(var(--story-fit-height, calc(var(--story-overlay-w) * 0.75)), calc(var(--story-overlay-w) * 0.75));
   margin-right: clamp(32px, 5vw, 72px);
   padding: 0;
   overflow: hidden;
@@ -389,8 +402,8 @@ body.story-document .story-snap-overlay h2 {
 }
 
 body.story-document .story-snap-overlay .story-copy {
-  gap: clamp(7px, 1vh, 12px);
-  margin-top: clamp(14px, 2vh, 22px);
+  gap: clamp(18px, 2.4vh, 32px);
+  margin-top: clamp(28px, 3.6vh, 48px);
 }
 
 body.story-document .story-snap-statement {
@@ -398,7 +411,7 @@ body.story-document .story-snap-statement {
 }
 
 body.story-document .story-statement-copy {
-  width: min(100%, 860px);
+  width: min(100%, 1040px);
 }
 
 body.story-document .story-statement-copy h2 {
@@ -454,13 +467,13 @@ body.story-document.story-at-footer .story-progress {
     --story-grid: min(1120px, calc(100vw - (var(--story-edge) * 2)));
     --story-gap: clamp(34px, 5vw, 72px);
     --story-copy-w: min(43vw, 500px);
-    --story-copy-size: clamp(0.74rem, 0.98vw, 0.9rem);
-    --story-leading: 1.24;
-    --story-title: clamp(1.08rem, 1.72vw, 1.52rem);
-    --story-heading: clamp(0.98rem, 1.42vw, 1.28rem);
+    --story-copy-size: clamp(0.82rem, 1.08vw, 1.08rem);
+    --story-leading: 1.14;
+    --story-title: clamp(1.14rem, 1.86vw, 1.68rem);
+    --story-heading: clamp(1rem, 1.55vw, 1.42rem);
     --story-portrait-w: min(32vw, 390px, calc(var(--story-usable) * 0.72));
     --story-tall-w: min(23vw, 300px, calc(var(--story-usable) * 0.52));
-    --story-h3-half-w: min(74vw, 940px, calc(var(--story-usable) * 1.3));
+    --story-h3-square: min(82vw, 940px, calc(var(--story-usable) * 1.34));
   }
 }
 
@@ -470,13 +483,13 @@ body.story-document.story-at-footer .story-progress {
     --story-gap: clamp(22px, 4vh, 42px);
     --story-copy-w: min(100%, 600px);
     --story-copy-size: clamp(0.78rem, 1.8vw, 0.94rem);
-    --story-leading: 1.3;
+    --story-leading: 1.2;
     --story-title: clamp(1.02rem, 3vw, 1.48rem);
     --story-heading: clamp(0.94rem, 2.42vw, 1.22rem);
     --story-wide-w: min(var(--story-grid), calc(var(--story-usable) * 1.34));
     --story-portrait-w: min(45vw, 330px, calc(var(--story-usable) * 0.42));
     --story-tall-w: min(29vw, 240px, calc(var(--story-usable) * 0.32));
-    --story-h3-half-w: min(var(--story-grid), calc(var(--story-usable) * 1.34));
+    --story-h3-square: min(var(--story-grid), calc(var(--story-usable) * 1.22));
     --story-overlay-w: min(var(--story-grid), calc(var(--story-usable) * 1.18));
   }
 
@@ -515,10 +528,12 @@ body.story-document.story-at-footer .story-progress {
   body.story-document .story-composition-origin .story-media,
   body.story-document .story-composition-final .story-media {
     width: var(--story-portrait-w) !important;
+    height: auto !important;
   }
 
   body.story-document .story-composition-materials .story-media {
     width: var(--story-tall-w) !important;
+    height: auto !important;
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
@@ -533,15 +548,15 @@ body.story-document.story-at-footer .story-progress {
     --story-header-top: 20px;
     --story-grid: min(90vw, 430px);
     --story-gap: clamp(14px, 2.4vh, 22px);
-    --story-copy-size: clamp(0.63rem, 2.95vw, 0.8rem);
-    --story-leading: 1.2;
+    --story-copy-size: clamp(0.62rem, 2.75vw, 0.78rem);
+    --story-leading: 1.16;
     --story-title: clamp(0.86rem, 4.8vw, 1.18rem);
     --story-heading: clamp(0.78rem, 4.1vw, 1.02rem);
     --story-slide-bottom: clamp(18px, 3.2vh, 30px);
     --story-wide-w: min(var(--story-grid), calc(var(--story-usable) * 1.16));
     --story-portrait-w: min(48vw, 190px, calc(var(--story-usable) * 0.34));
     --story-tall-w: min(30vw, 128px, calc(var(--story-usable) * 0.25));
-    --story-h3-half-w: min(var(--story-grid), calc(var(--story-usable) * 1.12));
+    --story-h3-square: min(var(--story-grid), calc(var(--story-usable) * 1.04));
     --story-overlay-w: min(var(--story-grid), calc(var(--story-usable) * 1.02));
   }
 
@@ -559,8 +574,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-copy {
-    gap: clamp(6px, 1vh, 9px);
-    margin-top: clamp(10px, 1.6vh, 16px);
+    gap: clamp(8px, 1.2vh, 12px);
+    margin-top: clamp(12px, 1.8vh, 18px);
   }
 
   body.story-document .story-intro-layout {
@@ -581,8 +596,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-copy {
-    gap: 5px;
-    margin-top: 9px;
+    gap: 7px;
+    margin-top: 12px;
   }
 
   body.story-document .story-snap-overlay .story-copy p {
@@ -608,7 +623,7 @@ body.story-document.story-at-footer .story-progress {
     --story-grid: min(92vw, 840px);
     --story-gap: clamp(18px, 3.2vw, 34px);
     --story-copy-w: min(51vw, 420px);
-    --story-copy-size: clamp(0.48rem, 1vw, 0.64rem);
+    --story-copy-size: clamp(0.46rem, 0.92vw, 0.6rem);
     --story-leading: 1.08;
     --story-title: clamp(0.62rem, 1.55vw, 0.84rem);
     --story-heading: clamp(0.66rem, 1.42vw, 0.9rem);
@@ -616,7 +631,7 @@ body.story-document.story-at-footer .story-progress {
     --story-wide-w: min(38vw, 300px);
     --story-portrait-w: min(22vw, calc(var(--story-usable) * 0.64));
     --story-tall-w: min(16vw, calc(var(--story-usable) * 0.45));
-    --story-h3-half-w: min(58vw, 520px, calc(var(--story-usable) * 1.55));
+    --story-h3-square: min(58vw, 520px, calc(var(--story-usable) * 1.2));
     --story-overlay-w: min(var(--story-grid), calc(var(--story-usable) * 1.25));
   }
 
@@ -663,8 +678,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-copy {
-    gap: 2px;
-    margin-top: 6px;
+    gap: 3px;
+    margin-top: 7px;
   }
 
   body.story-document .story-snap-overlay .story-copy p {
