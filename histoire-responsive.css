@@ -22,7 +22,7 @@ body.story-document {
   --story-leading: 1.42;
   --story-title: clamp(1.3rem, 2vw, 1.72rem);
   --story-heading: clamp(1.08rem, 1.45vw, 1.44rem);
-  --story-slide-top: calc(var(--story-header-top) + var(--story-header-height) + clamp(38px, 5.4vh, 76px));
+  --story-slide-top: clamp(34px, 5vh, 72px);
   --story-slide-bottom: clamp(28px, 5vh, 64px);
   --story-usable: calc(var(--story-vh) - var(--story-slide-top) - var(--story-slide-bottom));
   --story-wide-w: min(var(--story-grid), 1080px, calc(var(--story-usable) * 1.62));
@@ -81,16 +81,13 @@ body.story-document .story-page::after {
 }
 
 body.story-document .story-page .story-header {
-  position: fixed;
-  top: 0;
-  left: var(--story-edge);
-  right: var(--story-edge);
-  z-index: 40;
-  width: auto;
+  position: relative;
+  z-index: 4;
+  width: 100%;
   max-width: none;
   margin: 0;
-  min-height: calc(var(--story-header-top) + clamp(86px, 8.2vw, 118px));
-  padding: var(--story-header-top) 0 clamp(24px, 3vw, 38px);
+  min-height: clamp(66px, 7vw, 92px);
+  padding: 0 0 clamp(18px, 2.2vw, 26px);
   background: #050505;
 }
 
@@ -118,6 +115,13 @@ body.story-document .story-snap {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   text-align: left;
+}
+
+body.story-document .story-snap-intro {
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
+  place-items: stretch center;
+  padding-top: var(--story-header-top);
 }
 
 body.story-document .story-snap h1,
@@ -379,22 +383,28 @@ body.story-document .story-h3-composition-bottom .story-panel-copy {
 
 body.story-document .story-snap-overlay {
   display: grid;
-  place-items: center;
+  grid-template-columns: var(--story-overlay-w);
+  grid-template-rows: calc(var(--story-overlay-w) * 0.75);
+  place-content: center;
+  place-items: stretch;
 }
 
 body.story-document .story-snap-overlay .story-media-overlay {
   grid-area: 1 / 1;
-  width: var(--story-overlay-w) !important;
+  align-self: stretch;
+  justify-self: stretch;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 body.story-document .story-snap-overlay .story-overlay-copy {
   grid-area: 1 / 1;
   justify-self: end;
   align-self: center;
-  width: min(40%, 480px);
-  max-height: min(var(--story-fit-height, calc(var(--story-overlay-w) * 0.75)), calc(var(--story-overlay-w) * 0.75));
-  margin-right: clamp(44px, 6vw, 92px);
-  padding: clamp(24px, 3.4vh, 48px) clamp(28px, 3.4vw, 54px);
+  width: min(36%, 430px);
+  max-height: calc((var(--story-overlay-w) * 0.75) - clamp(58px, 9vh, 112px));
+  margin-right: clamp(54px, 7vw, 112px);
+  padding: clamp(34px, 4.6vh, 62px) clamp(28px, 3.4vw, 52px);
   overflow: hidden;
   background: transparent !important;
   text-align: left;
@@ -444,7 +454,12 @@ body.story-document .story-progress {
   text-transform: uppercase;
   pointer-events: none;
   opacity: 0.9;
-  transition: opacity 220ms ease;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    visibility 0s linear 0s;
 }
 
 body.story-document .story-progress::before {
@@ -462,7 +477,13 @@ body.story-document .story-progress::before {
 }
 
 body.story-document.story-at-footer .story-progress {
-  opacity: 0.28;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    visibility 0s linear 220ms;
 }
 
 @media (max-width: 1366px) and (orientation: landscape) {
@@ -542,10 +563,10 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
-    width: min(44%, 330px);
-    max-height: calc(var(--story-overlay-w) * 0.72);
-    margin-right: clamp(22px, 5vw, 46px);
-    padding: clamp(18px, 2.8vh, 34px) clamp(18px, 3.4vw, 34px);
+    width: min(48%, 380px);
+    max-height: calc((var(--story-overlay-w) * 0.75) - clamp(30px, 5vh, 56px));
+    margin-right: clamp(24px, 5vw, 44px);
+    padding: clamp(18px, 2.8vh, 32px) clamp(18px, 3.4vw, 32px);
   }
 }
 
@@ -567,12 +588,9 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-page .story-header {
-    left: var(--story-edge);
-    right: var(--story-edge);
     grid-template-columns: minmax(74px, 1fr) auto minmax(74px, 1fr);
-    min-height: calc(var(--story-header-top) + 78px);
-    padding-top: var(--story-header-top);
-    padding-bottom: 18px;
+    min-height: 62px;
+    padding-bottom: 16px;
   }
 
   body.story-document .story-page .story-header .legal-logo {
@@ -593,9 +611,10 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
-    width: min(52%, 220px);
-    margin-right: clamp(12px, 4vw, 22px);
-    padding: clamp(12px, 2.6vh, 20px) clamp(12px, 4vw, 20px);
+    width: min(58%, 240px);
+    max-height: calc((var(--story-overlay-w) * 0.75) - 18px);
+    margin-right: clamp(12px, 4vw, 20px);
+    padding: clamp(10px, 2.4vh, 16px) clamp(10px, 3.5vw, 16px);
   }
 
   body.story-document .story-snap-overlay h2 {
@@ -645,9 +664,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-page .story-header {
-    min-height: calc(var(--story-header-top) + 58px);
-    padding-top: var(--story-header-top);
-    padding-bottom: 12px;
+    min-height: 48px;
+    padding-bottom: 10px;
   }
 
   body.story-document .story-page .story-header .legal-logo {
@@ -682,9 +700,10 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-overlay .story-overlay-copy {
-    width: min(42%, 320px);
-    margin-right: clamp(18px, 4vw, 42px);
-    padding: 10px 14px;
+    width: min(38%, 300px);
+    max-height: calc((var(--story-overlay-w) * 0.75) - 24px);
+    margin-right: clamp(24px, 4.5vw, 48px);
+    padding: 14px 16px;
   }
 
   body.story-document .story-snap-overlay .story-copy {
