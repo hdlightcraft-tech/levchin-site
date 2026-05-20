@@ -116,6 +116,20 @@ function initStoryMeasuredLayouts() {
     return;
   }
 
+  const syncSharedH3 = () => {
+    const sequence = document.querySelector(".story-h3-sequence");
+    const media = sequence?.querySelector(".story-h3-shared-media");
+
+    if (!sequence || !media) {
+      return;
+    }
+
+    sequence.style.removeProperty("--story-h3-square-even");
+    const width = media.getBoundingClientRect().width;
+    const evenWidth = Math.max(2, Math.floor(width / 2) * 2);
+    sequence.style.setProperty("--story-h3-square-even", `${evenWidth}px`);
+  };
+
   const syncBlock = (block) => {
     const copy = block.querySelector(".story-panel-copy, .story-overlay-copy");
 
@@ -130,6 +144,7 @@ function initStoryMeasuredLayouts() {
   };
 
   const syncAll = () => {
+    syncSharedH3();
     measuredBlocks.forEach(syncBlock);
   };
 

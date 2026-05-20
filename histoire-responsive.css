@@ -31,6 +31,7 @@ body.story-document {
   --story-portrait-min-h: min(38vw, 500px, calc(var(--story-usable) * 0.78));
   --story-tall-min-h: min(48vw, 640px, calc(var(--story-usable) * 0.86));
   --story-h3-square: min(82vw, 1040px, calc(var(--story-usable) * 1.36));
+  --story-h3-square-even: var(--story-h3-square);
   --story-overlay-w: min(var(--story-grid), 1160px, calc(var(--story-usable) * 1.33));
   --story-fit-height: auto;
 }
@@ -328,7 +329,7 @@ body.story-document .story-h3-shared-media {
   left: 50%;
   top: var(--story-vh);
   z-index: 1;
-  width: var(--story-h3-square) !important;
+  width: var(--story-h3-square-even) !important;
   max-width: var(--story-grid);
   margin: 0;
   pointer-events: none;
@@ -354,16 +355,16 @@ body.story-document .story-h3-composition {
 
 body.story-document .story-h3-composition-top {
   grid-template-rows: minmax(0, 1fr);
-  padding-bottom: calc((var(--story-h3-square) / 2) + clamp(24px, 4vh, 52px));
+  padding-bottom: calc((var(--story-h3-square-even) / 2) + clamp(24px, 4vh, 52px));
 }
 
 body.story-document .story-h3-composition-bottom {
   grid-template-rows: minmax(0, 1fr);
-  padding-top: calc((var(--story-h3-square) / 2) + clamp(24px, 4vh, 52px));
+  padding-top: calc((var(--story-h3-square-even) / 2) + clamp(24px, 4vh, 52px));
 }
 
 body.story-document .story-h3-composition .story-panel-copy {
-  width: min(calc(100% - clamp(36px, 8vw, 120px)), 760px);
+  width: min(calc(100% - clamp(72px, 12vw, 190px)), 820px);
   align-self: center;
   text-align: center;
 }
