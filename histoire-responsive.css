@@ -34,6 +34,7 @@ body.story-document {
   --story-h3-square-even: var(--story-h3-square);
   --story-overlay-w: min(var(--story-grid), 1160px, calc(var(--story-usable) * 1.33));
   --story-fit-height: auto;
+  --story-footer-progress: 0;
 }
 
 body.story-document.story-snap-driving .site-shell {
@@ -227,7 +228,7 @@ body.story-document .story-intro-layout {
   grid-template-rows: auto auto;
   justify-items: center;
   align-content: center;
-  gap: clamp(58px, 8vh, 112px);
+  gap: clamp(30px, 5vh, 62px);
   width: min(100%, var(--story-grid));
   max-height: var(--story-usable);
   margin: auto;
@@ -258,6 +259,24 @@ body.story-document .story-composition .story-panel-copy {
   align-self: center;
 }
 
+body.story-document .story-composition-origin .story-panel-copy,
+body.story-document .story-composition-materials .story-panel-copy,
+body.story-document .story-composition-final .story-panel-copy {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+body.story-document .story-composition-origin .story-copy,
+body.story-document .story-composition-materials .story-copy {
+  flex: 1 1 auto;
+  justify-content: space-between;
+}
+
+body.story-document .story-composition-final .story-copy {
+  flex: 0 1 auto;
+}
+
 body.story-document .story-composition .story-media,
 body.story-document .story-composition .story-panel-copy {
   min-width: 0;
@@ -276,6 +295,7 @@ body.story-document .story-composition-origin .story-panel-copy {
   grid-row: 1;
   justify-self: start;
   width: var(--story-copy-w);
+  height: min(max(var(--story-fit-height, 0px), var(--story-portrait-min-h)), var(--story-usable));
 }
 
 body.story-document .story-composition-materials,
@@ -293,6 +313,7 @@ body.story-document .story-composition-final .story-panel-copy {
 
 body.story-document .story-composition-materials .story-panel-copy {
   width: min(var(--story-copy-w), 480px);
+  height: min(max(var(--story-fit-height, 0px), var(--story-tall-min-h)), var(--story-usable));
 }
 
 body.story-document .story-composition-materials h2 {
@@ -315,8 +336,12 @@ body.story-document .story-composition-final .story-media {
   height: min(max(var(--story-fit-height, 0px), var(--story-portrait-min-h)), var(--story-usable)) !important;
 }
 
+body.story-document .story-composition-final .story-panel-copy {
+  height: min(max(var(--story-fit-height, 0px), var(--story-portrait-min-h)), var(--story-usable));
+}
+
 body.story-document .story-snap-final .story-back-link {
-  margin-top: clamp(30px, 4.8vh, 56px);
+  margin-top: auto;
 }
 
 body.story-document .story-composition-final h2 {
@@ -453,11 +478,11 @@ body.story-document .story-progress {
   line-height: 1;
   text-transform: uppercase;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: calc(0.9 * (1 - var(--story-footer-progress, 0)));
   visibility: visible;
   transform: translateY(0);
   transition:
-    opacity 220ms ease,
+    opacity 120ms linear,
     transform 220ms ease,
     visibility 0s linear 0s;
 }
@@ -479,11 +504,11 @@ body.story-document .story-progress::before {
 body.story-document.story-at-footer .story-progress {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
+  transform: translateY(0);
   transition:
-    opacity 220ms ease,
+    opacity 120ms linear,
     transform 220ms ease,
-    visibility 0s linear 220ms;
+    visibility 0s linear 120ms;
 }
 
 @media (max-width: 1366px) and (orientation: landscape) {
@@ -549,6 +574,19 @@ body.story-document.story-at-footer .story-progress {
   body.story-document .story-composition-materials .story-panel-copy,
   body.story-document .story-composition-final .story-panel-copy {
     grid-row: 2;
+    display: block;
+    height: auto;
+  }
+
+  body.story-document .story-composition-origin .story-copy,
+  body.story-document .story-composition-materials .story-copy,
+  body.story-document .story-composition-final .story-copy {
+    display: grid;
+    justify-content: initial;
+  }
+
+  body.story-document .story-snap-final .story-back-link {
+    margin-top: clamp(30px, 4.8vh, 56px);
   }
 
   body.story-document .story-composition-origin .story-media,
@@ -673,10 +711,11 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-intro-layout {
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
     gap: var(--story-gap);
-    text-align: left;
+    text-align: center;
   }
 
   body.story-document .story-snap-intro .story-media-wide {
@@ -685,14 +724,14 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-snap-intro .story-intro-copy {
-    grid-column: 2;
-    grid-row: 1;
-    width: min(100%, 410px);
+    grid-column: 1;
+    grid-row: 2;
+    width: min(100%, 540px);
   }
 
   body.story-document .story-snap-intro h1,
   body.story-document .story-snap-intro .story-copy {
-    text-align: left;
+    text-align: center;
   }
 
   body.story-document .story-h3-composition .story-panel-copy {

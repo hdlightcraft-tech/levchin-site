@@ -200,6 +200,8 @@ function initStoryExperience() {
   let isAnimating = false;
   let animationFrame = 0;
   let resizeTimer = 0;
+  let footerFadeStart = 0;
+  let footerFadeEnd = 0;
 
   if (progressTotal) {
     progressTotal.textContent = formatStep(slides.length);
@@ -247,6 +249,25 @@ function initStoryExperience() {
     }, 0);
   };
 
+  const syncFooterRange = (targets = getTargets()) => {
+    const lastSlideTarget = targets[slides.length - 1];
+    const footerTarget = targets.find((target) => target.isFooter);
+    footerFadeStart = lastSlideTarget?.top || 0;
+    footerFadeEnd = footerTarget?.top || footerFadeStart;
+  };
+
+  const syncFooterProgress = () => {
+    let progressValue = 0;
+
+    if (footerFadeEnd > footerFadeStart) {
+      progressValue = (shell.scrollTop - footerFadeStart) / (footerFadeEnd - footerFadeStart);
+      progressValue = Math.max(0, Math.min(progressValue, 1));
+    }
+
+    document.body.style.setProperty("--story-footer-progress", progressValue.toFixed(3));
+    document.body.classList.toggle("story-at-footer", progressValue >= 0.985);
+  };
+
   const ease = (progressValue) => {
     return progressValue < 0.5
       ? 4 * progressValue * progressValue * progressValue
@@ -255,6 +276,7 @@ function initStoryExperience() {
 
   const scrollToTarget = (targetIndex) => {
     const targets = getTargets();
+    syncFooterRange(targets);
     const boundedIndex = Math.max(0, Math.min(targetIndex, targets.length - 1));
     const target = targets[boundedIndex];
 
@@ -266,7 +288,7 @@ function initStoryExperience() {
     activeTargetIndex = boundedIndex;
     isAnimating = true;
     setActiveSlide(Math.min(target.index, slides.length - 1));
-    document.body.classList.toggle("story-at-footer", Boolean(target.isFooter));
+    syncFooterProgress();
 
     const maxTop = Math.max(0, shell.scrollHeight - shell.clientHeight);
     const start = shell.scrollTop;
@@ -275,6 +297,7 @@ function initStoryExperience() {
 
     if (Math.abs(distance) < 1) {
       shell.scrollTop = end;
+      syncFooterProgress();
       isAnimating = false;
       document.body.classList.remove("story-snap-driving");
       return;
@@ -286,6 +309,7 @@ function initStoryExperience() {
     const step = (time) => {
       const progressValue = Math.min((time - startedAt) / animationDuration, 1);
       shell.scrollTop = start + distance * ease(progressValue);
+      syncFooterProgress();
 
       if (progressValue < 1) {
         animationFrame = window.requestAnimationFrame(step);
@@ -294,6 +318,7 @@ function initStoryExperience() {
 
       shell.scrollTop = end;
       setActiveSlide(Math.min(target.index, slides.length - 1));
+      syncFooterProgress();
       isAnimating = false;
       window.setTimeout(() => {
         document.body.classList.remove("story-snap-driving");
@@ -332,7 +357,7 @@ function initStoryExperience() {
       const index = slides.indexOf(visible.target);
       if (index >= 0) {
         setActiveSlide(index);
-        document.body.classList.remove("story-at-footer");
+        syncFooterProgress();
       }
     },
     {
@@ -352,7 +377,7 @@ function initStoryExperience() {
 
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
-            document.body.classList.add("story-at-footer");
+            syncFooterProgress();
             setActiveSlide(slides.length - 1);
           }
         });
@@ -364,6 +389,8 @@ function initStoryExperience() {
     );
     footerObserver.observe(footer);
   }
+
+  shell.addEventListener("scroll", () => syncFooterProgress(), { passive: true });
 
   shell.addEventListener(
     "wheel",
@@ -471,6 +498,8 @@ function initStoryExperience() {
 
   setActiveSlide(0);
   shell.scrollTop = 0;
+  syncFooterRange();
+  syncFooterProgress();
 }
 
 initStoryExperience();
