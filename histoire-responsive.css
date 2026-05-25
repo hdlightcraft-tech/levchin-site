@@ -829,6 +829,7 @@ body.story-document .story-snap.story-snap-split .story-panel-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   align-self: stretch;
   width: 100%;
   height: 100%;
@@ -841,6 +842,12 @@ body.story-document .story-snap.story-snap-split .story-panel-copy h2,
 body.story-document .story-snap.story-snap-split .story-panel-copy .story-copy,
 body.story-document .story-snap.story-snap-split .story-panel-copy .story-back-link {
   width: min(100%, 540px);
+}
+
+body.story-document .story-snap.story-snap-split .story-panel-copy h2,
+body.story-document .story-snap.story-snap-split .story-panel-copy .story-copy {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 @media (orientation: portrait) {
