@@ -14,7 +14,7 @@ body.story-document {
   --story-copy: rgba(255, 248, 239, 0.74);
   --story-muted: rgba(255, 248, 239, 0.58);
   --story-line: rgba(255, 243, 227, 0.1);
-  --story-image-placeholder: #d7d7d2;
+  --story-image-placeholder: #40434A;
   --story-edge: clamp(22px, 5.5vw, 92px);
   --story-grid: min(1180px, calc(100vw - (var(--story-edge) * 2)));
   --story-copy-w: clamp(330px, 31vw, 470px);
@@ -165,6 +165,7 @@ body.story-document .story-media img {
   object-fit: cover;
   object-position: center;
   opacity: 0;
+  visibility: hidden;
 }
 
 body.story-document .story-media figcaption {
@@ -193,16 +194,16 @@ body.story-document .story-intro-layout::after {
 body.story-document .story-page .story-header {
   position: absolute;
   z-index: 4;
-  top: clamp(14px, 2vw, 24px);
-  right: var(--story-edge);
-  left: var(--story-edge);
+  top: 0;
+  right: 0;
+  left: 0;
   display: grid;
   grid-template-columns: minmax(92px, 1fr) auto minmax(92px, 1fr);
   align-items: center;
   width: auto;
   min-height: clamp(50px, 5.4vw, 68px);
   margin: 0;
-  padding: 0 0 clamp(10px, 1.35vw, 16px);
+  padding: 0 var(--story-edge) clamp(10px, 1.35vw, 16px);
   background: #050505;
 }
 
