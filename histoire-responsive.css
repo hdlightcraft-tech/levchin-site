@@ -170,9 +170,9 @@ body.story-document .story-media figcaption {
 }
 
 body.story-document .story-snap-intro {
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: 1fr;
   place-items: stretch center;
-  padding: clamp(14px, 2vw, 24px) 0 0;
+  padding: 0;
   isolation: isolate;
   background: #050505;
 }
@@ -191,12 +191,15 @@ body.story-document .story-intro-layout::after {
 body.story-document .story-page .story-header {
   position: relative;
   z-index: 4;
+  grid-row: 1;
+  grid-column: 1;
+  align-self: start;
   display: grid;
   grid-template-columns: minmax(92px, 1fr) auto minmax(92px, 1fr);
   align-items: center;
   width: calc(100% - (var(--story-edge) * 2));
   min-height: clamp(50px, 5.4vw, 68px);
-  margin: 0 auto;
+  margin: clamp(14px, 2vw, 24px) auto 0;
   padding: 0 0 clamp(10px, 1.35vw, 16px);
   background: #050505;
 }
@@ -226,7 +229,8 @@ body.story-document .story-page .story-header .legal-logo {
 
 body.story-document .story-intro-layout {
   position: relative;
-  grid-row: 2;
+  grid-row: 1;
+  grid-column: 1;
   align-self: stretch;
   width: 100%;
   height: 100%;
@@ -251,7 +255,7 @@ body.story-document .story-intro-copy {
   grid-area: 1 / 1;
   z-index: 3;
   width: min(1320px, calc(100vw - (var(--story-edge) * 2)));
-  margin-top: clamp(42px, 8vh, 104px);
+  margin-top: 0;
   text-align: center;
 }
 
@@ -640,7 +644,7 @@ body.story-document.story-at-footer .story-progress {
 
   body.story-document .story-intro-copy {
     width: min(100%, calc(100vw - (var(--story-edge) * 2)));
-    margin-top: 58px;
+    margin-top: 0;
   }
 
   body.story-document .story-copy {
@@ -736,8 +740,8 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-intro-copy {
-    width: min(560px, 70vw);
-    margin-top: 38px;
+    width: min(760px, calc(100vw - (var(--story-edge) * 2)));
+    margin-top: 0;
   }
 
   body.story-document .story-copy {
@@ -882,7 +886,7 @@ body.story-document .story-snap.story-snap-split .story-panel-copy .story-copy {
 
 /* Slide 01: stronger editorial opening */
 body.story-document .story-snap-intro h1 {
-  font-size: clamp(1.8rem, 4.3vw, 4.6rem) !important;
+  font-size: clamp(1.55rem, 3.35vw, 3.65rem) !important;
   line-height: 1.02;
   letter-spacing: 0.045em;
   max-width: none;
@@ -981,7 +985,7 @@ body.story-document .story-snap-lines .story-copy {
 
 @media (orientation: portrait) {
   body.story-document .story-snap-intro h1 {
-    font-size: clamp(1.1rem, 4.8vw, 2.15rem) !important;
+    font-size: clamp(1rem, 4.2vw, 1.9rem) !important;
   }
 
   body.story-document .story-snap-union {
@@ -1021,7 +1025,7 @@ body.story-document .story-snap-lines .story-copy {
 
 @media (max-width: 767px) and (orientation: portrait) {
   body.story-document .story-snap-intro h1 {
-    font-size: clamp(0.84rem, 4.15vw, 1.22rem) !important;
+    font-size: clamp(0.76rem, 3.75vw, 1.08rem) !important;
   }
 
   body.story-document .story-snap-lines .story-panel-copy {
