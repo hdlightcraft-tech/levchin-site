@@ -201,9 +201,10 @@ body.story-document .story-page .story-header {
   grid-template-columns: minmax(92px, 1fr) auto minmax(92px, 1fr);
   align-items: center;
   width: auto;
-  min-height: clamp(50px, 5.4vw, 68px);
+  height: clamp(50px, 5.4vw, 68px);
+  min-height: 0;
   margin: 0;
-  padding: 0 var(--story-edge) clamp(10px, 1.35vw, 16px);
+  padding: 0 var(--story-edge);
   background: #050505;
 }
 
@@ -636,9 +637,12 @@ body.story-document.story-at-footer .story-progress {
 
   body.story-document .story-page .story-header {
     grid-template-columns: minmax(72px, 1fr) auto minmax(72px, 1fr);
-    width: calc(100% - (var(--story-edge) * 2));
-    min-height: 50px;
-    padding-bottom: 10px;
+    right: 0;
+    left: 0;
+    width: auto;
+    height: 50px;
+    min-height: 0;
+    padding: 0 var(--story-edge);
   }
 
   body.story-document .story-page .story-header .legal-logo {
@@ -734,8 +738,10 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-page .story-header {
-    min-height: 42px;
-    padding-bottom: 8px;
+    height: 42px;
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   body.story-document .story-page .story-header .legal-logo {
