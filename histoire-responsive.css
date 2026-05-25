@@ -24,6 +24,7 @@ body.story-document {
   --story-heading: clamp(1.18rem, 1.95vw, 1.72rem);
   --story-copy-size: clamp(0.84rem, 0.95vw, 1rem);
   --story-leading: 1.44;
+  --story-header-h: clamp(50px, 5.4vw, 68px);
   --story-footer-progress: 0;
   --story-h3-height: calc(100vw * 9 / 16);
   --story-overlay-frame: min(1180px, calc(100vw - (var(--story-edge) * 2)), calc((var(--story-vh) - 96px) * 4 / 3));
@@ -201,7 +202,7 @@ body.story-document .story-page .story-header {
   grid-template-columns: minmax(92px, 1fr) auto minmax(92px, 1fr);
   align-items: center;
   width: auto;
-  height: clamp(50px, 5.4vw, 68px);
+  height: var(--story-header-h);
   min-height: 0;
   margin: 0;
   padding: 0 var(--story-edge);
@@ -551,6 +552,7 @@ body.story-document.story-at-footer .story-progress {
     --story-heading: clamp(0.98rem, 2.75vw, 1.34rem);
     --story-copy-size: clamp(0.76rem, 1.9vw, 0.94rem);
     --story-leading: 1.34;
+    --story-header-h: clamp(52px, 7vw, 68px);
     --story-card-w: min(680px, calc(100vw - (var(--story-edge) * 2)));
     --story-card-h: auto;
     --story-card-pad: clamp(28px, 5vw, 52px);
@@ -558,6 +560,16 @@ body.story-document.story-at-footer .story-progress {
 
   body.story-document .story-snap {
     padding: clamp(26px, 4.8vh, 54px) var(--story-edge);
+  }
+
+  body.story-document .story-snap-intro {
+    padding: 0;
+  }
+
+  body.story-document .story-snap-intro .story-intro-layout {
+    align-self: start;
+    height: calc(100% - var(--story-header-h));
+    margin-top: var(--story-header-h);
   }
 
   body.story-document .story-composition,
@@ -628,6 +640,7 @@ body.story-document.story-at-footer .story-progress {
     --story-heading: clamp(0.82rem, 4.45vw, 1.08rem);
     --story-copy-size: clamp(0.66rem, 3.18vw, 0.84rem);
     --story-leading: 1.22;
+    --story-header-h: 50px;
     --story-card-pad: clamp(18px, 5vw, 26px);
   }
 
@@ -635,12 +648,16 @@ body.story-document.story-at-footer .story-progress {
     padding: clamp(22px, 4vh, 34px) var(--story-edge);
   }
 
+  body.story-document .story-snap.story-snap-intro {
+    padding: 0;
+  }
+
   body.story-document .story-page .story-header {
     grid-template-columns: minmax(72px, 1fr) auto minmax(72px, 1fr);
     right: 0;
     left: 0;
     width: auto;
-    height: 50px;
+    height: var(--story-header-h);
     min-height: 0;
     padding: 0 var(--story-edge);
   }
@@ -730,6 +747,7 @@ body.story-document.story-at-footer .story-progress {
     --story-heading: clamp(0.72rem, 1.45vw, 0.94rem);
     --story-copy-size: clamp(0.5rem, 1.08vw, 0.68rem);
     --story-leading: 1.08;
+    --story-header-h: 42px;
   }
 
   body.story-document .story-snap {
@@ -738,7 +756,7 @@ body.story-document.story-at-footer .story-progress {
   }
 
   body.story-document .story-page .story-header {
-    height: 42px;
+    height: var(--story-header-h);
     min-height: 0;
     padding-top: 0;
     padding-bottom: 0;
