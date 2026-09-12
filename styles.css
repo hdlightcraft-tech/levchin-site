@@ -172,7 +172,7 @@ body::before {
   overflow: hidden;
   padding: 132px var(--edge-space) 110px;
   background:
-    url("assets/background.jpg") center top / cover no-repeat,
+    url("assets/background.png") center top / cover no-repeat,
     #050505;
 }
 
@@ -2690,7 +2690,7 @@ h2 {
   .home-page .page-frame::before {
     z-index: 0;
     background:
-      url("assets/background.jpg") center top / cover no-repeat,
+      url("assets/background.png") center top / cover no-repeat,
       #050505;
   }
 
