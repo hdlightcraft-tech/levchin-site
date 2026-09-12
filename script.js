@@ -152,11 +152,12 @@ function initStoryExperience() {
     });
 
     if (footer) {
+      const footerTop = footer.getBoundingClientRect().top - shellRect.top + shell.scrollTop;
       targets.push({
         element: footer,
         index: slides.length,
         isFooter: true,
-        top: Math.max(0, shell.scrollHeight - shell.clientHeight)
+        top: Math.min(footerTop, Math.max(0, shell.scrollHeight - shell.clientHeight))
       });
     }
 
@@ -165,9 +166,6 @@ function initStoryExperience() {
 
   const setActiveSlide = (index) => {
     activeSlideIndex = Math.max(0, Math.min(index, slides.length - 1));
-    if (!isAnimating) {
-      activeTargetIndex = activeSlideIndex;
-    }
     document.body.dataset.storyActive = String(activeSlideIndex + 1);
     if (progressCurrent) {
       progressCurrent.textContent = formatStep(activeSlideIndex + 1);
@@ -281,7 +279,8 @@ function initStoryExperience() {
         return;
       }
       // Observer entries contain only changed slides, not every visible slide.
-      setActiveSlide(getClosestTargetIndex());
+      activeTargetIndex = getClosestTargetIndex();
+      setActiveSlide(activeTargetIndex);
       syncFooterProgress();
     },
     {
@@ -301,6 +300,7 @@ function initStoryExperience() {
 
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
+            activeTargetIndex = getClosestTargetIndex();
             syncFooterProgress();
             setActiveSlide(slides.length - 1);
           }
@@ -317,23 +317,54 @@ function initStoryExperience() {
   shell.addEventListener("scroll", () => syncFooterProgress(), { passive: true });
 
   const canReadWithin = (target, direction) => {
-    const panel = target.closest(".story-panel-copy, .story-reading-region");
-    if (!panel || panel.scrollHeight <= panel.clientHeight + 1) {
-      return false;
+    for (let panel = target; panel && panel !== shell; panel = panel.parentElement) {
+      if (!panel.matches(".story-panel-copy, .story-reading-region") ||
+          !/auto|scroll/.test(getComputedStyle(panel).overflowY) ||
+          panel.scrollHeight <= panel.clientHeight + 1) {
+        continue;
+      }
+      return direction > 0
+        ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1
+        : panel.scrollTop > 1;
     }
-    return direction > 0
-      ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1
-      : panel.scrollTop > 1;
+    return false;
   };
 
   const isFormControl = (target) => target.closest(
     "select, option, input, textarea, button, [role='listbox'], [role='option'], [contenteditable='true']"
   );
 
+  const canReadFooter = (direction) => {
+    if (!footer) return false;
+    const footerTop = footer.getBoundingClientRect().top - shell.getBoundingClientRect().top + shell.scrollTop;
+    const maxTop = shell.scrollHeight - shell.clientHeight;
+    return direction > 0
+      ? shell.scrollTop >= footerTop - 1 && shell.scrollTop < maxTop - 1
+      : shell.scrollTop > footerTop + 1;
+  };
+
+  const readingPanels = slides.flatMap(slide => Array.from(slide.querySelectorAll(".story-panel-copy, .story-reading-region")));
+  const syncReadingPanels = () => {
+    readingPanels.forEach(panel => {
+      const needsScroll = /auto|scroll/.test(getComputedStyle(panel).overflowY) && panel.scrollHeight > panel.clientHeight + 1;
+      if (needsScroll) {
+        panel.tabIndex = 0;
+      } else {
+        panel.removeAttribute("tabindex");
+      }
+    });
+  };
+  const readingObserver = new ResizeObserver(syncReadingPanels);
+  readingPanels.forEach(panel => {
+    readingObserver.observe(panel);
+    readingObserver.observe(panel.querySelector(".story-copy"));
+  });
+  syncReadingPanels();
+
   shell.addEventListener(
     "wheel",
     (event) => {
-      if (event.ctrlKey || isFormControl(event.target) || canReadWithin(event.target, event.deltaY)) {
+      if (event.ctrlKey || isFormControl(event.target) || canReadWithin(event.target, event.deltaY) || canReadFooter(event.deltaY)) {
         return;
       }
 
@@ -376,7 +407,7 @@ function initStoryExperience() {
       const currentY = event.touches[0]?.clientY || touchStartY;
       touchDeltaY = touchStartY - currentY;
 
-      if (event.touches.length > 1 || touchReadsContent || canReadWithin(event.target, touchDeltaY)) {
+      if (event.touches.length > 1 || touchReadsContent || canReadWithin(event.target, touchDeltaY) || canReadFooter(touchDeltaY)) {
         touchReadsContent = true;
         return;
       }
@@ -413,7 +444,7 @@ function initStoryExperience() {
     }
 
     const direction = ["ArrowUp", "PageUp"].includes(event.key) || (event.key === " " && event.shiftKey) ? -1 : 1;
-    if (canReadWithin(event.target, direction) || isAnimating) {
+    if (canReadWithin(event.target, direction) || canReadFooter(direction) || isAnimating) {
       return;
     }
 

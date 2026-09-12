@@ -2160,7 +2160,8 @@ h2 {
   }
 
   .about-title {
-    white-space: nowrap;
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .contact-panel h2,

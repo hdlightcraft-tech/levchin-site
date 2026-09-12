@@ -220,6 +220,8 @@ body.story-document .story-snap-intro .story-media-wide {
 
 body.story-document .story-intro-copy {
   width: min(100%, 1320px);
+  max-height: calc(var(--story-vh) - var(--story-header-h) * 2);
+  overflow-y: auto;
   text-align: center;
 }
 
@@ -248,6 +250,8 @@ body.story-document .story-composition .story-panel-copy {
   align-items: center;
   min-height: 0;
   padding: var(--story-panel-pad);
+  padding-block: max(0px, calc(var(--story-panel-pad) - 44px));
+  margin-block: 44px;
   overflow-y: auto;
   scrollbar-width: thin;
   background: #050505;
@@ -272,6 +276,8 @@ body.story-document .story-snap-final .story-back-link { margin-top: 32px; }
 body.story-document .story-union-composition,
 body.story-document .story-statement-copy {
   width: min(100%, 850px);
+  max-height: calc(var(--story-vh) - 112px);
+  overflow-y: auto;
   margin-inline: auto;
   text-align: center;
 }
@@ -307,6 +313,8 @@ body.story-document .story-lines-media {
 
 body.story-document .story-snap-lines .story-panel-copy {
   width: min(100%, 760px);
+  max-height: calc(var(--story-vh) - 128px);
+  overflow-y: auto;
   text-align: left;
 }
 
@@ -327,6 +335,8 @@ body.story-document .story-overlay-composition .story-media {
 
 body.story-document .story-overlay-copy {
   width: 50%;
+  max-height: calc(var(--story-vh) - 112px);
+  overflow-y: auto;
   padding: clamp(24px, 3vw, 48px);
   text-align: left;
 }
@@ -399,7 +409,8 @@ body.story-document.story-at-footer .story-progress { opacity: 0; }
 
   body.story-document .story-composition .story-panel-copy {
     grid-area: 2 / 1;
-    padding: 28px var(--story-edge) 56px;
+    margin-block: 0 44px;
+    padding: 20px var(--story-edge);
   }
 
   body.story-document .story-composition h2 { text-align: center; }
@@ -446,6 +457,7 @@ body.story-document.story-at-footer .story-progress { opacity: 0; }
 
   body.story-document .story-overlay-copy {
     width: 100%;
+    max-height: calc(var(--story-vh) - 96px);
     padding: 32px 24px;
   }
 
@@ -491,6 +503,10 @@ body.story-document.story-at-footer .story-progress { opacity: 0; }
   body.story-document .story-page .story-header .legal-logo { width: 138px; }
   body.story-document .story-lines-composition { padding: 32px var(--story-edge) 48px; }
 
+  body.story-document .story-union-composition,
+  body.story-document .story-statement-copy { max-height: calc(var(--story-vh) - 64px); }
+  body.story-document .story-snap-lines .story-panel-copy { max-height: calc(var(--story-vh) - 80px); }
+
   body.story-document .story-overlay-composition {
     width: 100%;
     min-height: calc(var(--story-vh) - 64px);
@@ -499,6 +515,7 @@ body.story-document.story-at-footer .story-progress { opacity: 0; }
 
   body.story-document .story-overlay-copy {
     width: min(68%, 560px);
+    max-height: calc(var(--story-vh) - 64px);
     padding: 24px;
   }
 }
