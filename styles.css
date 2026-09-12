@@ -1048,6 +1048,7 @@ h2 {
 }
 
 .legal-logo {
+  display: block;
   width: min(260px, 48vw);
   height: auto;
 }
@@ -2608,10 +2609,10 @@ h2 {
   }
 
   .legal-page:not(.story-page) .legal-header {
-    grid-template-columns: minmax(74px, 1fr) auto minmax(74px, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     min-height: 50px;
     margin-bottom: 46px;
-    padding-bottom: 10px;
+    padding-block: 0;
   }
 
   .legal-home-link {
@@ -2626,10 +2627,10 @@ h2 {
   }
 
   .story-page .legal-header {
-    grid-template-columns: minmax(74px, 1fr) auto minmax(74px, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     min-height: 50px;
     margin-bottom: 46px;
-    padding-bottom: 10px;
+    padding-block: 0;
   }
 
   .story-page .legal-logo {

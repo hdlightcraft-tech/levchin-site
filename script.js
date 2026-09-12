@@ -28,7 +28,7 @@ document.querySelectorAll(".reveal").forEach((element, index) => {
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const targetId = link.getAttribute("href");
-    const target = document.querySelector(targetId);
+    const target = targetId.length > 1 ? document.getElementById(targetId.slice(1)) : null;
 
     if (!target) {
       return;
@@ -101,60 +101,6 @@ window.addEventListener("resize", syncStoryViewportState);
 window.addEventListener("orientationchange", syncStoryViewportState);
 window.visualViewport?.addEventListener("resize", syncStoryViewportState);
 
-function initStoryMeasuredLayouts() {
-  if (!document.body.classList.contains("story-document")) {
-    return;
-  }
-
-  const measuredBlocks = Array.from(
-    document.querySelectorAll(
-      ".story-composition-origin, .story-composition-materials, .story-composition-final, .story-snap-overlay"
-    )
-  );
-
-  if (!measuredBlocks.length) {
-    return;
-  }
-
-  const syncBlock = (block) => {
-    const copy = block.querySelector(".story-panel-copy, .story-overlay-copy");
-
-    if (!copy) {
-      return;
-    }
-
-    const height = Math.ceil(copy.getBoundingClientRect().height);
-    if (height > 0) {
-      block.style.setProperty("--story-fit-height", `${height}px`);
-    }
-  };
-
-  const syncAll = () => {
-    measuredBlocks.forEach(syncBlock);
-  };
-
-  syncAll();
-
-  if ("ResizeObserver" in window) {
-    const observer = new ResizeObserver(syncAll);
-    measuredBlocks.forEach((block) => {
-      const copy = block.querySelector(".story-panel-copy, .story-overlay-copy");
-      if (copy) {
-        observer.observe(copy);
-      }
-    });
-  }
-
-  window.addEventListener("resize", syncAll);
-  window.addEventListener("orientationchange", syncAll);
-  window.visualViewport?.addEventListener("resize", syncAll);
-  document.addEventListener("levchin:languagechange", () => {
-    window.requestAnimationFrame(syncAll);
-  });
-}
-
-initStoryMeasuredLayouts();
-
 function initStoryExperience() {
   if (!document.body.classList.contains("story-document")) {
     return;
@@ -182,6 +128,7 @@ function initStoryExperience() {
   let wheelTimer = 0;
   let touchStartY = 0;
   let touchDeltaY = 0;
+  let touchReadsContent = false;
   let isAnimating = false;
   let animationFrame = 0;
   let resizeTimer = 0;
@@ -218,6 +165,9 @@ function initStoryExperience() {
 
   const setActiveSlide = (index) => {
     activeSlideIndex = Math.max(0, Math.min(index, slides.length - 1));
+    if (!isAnimating) {
+      activeTargetIndex = activeSlideIndex;
+    }
     document.body.dataset.storyActive = String(activeSlideIndex + 1);
     if (progressCurrent) {
       progressCurrent.textContent = formatStep(activeSlideIndex + 1);
@@ -326,24 +276,13 @@ function initStoryExperience() {
   };
 
   const observer = new IntersectionObserver(
-    (entries) => {
+    () => {
       if (isAnimating) {
         return;
       }
-
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (!visible) {
-        return;
-      }
-
-      const index = slides.indexOf(visible.target);
-      if (index >= 0) {
-        setActiveSlide(index);
-        syncFooterProgress();
-      }
+      // Observer entries contain only changed slides, not every visible slide.
+      setActiveSlide(getClosestTargetIndex());
+      syncFooterProgress();
     },
     {
       root: shell,
@@ -377,10 +316,24 @@ function initStoryExperience() {
 
   shell.addEventListener("scroll", () => syncFooterProgress(), { passive: true });
 
+  const canReadWithin = (target, direction) => {
+    const panel = target.closest(".story-panel-copy, .story-reading-region");
+    if (!panel || panel.scrollHeight <= panel.clientHeight + 1) {
+      return false;
+    }
+    return direction > 0
+      ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1
+      : panel.scrollTop > 1;
+  };
+
+  const isFormControl = (target) => target.closest(
+    "select, option, input, textarea, button, [role='listbox'], [role='option'], [contenteditable='true']"
+  );
+
   shell.addEventListener(
     "wheel",
     (event) => {
-      if (event.ctrlKey || event.target.closest("select, option, input, textarea")) {
+      if (event.ctrlKey || isFormControl(event.target) || canReadWithin(event.target, event.deltaY)) {
         return;
       }
 
@@ -412,6 +365,7 @@ function initStoryExperience() {
     (event) => {
       touchStartY = event.touches[0]?.clientY || 0;
       touchDeltaY = 0;
+      touchReadsContent = event.touches.length > 1 || Boolean(isFormControl(event.target));
     },
     { passive: true }
   );
@@ -421,6 +375,11 @@ function initStoryExperience() {
     (event) => {
       const currentY = event.touches[0]?.clientY || touchStartY;
       touchDeltaY = touchStartY - currentY;
+
+      if (event.touches.length > 1 || touchReadsContent || canReadWithin(event.target, touchDeltaY)) {
+        touchReadsContent = true;
+        return;
+      }
 
       if (Math.abs(touchDeltaY) > 8) {
         event.preventDefault();
@@ -432,7 +391,7 @@ function initStoryExperience() {
   shell.addEventListener(
     "touchend",
     (event) => {
-      if (isAnimating) {
+      if (isAnimating || touchReadsContent) {
         return;
       }
 
@@ -449,13 +408,18 @@ function initStoryExperience() {
   );
 
   document.addEventListener("keydown", (event) => {
-    if (!document.body.classList.contains("story-document")) {
+    if (!document.body.classList.contains("story-document") || isFormControl(event.target)) {
+      return;
+    }
+
+    const direction = ["ArrowUp", "PageUp"].includes(event.key) || (event.key === " " && event.shiftKey) ? -1 : 1;
+    if (canReadWithin(event.target, direction) || isAnimating) {
       return;
     }
 
     if (["ArrowDown", "PageDown", " "].includes(event.key)) {
       event.preventDefault();
-      moveBy(1);
+      moveBy(direction);
     }
 
     if (["ArrowUp", "PageUp"].includes(event.key)) {
