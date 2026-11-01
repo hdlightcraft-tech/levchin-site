@@ -1,4 +1,19 @@
-const revealObserver = new IntersectionObserver(
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const mainContent = document.querySelector("main");
+if (mainContent) {
+  mainContent.id ||= "main-content";
+  const skipLink = document.createElement("a");
+  skipLink.className = "skip-link";
+  skipLink.href = `#${mainContent.id}`;
+  Object.assign(skipLink.dataset, {
+    fr: "Aller au contenu", en: "Skip to content", es: "Ir al contenido",
+    de: "Zum Inhalt", it: "Vai al contenuto", pt: "Ir para o conteúdo",
+    ja: "本文へ移動", ko: "본문으로 이동", zh: "跳至正文"
+  });
+  skipLink.textContent = skipLink.dataset.fr;
+  document.body.prepend(skipLink);
+}
+const revealObserver = "IntersectionObserver" in window ? new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -7,8 +22,8 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.18 }
-);
+  { threshold: 0.01 }
+) : null;
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -20,9 +35,11 @@ window.addEventListener("load", () => {
   }
 });
 
-document.querySelectorAll(".reveal").forEach((element, index) => {
-  element.style.transitionDelay = `${index * 120}ms`;
-  revealObserver.observe(element);
+document.querySelectorAll(".reveal").forEach((element) => {
+  if (revealObserver && !reducedMotion.matches && element.getBoundingClientRect().top >= innerHeight) {
+    element.classList.add("will-reveal");
+    revealObserver.observe(element);
+  }
 });
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -35,7 +52,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     }
 
     event.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    target.scrollIntoView({ behavior: reducedMotion.matches ? "instant" : "smooth", block: "start" });
+    if (!target.hasAttribute("tabindex")) target.tabIndex = -1;
+    target.focus({ preventScroll: true });
   });
 });
 
@@ -524,8 +543,17 @@ imageProtectionObserver.observe(document.body, {
 });
 
 const languageSelect = document.querySelector("[data-language-select]");
-const savedLanguage = localStorage.getItem("levchin-language");
-const dismissedLanguageSuggestion = localStorage.getItem("levchin-language-suggestion-dismissed");
+// Browsers can deny storage access; language changes must still work in memory.
+const languageStorage = {
+  get(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, value); } catch { /* Session-only preference. */ }
+  }
+};
+const savedLanguage = languageStorage.get("levchin-language");
+const dismissedLanguageSuggestion = languageStorage.get("levchin-language-suggestion-dismissed");
 const supportedLanguages = ["fr", "en", "es", "de", "it", "pt", "ja", "ko", "zh"];
 const languageDisplayNames = {
   fr: "Français",
@@ -1119,9 +1147,10 @@ function getStoryTranslation(element, language) {
 }
 
 function setLanguage(language) {
+  if (!supportedLanguages.includes(language)) language = "fr";
   currentLanguage = language;
   document.documentElement.lang = language;
-  localStorage.setItem("levchin-language", language);
+  languageStorage.set("levchin-language", language);
 
   document
     .querySelectorAll("[data-fr][data-en][data-es][data-it][data-ja][data-zh][data-de][data-ko][data-pt]")
@@ -1181,7 +1210,7 @@ function setLanguage(language) {
 }
 
 function dismissLanguageSuggestion() {
-  localStorage.setItem("levchin-language-suggestion-dismissed", "true");
+  languageStorage.set("levchin-language-suggestion-dismissed", "true");
   document.querySelector("[data-language-suggestion]")?.remove();
 }
 
@@ -1229,6 +1258,7 @@ function syncEnhancedSelect(enhancedSelect) {
     const nativeOption = select.options[index];
     optionButton.textContent = nativeOption?.textContent || "";
     optionButton.dataset.searchIndex = nativeOption?.dataset.searchIndex || nativeOption?.textContent || "";
+    optionButton.disabled = Boolean(nativeOption?.disabled);
     optionButton.classList.toggle("is-active", nativeOption?.value === select.value);
     optionButton.setAttribute("aria-selected", String(nativeOption?.value === select.value));
   });
@@ -1245,6 +1275,44 @@ function syncEnhancedSelect(enhancedSelect) {
 function closeEnhancedSelect(enhancedSelect) {
   enhancedSelect.wrapper.classList.remove("is-open");
   enhancedSelect.button.setAttribute("aria-expanded", "false");
+}
+
+// One keyboard contract for both language and contact dropdowns.
+function enableDropdownKeyboard(wrapper, button, list, options, searchInput = null) {
+  const close = (restoreFocus = false) => {
+    wrapper.classList.remove("is-open");
+    button.setAttribute("aria-expanded", "false");
+    if (restoreFocus) button.focus();
+  };
+  options.forEach(option => { option.tabIndex = -1; });
+  wrapper.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      close(true);
+      return;
+    }
+    const keys = ["ArrowDown", "ArrowUp", "Home", "End"];
+    if (!keys.includes(event.key)) return;
+    if (event.target === searchInput && ["Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    wrapper.classList.add("is-open");
+    button.setAttribute("aria-expanded", "true");
+    const visible = options.filter(option => !option.disabled && !option.parentElement.hidden);
+    const current = visible.indexOf(document.activeElement);
+    let next = event.key === "ArrowUp" ? current - 1 : current + 1;
+    if (current < 0) next = event.key === "ArrowUp" ? visible.length - 1 : 0;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = visible.length - 1;
+    visible[Math.max(0, Math.min(visible.length - 1, next))]?.focus();
+  });
+  wrapper.addEventListener("focusout", () => {
+    setTimeout(() => {
+      if (!wrapper.contains(document.activeElement)) close();
+    }, 0);
+  });
+  list.addEventListener("click", event => {
+    if (event.target.closest('[role="option"]')) close(true);
+  });
 }
 
 function enhanceSelect(select) {
@@ -1271,6 +1339,19 @@ function enhanceSelect(select) {
   button.type = "button";
   button.setAttribute("aria-haspopup", "listbox");
   button.setAttribute("aria-expanded", "false");
+  button.id = `${select.id}-trigger`;
+  list.id = `${select.id}-options`;
+  button.setAttribute("aria-controls", list.id);
+  const label = document.querySelector(`label[for="${select.id}"]`);
+  if (label) {
+    label.id ||= `${select.id}-label`;
+    button.setAttribute("aria-labelledby", `${label.id} ${button.id}`);
+    label.addEventListener("click", () => button.focus());
+    list.setAttribute("aria-labelledby", label.id);
+  } else if (select.hasAttribute("aria-label")) {
+    button.setAttribute("aria-label", select.getAttribute("aria-label"));
+    list.setAttribute("aria-label", select.getAttribute("aria-label"));
+  }
   list.className = "form-select-list";
   list.setAttribute("role", "listbox");
   button.innerHTML = `<span></span><i aria-hidden="true"></i>`;
@@ -1284,12 +1365,14 @@ function enhanceSelect(select) {
     searchInput.autocomplete = "off";
     searchInput.spellcheck = false;
     searchInput.placeholder = select.dataset.searchPlaceholder || "Rechercher un pays ou indicatif";
+    searchInput.setAttribute("aria-label", searchInput.placeholder);
     searchWrap.appendChild(searchInput);
     list.appendChild(searchWrap);
   }
 
   Array.from(select.options).forEach((option) => {
     const item = document.createElement("li");
+    item.setAttribute("role", "presentation");
     const optionButton = document.createElement("button");
 
     optionButton.type = "button";
@@ -1346,6 +1429,7 @@ function enhanceSelect(select) {
   }
 
   syncEnhancedSelect(enhancedSelect);
+  enableDropdownKeyboard(wrapper, button, list, optionButtons, searchInput);
   enhancedSelects.push(enhancedSelect);
   return enhancedSelect;
 }
@@ -1364,9 +1448,15 @@ if (languageSelect) {
   customButton.setAttribute("aria-expanded", "false");
   customList.className = "language-custom-list";
   customList.setAttribute("role", "listbox");
+  customList.id = "language-options";
+  customButton.id = "language-trigger";
+  customButton.setAttribute("aria-controls", customList.id);
 
   if (labelText) {
     labelText.className = "language-custom-label";
+    labelText.id = "language-label";
+    customButton.setAttribute("aria-labelledby", "language-label language-trigger");
+    customList.setAttribute("aria-labelledby", "language-label");
     languageCustomLabel = labelText;
     languageCustom.appendChild(labelText);
   }
@@ -1376,6 +1466,7 @@ if (languageSelect) {
 
   Array.from(languageSelect.options).forEach((option) => {
     const listItem = document.createElement("li");
+    listItem.setAttribute("role", "presentation");
     const optionButton = document.createElement("button");
 
     optionButton.className = "language-custom-option";
@@ -1397,7 +1488,9 @@ if (languageSelect) {
 
   languageCustom.appendChild(customList);
   nativeLabel?.insertAdjacentElement("afterend", languageCustom);
+  nativeLabel?.classList.add("is-enhanced");
   languageCustomButton = customButton;
+  enableDropdownKeyboard(languageCustom, customButton, customList, languageCustomOptions);
 
   customButton.addEventListener("click", () => {
     const isOpen = languageCustom.classList.toggle("is-open");
@@ -1477,6 +1570,25 @@ if (comingSoonTrigger && comingSoonToast) {
 }
 
 const contactForm = document.querySelector("[data-contact-form]");
+
+const newsletterForm = document.querySelector(".newsletter-form");
+if (newsletterForm) {
+  newsletterForm.addEventListener("submit", event => event.preventDefault());
+  const publicUrl = window.LEVCHIN_CONFIG?.newsletterUrl;
+  try {
+    const url = new URL(publicUrl);
+    if (url.protocol === "https:" && !url.username && !url.password) {
+      const link = document.createElement("a");
+      const button = newsletterForm.querySelector("button");
+      link.href = url.href;
+      link.className = "newsletter-signup-link";
+      link.textContent = button.textContent;
+      Object.assign(link.dataset, button.dataset);
+      newsletterForm.replaceWith(link);
+      document.querySelector("#newsletter-status").hidden = true;
+    }
+  } catch { /* Keep the honest unavailable state until a public URL is configured. */ }
+}
 
 if (contactForm) {
   const contactError = document.querySelector("[data-contact-error]");
@@ -1586,6 +1698,16 @@ if (contactForm) {
     }
 
     wrapper?.classList.toggle("is-invalid", Boolean(message));
+    field.setAttribute("aria-invalid", String(Boolean(message)));
+    if (errorNode) {
+      errorNode.id ||= `${field.id}-error`;
+      field.setAttribute("aria-describedby", errorNode.id);
+    }
+    const enhanced = enhancedSelects.find(item => item.select === field);
+    if (enhanced) {
+      enhanced.button.setAttribute("aria-invalid", String(Boolean(message)));
+      if (errorNode) enhanced.button.setAttribute("aria-describedby", errorNode.id);
+    }
 
     if (message) {
       fieldErrors.set(fieldName, message);
@@ -1634,8 +1756,10 @@ if (contactForm) {
     if (invalidFields.length > 0) {
       contactError?.classList.add("is-visible");
       contactError.textContent = getContactMessage("form");
-      invalidFields[0]?.focus();
-      invalidFields[0]?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const firstInvalid = invalidFields[0];
+      const focusTarget = enhancedSelects.find(item => item.select === firstInvalid)?.button || firstInvalid;
+      focusTarget?.focus({ preventScroll: true });
+      focusTarget?.scrollIntoView({ behavior: reducedMotion.matches ? "instant" : "smooth", block: "center" });
       return false;
     }
 

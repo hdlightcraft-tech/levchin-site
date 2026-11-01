@@ -355,10 +355,11 @@ function renderLegalParagraph(paragraph, index = -1) {
 }
 
 function renderLegalPage(language) {
+  if (!Object.hasOwn(legalCopy, language)) language = "fr";
   const copy = legalCopy[language] || legalCopy.fr;
   const pageType = legalContent?.dataset.legalPage === "privacy" ? "privacy" : "legal";
   document.documentElement.lang = language;
-  localStorage.setItem("levchin-language", language);
+  languageStorage.set("levchin-language", language);
 
   if (languageLabel) languageLabel.textContent = copy.language;
   if (titleElement) titleElement.textContent = pageType === "privacy" ? copy.privacyTitle : copy.legalTitle;
@@ -385,9 +386,9 @@ if (languageSelect) {
 }
 
 document.addEventListener("levchin:languagechange", (event) => {
-  renderLegalPage(event.detail?.language || localStorage.getItem("levchin-language") || "fr");
+  renderLegalPage(event.detail?.language || languageStorage.get("levchin-language") || "fr");
 });
 
-renderLegalPage(localStorage.getItem("levchin-language") || document.documentElement.lang || "fr");
+renderLegalPage(languageStorage.get("levchin-language") || document.documentElement.lang || "fr");
 
 })();

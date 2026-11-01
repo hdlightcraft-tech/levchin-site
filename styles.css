@@ -56,29 +56,6 @@ body::before {
   display: none;
 }
 
-.site-loader {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: none;
-  place-items: center;
-  background: #050505;
-  pointer-events: none;
-  animation: loaderExit 2000ms ease forwards;
-}
-
-.show-home-loader .site-loader {
-  display: grid;
-}
-
-.site-loader img {
-  width: min(220px, 48vw);
-  height: auto;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: loaderLogo 1450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
 .page-frame {
   width: min(100%, 1600px);
   margin: 0 auto;
@@ -145,6 +122,10 @@ body::before {
   will-change: transform;
 }
 
+.site-nav .nav-link {
+  min-height: 44px;
+}
+
 .site-nav .nav-link:nth-child(1) {
   min-width: 12ch;
 }
@@ -172,7 +153,7 @@ body::before {
   overflow: hidden;
   padding: 132px var(--edge-space) 110px;
   background:
-    url("assets/background.png") center top / cover no-repeat,
+    url("assets/background.webp") center top / cover no-repeat,
     #050505;
 }
 
@@ -499,14 +480,12 @@ h2 {
   align-items: center;
   border: 1px solid rgba(255, 243, 227, 0.3);
   color: var(--text);
-  background: rgba(239, 230, 221, 0.09);
-  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.3);
+  background: transparent;
   text-decoration: none;
   transition:
     transform 220ms ease,
     border-color 220ms ease,
     background 220ms ease,
-    box-shadow 220ms ease,
     color 220ms ease;
 }
 
@@ -607,6 +586,41 @@ h2 {
   transform: translateX(2px);
 }
 
+.newsletter-form:has(:disabled) {
+  opacity: 0.6;
+}
+
+.newsletter-form :disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.newsletter-signup-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 22px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.service-note {
+  max-width: 54ch;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+.contact-delivery-note {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -625,7 +639,6 @@ h2 {
   transform: translateY(-2px);
   border-color: rgba(255, 243, 227, 0.56);
   background: rgba(239, 230, 221, 0.15);
-  box-shadow: 0 30px 68px rgba(0, 0, 0, 0.34);
   color: #fff8ef;
 }
 
@@ -649,8 +662,8 @@ h2 {
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
   color: var(--text);
   text-decoration: none;
   line-height: 1;
@@ -907,11 +920,15 @@ h2 {
 }
 
 .language-select-label {
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   justify-content: flex-start;
   text-align: left;
+}
+
+.language-select-label.is-enhanced {
+  display: none;
 }
 
 .language-custom {
@@ -943,6 +960,59 @@ h2 {
   outline: 0;
   padding: 0 0 2px;
   text-align: left;
+  min-height: 32px;
+}
+
+body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 5px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 12px 18px;
+  background: var(--bg);
+  color: var(--text);
+  transform: translateY(-180%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-link:focus {
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (pointer: coarse) {
+  .footer-links a,
+  .language-custom-button,
+  .language-custom-option,
+  .form-select-option {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal.will-reveal:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .language-custom-button::after {
@@ -1389,10 +1459,7 @@ h2 {
 }
 
 .select-wrap.is-enhanced select {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .select-wrap::after {
@@ -1939,48 +2006,17 @@ h2 {
   letter-spacing: 0.03em;
 }
 
-.reveal {
+.reveal.will-reveal {
   opacity: 0;
-  transform: translateY(36px);
+  transform: translateY(16px);
   transition:
-    opacity 1200ms ease,
-    transform 1500ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 500ms ease,
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.is-visible {
+.reveal.will-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes loaderLogo {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-    filter: blur(8px);
-  }
-  34%,
-  82% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-6px);
-    filter: blur(5px);
-  }
-}
-
-@keyframes loaderExit {
-  0%,
-  78% {
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
 }
 
 @keyframes beamShift {
@@ -2062,6 +2098,11 @@ h2 {
     width: 100%;
     max-width: none;
     overflow: visible;
+  }
+
+  .site-nav .nav-link {
+    font-size: 11px;
+    letter-spacing: 0;
   }
 
   .nav-link {
@@ -2186,7 +2227,7 @@ h2 {
 
   .about-copy {
     max-width: 35ch;
-    font-size: 0.84rem;
+    font-size: 14px;
     line-height: 1.62;
     text-wrap: pretty;
     overflow-wrap: break-word;
@@ -2202,7 +2243,7 @@ h2 {
 
   .contact-panel .section-copy,
   .newsletter-panel .section-copy {
-    font-size: 0.78rem;
+    font-size: 14px;
     line-height: 1.68;
   }
 
@@ -2249,7 +2290,7 @@ h2 {
   .field-group input,
   .field-group textarea,
   .field-group select {
-    font-size: 0.92rem;
+    font-size: 16px;
   }
 
   .phone-input-wrap {
@@ -2274,7 +2315,7 @@ h2 {
 
   #contact-phone {
     min-width: 0;
-    font-size: 0.86rem;
+    font-size: 16px;
   }
 
   #contact-phone::placeholder {
@@ -2321,7 +2362,7 @@ h2 {
   }
 
   .newsletter-form input {
-    font-size: 0.82rem;
+    font-size: 16px;
     letter-spacing: 0.02em;
   }
 
@@ -2690,7 +2731,7 @@ h2 {
   .home-page .page-frame::before {
     z-index: 0;
     background:
-      url("assets/background.png") center top / cover no-repeat,
+      url("assets/background.webp") center top / cover no-repeat,
       #050505;
   }
 

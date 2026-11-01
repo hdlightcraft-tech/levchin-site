@@ -26,19 +26,9 @@
     <meta name="twitter:description" content="Design, mode et objets de décoration dans une direction française, sobre et consciente." />
     <meta name="twitter:image" content="https://levchin.fr/assets/og-image.jpg" />
     <meta name="theme-color" content="#050505" />
-    <script>
-      try {
-        if (!sessionStorage.getItem("levchin-loader-seen")) {
-          document.documentElement.classList.add("show-home-loader");
-          sessionStorage.setItem("levchin-loader-seen", "1");
-        }
-      } catch (error) {
-        document.documentElement.classList.add("show-home-loader");
-      }
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="assets/background.png" as="image" />
+    <link rel="preload" href="assets/background.webp" as="image" type="image/webp" fetchpriority="high" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <script type="application/ld+json">
       {
@@ -68,10 +58,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="home-page">
-    <div class="site-loader" aria-hidden="true">
-      <img src="assets/logo.svg" alt="" />
-    </div>
-
     <div class="page-frame">
       <header class="site-header">
         <a class="brand" href="#hero" aria-label="LEVCHIN">
@@ -179,12 +165,15 @@
               <p class="section-kicker" data-fr="NEWSLETTER" data-en="NEWSLETTER" data-es="NEWSLETTER" data-it="NEWSLETTER" data-ja="ニュースレター" data-zh="订阅资讯" data-de="NEWSLETTER" data-ko="뉴스레터" data-pt="NEWSLETTER">NEWSLETTER</p>
               <h2 data-fr="Suivre la maison" data-en="Follow the house" data-es="Seguir la casa" data-it="Seguire la maison" data-ja="メゾンをフォローする" data-zh="关注品牌" data-de="Der Maison folgen" data-ko="메종 소식 받기" data-pt="Seguir a casa">Suivre la maison</h2>
               <p class="section-copy newsletter-copy" data-fr="Accéder en avant-première aux nouvelles créations et rester informé de l’évolution de la maison." data-en="Get early access to new creations and stay informed about the evolution of the house." data-es="Acceder en primicia a las nuevas creaciones y mantenerse informado sobre la evolución de la casa." data-it="Accedere in anteprima alle nuove creazioni e restare informati sull’evoluzione della maison." data-ja="新しいクリエーションにいち早くアクセスし、メゾンの進化を知る。" data-zh="抢先了解全新创作，并持续关注品牌的发展。" data-de="Erhalten Sie frühzeitigen Zugang zu neuen Kreationen und bleiben Sie über die Entwicklung der Maison informiert." data-ko="새로운 창작물을 먼저 만나보고 메종의 발전 소식을 받아보세요." data-pt="Aceder em primeira mão às novas criações e manter-se informado sobre a evolução da casa.">Accéder en avant-première aux nouvelles créations et rester informé de l’évolution de la maison.</p>
-              <form class="newsletter-form" action="#" method="post">
+              <form class="newsletter-form" action="#" method="post" aria-describedby="newsletter-status">
                 <label class="sr-only" for="newsletter-email" data-fr="Adresse email" data-en="Email address" data-es="Dirección de correo" data-it="Indirizzo email" data-ja="メールアドレス" data-zh="电子邮箱" data-de="E-Mail-Adresse" data-ko="이메일 주소" data-pt="Endereço de email">Adresse email</label>
                 <input
                   id="newsletter-email"
                   type="email"
                   name="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  disabled
                   data-fr-placeholder="Votre adresse email"
                   data-en-placeholder="Your email address"
                   data-es-placeholder="Su dirección de correo"
@@ -197,8 +186,9 @@
                   placeholder="Votre adresse email"
                   required
                 />
-                <button type="submit" data-fr="S’inscrire" data-en="Subscribe" data-es="Suscribirse" data-it="Iscriversi" data-ja="登録する" data-zh="订阅" data-de="Abonnieren" data-ko="구독하기" data-pt="Subscrever">S’inscrire</button>
+                <button type="submit" disabled data-fr="S’inscrire" data-en="Subscribe" data-es="Suscribirse" data-it="Iscriversi" data-ja="登録する" data-zh="订阅" data-de="Abonnieren" data-ko="구독하기" data-pt="Subscrever">S’inscrire</button>
               </form>
+              <p class="service-note" id="newsletter-status" role="status" data-fr="Les inscriptions ne sont pas encore ouvertes." data-en="Subscriptions are not open yet." data-es="Las suscripciones aún no están abiertas." data-it="Le iscrizioni non sono ancora aperte." data-ja="登録受付はまだ開始していません。" data-zh="订阅暂未开放。" data-de="Anmeldungen sind noch nicht möglich." data-ko="아직 구독 신청을 받지 않습니다." data-pt="As inscrições ainda não estão abertas.">Les inscriptions ne sont pas encore ouvertes.</p>
             </div>
           </div>
         </section>
@@ -258,6 +248,7 @@
       </div>
     </div>
 
+    <script src="site-config.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
