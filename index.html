@@ -170,7 +170,7 @@
                 <input
                   id="newsletter-email"
                   type="email"
-                  name="email"
+                  name="EMAIL"
                   autocomplete="email"
                   inputmode="email"
                   disabled
@@ -186,6 +186,8 @@
                   placeholder="Votre adresse email"
                   required
                 />
+                <input class="newsletter-trap" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <input type="hidden" name="locale" value="fr" />
                 <button type="submit" disabled data-fr="S’inscrire" data-en="Subscribe" data-es="Suscribirse" data-it="Iscriversi" data-ja="登録する" data-zh="订阅" data-de="Abonnieren" data-ko="구독하기" data-pt="Subscrever">S’inscrire</button>
               </form>
               <p class="service-note" id="newsletter-status" role="status" data-fr="Les inscriptions ne sont pas encore ouvertes." data-en="Subscriptions are not open yet." data-es="Las suscripciones aún no están abiertas." data-it="Le iscrizioni non sono ancora aperte." data-ja="登録受付はまだ開始していません。" data-zh="订阅暂未开放。" data-de="Anmeldungen sind noch nicht möglich." data-ko="아직 구독 신청을 받지 않습니다." data-pt="As inscrições ainda não estão abertas.">Les inscriptions ne sont pas encore ouvertes.</p>

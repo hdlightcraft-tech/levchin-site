@@ -1573,21 +1573,94 @@ const contactForm = document.querySelector("[data-contact-form]");
 
 const newsletterForm = document.querySelector(".newsletter-form");
 if (newsletterForm) {
-  newsletterForm.addEventListener("submit", event => event.preventDefault());
-  const publicUrl = window.LEVCHIN_CONFIG?.newsletterUrl;
-  try {
-    const url = new URL(publicUrl);
-    if (url.protocol === "https:" && !url.username && !url.password) {
-      const link = document.createElement("a");
-      const button = newsletterForm.querySelector("button");
-      link.href = url.href;
-      link.className = "newsletter-signup-link";
-      link.textContent = button.textContent;
-      Object.assign(link.dataset, button.dataset);
-      newsletterForm.replaceWith(link);
-      document.querySelector("#newsletter-status").hidden = true;
+  const email = newsletterForm.querySelector('[name="EMAIL"]');
+  const button = newsletterForm.querySelector('button[type="submit"]');
+  const status = document.querySelector("#newsletter-status");
+  let endpoint = null;
+  let state = "unavailable";
+  let pending = false;
+  const messages = {
+    pending: {
+      fr: "Envoi en cours…", en: "Sending…", es: "Enviando…", it: "Invio in corso…",
+      de: "Wird gesendet…", pt: "A enviar…", ja: "送信中…", ko: "전송 중…", zh: "正在发送…"
+    },
+    success: {
+      fr: "Votre demande a été transmise. Consultez votre messagerie pour la suite.",
+      en: "Your request has been submitted. Check your inbox for the next steps.",
+      es: "Su solicitud se ha enviado. Consulte su correo para los próximos pasos.",
+      it: "La richiesta è stata inviata. Controlla la tua posta per i prossimi passi.",
+      de: "Ihre Anfrage wurde übermittelt. Prüfen Sie Ihr Postfach für die nächsten Schritte.",
+      pt: "O seu pedido foi enviado. Consulte o seu email para os próximos passos.",
+      ja: "リクエストを送信しました。次の手順についてメールをご確認ください。",
+      ko: "신청이 전송되었습니다. 다음 단계는 이메일을 확인해 주세요.",
+      zh: "您的请求已提交。请查看邮箱以了解后续步骤。"
+    },
+    error: {
+      fr: "L’envoi n’a pas pu être confirmé. Vérifiez votre adresse et votre connexion, puis réessayez.",
+      en: "Submission could not be confirmed. Check your email address and connection, then try again.",
+      es: "No se pudo confirmar el envío. Compruebe su dirección y conexión e inténtelo de nuevo.",
+      it: "Non è stato possibile confermare l’invio. Verifica l’indirizzo e la connessione e riprova.",
+      de: "Der Versand konnte nicht bestätigt werden. Prüfen Sie Adresse und Verbindung und versuchen Sie es erneut.",
+      pt: "Não foi possível confirmar o envio. Verifique o endereço e a ligação e tente novamente.",
+      ja: "送信を確認できませんでした。メールアドレスと接続を確認して再度お試しください。",
+      ko: "전송을 확인할 수 없습니다. 이메일 주소와 연결을 확인한 후 다시 시도해 주세요.",
+      zh: "无法确认提交。请检查邮箱地址和网络连接，然后重试。"
     }
-  } catch { /* Keep the honest unavailable state until a public URL is configured. */ }
+  };
+  const renderStatus = () => {
+    status.hidden = state === "idle";
+    status.textContent = state === "unavailable" ? status.dataset[currentLanguage] : messages[state]?.[currentLanguage] || "";
+  };
+  try {
+    const url = new URL(window.LEVCHIN_CONFIG?.newsletterUrl);
+    if (url.protocol === "https:" && url.hostname.endsWith(".sibforms.com") && url.pathname.startsWith("/serve/") && !url.username && !url.password) {
+      url.searchParams.set("isAjax", "1");
+      endpoint = url.href;
+      email.disabled = false;
+      button.disabled = false;
+      state = "idle";
+    }
+  } catch { /* No submission without a valid public Brevo endpoint. */ }
+  renderStatus();
+  document.addEventListener("levchin:languagechange", renderStatus);
+  email.addEventListener("input", () => {
+    email.removeAttribute("aria-invalid");
+    if (!pending && endpoint) { state = "idle"; renderStatus(); }
+  });
+  newsletterForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (!endpoint || pending || !newsletterForm.reportValidity()) return;
+    pending = true;
+    state = "pending";
+    newsletterForm.setAttribute("aria-busy", "true");
+    newsletterForm.elements.locale.value = ["fr", "en", "es", "it", "pt", "de"].includes(currentLanguage) ? currentLanguage : "fr";
+    const body = new FormData(newsletterForm);
+    email.readOnly = true;
+    button.disabled = true;
+    renderStatus();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      // Same public multipart POST used by Brevo's HTML embed; no secret or redirect.
+      const response = await fetch(endpoint, { method: "POST", body, credentials: "omit", signal: controller.signal });
+      const result = await response.json();
+      if (!response.ok || ![true, 1].includes(result.success)) {
+        if (result.errors?.EMAIL) email.setAttribute("aria-invalid", "true");
+        throw new Error("Subscription not accepted");
+      }
+      state = "success";
+      newsletterForm.reset();
+    } catch {
+      state = "error";
+    } finally {
+      clearTimeout(timeout);
+      pending = false;
+      email.readOnly = false;
+      button.disabled = false;
+      newsletterForm.removeAttribute("aria-busy");
+      renderStatus();
+    }
+  });
 }
 
 if (contactForm) {

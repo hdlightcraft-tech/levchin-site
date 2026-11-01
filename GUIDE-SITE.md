@@ -35,10 +35,10 @@ Pour changer un texte, mettre aussi à jour ses traductions. Ne pas remplacer se
 2. Dans Marketing > Formulaires, créer un formulaire d'inscription avec confirmation par email. Configurer l'expéditeur, les informations de confidentialité et la protection antispam proposées par Brevo.
 3. Personnaliser le formulaire dans la continuité du site : noir, Montserrat si disponible, couleurs sobres. Vérifier aussi la confirmation et la désinscription.
 4. Copier le **lien public HTTPS de partage** du formulaire dans `newsletterUrl` dans site-config.js. Ce lien n'est pas une clé API.
-5. Le site remplace alors le formulaire indisponible par un lien « S'inscrire » vers le formulaire hébergé. L'adresse est saisie et conservée chez Brevo, pas dans le navigateur du site.
+5. Le formulaire noir reste dans LEVCHIN : le visiteur saisit son email et clique sur le bouton encadré « S'INSCRIRE ». L'envoi est transmis à Brevo sans changer de page. Les états d'envoi, de réponse positive et d'erreur apparaissent sous le champ. L'adresse n'est pas enregistrée dans le stockage du navigateur.
 6. Faire une vraie inscription avec une adresse de test que vous contrôlez : vérifier l'email, la confirmation, l'apparition dans la bonne liste et la désinscription. Tant que ce test n'a pas été réalisé, ne pas considérer l'intégration comme validée.
 
-Cette première intégration privilégie la simplicité. Un formulaire intégré directement dans la page pourra remplacer le lien après réception et vérification du code public fourni par Brevo. Ne jamais ajouter une clé API dans le HTML ou JavaScript.
+L'intégration utilise les champs du formulaire public actuel : EMAIL, email_address_check (antispam) et locale. Si le formulaire Brevo est modifié, notamment avec un CAPTCHA ou un champ obligatoire supplémentaire, mettre à jour l'intégration à partir de son nouveau code HTML avant publication. Les règles de confirmation sont gérées dans Brevo. Le message du site confirme uniquement la transmission acceptée par Brevo, pas la validation de l'adresse email. Ne jamais ajouter une clé API dans le HTML ou JavaScript.
 
 Documentation : [création du formulaire Brevo](https://help.brevo.com/hc/en-us/articles/208771869-Create-a-sign-up-form-in-Brevo).
 
