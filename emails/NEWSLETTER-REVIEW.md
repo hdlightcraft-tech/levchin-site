@@ -23,7 +23,7 @@ La page statique n’interroge aucun service et ne prouve pas qu’une adresse e
 
 ## À compléter avant toute utilisation dans Brevo
 
-1. Remplacer `[Adresse postale à compléter avant utilisation]` par l’adresse réelle et validée. Aucun nom légal ni aucune adresse n’ont été inventés.
+1. L’adresse du fondateur reste privée et n’est pas incluse dans ce dépôt public ni dans l’email de prévisualisation. Avant toute utilisation, valider les coordonnées professionnelles et mentions applicables par un canal approprié. Ce brouillon ne vaut pas validation juridique.
 2. Après accord de publication séparé, rendre le PNG accessible à `https://levchin.fr/assets/logo-email.png`, puis vérifier sa réponse HTTPS et son affichage dans une messagerie. Cette URL désigne le nouvel asset proposé ; elle n’est pas présumée disponible en production aujourd’hui. Alternative : importer ce PNG dans Brevo et remplacer uniquement le `src` du logo par l’URL HTTPS fournie.
 3. Vérifier le compte, l’expéditeur envisagé `contact@levchin.fr` et l’authentification de son domaine dans Brevo. Aucun de ces réglages n’a été vérifié dans le compte par cette proposition.
 4. Après un nouvel accord explicite, créer un nouveau modèle inactif et l’examiner. Le titre proposé est « LEVCHIN : confirmez votre inscription email ». Conserver le modèle actif et ses réglages jusqu’à validation.
@@ -39,7 +39,7 @@ L’email contient uniquement une demande de validation, sans contenu promotionn
 - Stockage local refusé : chargement des sept pages et changement de langue fonctionnels. Mouvement réduit : vérification de ces chargements dans ce mode. La nouvelle page n’ajoute aucune animation.
 - Clavier : lien d’évitement présent et premier focus sur le contenu. Histoire : huit étapes accessibles par défilement, puis accès au pied de page. Ces contrôles ne constituent pas un audit complet d’accessibilité.
 - Aperçus de la page à 1440 px et 390 px, et de l’email à 390 px examinés visuellement.
-- Email vérifié manuellement selon la checklist Brevo : HTML de moins de 100 Ko, tableaux de présentation, styles intégrés, image PNG HTTPS avec dimensions et texte alternatif, jeton exact conservé, aucun script ni formulaire. Deux éléments restent à compléter : adresse postale et disponibilité du logo public.
+- Email vérifié manuellement selon la checklist Brevo : HTML de moins de 100 Ko, tableaux de présentation, styles intégrés, image PNG HTTPS avec dimensions et texte alternatif, jeton exact conservé, aucun script ni formulaire. Deux points restent à valider avant utilisation : les coordonnées professionnelles et mentions applicables, ainsi que la disponibilité du logo public.
 - Ressources externes bloquées pendant les tests : le chargement des polices Google n’est pas validé. Le PNG de l’email a été servi localement pour l’aperçu.
 - Aucun rendu serveur Brevo, test de réception Gmail/Outlook, Safari, Firefox ou appareil physique. Le parcours réel de confirmation n’a pas été exécuté. Le compte et le modèle actifs n’ont pas été consultés ou modifiés.
 
