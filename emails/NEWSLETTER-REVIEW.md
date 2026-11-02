@@ -11,7 +11,7 @@ La base inspectée est `main` au commit `a8a84a34766f1e3df12c16309c0f6c31e694ff4
 - `index.html`, `script.js` et `site-config.js` restent identiques. Le formulaire intégré conserve `EMAIL`, `email_address_check`, `locale`, son endpoint public, ses traductions et ses états d’attente, d’acceptation et d’erreur.
 - Les pages Histoire, Contact, les textes juridiques, la page 404 et leurs traductions restent identiques. Les huit étapes Histoire et leur mode de prévisualisation sont conservés.
 - `styles.css` reçoit un seul bloc dédié aux classes `confirmation-*` et `newsletter-confirmation-page`. Aucun sélecteur existant n’est remplacé.
-- `newsletter-confirmation.html` ajoute une page sobre, responsive et traduite dans les neuf langues. Elle réutilise le sélecteur de langue et `script.js`, le logo SVG, Montserrat et le rideau d’origine.
+- `newsletter-confirmation.html` ajoute une page sobre, responsive et traduite dans les neuf langues. Elle réutilise le sélecteur de langue et `script.js`, le logo SVG et Montserrat. La page et l’email restent sur fond noir, sans photographie ni rideau.
 - `assets/logo-email.png` est une exportation du SVG original, 1148 × 130 pixels, sur le noir du site. Aucun logo n’a été redessiné.
 - `emails/brevo-double-optin-brouillon.html` est un fichier HTML à relire, pas un modèle enregistré dans Brevo. Il est en français ; aucune campagne multilingue n’est présumée.
 
