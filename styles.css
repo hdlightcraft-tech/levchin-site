@@ -1966,6 +1966,24 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
   box-shadow: none;
 }
 
+/* Newsletter confirmation: isolated from the existing six pages. */
+.newsletter-confirmation-page::before { display: none; }
+.confirmation-shell { min-height: 100vh; min-height: 100svh; max-width: 720px; margin: 0 auto; padding: 40px 24px 28px; display: flex; flex-direction: column; }
+.confirmation-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+.confirmation-header img { display: block; width: 180px; height: auto; }
+.confirmation-header .language-select-label { margin: 0; }
+.confirmation-content { padding: 72px 0 56px; margin: auto 0; overflow-wrap: anywhere; }
+.confirmation-content h1 { margin: 0 0 24px; font-size: clamp(1.75rem, 4vw, 2.25rem); line-height: 1.3; font-weight: 400; letter-spacing: -.02em; }
+.confirmation-content > p { margin: 0 0 20px; color: var(--muted); font-size: .95rem; line-height: 1.8; }
+.confirmation-actions { margin: 28px 0; }
+.confirmation-primary { display: inline-block; padding: 14px 20px; min-height: 48px; border: 1px solid var(--line); color: var(--text); font-size: .85rem; text-decoration: none; }
+.confirmation-primary:hover { border-color: var(--text); }
+.confirmation-content .confirmation-help { font-size: .8rem; }
+.confirmation-footer { color: var(--muted); font-size: .7rem; line-height: 1.8; }
+.confirmation-footer nav { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 16px; }
+.confirmation-footer a { color: inherit; text-underline-offset: 4px; }
+@media (max-width: 480px) { .confirmation-shell { padding: 28px 24px; } .confirmation-content { padding: 52px 0 40px; } }
+
 .error-page {
   display: flex;
   min-height: 100vh;
