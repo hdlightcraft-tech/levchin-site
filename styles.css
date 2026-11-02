@@ -1966,6 +1966,55 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
   box-shadow: none;
 }
 
+/* Newsletter confirmation: isolated from the existing six pages. */
+.newsletter-confirmation-page::before { display: none; }
+.confirmation-shell {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: 36px var(--edge-space) 28px;
+  background: var(--bg);
+}
+.confirmation-header, .confirmation-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.confirmation-header img { display: block; width: clamp(160px, 19vw, 260px); height: auto; }
+.confirmation-header .language-select-label { margin: 0; }
+.confirmation-content {
+  width: min(100%, 760px);
+  margin: auto 0;
+  padding: clamp(64px, 10vh, 140px) 0;
+  overflow-wrap: anywhere;
+}
+.confirmation-kicker { margin: 0 0 28px; font-size: .68rem; letter-spacing: .2em; }
+.confirmation-content h1 { margin: 0 0 32px; font-size: clamp(2.4rem, 5.4vw, 5.8rem); font-weight: 400; line-height: 1.12; letter-spacing: -.04em; }
+.confirmation-content > p:not(.confirmation-kicker) { max-width: 570px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
+.confirmation-content .confirmation-intro { color: var(--text); font-size: 1.16rem; }
+.confirmation-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px 32px; margin: 36px 0; }
+.confirmation-actions a { display: inline-flex; align-items: center; min-height: 48px; color: var(--text); font-size: .82rem; text-underline-offset: 6px; }
+.confirmation-primary { padding: 14px 20px; border: 1px solid var(--line); text-decoration: none; }
+.confirmation-primary:hover { border-color: var(--text); }
+.confirmation-content .confirmation-help { max-width: 470px; font-size: .8rem; }
+.confirmation-footer { padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .7rem; line-height: 1.8; }
+.confirmation-footer nav { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.confirmation-footer a { color: inherit; text-underline-offset: 4px; }
+@media (min-width: 1200px) {
+  .confirmation-shell::after { content: ""; position: absolute; top: 120px; bottom: 140px; right: 0; width: 28%; background: url("assets/background.webp") center / cover no-repeat; pointer-events: none; }
+  .confirmation-content { width: min(60%, 760px); }
+}
+@media (max-width: 767px) {
+  .confirmation-shell { padding-top: 24px; background: var(--bg); }
+  .confirmation-content { padding: 68px 0 56px; }
+  .confirmation-content h1 { font-size: clamp(2.4rem, 10vw, 4rem); }
+  .confirmation-header { gap: 24px; }
+}
+
 .error-page {
   display: flex;
   min-height: 100vh;
