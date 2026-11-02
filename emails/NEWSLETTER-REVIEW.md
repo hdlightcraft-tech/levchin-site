@@ -2,7 +2,7 @@
 
 ## État de cette proposition
 
-Branche de travail uniquement. Aucune fusion, publication, inscription de test, création de modèle Brevo, modification du formulaire ou émission d’email.
+Publication demandée par le propriétaire après validation du visuel. La page et le logo sont préparés pour l’hébergement GitHub Pages existant. Le domaine levchin.fr pointe encore sur une page OVH « Site en construction » au moment de cette préparation. Aucun envoi aux contacts n’est autorisé par cette publication.
 
 La base inspectée est `main` au commit `a8a84a34766f1e3df12c16309c0f6c31e694ff49`. `AGENTS.md`, le dernier diff, les six pages, les styles et l’intégration newsletter ont été lus avant modification. Le dépôt local GitHub Desktop est propre et au même commit ; il a été copié dans un dossier de travail séparé. Aucun fichier de ce dépôt local d’origine n’a été modifié. Aucun autre fichier du site n’est remplacé.
 
@@ -24,11 +24,11 @@ La page statique n’interroge aucun service et ne prouve pas qu’une adresse e
 ## À compléter avant toute utilisation dans Brevo
 
 1. L’adresse du fondateur reste privée et n’est pas incluse dans ce dépôt public ni dans l’email de prévisualisation. Avant toute utilisation, valider les coordonnées professionnelles et mentions applicables par un canal approprié. Ce brouillon ne vaut pas validation juridique.
-2. Après accord de publication séparé, rendre le PNG accessible à `https://levchin.fr/assets/logo-email.png`, puis vérifier sa réponse HTTPS et son affichage dans une messagerie. Cette URL désigne le nouvel asset proposé ; elle n’est pas présumée disponible en production aujourd’hui. Alternative : importer ce PNG dans Brevo et remplacer uniquement le `src` du logo par l’URL HTTPS fournie.
+2. Après accord de publication séparé, rendre le PNG accessible à `https://hdlightcraft-tech.github.io/levchin-site/assets/logo-email.png`, puis vérifier sa réponse HTTPS et son affichage dans une messagerie. Cette URL désigne le nouvel asset proposé ; elle n’est pas présumée disponible en production aujourd’hui. Alternative : importer ce PNG dans Brevo et remplacer uniquement le `src` du logo par l’URL HTTPS fournie.
 3. Vérifier le compte, l’expéditeur envisagé `contact@levchin.fr` et l’authentification de son domaine dans Brevo. Aucun de ces réglages n’a été vérifié dans le compte par cette proposition.
 4. Après un nouvel accord explicite, créer un nouveau modèle inactif et l’examiner. Le titre proposé est « LEVCHIN : confirmez votre inscription email ». Conserver le modèle actif et ses réglages jusqu’à validation.
 5. Après un accord séparé pour les tests, vérifier le parcours de double confirmation avec une adresse contrôlée : email reçu, bouton, validation effective, liste correcte et désinscription. Une prévisualisation générique peut laisser `doubleoptin` vide ; elle ne prouve pas le parcours du formulaire.
-6. Après validation et publication de la page seulement, choisir `https://levchin.fr/newsletter-confirmation.html` comme redirection finale après confirmation dans le formulaire Brevo. Cette URL ne remplace jamais le bouton de l’email. Ne pas changer la destination au moment de la simple soumission du formulaire.
+6. Après validation et publication de la page seulement, choisir `https://hdlightcraft-tech.github.io/levchin-site/newsletter-confirmation.html` comme redirection finale après confirmation dans le formulaire Brevo. Cette URL ne remplace jamais le bouton de l’email. Ne pas changer la destination au moment de la simple soumission du formulaire.
 
 L’email contient uniquement une demande de validation, sans contenu promotionnel supplémentaire. Il ne comporte pas de personnalisation `contact.*`, de `params.*` ou de boucle. Aucun attribut de contact n’est donc à supposer. Pas de lien de désinscription dans ce message transactionnel préalable à l’inscription ; vérifier séparément celui des futurs envois newsletter.
 
@@ -44,3 +44,7 @@ L’email contient uniquement une demande de validation, sans contenu promotionn
 - Aucun rendu serveur Brevo, test de réception Gmail/Outlook, Safari, Firefox ou appareil physique. Le parcours réel de confirmation n’a pas été exécuté. Le compte et le modèle actifs n’ont pas été consultés ou modifiés.
 
 Summary GitHub Desktop : page newsletter et email HTML proposés sur une branche séparée ; formulaire, configuration Brevo publique, autres pages et traductions existantes conservés ; aucune fusion ni mise en production.
+
+## Publication et raccordement
+
+La page finale à utiliser tant que le domaine personnalisé n’est pas raccordé est `https://hdlightcraft-tech.github.io/levchin-site/newsletter-confirmation.html`. Le formulaire intégré à l’accueil reste relié à son endpoint public Brevo existant. La destination après double confirmation doit être configurée dans Brevo ; aucune redirection ne doit être déclenchée par une simple soumission acceptée. Le jeton `{{ doubleoptin }}` demeure intact. Les liens de l’email utilisent l’hébergement existant, pour éviter de renvoyer les visiteurs vers le domaine encore en construction. Aucun enregistrement DNS de messagerie ne doit être remplacé.
