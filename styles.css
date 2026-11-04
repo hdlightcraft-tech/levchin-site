@@ -557,10 +557,20 @@ h2 {
   accent-color: #efe6dd;
 }
 
+.newsletter-consent-text {
+  text-wrap: pretty;
+}
+
+.newsletter-consent-note {
+  margin: 6px 0 0 28px;
+  color: rgba(239, 230, 221, 0.68);
+  text-wrap: pretty;
+}
+
 .newsletter-consent a {
   display: inline-block;
-  margin: 8px 0 0 28px;
-  color: inherit;
+  margin: 4px 0 0 28px;
+  color: rgba(239, 230, 221, 0.8);
   text-underline-offset: 3px;
 }
 
