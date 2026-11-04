@@ -1587,15 +1587,42 @@ if (newsletterForm) {
       de: "Wird gesendet…", pt: "A enviar…", ja: "送信中…", ko: "전송 중…", zh: "正在发送…"
     },
     success: {
-      fr: "Votre demande a été transmise. Consultez votre messagerie pour la suite.",
-      en: "Your request has been submitted. Check your inbox for the next steps.",
-      es: "Su solicitud se ha enviado. Consulte su correo para los próximos pasos.",
-      it: "La richiesta è stata inviata. Controlla la tua posta per i prossimi passi.",
-      de: "Ihre Anfrage wurde übermittelt. Prüfen Sie Ihr Postfach für die nächsten Schritte.",
-      pt: "O seu pedido foi enviado. Consulte o seu email para os próximos passos.",
-      ja: "リクエストを送信しました。次の手順についてメールをご確認ください。",
-      ko: "신청이 전송되었습니다. 다음 단계는 이메일을 확인해 주세요.",
-      zh: "您的请求已提交。请查看邮箱以了解后续步骤。"
+          "fr": [
+                "Votre demande a été transmise.",
+                "Consultez votre messagerie pour confirmer votre inscription."
+          ],
+          "en": [
+                "Your request has been submitted.",
+                "Check your inbox to confirm your subscription."
+          ],
+          "es": [
+                "Su solicitud se ha enviado.",
+                "Consulte su correo para confirmar su suscripción."
+          ],
+          "it": [
+                "La richiesta è stata inviata.",
+                "Controlla la tua posta per confermare l’iscrizione."
+          ],
+          "de": [
+                "Ihre Anfrage wurde übermittelt.",
+                "Prüfen Sie Ihr Postfach, um Ihre Anmeldung zu bestätigen."
+          ],
+          "pt": [
+                "O seu pedido foi enviado.",
+                "Consulte o seu email para confirmar a subscrição."
+          ],
+          "ja": [
+                "リクエストを送信しました。",
+                "メールを確認して登録を承認してください。"
+          ],
+          "ko": [
+                "신청이 전송되었습니다.",
+                "이메일을 확인하여 구독을 확정해 주세요."
+          ],
+          "zh": [
+                "您的请求已提交。",
+                "请查看邮箱以确认订阅。"
+          ]
     },
     error: {
       fr: "L’envoi n’a pas pu être confirmé. Vérifiez votre adresse et votre connexion, puis réessayez.",
@@ -1611,7 +1638,23 @@ if (newsletterForm) {
   };
   const renderStatus = () => {
     status.hidden = state === "idle";
-    status.textContent = state === "unavailable" ? status.dataset[currentLanguage] : messages[state]?.[currentLanguage] || "";
+    status.classList.toggle("newsletter-status-success", state === "success");
+    if (state === "success") {
+      const [title, detail] = messages.success[currentLanguage] || messages.success.fr;
+      const icon = document.createElement("span");
+      icon.className = "newsletter-status-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = "✓";
+      const copy = document.createElement("span");
+      const heading = document.createElement("strong");
+      heading.textContent = title;
+      const explanation = document.createElement("span");
+      explanation.textContent = detail;
+      copy.append(heading, explanation);
+      status.replaceChildren(icon, copy);
+    } else {
+      status.textContent = state === "unavailable" ? status.dataset[currentLanguage] : messages[state]?.[currentLanguage] || "";
+    }
   };
   try {
     const url = new URL(window.LEVCHIN_CONFIG?.newsletterUrl);

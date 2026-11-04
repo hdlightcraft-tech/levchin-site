@@ -693,6 +693,38 @@ h2 {
   letter-spacing: 0;
 }
 
+.newsletter-status-success {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: 10px;
+  max-width: none;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.newsletter-status-success[hidden] {
+  display: none;
+}
+
+.newsletter-status-icon {
+  color: #9aab91;
+}
+
+.newsletter-status-success strong,
+.newsletter-status-success span > span {
+  display: block;
+  text-wrap: pretty;
+}
+
+.newsletter-status-success strong {
+  font-weight: 500;
+}
+
+.newsletter-status-success span > span {
+  color: var(--muted);
+}
+
 .contact-delivery-note {
   grid-column: 1 / -1;
   margin: 0;
