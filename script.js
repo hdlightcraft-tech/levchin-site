@@ -1575,6 +1575,8 @@ const newsletterForm = document.querySelector(".newsletter-form");
 if (newsletterForm) {
   const email = newsletterForm.querySelector('[name="EMAIL"]');
   const button = newsletterForm.querySelector('button[type="submit"]');
+  const consent = document.querySelector("#newsletter-consent");
+  const trap = newsletterForm.querySelector('[name="email_address_check"]');
   const status = document.querySelector("#newsletter-status");
   let endpoint = null;
   let state = "unavailable";
@@ -1630,11 +1632,17 @@ if (newsletterForm) {
   newsletterForm.addEventListener("submit", async event => {
     event.preventDefault();
     if (!endpoint || pending || !newsletterForm.reportValidity()) return;
+    // Keep Brevo’s native honeypot and reject filled traps before making a request.
+    if (trap.value) return;
     pending = true;
     state = "pending";
     newsletterForm.setAttribute("aria-busy", "true");
     newsletterForm.elements.locale.value = ["fr", "en", "es", "it", "pt", "de"].includes(currentLanguage) ? currentLanguage : "fr";
     const body = new FormData(newsletterForm);
+    // The local consent gate is not a substitute for Brevo’s consent/DOI records.
+    // Do not invent a Brevo contact attribute not present in the hosted form.
+    body.delete("LEVCHIN_CONSENT");
+    consent.disabled = true;
     email.readOnly = true;
     button.disabled = true;
     renderStatus();
@@ -1655,6 +1663,7 @@ if (newsletterForm) {
     } finally {
       clearTimeout(timeout);
       pending = false;
+      consent.disabled = false;
       email.readOnly = false;
       button.disabled = false;
       newsletterForm.removeAttribute("aria-busy");
