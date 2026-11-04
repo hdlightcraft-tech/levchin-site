@@ -533,7 +533,40 @@ h2 {
 
 .newsletter-form:focus-within {
   border-color: rgba(255, 243, 227, 0.7);
-  box-shadow: 0 10px 30px rgba(255, 243, 227, 0.04);
+}
+
+.newsletter-consent {
+  width: min(100%, 420px);
+  margin-top: 18px;
+  font: 400 0.75rem/1.7 var(--font-main);
+  color: var(--text);
+}
+
+.newsletter-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.newsletter-consent input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: #efe6dd;
+}
+
+.newsletter-consent a {
+  display: inline-block;
+  margin: 8px 0 0 28px;
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.newsletter-consent :focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
 }
 
 .newsletter-form input {
