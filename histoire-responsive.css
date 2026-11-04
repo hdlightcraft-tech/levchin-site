@@ -1,526 +1,143 @@
-/* Histoire: viewport, typography, compositions, responsive variants. */
-html.story-document-root,
-body.story-document {
-  width: 100%;
-  min-width: 0;
-  min-height: 100%;
-  overflow: hidden;
+/* La Maison: continuous editorial reading, preserving the original type scale. */
+.maison-document {
+  --maison-edge: clamp(24px, 5.5vw, 92px);
+  --maison-copy-size: 14px;
+  --maison-title-size: 32px;
   background: #050505;
 }
 
-body.story-document {
-  --story-vh: 100dvh;
-  --story-ink: #fff8ef;
-  --story-copy: rgba(255, 248, 239, 0.78);
-  --story-line: rgba(255, 243, 227, 0.1);
-  --story-image-placeholder: #40434A;
-  --story-edge: clamp(22px, 5.5vw, 92px);
-  --story-panel-pad: clamp(40px, 6vw, 100px);
-  --story-header-h: clamp(50px, 5.4vw, 68px);
-  --story-heading: 22px;
-  --story-title: 32px;
-  --story-copy-size: 14px;
-  --story-leading: 1.44;
-  --story-footer-progress: 0;
-  color: var(--story-ink);
-}
+.maison-document::before { content: none; }
 
-body.story-document::before,
-body.story-document .story-page::before,
-body.story-document .story-page::after {
-  content: none;
-}
-
-body.story-document .site-shell {
-  height: var(--story-vh);
-  min-height: var(--story-vh);
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  overscroll-behavior-y: contain;
-  background: #050505;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 248, 239, 0.22) #050505;
-}
-
-body.story-document.story-snap-driving .site-shell {
-  scroll-snap-type: none;
-  scroll-behavior: auto;
-}
-
-body.story-document .story-page {
-  min-height: 0;
-  padding: 0;
-  background: #050505;
-}
-
-body.story-document .story-article {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-}
-
-body.story-document .story-snap {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: var(--story-vh);
-  min-height: var(--story-vh);
-  margin: 0;
-  padding: 56px var(--story-edge);
-  box-sizing: border-box;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  background: #050505;
-  text-align: left;
-}
-
-body.story-document .story-snap h1,
-body.story-document .story-snap h2 {
-  margin: 0;
-  max-width: 100%;
-  color: var(--story-ink);
-  font-family: var(--font-main);
-  font-size: var(--story-heading);
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.16;
-  text-transform: uppercase;
-  text-wrap: balance;
-  overflow-wrap: normal;
-  word-break: normal;
-  hyphens: none;
-}
-
-body.story-document .story-snap h1 {
-  font-size: var(--story-title);
-  white-space: nowrap;
-}
-
-body.story-document .story-copy {
-  display: grid;
-  gap: 16px;
-  margin-top: 28px;
-}
-
-body.story-document .story-copy p {
-  margin: 0;
-  color: var(--story-copy);
-  font-size: var(--story-copy-size);
-  line-height: var(--story-leading);
-  letter-spacing: 0;
-}
-
-body.story-document .story-panel-copy,
-body.story-document .story-intro-copy,
-body.story-document .story-statement-copy,
-body.story-document .story-overlay-copy {
-  position: relative;
-  z-index: 2;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-body.story-document .story-media {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
-  margin: 0;
-  overflow: hidden;
-  background: var(--story-image-placeholder);
-  border: 0;
-}
-
-body.story-document .story-media img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Remove data-story-preview from body to display the existing photos. */
-body.story-document[data-story-preview] .story-media img {
-  visibility: hidden;
-}
-
-body.story-document .story-media figcaption { display: none; }
-
-/* Image below the header; copy centered against the entire viewport. */
-body.story-document .story-snap-intro {
-  padding: 0;
-  isolation: isolate;
-}
-
-body.story-document .story-page .story-header {
-  position: absolute;
-  z-index: 4;
-  inset: 0 0 auto;
+.maison-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  width: 100%;
-  height: var(--story-header-h);
-  min-height: 0;
-  margin: 0;
-  padding: 0 var(--story-edge);
-  background: #050505;
+  min-height: 68px;
+  padding: 0 var(--maison-edge);
+  border-bottom: 1px solid rgba(255, 243, 227, 0.1);
 }
 
-body.story-document .story-page .story-header::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: var(--story-line);
-}
+.maison-header .legal-home-link { justify-self: start; }
 
-body.story-document .story-page .story-header > a {
-  grid-row: 1;
-  align-self: center;
-}
-
-body.story-document .story-page .story-header > a:not(.legal-home-link) {
+.maison-header > a:not(.legal-home-link) {
   grid-column: 2;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
 }
 
-body.story-document .story-page .story-header .legal-logo {
+.maison-logo {
   display: block;
   width: min(224px, 40vw);
   height: auto;
 }
 
-body.story-document .story-intro-layout {
-  position: relative;
+.maison-page {
+  padding: clamp(64px, 8vw, 128px) var(--maison-edge) clamp(80px, 9vw, 144px);
+}
+
+.maison-article {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.maison-article h1 {
+  margin: 0;
+  max-width: 100%;
+  color: #fff8ef;
+  font: 600 var(--maison-title-size)/1.24 var(--font-main);
+  letter-spacing: -0.025em;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.maison-article p {
+  max-width: 72ch;
+  margin: 0;
+  color: rgba(255, 248, 239, 0.78);
+  font: 400 var(--maison-copy-size)/1.85 var(--font-main);
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+.maison-article strong {
+  color: #fff8ef;
+  font-weight: 600;
+}
+
+.maison-lead {
   display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  padding: var(--story-header-h) var(--story-edge);
-  text-align: center;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(40px, 6vw, 96px);
 }
 
-body.story-document .story-snap-intro .story-media-wide {
-  position: absolute;
-  inset: var(--story-header-h) 0 0;
-  height: auto;
+.maison-origins { margin-top: clamp(48px, 6vw, 88px); }
+
+.maison-origins p + p {
+  margin-top: clamp(40px, 5vw, 72px);
+  margin-left: auto;
 }
 
-body.story-document .story-intro-copy {
-  width: min(100%, 1320px);
-  max-height: calc(var(--story-vh) - var(--story-header-h) * 2);
-  overflow-y: auto;
-  text-align: center;
-}
-
-body.story-document .story-snap-intro .story-copy {
-  width: min(100%, 760px);
-  margin-inline: auto;
-}
-
-/* Mirrored compositions share one text axis and one spacing scale. */
-body.story-document .story-snap-split { padding: 0; }
-
-body.story-document .story-composition {
+.maison-making {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: minmax(0, 1fr);
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  gap: 0;
+  align-items: start;
+  gap: clamp(40px, 6vw, 96px);
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid rgba(255, 243, 227, 0.14);
 }
 
-body.story-document .story-composition .story-panel-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: safe center;
-  align-items: center;
-  min-height: 0;
-  padding: var(--story-panel-pad);
-  padding-block: max(0px, calc(var(--story-panel-pad) - 44px));
-  margin-block: 44px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  background: #050505;
-  text-align: left;
+.maison-finale {
+  width: min(100%, 72ch);
+  margin: clamp(56px, 7vw, 104px) auto 0;
+  font-size: var(--maison-copy-size);
 }
 
-body.story-document .story-composition .story-panel-copy > * {
-  flex-shrink: 0;
-  width: min(100%, 540px);
-  margin-inline: 0;
+.maison-finale p + p { margin-top: 40px; }
+
+.maison-finale p:last-of-type strong {
+  display: block;
+  margin-top: 24px;
 }
 
-body.story-document .story-composition-origin .story-media { grid-area: 1 / 1; }
-body.story-document .story-composition-origin .story-panel-copy { grid-area: 1 / 2; }
-body.story-document .story-composition-materials .story-panel-copy,
-body.story-document .story-composition-final .story-panel-copy { grid-area: 1 / 1; }
-body.story-document .story-composition-materials .story-media,
-body.story-document .story-composition-final .story-media { grid-area: 1 / 2; }
-
-body.story-document .story-snap-final .story-back-link { margin-top: 32px; }
-
-body.story-document .story-union-composition,
-body.story-document .story-statement-copy {
-  width: min(100%, 850px);
-  max-height: calc(var(--story-vh) - 112px);
-  overflow-y: auto;
-  margin-inline: auto;
-  text-align: center;
-}
-
-body.story-document .story-snap-union .story-copy {
-  width: min(100%, 780px);
-  margin-inline: auto;
-}
-
-body.story-document .story-statement-copy h2 {
-  width: min(100%, 30ch);
-  margin-inline: auto;
-}
-
-body.story-document .story-snap-lines {
-  padding: 0;
-  isolation: isolate;
-}
-
-body.story-document .story-lines-composition {
-  position: relative;
-  display: grid;
-  align-items: end;
-  width: 100%;
-  height: 100%;
-  padding: 64px var(--story-edge);
-}
-
-body.story-document .story-lines-media {
-  position: absolute;
-  inset: 0;
-}
-
-body.story-document .story-snap-lines .story-panel-copy {
-  width: min(100%, 760px);
-  max-height: calc(var(--story-vh) - 128px);
-  overflow-y: auto;
-  text-align: left;
-}
-
-/* Both layers share a frame, keeping the copy inside the image. */
-body.story-document .story-overlay-composition {
-  position: relative;
-  display: grid;
-  align-items: center;
-  justify-items: end;
-  width: min(1180px, 100%, calc((var(--story-vh) - 112px) * 4 / 3));
-  aspect-ratio: 4 / 3;
-}
-
-body.story-document .story-overlay-composition .story-media {
-  position: absolute;
-  inset: 0;
-}
-
-body.story-document .story-overlay-copy {
-  width: 50%;
-  max-height: calc(var(--story-vh) - 112px);
-  overflow-y: auto;
-  padding: clamp(24px, 3vw, 48px);
-  text-align: left;
-}
-
-body.story-document:not([data-story-preview]) .story-intro-layout::after,
-body.story-document:not([data-story-preview]) .story-lines-composition::after,
-body.story-document:not([data-story-preview]) .story-overlay-composition::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: rgba(5, 5, 5, 0.4);
-}
-
-body.story-document:not([data-story-preview]) .story-intro-layout::after {
-  top: var(--story-header-h);
-}
-
-body.story-document .site-footer {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-body.story-document .story-progress {
-  position: fixed;
-  right: max(22px, env(safe-area-inset-right));
-  bottom: max(22px, env(safe-area-inset-bottom));
-  z-index: 45;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.44em;
-  color: rgba(255, 248, 239, 0.68);
-  font-family: var(--font-main);
-  font-size: 11px;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0;
-  line-height: 1;
-  pointer-events: none;
-  opacity: calc(0.9 * (1 - var(--story-footer-progress)));
-  transition: opacity 120ms linear;
-}
-
-body.story-document.story-at-footer .story-progress { opacity: 0; }
+.maison-back-link { margin-top: 48px; }
 
 @media (min-width: 1500px) {
-  body.story-document {
-    --story-title: 42px;
-    --story-heading: 27px;
-    --story-copy-size: 16px;
+  .maison-document {
+    --maison-copy-size: 16px;
+    --maison-title-size: 42px;
   }
 }
 
 @media (max-width: 1180px) {
-  body.story-document {
-    --story-edge: clamp(24px, 4vw, 54px);
-    --story-panel-pad: clamp(28px, 4vw, 48px);
-    --story-title: 24px;
-    --story-heading: 20px;
-  }
+  .maison-document { --maison-title-size: 24px; }
 }
 
-@media (orientation: portrait) {
-  body.story-document .story-composition {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 38%) minmax(0, 1fr);
+@media (max-width: 760px) {
+  .maison-document {
+    --maison-copy-size: 13px;
+    --maison-title-size: 20px;
   }
 
-  body.story-document .story-composition .story-media { grid-area: 1 / 1; }
+  .maison-header { min-height: 64px; }
+  .maison-logo { width: min(180px, 40vw); }
+  .maison-header .nav-link { font-size: 10px; letter-spacing: 0.1em; }
 
-  body.story-document .story-composition .story-panel-copy {
-    grid-area: 2 / 1;
-    margin-block: 0 44px;
-    padding: 20px var(--story-edge);
-  }
+  .maison-lead,
+  .maison-making { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 
-  body.story-document .story-composition h2 { text-align: center; }
-  body.story-document .story-back-link { justify-content: center; }
-  body.story-document .story-overlay-copy { width: 65%; }
+  .maison-page { padding-top: 56px; }
+  .maison-origins { margin-top: 32px; }
+  .maison-origins p + p { margin-top: 32px; }
+  .maison-making { margin-top: 40px; padding-top: 32px; }
+  .maison-finale { margin-top: 40px; }
+  .maison-finale p + p { margin-top: 32px; }
 }
 
-@media (max-width: 767px) and (orientation: portrait) {
-  body.story-document {
-    --story-edge: 24px;
-    --story-title: 14px;
-    --story-heading: 18px;
-    --story-header-h: 50px;
-    --story-leading: 1.35;
-  }
-
-  body.story-document .story-snap { padding: 48px var(--story-edge); }
-  body.story-document .story-snap-intro,
-  body.story-document .story-snap-split,
-  body.story-document .story-snap-lines { padding: 0; }
-  body.story-document .story-header .legal-logo { max-width: 36vw; }
-
-  body.story-document .story-copy {
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  body.story-document .story-composition {
-    grid-template-rows: minmax(0, 28%) minmax(0, 1fr);
-  }
-
-  body.story-document .story-lines-composition {
-    padding: 48px var(--story-edge) 64px;
-  }
-
-  body.story-document .story-snap-lines .story-panel-copy { text-align: center; }
-
-  body.story-document .story-overlay-composition {
-    aspect-ratio: auto;
-    min-height: min(620px, calc(var(--story-vh) - 96px));
-    width: 100%;
-    align-items: end;
-  }
-
-  body.story-document .story-overlay-copy {
-    width: 100%;
-    max-height: calc(var(--story-vh) - 96px);
-    padding: 32px 24px;
-  }
-
-  body.story-document .story-progress {
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(16px, env(safe-area-inset-bottom));
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 374px) and (orientation: portrait) {
-  body.story-document {
-    --story-edge: 20px;
-    --story-title: 12px;
-  }
-
-  body.story-document .story-composition {
-    grid-template-rows: minmax(0, 22%) minmax(0, 1fr);
-  }
-}
-
-@media (max-height: 560px) and (orientation: landscape) {
-  body.story-document {
-    --story-edge: 28px;
-    --story-panel-pad: 24px;
-    --story-header-h: 42px;
-    --story-title: 20px;
-    --story-heading: 18px;
-    --story-copy-size: 13px;
-    --story-leading: 1.3;
-  }
-
-  body.story-document .story-snap { padding-block: 32px; }
-  body.story-document .story-snap-intro,
-  body.story-document .story-snap-split,
-  body.story-document .story-snap-lines { padding: 0; }
-
-  body.story-document .story-copy {
-    gap: 10px;
-    margin-top: 16px;
-  }
-
-  body.story-document .story-page .story-header .legal-logo { width: 138px; }
-  body.story-document .story-lines-composition { padding: 32px var(--story-edge) 48px; }
-
-  body.story-document .story-union-composition,
-  body.story-document .story-statement-copy { max-height: calc(var(--story-vh) - 64px); }
-  body.story-document .story-snap-lines .story-panel-copy { max-height: calc(var(--story-vh) - 80px); }
-
-  body.story-document .story-overlay-composition {
-    width: 100%;
-    min-height: calc(var(--story-vh) - 64px);
-    aspect-ratio: auto;
-  }
-
-  body.story-document .story-overlay-copy {
-    width: min(68%, 560px);
-    max-height: calc(var(--story-vh) - 64px);
-    padding: 24px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body.story-document .site-shell { scroll-behavior: auto; }
-  body.story-document .story-progress { transition: none; }
+@media print {
+  .maison-page { padding: 24px; }
+  .maison-lead, .maison-making { display: block; }
+  .maison-article p { max-width: none; margin-top: 20px; }
+  .maison-back-link { display: none; }
 }
