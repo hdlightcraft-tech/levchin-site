@@ -950,6 +950,7 @@ if (newsletterForm) {
     } catch {
       state = "error";
     } finally {
+      window.LEVCHIN_CAPTCHA?.reset();
       clearTimeout(timeout);
       pending = false;
       consent.disabled = false;

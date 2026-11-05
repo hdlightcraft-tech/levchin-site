@@ -2931,3 +2931,7 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
   }
 }
 
+
+.newsletter-captcha { margin-top: 24px; }
+.newsletter-captcha p { margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.newsletter-captcha p:empty { display: none; }
