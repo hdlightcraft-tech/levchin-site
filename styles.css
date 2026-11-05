@@ -565,12 +565,17 @@ h2 {
   cursor: pointer;
 }
 
-.newsletter-consent input::before {
+.newsletter-consent input::before,
+.newsletter-status-icon::before {
   content: "";
   width: 9px;
   height: 5px;
   border-left: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.newsletter-consent input::before {
   transform: translateY(-1px) rotate(-45deg) scale(0);
 }
 
@@ -708,6 +713,9 @@ h2 {
 }
 
 .newsletter-status-icon {
+  display: grid;
+  place-items: center;
+  height: 20px;
   color: #9aab91;
 }
 

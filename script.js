@@ -891,7 +891,6 @@ if (newsletterForm) {
       const icon = document.createElement("span");
       icon.className = "newsletter-status-icon";
       icon.setAttribute("aria-hidden", "true");
-      icon.textContent = "✓";
       const copy = document.createElement("span");
       const heading = document.createElement("strong");
       heading.textContent = title;
