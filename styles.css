@@ -2981,3 +2981,12 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 #letter-dialog .salutations input:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
 #letter-dialog button:focus-visible { outline: 1px solid currentColor; outline-offset: -4px; }
 @media (forced-colors: active) { #letter-dialog .salutations input { appearance: auto; } }
+#letter-dialog h2 { font-size: clamp(21px, 2.4vw, 27px); }
+#letter-dialog .letter-intro { max-width: none; text-transform: uppercase; text-align: start; }
+.salutations legend { width: 100%; }
+.required-note { float: inline-end; font-weight: 400; text-transform: none; letter-spacing: normal; }
+#letter-dialog .newsletter-consent { display: block; text-align: start; font-size: .83rem; line-height: 1.55; }
+#letter-dialog .newsletter-consent label { display: block; font: inherit; }
+#letter-dialog .newsletter-consent input { float: inline-start; margin: .15em .65em .15em 0; }
+#letter-dialog .newsletter-consent p { margin: .65em 0 0; }
+#letter-dialog .newsletter-consent a { display: inline; margin: 0; font: inherit; }
