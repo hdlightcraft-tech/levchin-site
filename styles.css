@@ -2982,11 +2982,11 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 #letter-dialog button:focus-visible { outline: 1px solid currentColor; outline-offset: -4px; }
 @media (forced-colors: active) { #letter-dialog .salutations input { appearance: auto; } }
 #letter-dialog h2 { font-size: clamp(21px, 2.4vw, 27px); }
-#letter-dialog .letter-intro { max-width: none; text-transform: uppercase; text-align: start; }
+#letter-dialog .letter-intro { max-width: none; text-transform: none; text-align: start; margin-bottom: .5rem; }
 .salutations legend { width: 100%; }
-.required-note { display: block; text-align: end; margin-bottom: -12px; font-weight: 400; text-transform: none; letter-spacing: normal; }
+.required-note { display: block; color: #bcb4aa; font-size: .75rem; text-align: start; margin-bottom: 2rem; font-weight: 400; text-transform: none; letter-spacing: normal; }
 #letter-dialog .newsletter-consent { display: block; text-align: start; font-size: .83rem; line-height: 1.55; }
-#letter-dialog .newsletter-consent label { display: block; font: inherit; }
-#letter-dialog .newsletter-consent input { float: inline-start; margin: .15em .65em .15em 0; }
+#letter-dialog .newsletter-consent label { display: flex; align-items: baseline; gap: .6em; font: inherit; }
+#letter-dialog .newsletter-consent input { flex: none; margin: 0; align-self: start; margin-top: .15em; }
 #letter-dialog .newsletter-consent p { margin: .65em 0 0; }
 #letter-dialog .newsletter-consent a { display: inline; margin: 0; font: inherit; }
