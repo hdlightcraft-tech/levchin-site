@@ -2970,3 +2970,14 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   #letter-dialog { width: 100%; padding: 42px 24px 28px; }
   .letter-names { gap: 24px; }
 }
+#letter-open, .letter-form button[type=submit] { text-transform: uppercase; }
+#letter-dialog h2 { margin-bottom: 1rem; }
+.letter-intro { margin: 0 0 2.5rem; max-width: 52ch; line-height: 1.65; }
+#letter-dialog .letter-names { display: grid; gap: clamp(24px, 3vw, 36px); }
+.letter-field > span, .salutations legend { font-weight: 600; text-transform: uppercase; letter-spacing: .035em; }
+#letter-dialog .letter-field input:focus { outline: none; border-bottom-color: currentColor; box-shadow: inset 0 -1px currentColor; }
+#letter-dialog .salutations input { appearance: none; border: 1px solid currentColor; border-radius: 50%; background: transparent; color: #ede6de; cursor: pointer; }
+#letter-dialog .salutations input:checked { background: currentColor; }
+#letter-dialog .salutations input:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+#letter-dialog button:focus-visible { outline: 1px solid currentColor; outline-offset: -4px; }
+@media (forced-colors: active) { #letter-dialog .salutations input { appearance: auto; } }
