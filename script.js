@@ -897,9 +897,6 @@ if (newsletterForm) {
     newsletterForm.elements.LANGUE_NEWSLETTER.value = currentLanguage;
     const body = new FormData(newsletterForm);
     body.set("g-recaptcha-response", window.LEVCHIN_CAPTCHA.token());
-    // The local consent gate is not a substitute for Brevo’s consent/DOI records.
-    // Do not invent a Brevo contact attribute not present in the hosted form.
-    body.delete("LEVCHIN_CONSENT");
     consent.disabled = true;
     email.readOnly = true;
     button.disabled = true;
