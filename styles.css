@@ -2935,3 +2935,25 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
 .newsletter-captcha { margin-top: 24px; }
 .newsletter-captcha p { margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .newsletter-captcha p:empty { display: none; }
+
+/* Newsletter invitation and its user-opened dialog */
+#letter-dialog { box-sizing:border-box; width:min(36rem,calc(100% - 2rem)); max-height:90dvh; margin:auto; padding:clamp(24px,4vw,48px); background:#100f0e; color:var(--text); border:1px solid #534e48; overflow:auto; overscroll-behavior:contain; color-scheme:dark; }
+#letter-dialog::backdrop {background:rgb(0 0 0 / .74)}
+body:has(#letter-dialog[open]) {overflow:hidden}
+.letter-head,.letter-names {display:flex;align-items:center;gap:20px}
+.letter-head {justify-content:space-between}
+#letter-close {border:0;background:transparent;color:inherit;font:300 28px/1 inherit;font-size:28px;width:44px;height:44px;cursor:pointer}
+#letter-dialog h2 {font-size:clamp(24px,4vw,36px);white-space:normal;margin:12px 0 28px;font-weight:400}
+.letter-form {display:grid;gap:18px;position:relative}
+.letter-form fieldset {min-width:0;border:0;padding:0;margin:0;display:grid;gap:14px}
+.letter-form legend,.letter-form small {color:#bcb4aa;font-size:.75rem;line-height:1.6}
+.letter-form legend {margin-bottom:10px}
+.letter-field {display:grid;gap:4px;min-width:0;flex:1;font-size:.86rem}
+.letter-field input {width:100%;min-width:0;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #79736b;color:inherit;padding:8px 0;font:inherit;font-size:16px;border-radius:0}
+.letter-form .newsletter-trap {position:absolute;left:-9999px;width:1px;height:1px}
+.letter-form .newsletter-consent,.letter-form .newsletter-captcha {width:100%;margin:0}
+.letter-form button[type=submit] {background:#efe6dd;color:#151412;border:0;padding:15px;font:600 .83rem Montserrat,Arial,sans-serif;cursor:pointer}
+.letter-confirmed {display:flex;align-items:center;gap:.5em;color:#a7b69f}
+.letter-confirmed img {width:.75em;height:.75em}
+@media(max-width:600px){#letter-dialog{margin:auto 0 0;width:100%;max-width:none;max-height:93dvh;padding:20px 24px max(24px,env(safe-area-inset-bottom))}.letter-names{display:grid;gap:14px}}
+@media(prefers-reduced-motion:no-preference){#letter-dialog[open]{animation:letter-enter .2s ease-out}@keyframes letter-enter{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}}

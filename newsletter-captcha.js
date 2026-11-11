@@ -12,7 +12,7 @@
   let widget, loading = false;
   const message = () => { note.textContent = copy[document.documentElement.lang] || copy.fr; };
   const reset = () => { response.value = ''; if (widget !== undefined) window.grecaptcha.reset(widget); };
-  window.LEVCHIN_CAPTCHA = {reset};
+  window.LEVCHIN_CAPTCHA = {reset, token: () => response.value};
   window.levchinCaptchaReady = () => {
     widget = window.grecaptcha.render(box, {
       sitekey: window.LEVCHIN_CONFIG.newsletterCaptchaSiteKey,

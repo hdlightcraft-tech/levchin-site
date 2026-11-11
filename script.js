@@ -74,19 +74,19 @@ stripImageTitles();
 
 
 document.addEventListener("dragstart", (event) => {
-  if (event.target.closest("img, picture, .story-visual, .story-media")) {
+  if (event.target.closest?.("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
   }
 });
 
 document.addEventListener("contextmenu", (event) => {
-  if (event.target.closest("img, picture, .story-visual, .story-media")) {
+  if (event.target.closest?.("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
   }
 });
 
 document.addEventListener("selectstart", (event) => {
-  if (event.target.closest("img, picture, .story-visual, .story-media")) {
+  if (event.target.closest?.("img, picture, .story-visual, .story-media")) {
     event.preventDefault();
   }
 });
@@ -214,7 +214,8 @@ const phoneRegionDisplayNames = {
   ko: { US_CA: "미국 / 캐나다" },
   zh: { US_CA: "美国 / 加拿大" }
 };
-let currentLanguage = savedLanguage || "fr";
+const receiptLanguage = document.body.classList.contains("newsletter-confirmation-page") ? new URLSearchParams(location.search).get("lang") : null;
+let currentLanguage = ["fr","en","es","de","it","pt","ja","ko","zh"].includes(receiptLanguage) ? receiptLanguage : savedLanguage || "fr";
 let languageCustomButton;
 let languageCustomOptions = [];
 let languageCustomLabel;
@@ -558,7 +559,7 @@ function enableDropdownKeyboard(wrapper, button, list, options, searchInput = nu
     }, 0);
   });
   list.addEventListener("click", event => {
-    if (event.target.closest('[role="option"]')) close(true);
+    if (event.target.closest?.('[role="option"]')) close(true);
   });
 }
 
@@ -818,8 +819,12 @@ if (comingSoonTrigger && comingSoonToast) {
 
 const contactForm = document.querySelector("[data-contact-form]");
 
-const newsletterForm = document.querySelector(".newsletter-form");
+const newsletterForm = document.querySelector("#newsletter-form");
 if (newsletterForm) {
+  const dialog = document.querySelector("#letter-dialog");
+  document.querySelector("#letter-open").addEventListener("click", () => { dialog.showModal(); document.querySelector("#letter-title").focus(); });
+  document.querySelector("#letter-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => document.querySelector("#letter-open").focus());
   const email = newsletterForm.querySelector('[name="EMAIL"]');
   const button = newsletterForm.querySelector('button[type="submit"]');
   const consent = document.querySelector("#newsletter-consent");
@@ -832,44 +837,6 @@ if (newsletterForm) {
     pending: {
       fr: "Envoi en cours…", en: "Sending…", es: "Enviando…", it: "Invio in corso…",
       de: "Wird gesendet…", pt: "A enviar…", ja: "送信中…", ko: "전송 중…", zh: "正在发送…"
-    },
-    success: {
-          "fr": [
-                "Votre demande a été transmise.",
-                "Consultez votre messagerie pour confirmer votre inscription."
-          ],
-          "en": [
-                "Your request has been submitted.",
-                "Check your inbox to confirm your subscription."
-          ],
-          "es": [
-                "Su solicitud se ha enviado.",
-                "Consulte su correo para confirmar su suscripción."
-          ],
-          "it": [
-                "La richiesta è stata inviata.",
-                "Controlla la tua posta per confermare l’iscrizione."
-          ],
-          "de": [
-                "Ihre Anfrage wurde übermittelt.",
-                "Prüfen Sie Ihr Postfach, um Ihre Anmeldung zu bestätigen."
-          ],
-          "pt": [
-                "O seu pedido foi enviado.",
-                "Consulte o seu email para confirmar a subscrição."
-          ],
-          "ja": [
-                "リクエストを送信しました。",
-                "メールを確認して登録を承認してください。"
-          ],
-          "ko": [
-                "신청이 전송되었습니다.",
-                "이메일을 확인하여 구독을 확정해 주세요."
-          ],
-          "zh": [
-                "您的请求已提交。",
-                "请查看邮箱以确认订阅。"
-          ]
     },
     error: {
       fr: "L’envoi n’a pas pu être confirmé. Vérifiez votre adresse et votre connexion, puis réessayez.",
@@ -927,7 +894,9 @@ if (newsletterForm) {
     state = "pending";
     newsletterForm.setAttribute("aria-busy", "true");
     newsletterForm.elements.locale.value = ["fr", "en", "es", "it", "pt", "de"].includes(currentLanguage) ? currentLanguage : "fr";
+    newsletterForm.elements.LANGUE_NEWSLETTER.value = currentLanguage;
     const body = new FormData(newsletterForm);
+    body.set("g-recaptcha-response", window.LEVCHIN_CAPTCHA.token());
     // The local consent gate is not a substitute for Brevo’s consent/DOI records.
     // Do not invent a Brevo contact attribute not present in the hosted form.
     body.delete("LEVCHIN_CONSENT");
@@ -945,7 +914,8 @@ if (newsletterForm) {
         if (result.errors?.EMAIL) email.setAttribute("aria-invalid", "true");
         throw new Error("Subscription not accepted");
       }
-      state = "success";
+      state = "idle";
+      location.assign("newsletter-confirmation.html?lang=" + encodeURIComponent(currentLanguage));
       newsletterForm.reset();
     } catch {
       state = "error";
