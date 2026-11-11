@@ -2957,3 +2957,16 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .letter-confirmed img {width:.75em;height:.75em}
 @media(max-width:600px){#letter-dialog{margin:auto 0 0;width:100%;max-width:none;max-height:93dvh;padding:20px 24px max(24px,env(safe-area-inset-bottom))}.letter-names{display:grid;gap:14px}}
 @media(prefers-reduced-motion:no-preference){#letter-dialog[open]{animation:letter-enter .2s ease-out}@keyframes letter-enter{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}}
+#letter-dialog { width: min(46rem, calc(100% - 3rem)); padding: clamp(32px, 5vw, 72px); position: fixed; }
+.letter-head { position: absolute; top: 10px; right: 12px; }
+#letter-dialog h2 { margin: 0 28px 40px 0; font-size: clamp(24px, 3vw, 32px); }
+.letter-form { gap: clamp(24px, 3vw, 36px); }
+.letter-form .salutations { display: flex; flex-wrap: wrap; column-gap: 24px; row-gap: 0; }
+.salutations legend { color: inherit; font-size: .86rem; margin-bottom: 6px; }
+.salutations label { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; cursor: pointer; font-size: .86rem; }
+.salutations input { width: 16px; height: 16px; margin: 0; accent-color: #abb7a2; }
+.letter-field input { padding-block: 12px; }
+@media (max-width: 600px) {
+  #letter-dialog { width: 100%; padding: 42px 24px 28px; }
+  .letter-names { gap: 24px; }
+}
