@@ -3015,3 +3015,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
     transform-origin: left center;
   }
 }
+.newsletter-details summary { cursor: pointer; padding-block: .75rem; font-size: .85rem; }
+.newsletter-details[open] .letter-names { margin-top: 1.5rem; }
+@media (min-width: 601px) { .newsletter-details[open] summary { display: none; } }
+@media (max-width: 600px) { .newsletter-details[open] summary { margin-bottom: .75rem; } }

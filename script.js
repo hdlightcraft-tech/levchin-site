@@ -822,6 +822,11 @@ const contactForm = document.querySelector("[data-contact-form]");
 const newsletterForm = document.querySelector("#newsletter-form");
 if (newsletterForm) {
   const dialog = document.querySelector("#letter-dialog");
+  const details = newsletterForm.querySelector(".newsletter-details");
+  const smallScreen = matchMedia("(max-width: 600px)");
+  function adaptDetails() { details.open = !smallScreen.matches; }
+  adaptDetails();
+  smallScreen.addEventListener("change", adaptDetails);
   const receipt = dialog.querySelector("#letter-receipt");
   function showReceipt(confirmed) {
     receipt.hidden = !confirmed;
@@ -1070,6 +1075,7 @@ if (contactForm) {
     const value = field.value.trim();
     const validationType = field.dataset.validate;
 
+    if (!value && !field.hasAttribute("data-required-field")) { setFieldError(field, ""); return true; }
     if (!value) {
       setFieldError(field, field.dataset.fieldName === "subject" ? getContactMessage("subject") : getContactMessage("required"));
       return false;
@@ -1142,17 +1148,12 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const recipient = contactForm.dataset.contactEmail;
     const labels = getMailLabels();
-    const selectedPhoneOption = contactForm.querySelector("#contact-phone-code option:checked");
-    const phoneCode = selectedPhoneOption?.dataset.dial || formData.get("phoneCode") || "";
-    const phoneNumber = formData.get("phone") || "";
     const selectedSubject =
-      contactForm.querySelector("#contact-subject option:checked")?.textContent || labels.fallback;
+      formData.get("subject") ? contactForm.querySelector("#contact-subject option:checked").textContent : labels.fallback;
     const subject = `LEVCHIN - ${selectedSubject}`;
     const body = [
-      `${labels.firstName}: ${formData.get("firstname") || ""}`,
       `${labels.lastName}: ${formData.get("lastname") || ""}`,
       `${labels.email}: ${formData.get("email") || ""}`,
-      `${labels.phone}: ${`${phoneCode} ${phoneNumber}`.trim()}`,
       `${labels.subject}: ${selectedSubject}`,
       "",
       `${labels.message}:`,
