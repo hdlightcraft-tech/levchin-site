@@ -2990,3 +2990,16 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 #letter-dialog .newsletter-consent input { flex: none; margin: 0; align-self: start; margin-top: .15em; }
 #letter-dialog .newsletter-consent p { margin: .65em 0 0; }
 #letter-dialog .newsletter-consent a { display: inline; margin: 0; font: inherit; }
+#letter-dialog.has-receipt > :not(.letter-head):not(#letter-receipt) { visibility: hidden; }
+#letter-dialog.has-receipt { overflow: hidden; }
+#letter-dialog.has-receipt .letter-head { z-index: 1; }
+#letter-receipt:not([hidden]) {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  align-content: safe center;
+  padding: inherit;
+  text-align: start;
+}
+#letter-receipt h2 { overflow-wrap: normal; word-break: normal; width: auto; max-width: none; color: #a7b69f; }
+#letter-receipt p { margin: 1rem 0 0; line-height: 1.65; }

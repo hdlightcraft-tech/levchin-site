@@ -822,7 +822,18 @@ const contactForm = document.querySelector("[data-contact-form]");
 const newsletterForm = document.querySelector("#newsletter-form");
 if (newsletterForm) {
   const dialog = document.querySelector("#letter-dialog");
-  document.querySelector("#letter-open").addEventListener("click", () => { dialog.showModal(); document.querySelector("#letter-title").focus(); });
+  const receipt = dialog.querySelector("#letter-receipt");
+  function showReceipt(confirmed) {
+    receipt.hidden = !confirmed;
+    dialog.classList.toggle("has-receipt", confirmed);
+    newsletterForm.inert = confirmed;
+    dialog.setAttribute("aria-labelledby", confirmed ? "receipt-title" : "letter-title");
+    if (confirmed && dialog.open) {
+      dialog.scrollTop = 0;
+      receipt.querySelector("h2").focus();
+    }
+  }
+  document.querySelector("#letter-open").addEventListener("click", () => { showReceipt(false); dialog.showModal(); document.querySelector("#letter-title").focus(); });
   document.querySelector("#letter-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => document.querySelector("#letter-open").focus());
   const email = newsletterForm.querySelector('[name="EMAIL"]');
@@ -912,7 +923,7 @@ if (newsletterForm) {
         throw new Error("Subscription not accepted");
       }
       state = "idle";
-      location.assign("newsletter-confirmation.html?lang=" + encodeURIComponent(currentLanguage));
+      showReceipt(true);
       newsletterForm.reset();
     } catch {
       state = "error";
