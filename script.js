@@ -997,15 +997,15 @@ if (contactForm) {
       pt: "Introduza um número de telefone válido."
     },
     messageLength: {
-      fr: "Votre message ne peut pas dépasser 200 caractères.",
-      en: "Your message cannot exceed 200 characters.",
-      es: "Su mensaje no puede superar los 200 caracteres.",
-      it: "Il tuo messaggio non può superare i 200 caratteri.",
-      ja: "メッセージは200文字以内で入力してください。",
-      zh: "您的留言不能超过 200 个字符。",
-      de: "Ihre Nachricht darf 200 Zeichen nicht überschreiten.",
-      ko: "메시지는 200자를 초과할 수 없습니다.",
-      pt: "A sua mensagem não pode ultrapassar 200 caracteres."
+      fr: "Votre message ne peut pas dépasser 500 caractères.",
+      en: "Your message cannot exceed 500 characters.",
+      es: "Su mensaje no puede superar los 500 caracteres.",
+      it: "Il tuo messaggio non può superare i 500 caratteri.",
+      ja: "メッセージは500文字以内で入力してください。",
+      zh: "您的留言不能超过 500 个字符。",
+      de: "Ihre Nachricht darf 500 Zeichen nicht überschreiten.",
+      ko: "메시지는 500자를 초과할 수 없습니다.",
+      pt: "A sua mensagem não pode ultrapassar 500 caracteres."
     },
     form: {
       fr: "Certains champs obligatoires sont manquants ou incomplets. Vérifiez les champs en rouge avant d’envoyer votre message.",
@@ -1027,7 +1027,7 @@ if (contactForm) {
       return;
     }
 
-    messageCount.textContent = `${messageField.value.length} / 200`;
+    messageCount.textContent = `${messageField.value.length} / ${messageField.maxLength}`;
   };
 
   const setFieldError = (field, message) => {
@@ -1068,7 +1068,7 @@ if (contactForm) {
       return false;
     }
 
-    if (field.dataset.fieldName === "message" && value.length > 200) {
+    if (field.dataset.fieldName === "message" && value.length > field.maxLength) {
       setFieldError(field, getContactMessage("messageLength"));
       return false;
     }
