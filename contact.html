@@ -77,14 +77,11 @@
 
           <form
             class="contact-form contact-form-refined"
-            action="mailto:contact@levchin.fr"
+            action="https://e0aa3ed8.sibforms.com/serve/MUIFANmTQLsj13V8naRnlqKWiOXXZ1mzjYCIPPvAT-oBZrQXActQMHIpmYbzJecBP38as6apAfvX64ja2CIupnup-PTrvC7UlJ6jnB9OFVRMDfZhN1Tvtiq-FSGA0zVhWN1vgZ6f5diZW3F2IRK1RTCMFaI1g--FmUHfGv3VXPl9OP4qOm4hG3EhgAp6U-tXWmudlQT6wQ8pLU7a"
             method="post"
-            enctype="text/plain"
             novalidate
             data-contact-form
-            data-contact-email="contact@levchin.fr"
           >
-            <p class="service-note contact-delivery-note" data-fr="Ce formulaire prépare un email dans votre messagerie. L’envoi reste à confirmer dans celle-ci." data-en="This form prepares an email in your mail app. You still need to send it there." data-es="Este formulario prepara un correo en su aplicación de correo. Debe confirmar el envío allí." data-it="Questo modulo prepara un’email nella tua app di posta. Devi confermare l’invio da lì." data-ja="このフォームはメールアプリでメールを作成します。送信はメールアプリで確定してください。" data-zh="此表单将在您的邮件应用中准备邮件。您仍需在那里确认发送。" data-de="Dieses Formular bereitet eine E-Mail in Ihrem Mailprogramm vor. Sie müssen sie dort noch senden." data-ko="이 양식은 메일 앱에서 이메일을 준비합니다. 앱에서 전송을 확인해 주세요." data-pt="Este formulário prepara um email na sua aplicação de correio. O envio deve ser confirmado nessa aplicação.">Ce formulaire prépare un email dans votre messagerie. L’envoi reste à confirmer dans celle-ci.</p>
             <p
               class="contact-required-note"
               data-fr="* Champs obligatoires"
@@ -118,7 +115,7 @@
                 </label>
                 <input
                   id="contact-email"
-                  name="email"
+                  name="EMAIL"
                   type="email"
                   autocomplete="email"
                   inputmode="email"
@@ -160,12 +157,15 @@
                   >
                     Nom
                   </span>
+                <span aria-hidden="true">*</span>
                 </label>
                 <input
                   id="contact-lastname"
-                  name="lastname"
+                  name="NOM"
                   type="text"
                   autocomplete="family-name"
+                  required
+                  data-required-field
                   
                   data-field-name="lastname"
                   data-fr-placeholder="Votre nom"
@@ -191,49 +191,18 @@
             <div class="field-group field-group-full">
               <label for="contact-subject">
                 <span
-                  data-fr="Raison de contact"
-                  data-en="Reason for contact"
-                  data-es="Motivo de contacto"
-                  data-it="Motivo del contatto"
-                  data-ja="お問い合わせ内容"
-                  data-zh="联系原因"
-                  data-de="Anfragegrund"
-                  data-ko="문의 사유"
-                  data-pt="Motivo do contacto"
-                >
-                  Raison de contact
-                </span>
+                  data-fr="Objet (facultatif)"
+                  data-en="Subject (optional)"
+                  data-es="Asunto (opcional)"
+                  data-it="Oggetto (facoltativo)"
+                  data-ja="件名（任意）"
+                  data-zh="主题（选填）"
+                  data-de="Betreff (optional)"
+                  data-ko="제목 (선택 사항)"
+                  data-pt="Assunto (opcional)"
+                >Objet (facultatif)</span>
               </label>
-              <div class="select-wrap">
-                <select
-                  id="contact-subject"
-                  name="subject"
-                  data-enhance-select
-                  
-                  data-field-name="subject"
-                  aria-describedby="subject-error"
-                >
-                  <option
-                    value=""
-                    data-fr="Sélectionnez un sujet"
-                    data-en="Select a subject"
-                    data-es="Seleccione un asunto"
-                    data-it="Seleziona un argomento"
-                    data-ja="件名を選択してください"
-                    data-zh="请选择主题"
-                    data-de="Wählen Sie ein Thema"
-                    data-ko="주제를 선택해 주세요"
-                    data-pt="Selecione um assunto"
-                  >
-                    Sélectionnez un sujet
-                  </option>
-                  <option value="Collaboration" data-fr="Collaboration" data-en="Collaboration" data-es="Colaboración" data-it="Collaborazione" data-ja="コラボレーション" data-zh="合作" data-de="Zusammenarbeit" data-ko="협업" data-pt="Colaboração">Collaboration</option>
-                  <option value="Design" data-fr="Design" data-en="Design" data-es="Diseño" data-it="Design" data-ja="デザイン" data-zh="设计" data-de="Design" data-ko="디자인" data-pt="Design">Design</option>
-                  <option value="Mode" data-fr="Mode" data-en="Fashion" data-es="Moda" data-it="Moda" data-ja="ファッション" data-zh="时尚" data-de="Mode" data-ko="패션" data-pt="Moda">Mode</option>
-                  <option value="Presse" data-fr="Presse" data-en="Press" data-es="Prensa" data-it="Stampa" data-ja="プレス" data-zh="媒体" data-de="Presse" data-ko="프레스" data-pt="Imprensa">Presse</option>
-                  <option value="Autre" data-fr="Autre" data-en="Other" data-es="Otro" data-it="Altro" data-ja="その他" data-zh="其他" data-de="Andere" data-ko="기타" data-pt="Outro">Autre</option>
-                </select>
-              </div>
+              <input id="contact-subject" name="CONTACT_SUBJECT" type="text" maxlength="200" />
               <p
                 id="subject-error"
                 class="field-error"
@@ -260,9 +229,9 @@
               </label>
               <textarea
                 id="contact-message"
-                name="message"
+                name="CONTACT_MESSAGE"
                 rows="8"
-                maxlength="2000"
+                maxlength="200"
                 data-required-field
                 data-field-name="message"
                 data-fr-placeholder="Tapez votre message ici..."
@@ -281,19 +250,19 @@
                 <p
                   id="message-meta"
                   class="message-limit"
-                  data-fr="2000 caractères maximum"
-                  data-en="2000 characters maximum"
-                  data-es="2000 caracteres máximo"
-                  data-it="2000 caratteri massimo"
-                  data-ja="最大2000文字"
-                  data-zh="最多 2000 个字符"
-                  data-de="Maximal 2000 Zeichen"
-                  data-ko="최대 2000자"
-                  data-pt="2000 caracteres máximo"
+                  data-fr="200 caractères maximum"
+                  data-en="200 characters maximum"
+                  data-es="200 caracteres máximo"
+                  data-it="200 caratteri massimo"
+                  data-ja="最大200文字"
+                  data-zh="最多 200 个字符"
+                  data-de="Maximal 200 Zeichen"
+                  data-ko="최대 200자"
+                  data-pt="200 caracteres máximo"
                 >
-                  2000 caractères maximum
+                  200 caractères maximum
                 </p>
-                <span class="message-count" data-message-count>0 / 2000</span>
+                <span class="message-count" data-message-count>0 / 200</span>
               </div>
               <p
                 id="message-error"
@@ -319,6 +288,7 @@
               Certains champs obligatoires sont manquants ou incomplets. Vérifiez les champs en rouge avant d’envoyer votre message.
             </p>
 
+            <p role="status" data-contact-result hidden></p>
             <button class="form-submit" type="submit" data-contact-submit>
               <span
                 class="button-text"
@@ -423,6 +393,7 @@
         <span class="coming-soon-close" aria-hidden="true">✕</span>
       </div>
 
+      <script src="site-config.js"></script>
       <script src="script.js"></script>
     </div>
   </body>

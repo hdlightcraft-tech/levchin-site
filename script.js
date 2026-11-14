@@ -997,15 +997,15 @@ if (contactForm) {
       pt: "Introduza um número de telefone válido."
     },
     messageLength: {
-      fr: "Votre message ne peut pas dépasser 2000 caractères.",
-      en: "Your message cannot exceed 2000 characters.",
-      es: "Su mensaje no puede superar los 2000 caracteres.",
-      it: "Il tuo messaggio non può superare i 2000 caratteri.",
-      ja: "メッセージは2000文字以内で入力してください。",
-      zh: "您的留言不能超过 2000 个字符。",
-      de: "Ihre Nachricht darf 2000 Zeichen nicht überschreiten.",
-      ko: "메시지는 2000자를 초과할 수 없습니다.",
-      pt: "A sua mensagem não pode ultrapassar 2000 caracteres."
+      fr: "Votre message ne peut pas dépasser 200 caractères.",
+      en: "Your message cannot exceed 200 characters.",
+      es: "Su mensaje no puede superar los 200 caracteres.",
+      it: "Il tuo messaggio non può superare i 200 caratteri.",
+      ja: "メッセージは200文字以内で入力してください。",
+      zh: "您的留言不能超过 200 个字符。",
+      de: "Ihre Nachricht darf 200 Zeichen nicht überschreiten.",
+      ko: "메시지는 200자를 초과할 수 없습니다.",
+      pt: "A sua mensagem não pode ultrapassar 200 caracteres."
     },
     form: {
       fr: "Certains champs obligatoires sont manquants ou incomplets. Vérifiez les champs en rouge avant d’envoyer votre message.",
@@ -1019,28 +1019,15 @@ if (contactForm) {
       pt: "Alguns campos obrigatórios estão em falta ou incompletos. Verifique os campos a vermelho antes de enviar a sua mensagem."
     }
   };
-  const mailLabels = {
-    fr: { firstName: "Prénom", lastName: "Nom", email: "Email", phone: "Téléphone", subject: "Sujet", message: "Message", fallback: "Contact" },
-    en: { firstName: "First name", lastName: "Last name", email: "Email", phone: "Phone", subject: "Subject", message: "Message", fallback: "Contact" },
-    es: { firstName: "Nombre", lastName: "Apellido", email: "Email", phone: "Teléfono", subject: "Asunto", message: "Mensaje", fallback: "Contacto" },
-    it: { firstName: "Nome", lastName: "Cognome", email: "Email", phone: "Telefono", subject: "Oggetto", message: "Messaggio", fallback: "Contatto" },
-    ja: { firstName: "名", lastName: "姓", email: "メール", phone: "電話番号", subject: "件名", message: "メッセージ", fallback: "お問い合わせ" },
-    zh: { firstName: "名字", lastName: "姓氏", email: "邮箱", phone: "电话", subject: "主题", message: "留言", fallback: "联系" },
-    de: { firstName: "Vorname", lastName: "Nachname", email: "E-Mail", phone: "Telefon", subject: "Betreff", message: "Nachricht", fallback: "Kontakt" },
-    ko: { firstName: "이름", lastName: "성", email: "이메일", phone: "전화번호", subject: "주제", message: "메시지", fallback: "문의" },
-    pt: { firstName: "Nome próprio", lastName: "Apelido", email: "Email", phone: "Telefone", subject: "Assunto", message: "Mensagem", fallback: "Contacto" }
-  };
-
   const getContactLanguage = () => currentLanguage || document.documentElement.lang || "fr";
   const getContactMessage = (key) => contactMessages[key]?.[getContactLanguage()] || contactMessages[key]?.fr || "";
-  const getMailLabels = () => mailLabels[getContactLanguage()] || mailLabels.fr;
 
   const updateMessageCount = () => {
     if (!messageField || !messageCount) {
       return;
     }
 
-    messageCount.textContent = `${messageField.value.length} / 2000`;
+    messageCount.textContent = `${messageField.value.length} / 200`;
   };
 
   const setFieldError = (field, message) => {
@@ -1081,7 +1068,7 @@ if (contactForm) {
       return false;
     }
 
-    if (field.dataset.fieldName === "message" && value.length > 2000) {
+    if (field.dataset.fieldName === "message" && value.length > 200) {
       setFieldError(field, getContactMessage("messageLength"));
       return false;
     }
@@ -1138,7 +1125,20 @@ if (contactForm) {
     });
   });
 
-  contactForm.addEventListener("submit", (event) => {
+  const deliveryStatus = contactForm.querySelector("[data-contact-result]");
+  const sendButton = contactForm.querySelector("[data-contact-submit]");
+  const deliveryCopy = {
+    fr: ["Votre message a été transmis à la maison.", "Votre envoi n’a pas pu être confirmé. Réessayez dans un instant."],
+    en: ["Your message has been submitted.", "We could not confirm submission. Please try again."],
+    es: ["Su mensaje ha sido enviado.", "No se pudo confirmar el envío. Inténtelo de nuevo."],
+    it: ["Il suo messaggio è stato inviato.", "Invio non confermato. Riprovi tra poco."],
+    pt: ["A sua mensagem foi enviada.", "Não foi possível confirmar o envio. Tente novamente."],
+    de: ["Ihre Nachricht wurde übermittelt.", "Der Versand konnte nicht bestätigt werden. Bitte versuchen Sie es erneut."],
+    ja: ["メッセージを送信しました。", "送信を確認できませんでした。もう一度お試しください。"],
+    ko: ["메시지가 전송되었습니다.", "전송을 확인할 수 없습니다. 다시 시도해 주세요."],
+    zh: ["您的留言已提交。", "未能确认发送，请稍后再试。"]
+  };
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!validateContactForm()) {
@@ -1146,21 +1146,27 @@ if (contactForm) {
     }
 
     const formData = new FormData(contactForm);
-    const recipient = contactForm.dataset.contactEmail;
-    const labels = getMailLabels();
-    const selectedSubject =
-      formData.get("subject") ? contactForm.querySelector("#contact-subject option:checked").textContent : labels.fallback;
-    const subject = `LEVCHIN - ${selectedSubject}`;
-    const body = [
-      `${labels.lastName}: ${formData.get("lastname") || ""}`,
-      `${labels.email}: ${formData.get("email") || ""}`,
-      `${labels.subject}: ${selectedSubject}`,
-      "",
-      `${labels.message}:`,
-      `${formData.get("message") || ""}`
-    ].join("\n");
-
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!formData.get("CONTACT_SUBJECT")?.trim()) formData.set("CONTACT_SUBJECT", "Contact LEVCHIN");
+    if (sendButton.disabled) return;
+    sendButton.disabled = true;
+    const copy = deliveryCopy[getContactLanguage()] || deliveryCopy.fr;
+    deliveryStatus.hidden = true;
+    try {
+      const url = new URL(contactForm.action);
+      if (url.protocol !== "https:" || !url.hostname.endsWith(".sibforms.com") || !url.pathname.startsWith("/serve/")) throw new Error("Invalid form endpoint");
+      url.searchParams.set("isAjax", "1");
+      const response = await fetch(url, {method: "POST", body: formData, credentials: "omit", signal: AbortSignal.timeout(15000)});
+      if (!response.ok || ![true, 1].includes((await response.json()).success)) throw new Error("Submission rejected");
+      deliveryStatus.textContent = copy[0];
+      contactForm.reset();
+      enhancedSelects.forEach(syncEnhancedSelect);
+      updateMessageCount();
+    } catch {
+      deliveryStatus.textContent = copy[1];
+    } finally {
+      sendButton.disabled = false;
+      deliveryStatus.hidden = false;
+    }
   });
 
   document.addEventListener("levchin:languagechange", () => {
