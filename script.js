@@ -214,7 +214,7 @@ const phoneRegionDisplayNames = {
   ko: { US_CA: "미국 / 캐나다" },
   zh: { US_CA: "美国 / 加拿大" }
 };
-const receiptLanguage = document.body.classList.contains("newsletter-confirmation-page") ? new URLSearchParams(location.search).get("lang") : null;
+const receiptLanguage = location.hash === "#inscription-confirmee" ? new URLSearchParams(location.search).get("lang") : null;
 let currentLanguage = ["fr","en","es","de","it","pt","ja","ko","zh"].includes(receiptLanguage) ? receiptLanguage : savedLanguage || "fr";
 let languageCustomButton;
 let languageCustomOptions = [];
@@ -841,6 +841,11 @@ if (newsletterForm) {
   document.querySelector("#letter-open").addEventListener("click", () => { showReceipt(false); dialog.showModal(); document.querySelector("#letter-title").focus(); });
   document.querySelector("#letter-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => document.querySelector("#letter-open").focus());
+  if (location.hash === "#inscription-confirmee") {
+    history.replaceState(history.state, "", location.pathname + location.search + "#newsletter");
+    dialog.showModal();
+    showReceipt(true);
+  }
   const email = newsletterForm.querySelector('[name="EMAIL"]');
   const button = newsletterForm.querySelector('button[type="submit"]');
   const consent = document.querySelector("#newsletter-consent");

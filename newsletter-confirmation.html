@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    const destination = new URL("./", location.href);
+    const language = new URLSearchParams(location.search).get("lang");
+    if (language) destination.searchParams.set("lang", language);
+    destination.hash = "inscription-confirmee";
+    location.replace(destination.href);
+  </script>
   <title  data-fr="LEVCHIN | Newsletter" data-en="LEVCHIN | Newsletter" data-es="LEVCHIN | Newsletter" data-it="LEVCHIN | Newsletter" data-ja="LEVCHIN | ニュースレター" data-zh="LEVCHIN | 订阅资讯" data-de="LEVCHIN | Newsletter" data-ko="LEVCHIN | 뉴스레터" data-pt="LEVCHIN | Newsletter">LEVCHIN | Newsletter</title>
   <meta name="robots" content="noindex, follow" />
   <meta name="description" content="Retrouvez les étapes de confirmation de votre inscription à la newsletter LEVCHIN." />
