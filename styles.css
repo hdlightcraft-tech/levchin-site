@@ -2943,7 +2943,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .letter-head,.letter-names {display:flex;align-items:center;gap:20px}
 .letter-head {justify-content:space-between}
 #letter-close {border:0;background:transparent;color:inherit;font:300 28px/1 inherit;font-size:28px;width:44px;height:44px;cursor:pointer}
-#letter-dialog h2 {font-size:clamp(24px,4vw,36px);white-space:normal;margin:12px 0 28px;font-weight:400}
+#letter-dialog > #letter-title {font-size:clamp(24px,4vw,36px);white-space:normal;margin:12px 0 28px;font-weight:400}
 .letter-form {display:grid;gap:18px;position:relative}
 .letter-form fieldset {min-width:0;border:0;padding:0;margin:0;display:grid;gap:14px}
 .letter-form legend,.letter-form small {color:#bcb4aa;font-size:.75rem;line-height:1.6}
@@ -2959,7 +2959,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 @media(prefers-reduced-motion:no-preference){#letter-dialog[open]{animation:letter-enter .2s ease-out}@keyframes letter-enter{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}}
 #letter-dialog { width: min(46rem, calc(100% - 3rem)); padding: clamp(32px, 5vw, 72px); position: fixed; }
 .letter-head { position: absolute; top: 10px; right: 12px; }
-#letter-dialog h2 { margin: 0 28px 40px 0; font-size: clamp(24px, 3vw, 32px); }
+#letter-dialog > #letter-title { margin: 0 28px 40px 0; font-size: clamp(24px, 3vw, 32px); }
 .letter-form { gap: clamp(24px, 3vw, 36px); }
 .letter-form .salutations { display: flex; flex-wrap: wrap; column-gap: 24px; row-gap: 0; }
 .salutations legend { color: inherit; font-size: .86rem; margin-bottom: 6px; }
@@ -2971,7 +2971,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   .letter-names { gap: 24px; }
 }
 #letter-open, .letter-form button[type=submit] { text-transform: uppercase; }
-#letter-dialog h2 { margin-bottom: 1rem; }
+#letter-dialog > #letter-title { margin-bottom: 1rem; }
 .letter-intro { margin: 0 0 2.5rem; max-width: 52ch; line-height: 1.65; }
 #letter-dialog .letter-names { display: grid; gap: clamp(24px, 3vw, 36px); }
 .letter-field > span, .salutations legend { font-weight: 600; text-transform: uppercase; letter-spacing: .035em; }
@@ -2981,7 +2981,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 #letter-dialog .salutations input:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
 #letter-dialog button:focus-visible { outline: 1px solid currentColor; outline-offset: -4px; }
 @media (forced-colors: active) { #letter-dialog .salutations input { appearance: auto; } }
-#letter-dialog h2 { font-size: clamp(21px, 2.4vw, 27px); }
+#letter-dialog > #letter-title { font-size: clamp(21px, 2.4vw, 27px); }
 #letter-dialog .letter-intro { max-width: none; text-transform: none; text-align: start; margin-bottom: .5rem; }
 .salutations legend { width: 100%; }
 .required-note { display: block; color: #bcb4aa; font-size: .75rem; text-align: start; margin-bottom: 2rem; font-weight: 400; text-transform: none; letter-spacing: normal; }
@@ -3001,8 +3001,8 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   padding: inherit;
   text-align: start;
 }
-#letter-receipt h2 { overflow-wrap: normal; word-break: normal; width: auto; max-width: none; color: #a7b69f; }
-#letter-receipt p { margin: 1rem 0 0; line-height: 1.65; }
+#letter-receipt .section-kicker { margin: 0; line-height: 1.4; color: #a7b69f; }
+#letter-receipt .section-copy { margin: 1em 0 0; text-wrap: pretty; }
 /* These headings receive focus to announce each step of the dialog. */
 #letter-dialog :is(#letter-title, #receipt-title):focus { outline: none; }
 #letter-dialog .letter-field input { font-size: 14px; }
