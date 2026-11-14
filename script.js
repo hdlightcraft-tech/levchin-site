@@ -840,21 +840,36 @@ if (newsletterForm) {
   }
   document.querySelector("#letter-open").addEventListener("click", () => { showReceipt(false); dialog.showModal(); document.querySelector("#letter-title").focus(); });
   document.querySelector("#letter-close").addEventListener("click", () => dialog.close());
-  let pressedOnBackdrop = false;
-  function isOnBackdrop(event) {
-    if (event.target !== dialog) return false;
-    const bounds = dialog.getBoundingClientRect();
-    return event.clientX < bounds.left || event.clientX >= bounds.right ||
-      event.clientY < bounds.top || event.clientY >= bounds.bottom;
+  // Older browsers need a fallback for native dialog light dismissal.
+  if (dialog.closedBy !== "any") {
+    const outside = ({ clientX, clientY }) => {
+      const box = dialog.getBoundingClientRect();
+      return clientX < box.left || clientX >= box.right || clientY < box.top || clientY >= box.bottom;
+    };
+    let touchStart = null;
+    document.addEventListener("touchstart", event => {
+      const touch = event.touches[0];
+      touchStart = dialog.open && event.touches.length === 1 && outside(touch) ? touch : null;
+    }, { capture: true, passive: true });
+    document.addEventListener("touchcancel", () => { touchStart = null; }, true);
+    document.addEventListener("touchend", event => {
+      const start = touchStart;
+      touchStart = null;
+      const end = event.changedTouches[0];
+      if (!dialog.open || !start || end.identifier !== start.identifier || !outside(end)) return;
+      if (Math.hypot(end.clientX - start.clientX, end.clientY - start.clientY) > 12) return;
+      event.preventDefault();
+      dialog.close();
+    }, { capture: true, passive: false });
+    let pressedOutside = false;
+    document.addEventListener("pointerdown", event => {
+      pressedOutside = dialog.open && event.isPrimary && event.button === 0 && outside(event);
+    }, true);
+    document.addEventListener("click", event => {
+      if (dialog.open && pressedOutside && outside(event)) dialog.close();
+      pressedOutside = false;
+    }, true);
   }
-  dialog.addEventListener("pointerdown", event => {
-    pressedOnBackdrop = event.isPrimary && event.button === 0 && isOnBackdrop(event);
-  });
-  dialog.addEventListener("pointercancel", () => { pressedOnBackdrop = false; });
-  dialog.addEventListener("click", event => {
-    if (pressedOnBackdrop && isOnBackdrop(event)) dialog.close();
-    pressedOnBackdrop = false;
-  });
   dialog.addEventListener("close", () => document.querySelector("#letter-open").focus());
   if (location.hash === "#inscription-confirmee") {
     history.replaceState(history.state, "", location.pathname + location.search + "#newsletter");
