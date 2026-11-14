@@ -1087,6 +1087,22 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline-offset: 5px;
 }
 
+@media (any-pointer: coarse) {
+  html { -webkit-tap-highlight-color: transparent; }
+}
+
+body :is(input[type="text"], input[type="email"], input[type="search"], input[type="tel"], textarea):focus {
+  outline: none;
+  box-shadow: inset 0 -2px #a7b69f;
+}
+
+@media (forced-colors: active) {
+  body :is(input[type="text"], input[type="email"], input[type="search"], input[type="tel"], textarea):focus {
+    outline: 1px solid Highlight;
+    outline-offset: -1px;
+  }
+}
+
 .skip-link {
   position: fixed;
   top: 8px;
@@ -2975,7 +2991,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .letter-intro { margin: 0 0 2.5rem; max-width: 52ch; line-height: 1.65; }
 #letter-dialog .letter-names { display: grid; gap: clamp(24px, 3vw, 36px); }
 .letter-field > span, .salutations legend { font-weight: 600; text-transform: uppercase; letter-spacing: .035em; }
-#letter-dialog .letter-field input:focus { outline: none; border-bottom-color: currentColor; box-shadow: inset 0 -1px currentColor; }
+
 #letter-dialog .salutations input { appearance: none; border: 1px solid currentColor; border-radius: 50%; background: transparent; color: #ede6de; cursor: pointer; }
 #letter-dialog .salutations input:checked { background: currentColor; }
 #letter-dialog .salutations input:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
