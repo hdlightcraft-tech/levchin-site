@@ -463,7 +463,7 @@ h2 {
 }
 
 .contact-panel h2,
-.newsletter-panel h2 {
+.newsletter-panel > h2 {
   max-width: 11.5ch;
   font-size: clamp(2.15rem, 3.3vw, 3.45rem);
   line-height: 1.04;
@@ -514,7 +514,7 @@ h2 {
   display: none !important;
 }
 
-.newsletter-panel h2 {
+.newsletter-panel > h2 {
   max-width: none;
   white-space: nowrap;
 }
@@ -2343,14 +2343,14 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
   }
 
   .contact-panel h2,
-  .newsletter-panel h2 {
+  .newsletter-panel > h2 {
     max-width: 11ch;
     font-size: clamp(1.65rem, 8.2vw, 2.7rem);
     line-height: 1.02;
     letter-spacing: 0.005em;
   }
 
-  .newsletter-panel h2 {
+  .newsletter-panel > h2 {
     max-width: none;
     white-space: nowrap;
   }
@@ -2673,11 +2673,11 @@ body :is(a, button, input, textarea, select, [tabindex]):focus-visible {
   }
 
   .contact-panel h2,
-  .newsletter-panel h2 {
+  .newsletter-panel > h2 {
     font-size: clamp(1.42rem, 7.2vw, 2.15rem);
   }
 
-  .newsletter-panel h2 {
+  .newsletter-panel > h2 {
     font-size: clamp(1.28rem, 6.6vw, 1.92rem);
     white-space: nowrap;
   }
@@ -2999,10 +2999,10 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   overflow: auto;
   align-content: safe center;
   padding: inherit;
-  text-align: start;
+  text-align: center;
 }
-#letter-receipt .section-kicker { margin: 0; line-height: 1.4; color: #a7b69f; }
-#letter-receipt .section-copy { margin: 1em 0 0; text-wrap: pretty; }
+#letter-receipt .section-kicker { max-width: 100%; white-space: normal; overflow-wrap: anywhere; margin: 0; line-height: 1.4; color: #a7b69f; }
+#letter-receipt .section-copy { margin: 1em auto 0; text-wrap: balance; overflow-wrap: anywhere; }
 /* These headings receive focus to announce each step of the dialog. */
 #letter-dialog :is(#letter-title, #receipt-title):focus { outline: none; }
 #letter-dialog .letter-field input { font-size: 14px; }
