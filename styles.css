@@ -3003,6 +3003,7 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 }
 #letter-receipt .section-kicker { max-width: 100%; white-space: normal; overflow-wrap: anywhere; margin: 0; line-height: 1.4; color: #a7b69f; }
 #letter-receipt .section-copy { margin: 1em auto 0; text-wrap: balance; overflow-wrap: anywhere; }
+#letter-receipt .section-copy + .section-copy { margin-top: clamp(28px, 4vw, 40px); }
 /* These headings receive focus to announce each step of the dialog. */
 #letter-dialog :is(#letter-title, #receipt-title):focus { outline: none; }
 #letter-dialog .letter-field input { font-size: 14px; }
