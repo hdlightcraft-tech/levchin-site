@@ -3037,3 +3037,10 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .newsletter-details[open] .letter-names { margin-top: 1.5rem; }
 @media (min-width: 601px) { .newsletter-details[open] summary { display: none; } }
 @media (max-width: 600px) { .newsletter-details[open] summary { margin-bottom: .75rem; } }
+
+/* Keep keyboard focus visible when switching from touch or mouse to keys. */
+@media (forced-colors: none) {
+  html.pointer-navigation :is(a, button, summary, select, input, textarea, [tabindex], [role="button"]):focus {
+    outline: none !important;
+  }
+}

@@ -1,3 +1,10 @@
+document.addEventListener("pointerdown", () => {
+  document.documentElement.classList.add("pointer-navigation");
+}, true);
+document.addEventListener("keydown", () => {
+  document.documentElement.classList.remove("pointer-navigation");
+}, true);
+
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mainContent = document.querySelector("main");
 if (mainContent) {
