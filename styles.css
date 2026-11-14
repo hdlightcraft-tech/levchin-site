@@ -313,32 +313,29 @@ h1 span {
   justify-content: center;
   align-self: center;
   flex: 0 0 auto;
-  width: 1.92rem;
-  height: 0.34rem;
-  min-width: 1.92rem;
   color: #fff8ef;
   line-height: 1;
   transform-origin: center;
   transition: transform 240ms ease, color 240ms ease, opacity 240ms ease;
 }
 
-.button-arrow svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  fill: currentColor;
+.button-arrow,
+.language-custom-button i,
+.form-select-button i,
+.select-wrap::after,
+.newsletter-details summary::before {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: url("assets/chevron.svg") center / contain no-repeat;
+  mask: url("assets/chevron.svg") center / contain no-repeat;
 }
 
 .button-arrow-left {
   transform: rotate(180deg);
 }
 
-.discover-link .button-arrow {
-  width: 2.16rem;
-  height: 0.38rem;
-  min-width: 2.16rem;
-}
 
 .discover-link:hover .discover-line,
 .discover-link:focus-visible .discover-line {
@@ -1157,12 +1154,8 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 
 .language-custom-button i {
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-left: 5px;
-  border-right: 1px solid rgba(239, 230, 221, 0.8);
-  border-bottom: 1px solid rgba(239, 230, 221, 0.8);
-  transform: translateY(-3px) rotate(45deg);
+  margin-inline-start: 5px;
+  transform: rotate(90deg);
   transform-origin: center;
 }
 
@@ -1371,9 +1364,6 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 1.92rem;
-  height: 0.34rem;
-  min-width: 1.92rem;
   line-height: 1;
 }
 
@@ -1598,7 +1588,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 }
 
 .select-wrap::after {
-  content: "⌄";
+  content: ""; transform: rotate(90deg);
   position: absolute;
   right: 0;
   bottom: 14px;
@@ -1672,18 +1662,14 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 
 .form-select-button i {
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-left: 5px;
-  border-right: 1px solid rgba(239, 230, 221, 0.8);
-  border-bottom: 1px solid rgba(239, 230, 221, 0.8);
-  transform: translateY(-3px) rotate(45deg);
+  margin-inline-start: 5px;
+  transform: rotate(90deg);
   transform-origin: center;
   transition: transform 180ms ease;
 }
 
 .form-select-custom.is-open .form-select-button i {
-  transform: translateY(0) rotate(-135deg);
+  transform: rotate(-90deg);
 }
 
 .form-select-list {
@@ -2308,20 +2294,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
     font-size: 0.78rem;
   }
 
-  .button-arrow,
-  .learn-more-link .discover-arrow,
-  .legal-back-link .button-arrow,
-  .form-submit .button-arrow {
-    width: 1.68rem;
-    height: 0.3rem;
-    min-width: 1.68rem;
-  }
 
-  .discover-link .button-arrow {
-    width: 1.86rem;
-    height: 0.33rem;
-    min-width: 1.86rem;
-  }
 
   .discover-line {
     height: 48px;
@@ -2669,20 +2642,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
     font-size: 0.72rem;
   }
 
-  .button-arrow,
-  .learn-more-link .discover-arrow,
-  .legal-back-link .button-arrow,
-  .form-submit .button-arrow {
-    width: 1.56rem;
-    height: 0.28rem;
-    min-width: 1.56rem;
-  }
 
-  .discover-link .button-arrow {
-    width: 1.72rem;
-    height: 0.31rem;
-    min-width: 1.72rem;
-  }
 
   .newsletter-form input {
     max-width: 58%;
@@ -3044,3 +3004,11 @@ body:has(#letter-dialog[open]) {overflow:hidden}
     outline: none !important;
   }
 }
+.newsletter-details summary { list-style: none; align-items: center; gap: .5em; }
+.newsletter-details summary::-webkit-details-marker { display: none; }
+@media (max-width: 600px) {
+  .newsletter-details summary { display: flex; }
+  .newsletter-details summary::before { content: ""; transform: rotate(90deg); }
+  .newsletter-details[open] summary::before { transform: rotate(-90deg); }
+}
+.language-custom-button[aria-expanded="true"] i { transform: rotate(-90deg); }
