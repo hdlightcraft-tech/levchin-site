@@ -840,6 +840,21 @@ if (newsletterForm) {
   }
   document.querySelector("#letter-open").addEventListener("click", () => { showReceipt(false); dialog.showModal(); document.querySelector("#letter-title").focus(); });
   document.querySelector("#letter-close").addEventListener("click", () => dialog.close());
+  let pressedOnBackdrop = false;
+  function isOnBackdrop(event) {
+    if (event.target !== dialog) return false;
+    const bounds = dialog.getBoundingClientRect();
+    return event.clientX < bounds.left || event.clientX >= bounds.right ||
+      event.clientY < bounds.top || event.clientY >= bounds.bottom;
+  }
+  dialog.addEventListener("pointerdown", event => {
+    pressedOnBackdrop = event.isPrimary && event.button === 0 && isOnBackdrop(event);
+  });
+  dialog.addEventListener("pointercancel", () => { pressedOnBackdrop = false; });
+  dialog.addEventListener("click", event => {
+    if (pressedOnBackdrop && isOnBackdrop(event)) dialog.close();
+    pressedOnBackdrop = false;
+  });
   dialog.addEventListener("close", () => document.querySelector("#letter-open").focus());
   if (location.hash === "#inscription-confirmee") {
     history.replaceState(history.state, "", location.pathname + location.search + "#newsletter");
