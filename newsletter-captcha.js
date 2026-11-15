@@ -60,8 +60,6 @@
     script.async = true; script.defer = true; script.onerror = () => { loading = false; restore(); message(); script.remove(); };
     document.head.append(script);
   };
-  form.addEventListener('focusin', load, {once:true});
-  document.querySelector('#newsletter-consent').addEventListener('change', load, {once:true});
   form.addEventListener('submit', event => {
     if (!response.value) { event.preventDefault(); event.stopImmediatePropagation(); if (requested) return; requested = true; load(); execute(); }
   }, true);

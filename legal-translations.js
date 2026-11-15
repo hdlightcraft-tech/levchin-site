@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
 const legalCopy = {
   fr: {
     language: "Langue :", back: "Retour à l’accueil", legalTitle: "Mentions légales", privacyTitle: "Politique de confidentialité",
@@ -209,7 +209,7 @@ const privacyCopy = {
     "## Newsletter",
     "L’inscription à la newsletter permet de recevoir des informations relatives à l’évolution de LEVCHIN, à ses créations, à ses lancements, à ses précommandes et à ses communications importantes.",
     "L’inscription à la newsletter est volontaire et repose sur le consentement de l’utilisateur.",
-    "Avec votre consentement, Brevo enregistre votre adresse et votre langue, ainsi que les nom, prénom et civilité que vous choisissez de renseigner. Google reCAPTCHA protège le formulaire contre les inscriptions automatisées. Après inscription, un seul email vous confirme votre abonnement.",
+    "Avec votre consentement, Brevo enregistre votre adresse et votre langue, ainsi que les nom, prénom et civilité que vous choisissez de renseigner. Lorsque vous envoyez le formulaire, votre navigateur contacte Google reCAPTCHA pour détecter les inscriptions automatisées. Après inscription, un seul email vous confirme votre abonnement.",
     "Le formulaire exige un consentement explicite. La conservation de sa preuve et de la confirmation doit être vérifiée dans Brevo avant toute campagne.",
     "Vous pouvez retirer votre consentement à tout moment en vous désinscrivant via le lien présent dans les e-mails envoyés ou en écrivant à : contact@levchin.fr",
     "## Cookies et données techniques",
@@ -281,7 +281,7 @@ const privacyCopy = {
     "## Newsletter",
     "Newsletter subscription allows you to receive information about LEVCHIN, its creations, launches, preorders and important communications.",
     "Subscription is voluntary and based on the user’s consent.",
-    "With your consent, Brevo records your email address and language, and any name or title you choose to provide. Google reCAPTCHA protects the form against automated submissions. After subscribing, you receive one email confirming your subscription.",
+    "With your consent, Brevo records your email address and language, and any name or title you choose to provide. When you submit the form, your browser contacts Google reCAPTCHA to detect automated submissions. After subscribing, you receive one email confirming your subscription.",
     "The form requires explicit consent. Storage of consent and confirmation records must be verified in Brevo before any campaign.",
     "You may withdraw your consent at any time by unsubscribing through the link in emails or by writing to: contact@levchin.fr",
     "## Cookies and technical data",
