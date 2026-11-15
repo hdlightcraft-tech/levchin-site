@@ -3,7 +3,7 @@
   --maison-edge: clamp(24px, 5.5vw, 92px);
   --maison-copy-size: 14px;
   --maison-title-size: 32px;
-  background: #050505;
+  background: var(--bg);
 }
 
 .maison-document::before { content: none; }

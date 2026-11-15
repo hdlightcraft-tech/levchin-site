@@ -1,5 +1,5 @@
 :root {
-  --bg: #050505;
+  --bg: #030303;
   --panel: rgba(10, 9, 9, 0.68);
   --text: #efe6dd;
   --muted: rgba(239, 230, 221, 0.78);
@@ -155,7 +155,7 @@ body::before {
   padding: 132px var(--edge-space) 110px;
   background:
     url("assets/background.webp") center top / cover no-repeat,
-    #050505;
+    var(--bg);
 }
 
 .hero::before,
@@ -171,10 +171,10 @@ body::before {
   background:
     linear-gradient(
       180deg,
-      rgba(5, 5, 5, 0) 0%,
-      rgba(5, 5, 5, 0.12) 48%,
-      rgba(5, 5, 5, 0.58) 78%,
-      #050505 100%
+      rgba(3, 3, 3, 0.07) 0%,
+      rgba(3, 3, 3, 0.18) 48%,
+      rgba(3, 3, 3, 0.61) 78%,
+      var(--bg) 100%
     );
 }
 
@@ -359,7 +359,7 @@ h1 span {
 .contact-newsletter-section {
   position: relative;
   padding: 92px var(--edge-space) 124px;
-  background: #050505;
+  background: var(--bg);
 }
 
 .info-section::before,
@@ -650,13 +650,13 @@ h2 {
 .newsletter-form input:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--text);
   caret-color: var(--text);
-  box-shadow: 0 0 0 1000px #050505 inset;
+  box-shadow: 0 0 0 1000px var(--bg) inset;
   transition: background-color 9999s ease-in-out 0s;
 }
 
 .newsletter-form input:-moz-autofill {
   color: var(--text);
-  background-color: #050505 !important;
+  background-color: var(--bg) !important;
 }
 
 .newsletter-form button {
@@ -761,7 +761,7 @@ h2 {
 
 .site-footer {
   color: var(--text);
-  background: #050505;
+  background: var(--bg);
   border-top: 1px solid rgba(255, 243, 227, 0.08);
 }
 
@@ -1209,7 +1209,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   border: 0;
   border-bottom: 1px solid rgba(239, 230, 221, 0.44);
   border-radius: 0;
-  background: #050505;
+  background: var(--bg);
   cursor: pointer;
   font: inherit;
   outline: 0;
@@ -1221,7 +1221,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 
 .language-select option {
   color: var(--text);
-  background: #050505;
+  background: var(--bg);
 }
 
 .language-select option:checked,
@@ -1236,7 +1236,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   padding: 42px var(--edge-space) 128px;
   background:
     radial-gradient(circle at 50% 0%, rgba(255, 243, 227, 0.06), transparent 34%),
-    #050505;
+    var(--bg);
 }
 
 .legal-header {
@@ -1884,7 +1884,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   flex-direction: column;
   min-height: auto;
   padding: clamp(22px, 3vw, 38px) var(--edge-space) clamp(92px, 9vw, 130px);
-  background: #050505 !important;
+  background: var(--bg) !important;
 }
 
 .legal-page:not(.story-page)::before,
@@ -1903,7 +1903,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   min-height: 0;
   margin: 0 0 clamp(52px, 7vw, 92px);
   padding: 0;
-  background: #050505;
+  background: var(--bg);
 }
 
 .legal-page:not(.story-page) .legal-header::after {
@@ -1955,7 +1955,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   min-height: 0;
   margin: 0 0 clamp(52px, 7vw, 92px);
   padding: 0;
-  background: #050505;
+  background: var(--bg);
 }
 
 .story-page .legal-header::after {
@@ -2088,7 +2088,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   margin: 0 auto;
   padding: clamp(26px, 3.6vw, 48px);
   border: 0;
-  background: #050505 !important;
+  background: var(--bg) !important;
   box-shadow: none;
 }
 
@@ -2118,7 +2118,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
   background:
     radial-gradient(circle at 50% 18%, rgba(255, 243, 227, 0.06), transparent 28%),
     linear-gradient(180deg, rgba(255, 243, 227, 0.018), transparent 44%),
-    #050505;
+    var(--bg);
 }
 
 .error-header {
@@ -2729,11 +2729,11 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 }
 
 .legal-page:not(.story-page) {
-  background: #050505 !important;
+  background: var(--bg) !important;
 }
 
 .legal-page:not(.story-page) .legal-header {
-  background: #050505;
+  background: var(--bg);
 }
 
 .legal-page:not(.story-page) .legal-content h1,
@@ -2857,7 +2857,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
     z-index: 0;
     background:
       url("assets/background.webp") center top / cover no-repeat,
-      #050505;
+      var(--bg);
   }
 
   .home-page .page-frame::after {
@@ -2865,10 +2865,10 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
     background:
       linear-gradient(
         180deg,
-        rgba(5, 5, 5, 0) 0%,
-        rgba(5, 5, 5, 0.12) 48%,
-        rgba(5, 5, 5, 0.58) 78%,
-        #050505 100%
+        rgba(3, 3, 3, 0.07) 0%,
+        rgba(3, 3, 3, 0.18) 48%,
+        rgba(3, 3, 3, 0.61) 78%,
+        var(--bg) 100%
       );
   }
 
@@ -2913,10 +2913,10 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
     background:
       linear-gradient(
         180deg,
-        rgba(5, 5, 5, 0) 0%,
-        rgba(5, 5, 5, 0.08) 52%,
-        rgba(5, 5, 5, 0.42) 80%,
-        #050505 100%
+        rgba(3, 3, 3, 0.07) 0%,
+        rgba(3, 3, 3, 0.14) 52%,
+        rgba(3, 3, 3, 0.46) 80%,
+        var(--bg) 100%
       );
   }
 }
