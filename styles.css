@@ -3140,3 +3140,6 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   }
 }
 #letter-dialog.captcha-active { position: fixed; inset: 0; margin: auto; z-index: 1000; box-shadow: 0 0 0 100vmax rgb(0 0 0 / .74); }
+
+#newsletter-captcha-widget .grecaptcha-badge { visibility: hidden; }
+#newsletter-captcha .captcha-attribution { margin: 0; }
