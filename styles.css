@@ -3102,3 +3102,22 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 @media (any-pointer: coarse) {
   .nav-link, .language-custom-button, .legal-back-link { min-height: 44px; }
 }
+@media (max-width: 760px), (any-pointer: coarse) {
+  .site-footer .language-custom-button {
+    position: relative;
+    border-bottom: 0;
+    padding-block: 0;
+    line-height: 1.25;
+    min-height: 44px;
+  }
+  .site-footer .language-custom-button::after {
+    content: "";
+    display: block;
+    position: absolute;
+    inset-inline: 0;
+    top: calc(50% + .625em + 2px);
+    height: 1px;
+    background: rgba(239, 230, 221, .44);
+    pointer-events: none;
+  }
+}
