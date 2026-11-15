@@ -1227,3 +1227,27 @@ if (contactForm) {
 
   updateMessageCount();
 }
+
+(() => {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  if (!toggle) return;
+  const nav = document.getElementById(toggle.getAttribute("aria-controls"));
+  const close = () => toggle.setAttribute("aria-expanded", "false");
+  toggle.hidden = false;
+  toggle.addEventListener("click", () => {
+    toggle.setAttribute("aria-expanded", String(toggle.getAttribute("aria-expanded") !== "true"));
+  });
+  document.addEventListener("click", event => {
+    if (!toggle.contains(event.target)) close();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+      close();
+      toggle.focus();
+    }
+  });
+  document.addEventListener("focusin", event => {
+    if (event.target !== toggle && !nav.contains(event.target)) close();
+  });
+  window.matchMedia("(max-width: 640px)").addEventListener("change", close);
+})();
