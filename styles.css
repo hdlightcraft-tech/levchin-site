@@ -2528,7 +2528,7 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 
   .footer-links {
     flex-direction: column;
-    gap: 4px;
+    gap: 0;
   }
 
   .home-page .footer-logo {
