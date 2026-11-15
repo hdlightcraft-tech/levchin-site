@@ -2913,7 +2913,29 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
 .newsletter-captcha p:empty { display: none; }
 
 /* Newsletter invitation and its user-opened dialog */
-#letter-dialog { box-sizing:border-box; width:min(36rem,calc(100% - 2rem)); max-height:90dvh; margin:auto; padding:clamp(24px,4vw,48px); background:#100f0e; color:var(--text); border:1px solid #534e48; overflow:auto; overscroll-behavior:contain; color-scheme:dark; }
+#letter-dialog {
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(46rem, calc(100% - 24px));
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom)));
+  padding: 32px clamp(18px, 5vw, 28px) 24px;
+  background: #100f0e;
+  color: var(--text);
+  border: 1px solid #534e48;
+  overflow: auto;
+  overscroll-behavior: contain;
+  color-scheme: dark;
+}
+@media (min-width: 601px) {
+  #letter-dialog {
+    width: min(46rem, calc(100% - 3rem));
+    max-height: 90dvh;
+    padding: clamp(32px, 5vw, 72px);
+  }
+}
 #letter-dialog::backdrop {background:rgb(0 0 0 / .74)}
 body:has(#letter-dialog[open]) {overflow:hidden}
 .letter-head,.letter-names {display:flex;align-items:center;gap:20px}
@@ -2931,9 +2953,8 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .letter-form button[type=submit] {background:#efe6dd;color:#151412;border:0;padding:15px;font:600 .83rem Montserrat,Arial,sans-serif;cursor:pointer}
 .letter-confirmed {display:flex;align-items:center;gap:.5em;color:#a7b69f}
 .letter-confirmed img {width:.75em;height:.75em}
-@media(max-width:600px){#letter-dialog{margin:auto 0 0;width:100%;max-width:none;max-height:93dvh;padding:20px 24px max(24px,env(safe-area-inset-bottom))}.letter-names{display:grid;gap:14px}}
+@media(max-width:600px){.letter-names{display:grid;gap:14px}}
 @media(prefers-reduced-motion:no-preference){#letter-dialog[open]{animation:letter-enter .2s ease-out}@keyframes letter-enter{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}}
-#letter-dialog { width: min(46rem, calc(100% - 3rem)); padding: clamp(32px, 5vw, 72px); position: fixed; }
 .letter-head { position: absolute; top: 10px; right: 12px; }
 #letter-dialog > #letter-title { margin: 0 28px 40px 0; font-size: clamp(24px, 3vw, 32px); }
 .letter-form { gap: clamp(24px, 3vw, 36px); }
@@ -2943,7 +2964,6 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .salutations input { width: 16px; height: 16px; margin: 0; accent-color: #abb7a2; }
 .letter-field input { padding-block: 12px; }
 @media (max-width: 600px) {
-  #letter-dialog { width: 100%; padding: 42px 24px 28px; }
   .letter-names { gap: 24px; }
 }
 #letter-open, .letter-form button[type=submit] { text-transform: uppercase; }
@@ -3071,4 +3091,14 @@ body:has(#letter-dialog[open]) {overflow:hidden}
 .contact-page .form-submit span { font: inherit; letter-spacing: inherit; color: inherit; }
 @media (any-pointer: coarse) {
   .contact-page .field-group :is(input, textarea) { font-size: 16px; }
+}
+@media (max-width: 600px) {
+  #letter-dialog > #letter-title { margin-inline-end: 44px; }
+  #letter-dialog .required-note { margin-bottom: 1rem; }
+  #letter-dialog .letter-form { gap: 20px; }
+  .newsletter-details summary { min-height: 44px; padding-block: 8px; }
+  #letter-dialog .newsletter-consent label { min-height: 44px; }
+}
+@media (any-pointer: coarse) {
+  .nav-link, .language-custom-button, .legal-back-link { min-height: 44px; }
 }
