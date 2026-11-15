@@ -3176,8 +3176,8 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   }
   .mobile-menu-toggle::before { transform: translateY(-3px); }
   .mobile-menu-toggle::after { transform: translateY(3px); }
-  .mobile-menu-toggle[aria-expanded="true"]::before { transform: rotate(45deg); }
-  .mobile-menu-toggle[aria-expanded="true"]::after { transform: rotate(-45deg); }
+  .mobile-menu-toggle[aria-expanded="true"]::before { transform: rotate(45deg) scaleX(.86); }
+  .mobile-menu-toggle[aria-expanded="true"]::after { transform: rotate(-45deg) scaleX(.86); }
   .site-header:has(.mobile-menu-toggle) .brand {
     min-width: 0;
     max-width: 40%;
