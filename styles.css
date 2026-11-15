@@ -3012,3 +3012,63 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   .newsletter-details[open] summary::before { transform: rotate(-90deg); }
 }
 .language-custom-button[aria-expanded="true"] i { transform: rotate(-90deg); }
+/* Shared typography and controls for the two public forms. */
+.contact-page .legal-content.contact-page-content { width: min(100%, 40rem); }
+.contact-page .contact-form { width: 100%; padding: 0; }
+.contact-page.contact-page .contact-page-content .contact-title,
+#letter-dialog > #letter-title {
+  font: 400 clamp(21px, 2.4vw, 27px)/1.25 var(--font-main) !important;
+  text-align: start;
+  letter-spacing: .02em;
+  white-space: normal;
+  margin: 0 0 1rem;
+}
+.contact-page .contact-intro, #letter-dialog .letter-intro {
+  width: auto;
+  margin: 0 0 .5rem;
+  text-align: start;
+  font: 400 1rem/1.65 var(--font-main);
+  color: var(--text);
+  white-space: normal;
+}
+.contact-page .contact-required-note, #letter-dialog .required-note {
+  color: #bcb4aa;
+  font: 400 .75rem/1.6 var(--font-main);
+  letter-spacing: normal;
+}
+.contact-page .contact-form-refined, .letter-form { gap: clamp(24px, 3vw, 36px); }
+.contact-page .field-group { gap: 4px; }
+.contact-page .field-group label span, .letter-field > span {
+  color: var(--text);
+  font: 600 .86rem/1.5 var(--font-main);
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+.contact-page .field-group :is(input, textarea) {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #79736b;
+  border-radius: 0;
+  padding: 12px 0;
+  font: 400 14px/1.5 var(--font-main);
+  color: var(--text);
+}
+.contact-page .field-group textarea { min-height: 8em; }
+.contact-page .field-group.is-invalid :is(input, textarea) { border-color: #d87b72; }
+.contact-page .form-submit, .letter-form button[type=submit] {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 14px 18px;
+  border: 0;
+  background: #efe6dd;
+  color: #151412;
+  font: 600 .83rem/1.4 var(--font-main);
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+.contact-page .form-submit { justify-content: center; gap: .65em; }
+.contact-page .form-submit span { font: inherit; letter-spacing: inherit; color: inherit; }
+@media (any-pointer: coarse) {
+  .contact-page .field-group :is(input, textarea) { font-size: 16px; }
+}
