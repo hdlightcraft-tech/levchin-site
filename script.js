@@ -1085,7 +1085,9 @@ if (contactForm) {
     field.setAttribute("aria-invalid", String(Boolean(message)));
     if (errorNode) {
       errorNode.id ||= `${field.id}-error`;
-      field.setAttribute("aria-describedby", errorNode.id);
+      const descriptions = new Set((field.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+      descriptions.add(errorNode.id);
+      field.setAttribute("aria-describedby", [...descriptions].join(" "));
     }
     const enhanced = enhancedSelects.find(item => item.select === field);
     if (enhanced) {

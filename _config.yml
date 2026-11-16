@@ -1,0 +1,5 @@
+# Project notes and email editor sources are not public site pages.
+exclude:
+  - AGENTS.md
+  - GUIDE-SITE.md
+  - emails
