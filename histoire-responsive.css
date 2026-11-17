@@ -42,6 +42,8 @@
 }
 .maison-article h1 {
   max-width: none;
+  width: 100%;
+  letter-spacing: 0;
   margin: 0 0 1.25em;
   font: 400 var(--maison-title-size)/1.2 "Bodoni Moda", Georgia, serif;
   text-align: center;

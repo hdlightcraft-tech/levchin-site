@@ -3204,3 +3204,26 @@ body:has(#letter-dialog[open]) {overflow:hidden}
   .mobile-menu-toggle::before,
   .mobile-menu-toggle::after { transition: transform 180ms ease; }
 }
+
+/* Interior logos share the home header's top inset. */
+:root { --header-top-space: 38px; }
+.legal-page:not(.story-page), .error-page, .confirmation-shell { padding-top: 0; }
+.legal-page:not(.story-page) .legal-header,
+.maison-document .maison-header,
+.error-header,
+.confirmation-header {
+  height: auto;
+  min-height: 0;
+  padding-top: var(--header-top-space);
+  padding-bottom: 0;
+  align-items: start;
+  border-bottom: 0;
+  box-shadow: none;
+}
+.legal-page:not(.story-page) .legal-header::after,
+.maison-document .maison-header::after,
+.error-header::after,
+.confirmation-header::after { content: none; }
+@media (max-width: 640px) {
+  :root { --header-top-space: 26px; }
+}
