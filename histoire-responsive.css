@@ -3,7 +3,8 @@
   --maison-edge: clamp(24px, 5.5vw, 92px);
   --maison-copy-size: .875rem;
   --maison-title-size: 2rem;
-  background: #000;
+  --bg: #000;
+  background: var(--bg);
 }
 
 .maison-document::before { content: none; }
@@ -71,7 +72,7 @@
 .maison-article blockquote::before { content: open-quote; }
 .maison-article blockquote::after { content: close-quote; }
 
-.maison-back-link { margin-top: 3em; }
+.maison-back-link { margin-top: calc(3em + .5rem); }
 
 @media (min-width: 1500px) {
   .maison-document { --maison-copy-size: 1rem; --maison-title-size: 2.625rem; }
