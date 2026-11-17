@@ -2531,14 +2531,13 @@ body :is(input[type="text"], input[type="email"], input[type="search"], input[ty
     gap: 0;
   }
 
-  .home-page .footer-logo {
+  .home-page .footer-logo, .maison-document .footer-logo {
     width: auto;
     height: 42px;
     max-width: 180px;
     object-fit: contain;
   }
 
-  .maison-document .footer-logo { width: min(180px, 40vw); }
   .footer-logo-link { min-height: 44px; align-items: center; }
   .footer-links a { min-height: 44px; }
   .language-select-label {

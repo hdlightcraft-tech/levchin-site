@@ -72,8 +72,6 @@
 .maison-article blockquote::after { content: close-quote; }
 
 .maison-back-link { margin-top: 3em; }
-.maison-document .site-footer, .maison-document .footer-bottom { border-top: 0; }
-.maison-document .footer-socials, .maison-document .footer-logo-wrap { border-bottom: 0; }
 
 @media (min-width: 1500px) {
   .maison-document { --maison-copy-size: 1rem; --maison-title-size: 2.625rem; }
