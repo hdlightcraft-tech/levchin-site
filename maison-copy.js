@@ -1,7 +1,7 @@
 (() => {
   const copy = {
   "fr": {
-    "title": "Aux origines d’une maison",
+    "title": "Aux origines d’une maison.",
     "paragraphs": [
       "La création a toujours occupé une place particulière dans la manière dont Gaspard Levchin appréhende le monde. Animé par une curiosité aussi spontanée qu’exigeante, il développe au fil du temps une sensibilité pour l’esthétique des choses, leurs proportions, leur composition et les possibilités qu’elles suggèrent. Qu’il s’agisse d’une architecture, d’un objet ou d’une silhouette, son admiration s’accompagne naturellement d’un élan créatif, celui d’imaginer comment ces éléments pourraient prendre une autre dimension à travers son propre regard.",
       "Son imaginaire se construit à la rencontre d’influences multiples. La nature y occupe une place essentielle, à travers ses géométries organiques, ses structures parfois irrégulières, ses phénomènes cycliques et cette faculté perpétuelle à se transformer. À ces observations s’ajoute une fascination pour les différentes expressions de la création humaine, les mouvements artistiques, les savoir-faire et les audaces esthétiques qui ont traversé les époques. Son parcours dans l’image contribue également à affiner sa perception des volumes, de la lumière et des rapports d’échelle. Un ensemble de références qu’il assimile librement, jusqu’à développer un langage esthétique personnel, où l’intuition dialogue avec une attention particulière portée au détail.",
