@@ -8,9 +8,10 @@
       "C’est dans cette continuité que prend forme LEVCHIN. Aux côtés de Julian Lafaye, dont la sensibilité graphique et le regard complémentaire participent à la construction de son identité, Gaspard entreprend de donner une véritable dimension à ses ambitions créatives. Ensemble, ils imaginent une maison nouvelle française, indépendante et pluridisciplinaire, dont chaque réalisation contribue à développer un univers cohérent, identifiable et destiné à s’enrichir au fil du temps.",
       "Cette ambition s’accompagne d’une conviction profonde quant à la manière de concevoir et de produire. LEVCHIN privilégie les **matières naturelles européennes**, leur authenticité et leurs propriétés intrinsèques, avec la volonté de confier sa fabrication à des ateliers français selon les savoir-faire recherchés. **L’exclusion des polymères synthétiques** s’inscrit dans cette démarche, tout comme la recherche de matériaux pérennes, capables de conserver leurs qualités esthétiques et fonctionnelles au-delà des tendances. Chaque choix de conception engage ainsi une réflexion sur la provenance, la transformation et la durée de vie des créations.",
       "La maison souhaite également repenser son rapport à la production. En privilégiant **la précommande**, elle entend ajuster les quantités aux besoins réels, limiter les excédents et consacrer davantage d’attention à la réalisation de chaque pièce. Cette approche traduit aussi une volonté de développer une relation plus directe avec celles et ceux qui feront vivre LEVCHIN, en associant l’exigence d’une maison de création à une démarche ouverte et accessible dans son expression.",
-      "Son territoire créatif se déploie progressivement autour de trois chapitres, **L’espace, Le geste et Le corps**, qui traduisent différentes manières d’interagir avec notre environnement. Des objets qui accompagnent les lieux que nous habitons aux accessoires qui prolongent nos gestes, jusqu’aux vêtements qui épousent ou redessinent la silhouette, les disciplines se répondent au sein d’une même réflexion sur les formes, les usages et la matière. Une liberté de conception qui permet à la maison d’explorer différentes échelles sans enfermer son identité dans une seule catégorie.",
+      "Son territoire créatif se déploie progressivement autour de trois chapitres, **L’espace, Le geste et Le corps**, qui traduisent différentes manières d’interagir avec notre environnement. Des objets qui accompagnent les lieux que nous habitons aux accessoires qui prolongent nos gestes, jusqu’aux vêtements qui épousent ou redessinent la silhouette, les disciplines se répondent au sein d’une même réflexion sur les formes, les usages et la matière.",
       "LEVCHIN se construit ainsi à la croisée d’une sensibilité personnelle et d’une ambition partagée. Une maison où l’exploration esthétique s’accompagne d’engagements concrets, où chaque nouvelle création enrichit la précédente et où l’avenir demeure un espace d’expérimentation. **Son histoire commence avec une vision et a vocation à se poursuivre au contact de celles et ceux qui s’y reconnaîtront.**"
-    ]
+    ],
+    "quote": "Une liberté de conception qui permet à la maison d’explorer différentes échelles sans enfermer son identité dans une seule catégorie."
   },
   "en": {
     "title": "The origins of a house",
@@ -20,9 +21,10 @@
       "LEVCHIN takes shape as a continuation of this journey. Alongside Julian Lafaye, whose graphic sensibility and complementary perspective help build its identity, Gaspard sets out to give his creative ambitions a tangible dimension. Together, they imagine a new French house, independent and multidisciplinary, where every creation contributes to a coherent, recognizable universe designed to grow richer over time.",
       "This ambition is accompanied by a deep conviction about how to design and produce. LEVCHIN favours **European natural materials**, their authenticity and intrinsic properties, with the intention of entrusting production to French workshops according to the expertise required. **The exclusion of synthetic polymers** is part of this approach, as is the search for lasting materials able to retain their aesthetic and functional qualities beyond trends. Every design choice therefore involves reflection on the origins, transformation and lifespan of the creations.",
       "The house also wishes to rethink its relationship with production. By favouring **preorders**, it aims to match quantities to actual needs, limit surplus and devote more attention to the making of each piece. This approach also expresses a desire to build a more direct relationship with those who will bring LEVCHIN to life, combining the exacting standards of a creative house with an open and accessible form of expression.",
-      "Its creative territory gradually unfolds around three chapters, **Space, Gesture and Body**, expressing different ways of interacting with our surroundings. From objects that accompany the places we inhabit to accessories that extend our gestures and garments that follow or reshape the silhouette, the disciplines respond to one another within a shared exploration of forms, uses and material. This freedom of design allows the house to explore different scales without confining its identity to a single category.",
+      "Its creative territory gradually unfolds around three chapters, **Space, Gesture and Body**, expressing different ways of interacting with our surroundings. From objects that accompany the places we inhabit to accessories that extend our gestures and garments that follow or reshape the silhouette, the disciplines respond to one another within a shared exploration of forms, uses and material.",
       "LEVCHIN thus develops at the intersection of a personal sensibility and a shared ambition. A house where aesthetic exploration is accompanied by concrete commitments, where every new creation enriches the previous one and where the future remains a space for experimentation. **Its story begins with a vision and is intended to continue through encounters with those who recognize themselves in it.**"
-    ]
+    ],
+    "quote": "This freedom of design allows the house to explore different scales without confining its identity to a single category."
   },
   "es": {
     "title": "En los orígenes de una casa",
@@ -32,9 +34,10 @@
       "Es en esta continuidad donde toma forma LEVCHIN. Junto a Julian Lafaye, cuya sensibilidad gráfica y mirada complementaria participan en la construcción de su identidad, Gaspard emprende la tarea de dar una dimensión real a sus ambiciones creativas. Juntos imaginan una nueva casa francesa, independiente y multidisciplinar, en la que cada realización contribuye a desarrollar un universo coherente, reconocible y destinado a enriquecerse con el tiempo.",
       "Esta ambición va acompañada de una convicción profunda sobre la manera de diseñar y producir. LEVCHIN privilegia las **materias naturales europeas**, su autenticidad y sus propiedades intrínsecas, con la voluntad de confiar su fabricación a talleres franceses según los saberes requeridos. **La exclusión de los polímeros sintéticos** forma parte de este enfoque, al igual que la búsqueda de materiales duraderos, capaces de conservar sus cualidades estéticas y funcionales más allá de las tendencias. Cada elección de diseño implica así una reflexión sobre la procedencia, la transformación y la vida útil de las creaciones.",
       "La casa también desea replantear su relación con la producción. Al privilegiar **la preventa**, pretende ajustar las cantidades a las necesidades reales, limitar los excedentes y dedicar más atención a la realización de cada pieza. Este enfoque expresa además la voluntad de desarrollar una relación más directa con quienes darán vida a LEVCHIN, uniendo la exigencia de una casa de creación a una expresión abierta y accesible.",
-      "Su territorio creativo se despliega progresivamente en torno a tres capítulos, **El espacio, El gesto y El cuerpo**, que traducen distintas formas de interactuar con nuestro entorno. Desde los objetos que acompañan los lugares que habitamos hasta los accesorios que prolongan nuestros gestos y las prendas que siguen o redibujan la silueta, las disciplinas dialogan dentro de una misma reflexión sobre las formas, los usos y la materia. Una libertad de diseño que permite a la casa explorar distintas escalas sin encerrar su identidad en una sola categoría.",
+      "Su territorio creativo se despliega progresivamente en torno a tres capítulos, **El espacio, El gesto y El cuerpo**, que traducen distintas formas de interactuar con nuestro entorno. Desde los objetos que acompañan los lugares que habitamos hasta los accesorios que prolongan nuestros gestos y las prendas que siguen o redibujan la silueta, las disciplinas dialogan dentro de una misma reflexión sobre las formas, los usos y la materia.",
       "LEVCHIN se construye así en el cruce de una sensibilidad personal y una ambición compartida. Una casa donde la exploración estética se acompaña de compromisos concretos, donde cada nueva creación enriquece la anterior y donde el futuro sigue siendo un espacio de experimentación. **Su historia comienza con una visión y está llamada a continuar en contacto con quienes se reconozcan en ella.**"
-    ]
+    ],
+    "quote": "Una libertad de diseño que permite a la casa explorar distintas escalas sin encerrar su identidad en una sola categoría."
   },
   "de": {
     "title": "Am Ursprung eines Hauses",
@@ -44,9 +47,10 @@
       "Aus dieser Kontinuität heraus nimmt LEVCHIN Gestalt an. Gemeinsam mit Julian Lafaye, dessen grafisches Gespür und ergänzender Blick zur Entstehung der Identität beitragen, beginnt Gaspard, seinen kreativen Ambitionen eine konkrete Dimension zu geben. Zusammen entwerfen sie die Idee eines neuen französischen Hauses, unabhängig und multidisziplinär, dessen Arbeiten ein stimmiges, wiedererkennbares Universum bilden, das mit der Zeit wachsen soll.",
       "Diese Ambition wird von einer tiefen Überzeugung getragen, wie gestaltet und produziert werden sollte. LEVCHIN bevorzugt **europäische Naturmaterialien**, ihre Authentizität und ihre ureigenen Eigenschaften, mit dem Ziel, die Fertigung je nach benötigtem Können französischen Werkstätten anzuvertrauen. **Der Ausschluss synthetischer Polymere** ist Teil dieses Ansatzes, ebenso wie die Suche nach beständigen Materialien, die ihre ästhetischen und funktionalen Qualitäten jenseits von Trends bewahren. Jede gestalterische Entscheidung schließt daher Überlegungen zur Herkunft, Verarbeitung und Lebensdauer der Kreationen ein.",
       "Das Haus möchte auch sein Verhältnis zur Produktion neu denken. Indem es **Vorbestellungen** bevorzugt, will es die Mengen am tatsächlichen Bedarf ausrichten, Überschüsse begrenzen und der Fertigung jedes Stücks mehr Aufmerksamkeit widmen. Dieser Ansatz drückt zugleich den Wunsch nach einer direkteren Beziehung zu den Menschen aus, die LEVCHIN mit Leben erfüllen werden: mit dem Anspruch eines kreativen Hauses und einer offenen, zugänglichen Ausdrucksweise.",
-      "Sein kreatives Feld entfaltet sich schrittweise in drei Kapiteln: **Raum, Geste und Körper**. Sie stehen für unterschiedliche Arten, mit unserer Umgebung in Beziehung zu treten. Von Objekten, die unsere Lebensräume begleiten, über Accessoires, die unsere Gesten erweitern, bis hin zu Kleidung, die der Silhouette folgt oder sie neu zeichnet, treten die Disziplinen in einen gemeinsamen Dialog über Formen, Gebrauch und Material. Diese gestalterische Freiheit erlaubt es dem Haus, unterschiedliche Maßstäbe zu erkunden, ohne seine Identität auf eine einzige Kategorie zu beschränken.",
+      "Sein kreatives Feld entfaltet sich schrittweise in drei Kapiteln: **Raum, Geste und Körper**. Sie stehen für unterschiedliche Arten, mit unserer Umgebung in Beziehung zu treten. Von Objekten, die unsere Lebensräume begleiten, über Accessoires, die unsere Gesten erweitern, bis hin zu Kleidung, die der Silhouette folgt oder sie neu zeichnet, treten die Disziplinen in einen gemeinsamen Dialog über Formen, Gebrauch und Material.",
       "So entsteht LEVCHIN an der Schnittstelle einer persönlichen Sensibilität und einer gemeinsamen Ambition. Ein Haus, in dem ästhetische Erkundung mit konkreten Verpflichtungen einhergeht, jede neue Kreation die vorherige bereichert und die Zukunft ein Raum für Experimente bleibt. **Seine Geschichte beginnt mit einer Vision und soll sich im Austausch mit jenen fortsetzen, die sich darin wiedererkennen.**"
-    ]
+    ],
+    "quote": "Diese gestalterische Freiheit erlaubt es dem Haus, unterschiedliche Maßstäbe zu erkunden, ohne seine Identität auf eine einzige Kategorie zu beschränken."
   },
   "it": {
     "title": "Alle origini di una maison",
@@ -56,9 +60,10 @@
       "È in questa continuità che prende forma LEVCHIN. Accanto a Julian Lafaye, la cui sensibilità grafica e il cui sguardo complementare partecipano alla costruzione della sua identità, Gaspard intraprende il percorso per dare una dimensione concreta alle proprie ambizioni creative. Insieme immaginano una nuova maison francese, indipendente e multidisciplinare, in cui ogni realizzazione contribuisce a sviluppare un universo coerente, riconoscibile e destinato ad arricchirsi nel tempo.",
       "Questa ambizione si accompagna a una profonda convinzione sul modo di progettare e produrre. LEVCHIN privilegia le **materie naturali europee**, la loro autenticità e le loro proprietà intrinseche, con la volontà di affidare la produzione ad atelier francesi secondo le competenze ricercate. **L’esclusione dei polimeri sintetici** rientra in questo approccio, così come la ricerca di materiali durevoli, capaci di conservare le qualità estetiche e funzionali oltre le tendenze. Ogni scelta progettuale comporta quindi una riflessione sulla provenienza, la trasformazione e la durata delle creazioni.",
       "La maison desidera inoltre ripensare il proprio rapporto con la produzione. Privilegiando **il preordine**, intende adeguare le quantità ai bisogni reali, limitare le eccedenze e dedicare maggiore attenzione alla realizzazione di ogni pezzo. Questo approccio esprime anche la volontà di sviluppare un rapporto più diretto con chi darà vita a LEVCHIN, associando l’esigenza di una maison di creazione a un’espressione aperta e accessibile.",
-      "Il suo territorio creativo si sviluppa progressivamente attorno a tre capitoli, **Lo spazio, Il gesto e Il corpo**, che esprimono diversi modi di interagire con il nostro ambiente. Dagli oggetti che accompagnano i luoghi che abitiamo agli accessori che prolungano i nostri gesti, fino agli abiti che seguono o ridisegnano la silhouette, le discipline dialogano all’interno di una riflessione comune sulle forme, gli usi e la materia. Una libertà progettuale che consente alla maison di esplorare scale diverse senza racchiudere la propria identità in un’unica categoria.",
+      "Il suo territorio creativo si sviluppa progressivamente attorno a tre capitoli, **Lo spazio, Il gesto e Il corpo**, che esprimono diversi modi di interagire con il nostro ambiente. Dagli oggetti che accompagnano i luoghi che abitiamo agli accessori che prolungano i nostri gesti, fino agli abiti che seguono o ridisegnano la silhouette, le discipline dialogano all’interno di una riflessione comune sulle forme, gli usi e la materia.",
       "LEVCHIN si costruisce così all’incrocio tra una sensibilità personale e un’ambizione condivisa. Una maison in cui l’esplorazione estetica si accompagna a impegni concreti, ogni nuova creazione arricchisce la precedente e il futuro rimane uno spazio di sperimentazione. **La sua storia inizia con una visione ed è destinata a proseguire nell’incontro con chi vi si riconoscerà.**"
-    ]
+    ],
+    "quote": "Una libertà progettuale che consente alla maison di esplorare scale diverse senza racchiudere la propria identità in un’unica categoria."
   },
   "pt": {
     "title": "Nas origens de uma casa",
@@ -68,9 +73,10 @@
       "É nesta continuidade que LEVCHIN ganha forma. Ao lado de Julian Lafaye, cuja sensibilidade gráfica e olhar complementar participam na construção da sua identidade, Gaspard procura dar uma dimensão concreta às suas ambições criativas. Juntos imaginam uma nova casa francesa, independente e multidisciplinar, em que cada realização contribui para desenvolver um universo coerente, reconhecível e destinado a enriquecer-se ao longo do tempo.",
       "Esta ambição acompanha-se de uma convicção profunda sobre a forma de conceber e produzir. LEVCHIN privilegia as **matérias naturais europeias**, a sua autenticidade e propriedades intrínsecas, com a vontade de confiar o fabrico a oficinas francesas de acordo com os saberes procurados. **A exclusão dos polímeros sintéticos** faz parte desta abordagem, tal como a procura de materiais duradouros, capazes de conservar as qualidades estéticas e funcionais para além das tendências. Cada escolha de conceção envolve assim uma reflexão sobre a origem, a transformação e a vida útil das criações.",
       "A casa deseja também repensar a sua relação com a produção. Ao privilegiar **a pré-encomenda**, pretende ajustar as quantidades às necessidades reais, limitar os excedentes e dedicar maior atenção à realização de cada peça. Esta abordagem traduz ainda a vontade de desenvolver uma relação mais direta com quem dará vida a LEVCHIN, associando a exigência de uma casa de criação a uma expressão aberta e acessível.",
-      "O seu território criativo desenvolve-se progressivamente em torno de três capítulos, **O espaço, O gesto e O corpo**, que traduzem diferentes formas de interagir com o nosso ambiente. Dos objetos que acompanham os lugares que habitamos aos acessórios que prolongam os nossos gestos, até às roupas que seguem ou redesenham a silhueta, as disciplinas dialogam numa reflexão comum sobre as formas, os usos e a matéria. Uma liberdade de conceção que permite à casa explorar diferentes escalas sem encerrar a sua identidade numa única categoria.",
+      "O seu território criativo desenvolve-se progressivamente em torno de três capítulos, **O espaço, O gesto e O corpo**, que traduzem diferentes formas de interagir com o nosso ambiente. Dos objetos que acompanham os lugares que habitamos aos acessórios que prolongam os nossos gestos, até às roupas que seguem ou redesenham a silhueta, as disciplinas dialogam numa reflexão comum sobre as formas, os usos e a matéria.",
       "LEVCHIN constrói-se assim no cruzamento de uma sensibilidade pessoal e de uma ambição partilhada. Uma casa onde a exploração estética se acompanha de compromissos concretos, cada nova criação enriquece a anterior e o futuro permanece um espaço de experimentação. **A sua história começa com uma visão e está destinada a continuar no contacto com quem nela se reconhecer.**"
-    ]
+    ],
+    "quote": "Uma liberdade de conceção que permite à casa explorar diferentes escalas sem encerrar a sua identidade numa única categoria."
   },
   "ja": {
     "title": "メゾンの原点",
@@ -80,9 +86,10 @@
       "その延長線上で、LEVCHINは形を取り始めます。グラフィックへの感性と相互に補い合う視点によってアイデンティティの構築に加わるJulian Lafayeとともに、Gaspardは創作への志に具体的な広がりを与えようとします。二人が思い描くのは、独立した、分野を横断する新たなフランスのメゾン。一つひとつの創作が、一貫性と識別性を持ち、時とともに豊かになる世界を築いていきます。",
       "この志には、デザインと生産のあり方に対する深い信念が伴います。LEVCHINは、**ヨーロッパの天然素材**、その真正さと本来の性質を重視し、必要とする技に応じてフランスの工房に製造を託すことを目指します。**合成ポリマーを使用しないこと**も、流行を超えて美しさと機能を保つ、長く使える素材を探すことも、この姿勢の一部です。あらゆる設計上の選択は、創作物の原産、加工、寿命についての考察につながっています。",
       "メゾンは、生産との関係そのものも見直したいと考えています。**予約注文**を優先することで、実際の需要に数量を合わせ、余剰を抑え、一点ごとの制作により多くの注意を注ぐことを目指します。この方法は、LEVCHINに命を吹き込む人々と、より直接的な関係を育みたいという思いでもあります。創作のメゾンとしての厳格さと、開かれた親しみやすい表現を結びつけていきます。",
-      "その創作領域は、**空間、所作、身体**という三つの章を中心に、少しずつ広がっていきます。それぞれが、私たちの環境との異なる関わり方を表します。暮らす場所に寄り添うオブジェ、所作を延長するアクセサリー、シルエットに沿い、あるいは描き直す衣服。各分野は、形、用途、素材についての共通の思考の中で響き合います。この自由な設計によって、メゾンは自身のアイデンティティを一つのカテゴリーに閉じ込めることなく、異なるスケールを探究できます。",
+      "その創作領域は、**空間、所作、身体**という三つの章を中心に、少しずつ広がっていきます。それぞれが、私たちの環境との異なる関わり方を表します。暮らす場所に寄り添うオブジェ、所作を延長するアクセサリー、シルエットに沿い、あるいは描き直す衣服。各分野は、形、用途、素材についての共通の思考の中で響き合います。",
       "こうしてLEVCHINは、個人の感性と共有する志が交わるところに築かれていきます。美的探究に具体的な決意が伴い、新たな創作が前の創作を豊かにし、未来が実験の場であり続けるメゾンです。**その物語は一つのビジョンから始まり、そこに自分自身を見いだす人々との出会いを通じて、続いていくことを目指しています。**"
-    ]
+    ],
+    "quote": "この自由な設計によって、メゾンは自身のアイデンティティを一つのカテゴリーに閉じ込めることなく、異なるスケールを探究できます。"
   },
   "ko": {
     "title": "메종의 시작에서",
@@ -92,9 +99,10 @@
       "이러한 흐름 속에서 LEVCHIN이 모습을 갖춥니다. 그래픽 감수성과 상호 보완적인 시선으로 정체성을 구축하는 데 함께하는 Julian Lafaye 곁에서, Gaspard는 자신의 창작적 포부에 실질적인 차원을 부여하고자 합니다. 두 사람은 독립적이며 여러 분야를 아우르는 새로운 프랑스 메종을 구상합니다. 각각의 작업이 일관되고 식별 가능하며 시간이 흐를수록 풍부해질 세계를 만드는 데 기여합니다.",
       "이 포부에는 디자인과 생산 방식에 대한 깊은 신념이 따릅니다. LEVCHIN은 **유럽의 천연 소재**, 그 진정성과 고유한 특성을 중시하며, 필요한 전문 기술에 따라 프랑스 공방에 제작을 맡기고자 합니다. **합성 폴리머의 배제**는 유행을 넘어 미적·기능적 품질을 유지할 수 있는 오래가는 소재의 탐색과 함께 이러한 접근의 일부입니다. 따라서 모든 디자인 선택에는 창작물의 원산지와 가공, 수명에 대한 성찰이 담깁니다.",
       "메종은 생산과의 관계 또한 다시 생각하고자 합니다. **사전 주문**을 우선함으로써 실제 필요에 맞춰 수량을 조절하고, 잉여를 줄이며, 각 작품의 제작에 더 많은 관심을 기울이려 합니다. 이러한 접근은 LEVCHIN에 생명을 불어넣을 사람들과 더욱 직접적인 관계를 맺고자 하는 뜻이기도 합니다. 창작 메종의 엄격한 기준과 개방적이고 다가가기 쉬운 표현을 함께 추구합니다.",
-      "창작의 영역은 **공간, 몸짓, 신체**라는 세 장을 중심으로 점차 펼쳐집니다. 이는 우리 환경과 관계 맺는 서로 다른 방식을 나타냅니다. 우리가 사는 장소에 함께하는 오브제부터 몸짓을 확장하는 액세서리, 실루엣을 따르거나 새롭게 그리는 의복까지, 각 분야는 형태와 쓰임, 소재에 대한 하나의 성찰 속에서 서로 응답합니다. 이러한 디자인의 자유는 메종의 정체성을 하나의 범주에 가두지 않고 다양한 규모를 탐구하게 합니다.",
+      "창작의 영역은 **공간, 몸짓, 신체**라는 세 장을 중심으로 점차 펼쳐집니다. 이는 우리 환경과 관계 맺는 서로 다른 방식을 나타냅니다. 우리가 사는 장소에 함께하는 오브제부터 몸짓을 확장하는 액세서리, 실루엣을 따르거나 새롭게 그리는 의복까지, 각 분야는 형태와 쓰임, 소재에 대한 하나의 성찰 속에서 서로 응답합니다.",
       "이처럼 LEVCHIN은 개인의 감수성과 함께 나누는 포부가 만나는 지점에서 만들어집니다. 미학적 탐구에 구체적인 실천 의지가 함께하고, 새로운 창작이 앞선 창작을 풍부하게 하며, 미래가 실험의 공간으로 남아 있는 메종입니다. **그 이야기는 하나의 비전으로 시작되며, 그 안에서 자신을 발견하는 사람들과의 만남을 통해 계속 이어지고자 합니다.**"
-    ]
+    ],
+    "quote": "이러한 디자인의 자유는 메종의 정체성을 하나의 범주에 가두지 않고 다양한 규모를 탐구하게 합니다."
   },
   "zh": {
     "title": "一座创作之家的起源",
@@ -104,9 +112,10 @@
       "LEVCHIN 正是在这一延续中逐渐成形。Julian Lafaye 以其平面设计感知和互补的视角参与品牌身份的构建；与他并肩，Gaspard 着手为自己的创作抱负赋予切实的维度。他们共同构想一座全新的法国创作之家，独立且跨越多个领域，每一项创作都为一个连贯、可辨识并将随时间不断丰富的世界添砖加瓦。",
       "这一抱负伴随着对设计与生产方式的深刻信念。LEVCHIN 优先选择**欧洲天然材料**，重视其真实性和内在特性，并希望根据所需技艺，将制作交托给法国工坊。**排除合成聚合物**也是这一理念的一部分，正如寻找能够超越潮流、长久保持美学与功能品质的耐用材料。每一个设计选择，因而都包含着对创作物来源、转化过程与使用寿命的思考。",
       "品牌也希望重新思考自身与生产的关系。通过优先采用**预订制**，它希望使数量贴合真实需求，减少过剩，并将更多关注投入每一件作品的制作。这一方式也体现出与赋予 LEVCHIN 生命的人们建立更直接关系的愿望，将创作之家的严谨要求与开放、易于亲近的表达结合起来。",
-      "它的创作领域逐渐围绕三个篇章展开：**空间、姿态与身体**，呈现我们与环境互动的不同方式。从陪伴生活空间的物件，到延伸动作的配饰，再到贴合或重新描绘轮廓的服装，不同领域在对形态、用途与材料的共同思考中相互呼应。这种设计自由，使品牌能够探索不同尺度，而不将自身身份局限于单一类别。",
+      "它的创作领域逐渐围绕三个篇章展开：**空间、姿态与身体**，呈现我们与环境互动的不同方式。从陪伴生活空间的物件，到延伸动作的配饰，再到贴合或重新描绘轮廓的服装，不同领域在对形态、用途与材料的共同思考中相互呼应。",
       "LEVCHIN 因而建立在个人感知与共同抱负的交汇处。在这里，美学探索与具体承诺相伴，每一次新创作都丰富着前一次，而未来始终是一片实验的空间。**它的故事始于一个愿景，并希望在与那些从中找到共鸣的人们的相遇中持续展开。**"
-    ]
+    ],
+    "quote": "这种设计自由，使品牌能够探索不同尺度，而不将自身身份局限于单一类别。"
   }
 };
   const article = document.querySelector('.maison-article');
@@ -114,6 +123,7 @@
   function render(language) {
     const text = copy[language] || copy.fr;
     article.querySelector('[data-maison-title]').textContent = text.title;
+    article.querySelector('[data-maison-quote]').textContent = text.quote;
     article.querySelectorAll('[data-maison-copy]').forEach(paragraph => {
       const fragment = document.createDocumentFragment();
       text.paragraphs[Number(paragraph.dataset.maisonCopy)].split('**').forEach((part, index) => {

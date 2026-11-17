@@ -1,9 +1,9 @@
 /* La Maison: continuous editorial reading, preserving the original type scale. */
 .maison-document {
   --maison-edge: clamp(24px, 5.5vw, 92px);
-  --maison-copy-size: 14px;
-  --maison-title-size: 32px;
-  background: var(--bg);
+  --maison-copy-size: .875rem;
+  --maison-title-size: 2rem;
+  background: #000;
 }
 
 .maison-document::before { content: none; }
@@ -34,77 +34,52 @@
 }
 
 .maison-article {
-  max-width: 64rem;
+  max-width: 66ch;
   margin-inline: auto;
   color: var(--text);
   font: 400 var(--maison-copy-size)/1.85 var(--font-main);
-  overflow-wrap: anywhere;
 }
-
 .maison-article h1 {
-  max-width: 20ch;
-  margin: 0;
-  font: 500 var(--maison-title-size)/1.15 var(--font-main);
-  letter-spacing: -.025em;
-  text-transform: none;
+  margin: 0 0 1.25em;
+  font: 400 var(--maison-title-size)/1.2 "Bodoni Moda", Georgia, serif;
+  text-align: center;
   text-wrap: balance;
 }
-
 .maison-article p {
-  max-width: 66ch;
   margin: 0;
   color: rgba(255, 248, 239, .8);
-  text-wrap: pretty;
+  text-align: justify;
+  text-align-last: left;
+  -webkit-hyphens: none;
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
 }
-
-.maison-article strong { font-weight: 600; color: #fff8ef; }
-
-.maison-lead,
-.maison-origins,
-.maison-finale {
-  width: min(100%, 66ch);
-  margin-inline: auto;
-}
-
-.maison-lead p { margin-top: clamp(24px, 3vw, 40px); }
-.maison-origins { margin-top: 1.75em; }
-.maison-origins p + p, .maison-finale p + p { margin-top: 1.75em; }
-
-.maison-making {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(40px, 6vw, 80px);
-  margin-block: clamp(48px, 6vw, 84px);
-}
-
-.maison-finale p:last-of-type strong {
-  display: block;
-  max-width: 44ch;
-  margin-block-start: 2em;
-  line-height: 1.6;
+.maison-article strong { font-weight: inherit; }
+.maison-article p + p, .maison-article > div + div { margin-block-start: 1.5em; }
+.maison-article blockquote {
+  margin: 1.75em auto;
+  max-width: 40ch;
+  font: italic 400 1.5em/1.5 "Bodoni Moda", Georgia, serif;
+  color: #fff;
+  text-align: center;
   text-wrap: balance;
+  quotes: auto;
 }
+.maison-article blockquote::before { content: open-quote; }
+.maison-article blockquote::after { content: close-quote; }
 
 .maison-back-link { margin-top: 3em; }
 .maison-document .site-footer, .maison-document .footer-bottom { border-top: 0; }
 .maison-document .footer-socials, .maison-document .footer-logo-wrap { border-bottom: 0; }
 
 @media (min-width: 1500px) {
-  .maison-document { --maison-copy-size: 16px; --maison-title-size: 42px; }
-}
-
-@media (max-width: 900px) {
-  .maison-making {
-    width: min(100%, 66ch);
-    margin-inline: auto;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.75em;
-    margin-block: 2.5em;
-  }
+  .maison-document { --maison-copy-size: 1rem; --maison-title-size: 2.625rem; }
 }
 
 @media (max-width: 760px) {
-  .maison-document { --maison-copy-size: 14px; --maison-title-size: 26px; }
+  .maison-document { --maison-copy-size: .875rem; --maison-title-size: 1.625rem; }
+  .maison-article p { text-align: start; }
   .maison-header { min-height: 64px; }
   .maison-logo { width: min(180px, 40vw); }
   .maison-header .nav-link { font-size: 10px; letter-spacing: .1em; }
