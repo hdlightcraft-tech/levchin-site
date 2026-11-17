@@ -66,6 +66,7 @@
   text-wrap: balance;
   quotes: auto;
 }
+.maison-article blockquote:lang(fr) { quotes: "«\00a0" "\00a0»"; }
 .maison-article blockquote::before { content: open-quote; }
 .maison-article blockquote::after { content: close-quote; }
 
@@ -79,7 +80,6 @@
 
 @media (max-width: 760px) {
   .maison-document { --maison-copy-size: .875rem; --maison-title-size: 1.625rem; }
-  .maison-article p { text-align: start; }
   .maison-header { min-height: 64px; }
   .maison-logo { width: min(180px, 40vw); }
   .maison-header .nav-link { font-size: 10px; letter-spacing: .1em; }
